@@ -1,18 +1,18 @@
--- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables; -- ¸ğµçÅ×ÀÌºí »èÁ¦½ÃÅ°´Â Äõ¸®¹® ³ª¿À°ÔµÊ
+-- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables; -- ëª¨ë“ í…Œì´ë¸” ì‚­ì œì‹œí‚¤ëŠ” ì¿¼ë¦¬ë¬¸ ë‚˜ì˜¤ê²Œë¨
 
---½ÃÄö½º µû·Î ¾È¸¸µé¾îµµ / insertÇÒ ¶§µµ work_seq.nextval ÀÌ°Å ¾È³Ö¾îµµ.
---- 1. work, artist, admin Å×ÀÌºí ¹× seqµé »ı¼º -----
---------------- WorkÀÛÇ° Å×ÀÌºí, work_seq »ı¼º
+--ì‹œí€€ìŠ¤ ë”°ë¡œ ì•ˆë§Œë“¤ì–´ë„ / insertí•  ë•Œë„ work_seq.nextval ì´ê±° ì•ˆë„£ì–´ë„.
+--- 1. work, artist, admin í…Œì´ë¸” ë° seqë“¤ ìƒì„± -----
+--------------- Workì‘í’ˆ í…Œì´ë¸”, work_seq ìƒì„±
 CREATE TABLE Work
 (
     id                   NUMBER(4)         NOT NULL, 
     work_name            VARCHAR2(200)     NOT NULL, 
     artist_id            NUMBER(4)         NOT NULL, 
-    work_genre_name      VARCHAR2(50)      DEFAULT 'ÃÊ»óÈ­' NOT NULL, -- ÃÊ»óÈ­, Ãß»óÈ­, Ç³°æ, Á¤¹°, Å¸ÀÌÆ÷±×·¡ÇÇ, ÀÏ·¯½ºÆ®, Æ÷½ºÅÍ, ÆË¾ÆÆ®, ÃÊÇö½Ç, Ä«Å÷
-    work_subject_name    VARCHAR2(50)      DEFAULT 'º½' NOT NULL,  -- º½, ¿©¸§, °¡À», °Ü¿ï, µ¿¹°, ½Ä¹°, µµ½Ã, ¾î¸°ÀÌ, ½Ç³»
+    work_genre_name      VARCHAR2(50)      DEFAULT 'ì´ˆìƒí™”' NOT NULL, -- ì´ˆìƒí™”, ì¶”ìƒí™”, í’ê²½, ì •ë¬¼, íƒ€ì´í¬ê·¸ë˜í”¼, ì¼ëŸ¬ìŠ¤íŠ¸, í¬ìŠ¤í„°, íŒì•„íŠ¸, ì´ˆí˜„ì‹¤, ì¹´íˆ°
+    work_subject_name    VARCHAR2(50)      DEFAULT 'ë´„' NOT NULL,  -- ë´„, ì—¬ë¦„, ê°€ì„, ê²¨ìš¸, ë™ë¬¼, ì‹ë¬¼, ë„ì‹œ, ì–´ë¦°ì´, ì‹¤ë‚´
     work_img_url         VARCHAR2(300)     NOT NULL, 
     work_content         VARCHAR2(1000)    NOT NULL, 
-    work_sale            NUMBER(4,2)       DEFAULT 0.00 NOT NULL, -- ¼¼ÀÏ ÆÛ¼¾Æ®
+    work_sale            NUMBER(4,2)       DEFAULT 0.00 NOT NULL, -- ì„¸ì¼ í¼ì„¼íŠ¸
     work_isBest          NUMBER(1)         DEFAULT 0 NOT NULL, 
     work_reg_date        DATE              DEFAULT sysdate NOT NULL, 
     work_price           NUMBER(7)         DEFAULT 10000 NOT NULL, 
@@ -22,12 +22,12 @@ CREATE TABLE Work
      PRIMARY KEY (id)
 );
 
--- Auto Increment¸¦ À§ÇÑ Sequence Ãß°¡ SQL - Work.id
+-- Auto Incrementë¥¼ ìœ„í•œ Sequence ì¶”ê°€ SQL - Work.id
 CREATE SEQUENCE Work_SEQ
 START WITH 1
 INCREMENT BY 1;
 
---------------- ArtistÀÛ°¡ Å×ÀÌºí, artist_seq »ı¼º
+--------------- Artistì‘ê°€ í…Œì´ë¸”, artist_seq ìƒì„±
 CREATE TABLE Artist
 (
     id                     NUMBER(4)         NOT NULL, 
@@ -40,14 +40,14 @@ CREATE TABLE Artist
      PRIMARY KEY (id)
 );
 
--- Auto Increment¸¦ À§ÇÑ Sequence Ãß°¡ SQL - Artist.id
+-- Auto Incrementë¥¼ ìœ„í•œ Sequence ì¶”ê°€ SQL - Artist.id
 CREATE SEQUENCE Artist_SEQ
 START WITH 1
 INCREMENT BY 1;
 
 -- drop table artist CASCADE CONSTRAINTS;
 --alter table artist modify artist_content varchar2(2000);
---------------- Admin °ü¸®ÀÚ Å×ÀÌºí, admin_seq »ı¼ºÇØ¾ß
+--------------- Admin ê´€ë¦¬ì í…Œì´ë¸”, admin_seq ìƒì„±í•´ì•¼
 CREATE TABLE Admin
 (
     id                NUMBER(3)       NOT NULL, 
@@ -61,13 +61,13 @@ CREATE TABLE Admin
      PRIMARY KEY (id)
 );
 
--- Auto Increment¸¦ À§ÇÑ Sequence Ãß°¡ SQL - Admin.id
+-- Auto Incrementë¥¼ ìœ„í•œ Sequence ì¶”ê°€ SQL - Admin.id
 CREATE SEQUENCE Admin_SEQ
 START WITH 1
 INCREMENT BY 1;
 
 
-------- ¿Ü·¡Å° ÇÑ²¨¹ø¿¡ ¼³Á¤
+------- ì™¸ë˜í‚¤ í•œêº¼ë²ˆì— ì„¤ì •
 -- Work(admin_id) -> Admin(id)
 ALTER TABLE Work
     ADD CONSTRAINT FK_Work_admin_id_Admin_id FOREIGN KEY (admin_id)
@@ -78,8 +78,8 @@ ALTER TABLE Work
     ADD CONSTRAINT FK_Work_artist_id_Artist_id FOREIGN KEY (artist_id)
         REFERENCES Artist (id) ;
 
---- 1. work, artist, admin Å×ÀÌºí ¹× seqµé »ı¼º ³¡ -----
+--- 1. work, artist, admin í…Œì´ë¸” ë° seqë“¤ ìƒì„± ë -----
 
 
-
+commit;
 
