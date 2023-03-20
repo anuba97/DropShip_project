@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="mypage-nav">
-	    <h2><a href="https://bxgs.co.kr/shop/mypage.php">MYPAGE</a></h2>
+	    <h2><a href="../myshop/mypage">MYPAGE</a></h2>
 	    <div class="mypage-nav-depth">
 	        <h3>쇼핑정보</h3>
 	        <ul>
