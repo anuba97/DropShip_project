@@ -22,7 +22,7 @@
 	        <h3>회원정보</h3>
 	        <ul>
 	            <li ><a href="../member/register_update_intro">회원정보 변경</a></li>
-	            <li ><a href="https://bxgs.co.kr/bbs/member_confirm.php?url=member_leave.php">회원탈퇴</a></li>
+	            <li ><a href="../member/register_out">회원탈퇴</a></li>
 	        </ul>
 	    </div>
 	</div>

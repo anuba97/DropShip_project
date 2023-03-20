@@ -43,5 +43,17 @@ public class MemberController {
 		return "member/register_update_form";
 	}
 	
+	@PostMapping("member/register_update_result")  // 회원정보 변경 완료 페이지
+	public String register_update_result() {
+		return "member/register_update_result";
+	}
+	
+	@GetMapping("member/register_out")  // 회원탈퇴 페이지
+	public String register_out() {
+		return "member/register_out";
+	}
+	
+	
+	
 	
 }

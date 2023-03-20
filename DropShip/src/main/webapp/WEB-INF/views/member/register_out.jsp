@@ -9,7 +9,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="/img/favicon.ico" />
-<title>회원수정 완료페이지</title>
+<title>회원탈퇴</title>
 <link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="../theme/buzinga/mobile/skin/member/basic/style3816.css?ver=210618">
 <link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
 <link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
-
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -27,7 +26,7 @@
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "https://bxgs.co.kr";
 var g5_bbs_url   = "https://bxgs.co.kr/bbs";
-var g5_is_member = "";
+var g5_is_member = "1";
 var g5_is_admin  = "";
 var g5_is_mobile = "1";
 var g5_bo_table  = "";
@@ -55,7 +54,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 <script src="https://bxgs.co.kr/theme/buzinga/js/unslider.min.js?ver=210618"></script>
 </head>
 <body>
-
+<div id="hd_login_msg">오민수님 로그인 중 <a href="https://bxgs.co.kr/bbs/logout.php">로그아웃</a></div>
 
 <div class="cursor-ball">
     <div class="ball"></div>
@@ -67,50 +66,72 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 </div>
 
 
+
+
 <div id="wrap" class="sub">
 
 		<!-- header 부분 시작 -->
 		<%@ include file ="../top/header.jsp" %>
 		<!-- header 부분 끝 -->
-
+	
         <main id="contents">
         
-<section class="sub-tit-wrap" data-aos="fade-up">
+
+
+
+<section class="mypage">
     <div class="maxinner">
-                <h2 class="sub-tit">회원정보 변경</h2>
+       
+       <!-- mypage_side_bar 시작 부분 -->
+		<%@ include file = "../top/mypage_side_bar.jsp" %>			
+		<!-- mypage_side_bar 끝 부분 -->
+       
+        <div class="mypage-con">
+            <div class="mypage-confirm">
+                <div id="mb_confirm" class="mbskin">
+                    <div class="mypage-tit mt0">
+                        <h3>회원정보 확인</h1>
+                    </div>
+                    <div class="mypage-confirm-box">
+                        <h4>비밀번호 재확인</h4>
+                        <p>
+                                                        비밀번호를 입력하시면 회원탈퇴가 완료됩니다.
+                                                    </p>
+
+                        <form name="fmemberconfirm" action="member_leave.php" onsubmit="return fmemberconfirm_submit(this);" method="post">
+                            <input type="hidden" name="mb_id" value="alstn85851">
+                            <input type="hidden" name="w" value="u">
+
+                            <fieldset>
+                                <label for="mb_confirm_id" class="hide">회원아이디</label>
+                                <input type="text" name="" id="mb_confirm_id" value="alstn85851" readonly="readonly" class="inp-type01">
+                                <label for="mb_confirm_pw" class="hide">패스워드</label>
+                                <input type="password" name="mb_password" id="mb_confirm_pw" placeholder="비밀번호" required class="inp-type01" size="15" maxLength="20">
+                                <div class="btn-confirm-wrap">
+                                    <a href="/" class="btnset btn-type04">취소</a>
+                                    <input type="submit" value="확인" id="btn_submit" class="btnset btn-type04 btn-line-brown">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 
 
-<section class="join">
-    <div class="maxinner">
-        <div class="join-result">
-            <img src="/img/common/logo.png" alt="DropShip갤러리">
-            <h3>민수님의 회원변경이 완료되었습니다.</h3>
 
-                        <div class="btn-confirm-wrap">
-                <a href="/" class="btnset btn-type04">메인으로</a>
-                <a href="login" class="btnset btn-type04 btn-line-brown">로그인</a>
-            </div>
-        </div>
-    </div>
-</section>    </main>
-        
-        <!-- header 부분 시작 -->
-		<%@ include file ="../top/footer.jsp" %>
-		<!-- header 부분 끝 -->
+<script>
+function fmemberconfirm_submit(f)
+{
+    document.getElementById("btn_submit").disabled = true;
 
-<div id="gotop">
-    <a href="javascript:;"><span class="hide">맨위로가기</span></a>
-</div>
-</div>
+    return true;
+}
+</script>
 
-
-<script src="https://bxgs.co.kr/js/sns.js"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/animate.css">
-<script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>
@@ -131,3 +152,19 @@ $(function() {
 
 </body>
 </html>
+    </main>
+        
+        <!-- header 부분 시작 -->
+		<%@ include file ="../top/footer.jsp" %>
+		<!-- header 부분 끝 -->
+
+<div id="gotop">
+    <a href="javascript:;"><span class="hide">맨위로가기</span></a>
+</div>
+</div>
+
+
+<script src="https://bxgs.co.kr/js/sns.js"></script>
+<script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
+<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/animate.css">
+<script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
