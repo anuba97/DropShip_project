@@ -1,73 +1,86 @@
--- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables; -- ëª¨ë“ í…Œì´ë¸” ì‚­ì œì‹œí‚¤ëŠ” ì¿¼ë¦¬ë¬¸ ë‚˜ì˜¤ê²Œë¨
+-- SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables; -- ¸ğµçÅ×ÀÌºí »èÁ¦½ÃÅ°´Â Äõ¸®¹® ³ª¿À°ÔµÊ
+--DROP TABLE "WORK" CASCADE CONSTRAINTS;
+--DROP TABLE "ADMIN" CASCADE CONSTRAINTS;
+--DROP TABLE "ARTIST" CASCADE CONSTRAINTS;
 
---ì‹œí€€ìŠ¤ ë”°ë¡œ ì•ˆë§Œë“¤ì–´ë„ / insertí•  ë•Œë„ work_seq.nextval ì´ê±° ì•ˆë„£ì–´ë„.
---- 1. work, artist, admin í…Œì´ë¸” ë° seqë“¤ ìƒì„± -----
---------------- Workì‘í’ˆ í…Œì´ë¸”, work_seq ìƒì„±
+--½ÃÄö½º µû·Î ¾È¸¸µé¾îµµ / insertÇÒ ¶§µµ work_seq.nextval ÀÌ°Å ¾È³Ö¾îµµ.
+--- 1. work, artist, admin Å×ÀÌºí ¹× seqµé »ı¼º -----
+--------------- WorkÀÛÇ° Å×ÀÌºí, work_seq »ı¼º
 CREATE TABLE Work
 (
     id                   NUMBER(4)         NOT NULL, 
     work_name            VARCHAR2(200)     NOT NULL, 
     artist_id            NUMBER(4)         NOT NULL, 
-    work_genre_name      VARCHAR2(50)      DEFAULT 'ì´ˆìƒí™”' NOT NULL, -- ì´ˆìƒí™”, ì¶”ìƒí™”, í’ê²½, ì •ë¬¼, íƒ€ì´í¬ê·¸ë˜í”¼, ì¼ëŸ¬ìŠ¤íŠ¸, í¬ìŠ¤í„°, íŒì•„íŠ¸, ì´ˆí˜„ì‹¤, ì¹´íˆ°
-    work_subject_name    VARCHAR2(50)      DEFAULT 'ë´„' NOT NULL,  -- ë´„, ì—¬ë¦„, ê°€ì„, ê²¨ìš¸, ë™ë¬¼, ì‹ë¬¼, ë„ì‹œ, ì–´ë¦°ì´, ì‹¤ë‚´
-    work_img_url         VARCHAR2(300)     NOT NULL, 
-    work_content         VARCHAR2(1000)    NOT NULL, 
-    work_sale            NUMBER(4,2)       DEFAULT 0.00 NOT NULL, -- ì„¸ì¼ í¼ì„¼íŠ¸
+    work_genre_name      VARCHAR2(50)      DEFAULT 'ÃÊ»óÈ­' NOT NULL, -- ÃÊ»óÈ­, Ãß»óÈ­, Ç³°æ, Á¤¹°, Å¸ÀÌÆ÷±×·¡ÇÇ, ÀÏ·¯½ºÆ®, Æ÷½ºÅÍ, ÆË¾ÆÆ®, ÃÊÇö½Ç, Ä«Å÷
+    work_subject_name    VARCHAR2(50)      DEFAULT 'º½' NOT NULL,  -- º½, ¿©¸§, °¡À», °Ü¿ï, µ¿¹°, ½Ä¹°, µµ½Ã, ¾î¸°ÀÌ, ½Ç³»
+    work_img_url         VARCHAR2(500)     NOT NULL, 
+    work_content         VARCHAR2(4000)    NOT NULL, 
+    work_sale            NUMBER(4,2)       DEFAULT 0.00 NOT NULL, -- ¼¼ÀÏ ÆÛ¼¾Æ®
     work_isBest          NUMBER(1)         DEFAULT 0 NOT NULL, 
     work_reg_date        DATE              DEFAULT sysdate NOT NULL, 
     work_price           NUMBER(7)         DEFAULT 10000 NOT NULL, 
     work_dp              VARCHAR2(500)     DEFAULT 'https://www.google.com/maps?cid=13363865620386383060' NULL, 
-    work_hit             NUMBER(4)         NOT NULL, 
-    admin_id             NUMBER(3)         NULL, 
+    work_hit             NUMBER(4)         DEFAULT 0 NOT NULL, 
+    admin_id             NUMBER(3)         DEFAULT 1 NULL, 
      PRIMARY KEY (id)
 );
 
--- Auto Incrementë¥¼ ìœ„í•œ Sequence ì¶”ê°€ SQL - Work.id
+-- Auto Increment¸¦ À§ÇÑ Sequence Ãß°¡ SQL - Work.id
 CREATE SEQUENCE Work_SEQ
 START WITH 1
 INCREMENT BY 1;
 
---------------- Artistì‘ê°€ í…Œì´ë¸”, artist_seq ìƒì„±
+DROP SEQUENCE Work_SEQ; 
+
+--------------- ArtistÀÛ°¡ Å×ÀÌºí, artist_seq »ı¼º
 CREATE TABLE Artist
 (
     id                     NUMBER(4)         NOT NULL, 
     artist_korean_name     VARCHAR2(300)     NOT NULL, 
     artist_english_name    VARCHAR2(300)     NOT NULL, 
+    artist_img_url         VARCHAR2(500)     NOT NULL, 
     artist_country         VARCHAR2(100)     NOT NULL, 
     artist_birth_death     VARCHAR2(100)     NOT NULL, 
     artist_main            VARCHAR2(200)     NOT NULL, 
-    artist_content         VARCHAR2(2000)    NOT NULL, 
+    artist_content         VARCHAR2(4000)    NOT NULL, 
      PRIMARY KEY (id)
 );
+desc artist;
+alter table artist add artist_img_url VARCHAR2(500) NOT NULL;
 
--- Auto Incrementë¥¼ ìœ„í•œ Sequence ì¶”ê°€ SQL - Artist.id
+-- Auto Increment¸¦ À§ÇÑ Sequence Ãß°¡ SQL - Artist.id
 CREATE SEQUENCE Artist_SEQ
 START WITH 1
 INCREMENT BY 1;
 
+DROP SEQUENCE Artist_SEQ;
+
 -- drop table artist CASCADE CONSTRAINTS;
---alter table artist modify artist_content varchar2(2000);
---------------- Admin ê´€ë¦¬ì í…Œì´ë¸”, admin_seq ìƒì„±í•´ì•¼
+--alter table artist modify artist_content varchar2(4000);
+--------------- Admin °ü¸®ÀÚ Å×ÀÌºí, admin_seq »ı¼ºÇØ¾ß
 CREATE TABLE Admin
 (
     id                NUMBER(3)       NOT NULL, 
     admin_name        VARCHAR2(30)    NOT NULL, 
     admin_id          VARCHAR2(20)    NOT NULL, 
-    admin_pw          VARCHAR2(20)    NOT NULL, 
+    admin_pw          VARCHAR2(40)    NOT NULL, 
     admin_isSuper     NUMBER(1)       DEFAULT 0 NOT NULL, 
-    admin_phone       VARCHAR2(20)    NOT NULL, 
-    admin_reg_date    DATE            NOT NULL, 
+    admin_phone       NUMBER(10)      NOT NULL, 
+    admin_reg_date    DATE            DEFAULT sysdate NOT NULL, 
     admin_ban         NUMBER(1)       DEFAULT 0 NOT NULL, 
      PRIMARY KEY (id)
 );
 
--- Auto Incrementë¥¼ ìœ„í•œ Sequence ì¶”ê°€ SQL - Admin.id
+--alter table admin modify admin_phone NUMBER(10);
+
+-- Auto Increment¸¦ À§ÇÑ Sequence Ãß°¡ SQL - Admin.id
 CREATE SEQUENCE Admin_SEQ
 START WITH 1
 INCREMENT BY 1;
 
+DROP SEQUENCE Admin_SEQ; 
 
-------- ì™¸ë˜í‚¤ í•œêº¼ë²ˆì— ì„¤ì •
+------- ¿Ü·¡Å° ÇÑ²¨¹ø¿¡ ¼³Á¤
 -- Work(admin_id) -> Admin(id)
 ALTER TABLE Work
     ADD CONSTRAINT FK_Work_admin_id_Admin_id FOREIGN KEY (admin_id)
@@ -78,8 +91,8 @@ ALTER TABLE Work
     ADD CONSTRAINT FK_Work_artist_id_Artist_id FOREIGN KEY (artist_id)
         REFERENCES Artist (id) ;
 
---- 1. work, artist, admin í…Œì´ë¸” ë° seqë“¤ ìƒì„± ë -----
+--- 1. work, artist, admin Å×ÀÌºí ¹× seqµé »ı¼º ³¡ -----
 
 
-commit;
+
 
