@@ -77,7 +77,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
         
 <section class="sub-tit-wrap" data-aos="fade-up">
     <div class="maxinner">
-                <h2 class="sub-tit">회원정보 변경2222</h2>
+                <h2 class="sub-tit">회원정보 변경333</h2>
     </div>
 </section>
 
