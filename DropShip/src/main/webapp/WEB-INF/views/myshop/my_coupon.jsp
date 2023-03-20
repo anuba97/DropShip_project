@@ -82,30 +82,12 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 		<!-- mypage_side_bar 끝 부분 -->	
 			
 			<div class="mypage-con">
-			<div class="mypage-info">
-	<div class="mypage-info-txt">
-		<div class="img"><img src="/img/sub/mypage-info.png" alt=""></div>
-		<div class="txt">
-			<p><strong>오민수</strong>님, 안녕하세요!</p>
-			<p>
-				고객님의 회원등급은 
-				<span class="f-color">
-					개인회원				</span>
-				입니다.
-			</p>
-		</div>
-	</div>
-	<div class="mypage-info-mile">
-		<a href="https://bxgs.co.kr/shop/my_coupon.php" class="my-coupon">
-			<h3>사용가능 쿠폰</h3>
-			<span class="f-color"><strong>0</strong>장</span>
-		</a>
-		<a href="https://bxgs.co.kr/shop/my_mileage.php" class="my-point">
-			<h3>적립금</h3>
-			<span class="f-color"><strong>0P</strong></span>
-		</a>
-	</div>
-</div>			<div class="mypage-coupon">
+			
+			<!-- mypage_coupon_header 시작 부분 -->
+			<%@ include file = "../top/mypage_coupon_header.jsp" %>
+			<!-- mypage_coupon_header 끝 부분 -->
+			
+				<div class="mypage-coupon">
 				<div class="mypage-tit">
 					<h3>쿠폰</h3>
 				</div>

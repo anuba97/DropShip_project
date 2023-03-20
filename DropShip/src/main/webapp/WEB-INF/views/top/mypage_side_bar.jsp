@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="mypage-nav">
-	    <h2><a href="https://bxgs.co.kr/shop/mypage.php">MYPAGE</a></h2>
+	    <h2><a href="../myshop/mypage">MYPAGE</a></h2>
 	    <div class="mypage-nav-depth">
 	        <h3>쇼핑정보</h3>
 	        <ul>
@@ -21,8 +21,8 @@
 	    <div class="mypage-nav-depth">
 	        <h3>회원정보</h3>
 	        <ul>
-	            <li ><a href="https://bxgs.co.kr/bbs/member_confirm.php?url=register_form.php">회원정보 변경</a></li>
-	            <li ><a href="https://bxgs.co.kr/bbs/member_confirm.php?url=member_leave.php">회원탈퇴</a></li>
+	            <li ><a href="../member/register_update_intro">회원정보 변경</a></li>
+	            <li ><a href="../member/register_out">회원탈퇴</a></li>
 	        </ul>
 	    </div>
 	</div>

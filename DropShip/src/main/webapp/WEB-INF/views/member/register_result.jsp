@@ -39,20 +39,20 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
 
 </script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="https://bxgs.co.kr/js/jquery-1.12.4.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/jquery-migrate-1.4.1.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/common.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/wrest.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/placeholders.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/swiper.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/gsap-3.6.0.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/aos.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.nice-select.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.sidr.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/modernizr.custom.70111.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/owl.carousel.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/unslider.min.js?ver=210618"></script>
+<link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../js/common3816.js?ver=210618"></script>
+<script src="../js/wrest3816.js?ver=210618"></script>
+<script src="../js/placeholders.min3816.js?ver=210618"></script>
+<script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 <body>
 
