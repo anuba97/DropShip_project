@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>DropShip Admin - 고객 관리</title>
+<title>DropShip Admin - 고객</title>
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
@@ -19,25 +19,11 @@
 <link href="css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
 	crossorigin="anonymous"></script>
+<script>
+ 
+</script>
 </head>
 <body class="sb-nav-fixed">
-<%-- 	<c:if test="${result == 0}"> --%>
-<!-- 		<script> -->
-// 				alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요.");
-// 				location.href="admin_login";
-<!-- 			</script> -->
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${result == 1}"> --%>
-<!-- 		<script> -->
-// 				alert("로그인되었습니다");
-<!-- 			</script> -->
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${sessionAdminId==null}"> --%>
-<!-- 		<script> -->
-// 				alert("관리자만 접근할 수 있습니다!");
-// 				location.href="admin_login";
-<!-- 			</script> -->
-<%-- 	</c:if> --%>
 	<!-- navBar 부분 시작 -->
 		<%@ include file ="include/navBar.jsp" %>
 	<!-- navBar 부분 끝 -->
@@ -52,37 +38,102 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">고객 관리</h1>
 					<div class="card mb-4">
-						<div class="card-body">DropShip 고객을 관리하는 메뉴입니다. 원하는 회원을 클릭해서 상세 정보를 확인하세요.</div>
+						<div class="card-body">고객 정보를 확인하는 페이지입니다.</div>
 					</div>
 				</div>
-				<div class="admin_customerListDiv">
-					<table class="admin_customerListTable">
+					<table class="admin_customerTable">
 						<colgroup>
-							<col width="10%">
-							<col width="18%">
-							<col width="18%">
-							<col width="18%">
-							<col width="18%">
-							<col width="18%">
+							<col width="30%">
+							<col width="70%">
 						</colgroup>
 						<tr>
 							<th>회원 고유번호</th>
-							<th>회원 ID</th>
-							<th>회원 이름</th>
-							<th>회원 E-mail</th>
-							<th>회원 가입일</th>
-							<th>최근 주문 날짜</th>
+							<td>
+								${dropshipMemberVo.id}
+							</td>
 						</tr>
-						<tr onClick="location.href='admin_customer'" style="cursor:pointer;">
-							<td>id</td>
-							<td>m_login_id</td>
-							<td>m_name</td>
-							<td>m_email</td>
-							<td>m_reg_date</td>
-							<td>om_date</td>
+						<tr>
+							<th>회원 로그인 아이디</th>
+							<td>
+								${dropshipMemberVo.member_login_id }
+							</td>
+						</tr>
+						<tr>
+							<th>회원 이름</th>
+							<td>
+								${dropshipMemberVo.member_name}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 이메일</th>
+							<td>
+								${dropshipMemberVo.member_email}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 전화번호</th>
+							<td>
+								${dropshipMemberVo.member_phone}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 생년월일</th>
+							<td>
+								${dropshipMemberVo.member_birth}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 우편번호</th>
+							<td>
+								${dropshipMemberVo.member_zip}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 도로명주소</th>
+							<td>
+								${dropshipMemberVo.member_road}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 상세주소</th>
+							<td>
+								${dropshipMemberVo.member_addr}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 닉네임</th>
+							<td>
+								${dropshipMemberVo.member_nname}
+							</td>
+						</tr>
+						<tr>
+							<th>회원 가입일</th>
+							<td>
+								${dropshipMemberVo.member_reg_date}
+							</td>
+						</tr>
+					</table><br>
+					
+					<table class="memberInOrder">
+						<tr>
+							<th colspan="4">최근 주문 내역</th>
+						</tr>
+						<tr class="memberInOrder_td">
+							<td>회원 고유 번호</td>
+							<td>주문 날짜</td>
+							<td>배송 고유번호(송장)</td>
+							<td>처리 상태</td>
+						</tr>
+						<tr onClick="location.href='?='" style="cursor:pointer;">
+							<td>member_id</td>
+							<td>order_date</td>
+							<td>delivery_id</td>
+							<td>order_status</td>
 						</tr>
 					</table>
-				</div>
+					<div class="button-wrapper">
+						<a href="dropship_customerList"><button type="button">고객 리스트</button></a>
+					</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">

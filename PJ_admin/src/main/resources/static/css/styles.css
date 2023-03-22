@@ -11556,10 +11556,11 @@ body {
 
 
 .admin_memberListTable{
+	width: 700px;
 	margin: 0 0 0 24px;
 	
 }
-.admin_customerListTable{
+.dropship_customerListTable{
 	margin: 0 0 0 24px;
 	width: 1158px;
 }
@@ -11601,25 +11602,34 @@ body {
 }
 .admin_memberAddTableDiv th{
 	width: 200px;
-	background-color: #808080;
+	background-color: #212529;
 	color: #fff;
 }
 .admin_memberAddTableDiv > td{
 	width: 300px;
 }
 .admin_customerTable{
-	width: 650px;
+	width: 660px;
 	border-collapse: collapse;
 	margin: 0 0 0 24px;
 }
-.admin_customerTable > th{
-	width: 200px;
-}
-.admin_customerTable > td{
-	width: 400px;
-}
 .admin_customerTable th{
-	background-color: #eee;
+	background-color: #212529;
+	color: #fff;
+}
+.memberInOrder_td{
+	background-color: #525252;
+	color: #fff;
+}
+
+
+.memberInOrder{
+	margin: 0 0 0 24px;
+	width: 660px;
+}
+.memberInOrder th{
+	background-color: #212529;
+	color: #fff;
 }
 
 

@@ -19,6 +19,11 @@ public class AdminFrontController {
 	@Autowired
 	HttpSession session;
 	
+	@GetMapping("admin_login")//로그인 페이지 열기
+	public String admin_login(Model model) {
+		return "admin_login";
+	}//admin_login
+	
 	@RequestMapping("admin_index")
 	public String admin_index() {
 		return "admin_index";
@@ -31,10 +36,7 @@ public class AdminFrontController {
 	
 	
 	
-	@GetMapping("admin_customerList")
-	public String admin_customerList(Model model) {
-		return "admin_customerList";
-	}
+	
 	@GetMapping("admin_orderList")
 	public String admin_orderList(Model model) {
 		return "admin_orderList";

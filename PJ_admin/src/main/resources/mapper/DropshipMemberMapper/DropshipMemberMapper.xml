@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dropship.mapper.DropshipMemberMapper"> 
+
+	<!-- dropship 맴버 리스트 정렬 -->
+	<select id="selectMemberList" resultType="kr.co.dropship.vo.DropshipMemberVo">
+		select * from ( select rownum rnum, a. * from
+    	( select * from memberdropship order by id ) a )
+    	where rnum between #{startRow} and #{endRow}
+	</select>
+	<!-- dropship 맴버 개수 확인 -->
+	<select id="selectCount" resultType="int">
+		select count(*) count from memberdropship
+	</select>
+	<!-- dropship 맴버 1개 정보 가져오기 -->
+	<select id="selectOne" resultType="kr.co.dropship.vo.DropshipMemberVo">
+		select * from memberdropship where member_login_id = #{member_login_id}
+	</select>
+	
+</mapper>

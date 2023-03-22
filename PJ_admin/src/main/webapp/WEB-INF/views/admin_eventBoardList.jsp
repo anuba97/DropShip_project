@@ -55,8 +55,8 @@
 						<div class="card-body">DropShip 이벤트 게시판을 관리하는 메뉴입니다. 이벤트를 등록 관리할 수 있습니다.</div>
 					</div>
 				</div>
-				<div class="admin_customerListDiv">
-					<table class="admin_customerListTable">
+				<div class="dropship_customerListDiv">
+					<table class="dropship_customerListTable">
 						<colgroup>
 							<col width="10%">
 							<col width="30%">

@@ -7,6 +7,12 @@
 		location.href="admin_login";
 	</script>
 </c:if>
+<%-- <c:if test="${sessionBan != 1}"> --%>
+<!-- 	<script> -->
+// 		alert("사용할 수 없는 관리자 계정입니다!\n담당자에게 문의해 주세요!");
+// 		location.href="admin_login";
+<!-- 	</script> -->
+<%-- </c:if> --%>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 	<!-- Navbar Brand-->
 	<a class="navbar-brand ps-3" href="admin_index">DropShip ADMIN</a>

@@ -9,6 +9,13 @@
 	</head>
 	<body>
 		<c:choose>
+			<c:when test="${sessionBan != 1}">
+				<script>
+					alert("사용할 수 없는 관리자 계정입니다!\n담당자에게 문의해 주세요!");
+					location.href="admin_login";
+				</script>
+			</c:when>
+			
 			<c:when test="${loginResult == 0}">
 				<script>
 					alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요.");

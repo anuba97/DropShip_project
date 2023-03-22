@@ -47,10 +47,10 @@
 				<div class="admin_memberListTableDiv">
 					<table class="admin_memberListTable">
 						<colgroup>
-							<col width="10%">
-							<col width="25%">
-							<col width="20%">
 							<col width="15%">
+							<col width="18%">
+							<col width="18%">
+							<col width="19%">
 							<col width="15%">
 							<col width="15%">
 						</colgroup>

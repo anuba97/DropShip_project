@@ -7,34 +7,24 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.dropship.mapper.AdminMemberMapper;
+import kr.co.dropship.mapper.DropshipMemberMapper;
 import kr.co.dropship.vo.AdminMemberVo;
+import kr.co.dropship.vo.DropshipMemberVo;
 
 @Service
-public class AdminMemberServiceImpl implements AdminMemberService {
+public class DropshipMemberServiceImpl implements DropshipMemberService {
 	
 	@Autowired
-	AdminMemberMapper adminMemberMapper;
-	
-	@Override
-	public AdminMemberVo adminMemberSelectOne(String admin_id, String admin_pw) {
-		AdminMemberVo adminMemberVo = adminMemberMapper.adminMemberSelectOne(admin_id, admin_pw);
-		return adminMemberVo;
-	}//adminMemberSelectOne
+	DropshipMemberMapper dropshipMemberMapper;
 
 	@Override
-	public void insertMember(AdminMemberVo adminMemberVo) {
-		adminMemberMapper.insertMember(adminMemberVo);
-	}//insertMember
-
-	@Override
-	public Map<String, Object> selectAdminList(int page) {
+	public Map<String, Object> selectMemberList(int page) {
 		HashMap<String, Object> map = pageMethod(page);
 		
 		int startRow = (int)map.get("startRow");
 		int endRow = (int)map.get("endRow");
 		
-		List<AdminMemberVo> list = adminMemberMapper.selectAdminList(startRow, endRow);
+		List<DropshipMemberVo> list = dropshipMemberMapper.selectMemberList(startRow, endRow);
 		
 		map.put("list", list);
 		map.put("page", page);
@@ -50,7 +40,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	public HashMap<String, Object> pageMethod(int page) {
 		HashMap<String, Object> map = new HashMap<>();
 		
-		int listCount = adminMemberMapper.selectCount();
+		int listCount = dropshipMemberMapper.selectCount();
 		int rowPerPage = 10; //한 페이지당 게시물 갯수
 		int pageList = 5; //페이지 넘버 표시할 갯수 1-2-3-4-5 또는 1-2-3 또는 1-2-3-4-5-6-7-8-9-10 이런 식
 		int maxPage = (int)( Math.ceil ( ( double ) listCount / rowPerPage ) );
@@ -71,34 +61,11 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return map;
 	}//pageMethod
 
-	@Override
-	public AdminMemberVo selectOne(String admin_id) {
-		AdminMemberVo adminMemberVo = adminMemberMapper.selectOne(admin_id);
-		return adminMemberVo;
-	}//selectOne
 
 	@Override
-	public void updateAdminData(AdminMemberVo adminMemberVo) {
-		adminMemberMapper.updateAdminData(adminMemberVo);
-	}//updateAdminData
+	public DropshipMemberVo selectOne(String member_login_id) {
+		DropshipMemberVo dropshipMemberVo = dropshipMemberMapper.selectOne(member_login_id);
+		return dropshipMemberVo;
+	}
 
-	@Override
-	public void updateAdminPW(AdminMemberVo adminMemberVo) {
-		adminMemberMapper.updateAdminPW(adminMemberVo);
-	}//updateAdminPW
-
-	@Override
-	public void memberDelete(String admin_id) {
-		adminMemberMapper.memberDelete(admin_id);
-	}//memberDelete
-
-	@Override
-	public int adminMemberCheckId(String admin_id) {
-		int result = adminMemberMapper.adminMemberCheckId(admin_id);
-		return result;
-	}//adminMemberCheckId
-
-	
-}//AdminMemberServiceImpl
-
-
+}

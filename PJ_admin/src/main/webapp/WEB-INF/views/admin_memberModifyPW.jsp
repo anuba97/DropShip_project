@@ -75,13 +75,13 @@
                         <tr>
                             <th>관리자 비밀번호</th>
                             <td>
-                                <input type="text" name="admin_pw" id="admin_pw" style="width: 100%;" required>
+                                <input type="text" name="admin_pw" id="admin_pw" style="width: 100%; text-align:center;" required>
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 비밀번호 확인</th>
                             <td>
-                                <input type="text" name="admin_pw2" id="admin_pw2" style="width: 100%;" required>
+                                <input type="text" name="admin_pw2" id="admin_pw2" style="width: 100%; text-align:center;" required>
                             </td>
                         </tr>
                         <tr>

@@ -55,8 +55,8 @@
 						<div class="card-body">DropShip 인화주문을 관리하는 페이지입니다. 결제 상황에 따라 처리 상태를 변경 후 진행하세요.</div>
 					</div>
 				</div>
-				<div class="admin_customerListDiv">
-					<table class="admin_customerListTable">
+				<div class="dropship_customerListDiv">
+					<table class="dropship_customerListTable">
 						<colgroup>
 							<col width="30%">
 							<col width="70%">

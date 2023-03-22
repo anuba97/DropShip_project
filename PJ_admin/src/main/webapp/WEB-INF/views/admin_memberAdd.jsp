@@ -56,7 +56,13 @@
 			$("#admin_pw2").val("").focus();
 			return false;
 		}
-  		
+		
+		var rgbColor = $("#result_checkId").css('color');
+		if(rgbColor != 'rgb(0, 0, 255)'){
+        	alert("ID 중복확인을 진행해주세요!");
+        	return false;
+        }
+		
 		if(confirm("해당 ADMIN을 추가하시겠습니까?")) {
   			admin_memberAddFrm.submit();	
   		}
@@ -82,7 +88,6 @@
 	                    result = "사용 가능한 아이디입니다.";
 	                    $("#result_checkId").html(result).css("color", "blue");
 	                    $("#admin_pw").trigger("focus");
-	                 
 	             }else{ // 만약 실패할시
 	                 result="이미 사용중인 아이디입니다.";
 	                     $("#result_checkId").html(result).css("color","red");
@@ -124,7 +129,7 @@
 							<th>관리자 로그인 아이디</th>
 							<td>
 								<input type="text" name="admin_id" id="admin_id" style="width: 72%; text-align:center; border-collapse: collapse;" required>
-								<input type="button" class="admin_idCheck_button" id="checkIdBtn" style="color:blue; " value="중복 확인"/><br>
+								<input type="button" class="admin_idCheck_button" id="checkIdBtn" style="color:blue; font-weight:bold;" value="ID 중복확인"/><br>
 								<strong><span id="result_checkId" style="font-size:14px; color:gray;">※ ID 중복 확인을 진행해주세요.</span></strong>
 							</td>
 						</tr>
