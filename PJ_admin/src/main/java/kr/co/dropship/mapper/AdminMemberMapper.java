@@ -23,7 +23,7 @@ public interface AdminMemberMapper {
 	
 	public void updateAdminPW(AdminMemberVo adminMemberVo); //admin 비번 업데이트
 
-	public void memberDelete(String admin_id); //admin 삭제
+	public void admin_memberDelete(String admin_id); //admin 삭제
 	
 	public int adminMemberCheckId(String admin_id); //admin ID 중복 체크
 	

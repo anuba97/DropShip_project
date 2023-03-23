@@ -55,8 +55,8 @@
 						<div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다..</div>
 					</div>
 				</div>
-				<div class="dropship_customerListDiv">
-					<table class="dropship_customerListTable">
+				<div class="dropship_memberListDiv">
+					<table class="dropship_memberListTable">
 						<colgroup>
 							<col width="10%">
 							<col width="30%">

@@ -7,12 +7,6 @@
 		location.href="admin_login";
 	</script>
 </c:if>
-<%-- <c:if test="${sessionBan != 1}"> --%>
-<!-- 	<script> -->
-// 		alert("사용할 수 없는 관리자 계정입니다!\n담당자에게 문의해 주세요!");
-// 		location.href="admin_login";
-<!-- 	</script> -->
-<%-- </c:if> --%>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 	<!-- Navbar Brand-->
 	<a class="navbar-brand ps-3" href="admin_index">DropShip ADMIN</a>
@@ -22,9 +16,8 @@
 		<i class="fas fa-bars"></i>
 	</button>
 	<!-- Navbar Search-->
-	<form
-		class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-		<div class="input-group"></div>
+	<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+		<div class="input-group"><img src="img/topnav.png"></div>
 	</form>
 	<!-- Navbar-->
 	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">

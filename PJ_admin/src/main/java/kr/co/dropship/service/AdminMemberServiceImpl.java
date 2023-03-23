@@ -88,8 +88,8 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	}//updateAdminPW
 
 	@Override
-	public void memberDelete(String admin_id) {
-		adminMemberMapper.memberDelete(admin_id);
+	public void admin_memberDelete(String admin_id) {
+		adminMemberMapper.admin_memberDelete(admin_id);
 	}//memberDelete
 
 	@Override

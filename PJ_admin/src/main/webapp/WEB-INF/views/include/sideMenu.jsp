@@ -12,7 +12,7 @@
 		</c:if>
 		<!-- 슈퍼 어드민만 접근할 수 있도록 해야하는 단일 메뉴 -->
 		<div class="sb-sidenav-menu-heading">사이트 관리</div>
-			<a class="nav-link collapsed" href="dropship_customerList">
+			<a class="nav-link collapsed" href="dropship_memberList">
 				<div class="sb-nav-link-icon"></div> 고객 관리
 			</a>
 			<a class="nav-link collapsed" data-bs-target="#collapseLayouts" aria-expanded="true" aria-controls="collapseLayouts">

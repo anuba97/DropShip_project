@@ -35,7 +35,7 @@
 		update adminmember set admin_pw = #{admin_pw} where admin_id = #{admin_id}
 	</update>
 	<!-- admin 1개 삭제하기 -->
-	<update id="memberDelete">
+	<update id="admin_memberDelete">
 		delete from adminmember where admin_id = #{admin_id}
 	</update>
 	<!-- admin 1개 확인하기 -->

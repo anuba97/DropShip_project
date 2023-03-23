@@ -15,7 +15,7 @@
 		select count(*) count from memberdropship
 	</select>
 	<!-- dropship 맴버 1개 정보 가져오기 -->
-	<select id="selectOne" resultType="kr.co.dropship.vo.DropshipMemberVo">
+	<select id="dropship_memberselectOne" resultType="kr.co.dropship.vo.DropshipMemberVo">
 		select * from memberdropship where member_login_id = #{member_login_id}
 	</select>
 	

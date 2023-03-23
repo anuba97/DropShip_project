@@ -55,8 +55,8 @@
 						<div class="card-body">DropShip 인화주문을 관리하는 페이지입니다. 결제 완료된 주문을 눌러 배송처리를 진행해 주세요.</div>
 					</div>
 				</div>
-				<div class="dropship_customerListDiv">
-					<table class="dropship_customerListTable">
+				<div class="dropship_memberListDiv">
+					<table class="dropship_memberListTable">
 						<colgroup>
 							<col width="15%">
 							<col width="20%">

@@ -63,23 +63,23 @@
                         <tr>
                             <th>관리자 이름</th>
                             <td>
-                                <input type="hidden" name="admin_name" id="admin_name" style="width: 100%;" value="${adminMemberVo.admin_name}" readonly>${adminMemberVo.admin_name}
+                                ${adminMemberVo.admin_name}
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 로그인 아이디</th>
                             <td>
-                                <input type="hidden" name="admin_id" id="admin_id" style="width: 100%;" value="${adminMemberVo.admin_id}" readonly>${adminMemberVo.admin_id}
+                                ${adminMemberVo.admin_id}
                             </td>
                         </tr>
                         <tr>
-                            <th>관리자 비밀번호</th>
+                            <th>변경할 비밀번호</th>
                             <td>
                                 <input type="text" name="admin_pw" id="admin_pw" style="width: 100%; text-align:center;" required>
                             </td>
                         </tr>
                         <tr>
-                            <th>관리자 비밀번호 확인</th>
+                            <th>변경할 비밀번호 확인</th>
                             <td>
                                 <input type="text" name="admin_pw2" id="admin_pw2" style="width: 100%; text-align:center;" required>
                             </td>
@@ -87,12 +87,12 @@
                         <tr>
                             <th>관리자 연락처</th>
                             <td>
-                                <input type="hidden" name="admin_phone" id="admin_phone" style="width: 100%;" value="${adminMemberVo.admin_phone}" readonly>${adminMemberVo.admin_phone}
+                                ${adminMemberVo.admin_phone}
                             </td>
                         </tr>
-                    </table>
-                    <div class="button-wrapper">
-                        <button type="button" onclick="modifyPwBtn()" style="color:red;">PW 수정</button>
+                    </table><br>
+                    <div class="admin_eventBoardAdd_div">
+                        <button type="button" onclick="modifyPwBtn()" style="color:red; border-radius:5px; margin-left:270px;">PW 수정</button>
                     </div>
                 </form>
             </main>

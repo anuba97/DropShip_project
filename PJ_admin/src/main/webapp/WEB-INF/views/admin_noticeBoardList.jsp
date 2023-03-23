@@ -55,8 +55,8 @@
 						<div class="card-body">DropShip 공지 게시판을 관리하는 메뉴입니다. 공지 게시판의 글을 확인하고 관리하세요.</div>
 					</div>
 				</div>
-				<div class="dropship_customerListDiv">
-					<table class="dropship_customerListTable">
+				<div class="dropship_memberListDiv">
+					<table class="dropship_memberListTable">
 						<colgroup>
 							<col width="10%">
 							<col width="10%">

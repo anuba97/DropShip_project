@@ -4580,7 +4580,7 @@ width: 400px;
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  min-width: 800px;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
@@ -11556,13 +11556,17 @@ body {
 
 
 .admin_memberListTable{
-	width: 700px;
+	width: 800px;
 	margin: 0 0 0 24px;
 	
 }
-.dropship_customerListTable{
+.dropship_memberListTable{
 	margin: 0 0 0 24px;
-	width: 1158px;
+	width: 1000px;
+}
+.dropship_memberListTable th{
+	background-color: #212529;
+	color: #fff;
 }
 .admin_eventBoardAdd{
 	margin: 0 0 0 24px;
@@ -11860,4 +11864,51 @@ tr,th,td{
 
 #bigTitle{
 	color: #fff;
+}
+
+.bottom-paging{
+	margin-top: 15px;
+	width: 1000px;
+}
+
+.page-numul{
+	display: flex;
+  	justify-content: center;
+}
+
+.page-num {
+  width: 30px;
+  height: 30px !important;
+  margin-left: 13px;
+  margin-right: 13px;
+  margin-bottom: 5px;
+  border: 1px #989898 solid;
+}
+
+.material-symbols-outlined{
+  padding-top: 2px;	
+}
+
+.page-num a{
+	text-decoration: none;
+}
+
+#page-on { 
+  background:#e56e00; 
+  color:#fff; 
+}
+
+#page-number { 
+  padding-top: 5px;
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-numul li{
+  margin-top: 5px;	
+  display: inline-block;
+  padding-right: 5px;
+  font-size: 13px;
 }

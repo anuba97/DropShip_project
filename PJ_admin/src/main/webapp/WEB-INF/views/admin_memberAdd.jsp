@@ -129,8 +129,8 @@
 							<th>관리자 로그인 아이디</th>
 							<td>
 								<input type="text" name="admin_id" id="admin_id" style="width: 72%; text-align:center; border-collapse: collapse;" required>
-								<input type="button" class="admin_idCheck_button" id="checkIdBtn" style="color:blue; font-weight:bold;" value="ID 중복확인"/><br>
-								<strong><span id="result_checkId" style="font-size:14px; color:gray;">※ ID 중복 확인을 진행해주세요.</span></strong>
+								<input type="button" class="admin_idCheck_button" id="checkIdBtn" style="color:blue; font-weight:bold; border-radius:5px;" value="ID 중복확인"/><br>
+								<strong><span id="result_checkId" style="font-size:14px; color:gray; border-radius:5px;">※ ID 중복 확인을 진행해주세요.</span></strong>
 							</td>
 						</tr>
 						<tr>
@@ -171,8 +171,8 @@
 						</tr>
 					</table><br>
 					<div classs="admin_eventBoardAdd_div">
-						<button type="button" class="admin_eventBoardAdd_button" onClick="memberAddBtn()" style="margin: 0 0 0 190px; color:red;">ADMIN 추가</button>
-						<button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_memberList'" style="margin: 0 auto;">ADMIN 리스트</button>
+						<button type="button" class="admin_eventBoardAdd_button" onClick="memberAddBtn()" style="margin: 0 0 0 190px; color:red; border-radius:5px;">ADMIN 추가</button>
+						<button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_memberList'" style="margin: 0 auto; border-radius:5px;">ADMIN 리스트</button>
 					</div>
 				</form>
 			</main>

@@ -26,7 +26,7 @@ public class AdminMemberController {
 	@Autowired
 	HttpSession session;
 	
-	@PostMapping("admin_login")//로그인 진행
+	@PostMapping("admin_login")//로그인하기
 	public String admin_login(@RequestParam String admin_id, @RequestParam String admin_pw, Model model) {
 		int loginResult = 0;
 		AdminMemberVo adminMemberVo = adminMemberService.adminMemberSelectOne(admin_id, admin_pw);
@@ -45,14 +45,14 @@ public class AdminMemberController {
 		return "doAdmin";
 	}//admin_login
 	
-	@GetMapping("admin_memberList")//admin 전체 정보 가져오기
+	@GetMapping("admin_memberList")//admin 맴버 전체 정보 가져오기
 	public String admin_memberList(@RequestParam(defaultValue = "1") int page, Model model) {
 		Map<String, Object> map = adminMemberService.selectAdminList(page);
 		model.addAttribute("map", map);
 		return "admin_memberList";
 	}//admin_memberList
 	
-	@RequestMapping("admin_memberList")//admin 연락처&등급&상태 수정
+	@RequestMapping("admin_memberList")//슈퍼 관리자가 admin 1명의 연락처&등급&상태 수정
 	public String admin_memberChange(AdminMemberVo adminMemberVo, Model model) {
 		int updateResult = 0;
 		adminMemberService.updateAdminData(adminMemberVo);
@@ -73,7 +73,7 @@ public class AdminMemberController {
 		return "admin_memberAdd";
 	}//admin_memberAdd
 	
-	@PostMapping("admin_memberAdd")//admin 추가하기
+	@PostMapping("admin_memberAdd")//신규 admin 추가하기
 	public String admin_memberAdd(AdminMemberVo adminMemberVo, Model model) {
 		int addResult = 0;
 		adminMemberService.insertMember(adminMemberVo);
@@ -87,14 +87,14 @@ public class AdminMemberController {
 		return "doAdmin";
 	}//admin_memberAdd
 	
-	@PostMapping("adminMemberCheckId")//ID 중복 체크
+	@PostMapping("adminMemberCheckId")//admin ID 중복 체크
 	@ResponseBody
 	public int adminMemberCheckId(@RequestParam String admin_id) {
 		int flag = adminMemberService.adminMemberCheckId(admin_id);
 		return flag;
 	}//adminMemberCheckId
 	
-	@GetMapping("admin_memberModify")//admin 1명 정보보기
+	@GetMapping("admin_memberModify")//admin 1명 수정 페이지에서 정보보기
 	public String admin_memberModify(@RequestParam String admin_id, Model model) {
 		AdminMemberVo adminMemberVo = adminMemberService.selectOne(admin_id);
 		model.addAttribute("adminMemberVo", adminMemberVo);
@@ -125,7 +125,7 @@ public class AdminMemberController {
 	
 	@GetMapping("admin_memberDelete") //1개 ADMIN 삭제하기
 	public String admin_memberDelete(@RequestParam String admin_id, Model model) {
-		adminMemberService.memberDelete(admin_id);
+		adminMemberService.admin_memberDelete(admin_id);
 		int deleteResult = 0;
 		if(admin_id != null) {
 			deleteResult = 1;

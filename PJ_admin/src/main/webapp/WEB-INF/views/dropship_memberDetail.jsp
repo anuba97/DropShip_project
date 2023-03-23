@@ -132,7 +132,7 @@
 						</tr>
 					</table>
 					<div class="button-wrapper">
-						<a href="dropship_customerList"><button type="button">고객 리스트</button></a>
+						<a href="dropship_memberList?page=${page}"><button type="button" style="border-radius:5px;">고객 리스트</button></a>
 					</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.dropship.service.DropshipMemberService;
@@ -25,18 +26,20 @@ public class DropshipMemberController {
 	HttpSession session;
 
 	
-	@GetMapping("dropship_customerList")
-	public String dropship_customerList(@RequestParam(defaultValue = "1") int page, Model model) {
+	@GetMapping("dropship_memberList")
+	public String dropship_memberList(@RequestParam(defaultValue = "1") int page, Model model) {
 		Map<String, Object> map = dropshipMemberService.selectMemberList(page);
 		model.addAttribute("map", map);
-		return "dropship_customerList";
+		model.addAttribute("page", page);
+		return "dropship_memberList";
 	}
 	
-	@GetMapping("dropship_customerDetail")//맴버 1명 정보보기
-	public String dropship_customerDetail(@RequestParam String member_login_id, Model model) {
-		DropshipMemberVo dropshipMemberVo = dropshipMemberService.selectOne(member_login_id);
+	@RequestMapping("dropship_memberDetail")//맴버 1명 정보보기
+	public String dropship_memberselectOne(@RequestParam String member_login_id, @RequestParam int page, Model model) {
+		DropshipMemberVo dropshipMemberVo = dropshipMemberService.dropship_memberselectOne(member_login_id);
 		model.addAttribute("dropshipMemberVo", dropshipMemberVo);
-		return "dropship_customerDetail";
+		model.addAttribute("page", page);
+		return "dropship_memberDetail";
 	}//admin_memberModify
 	
 	

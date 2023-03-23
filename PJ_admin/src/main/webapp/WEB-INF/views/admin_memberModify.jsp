@@ -60,13 +60,13 @@
                          <tr>
                             <th>관리자 이름</th>
                             <td>
-                                <input type="hidden" name="admin_name" id="admin_name" style="width: 100%;" value="${adminMemberVo.admin_name}" readonly>${adminMemberVo.admin_name}
+                                ${adminMemberVo.admin_name}
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 로그인 아이디</th>
                             <td>
-                                <input type="hidden" name="admin_id" id="admin_id" style="width: 100%;" value="${adminMemberVo.admin_id}" readonly>${adminMemberVo.admin_id}
+                                ${adminMemberVo.admin_id}
                             </td>
                         </tr>
                         <tr>
@@ -79,6 +79,12 @@
                             <th>관리자 연락처</th>
                             <td>
                                 <input type="text" name="admin_phone" id="admin_phone" style="width: 100%; text-align:center;" value="${adminMemberVo.admin_phone}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>관리자 등록일</th>
+                            <td>
+                                ${adminMemberVo.admin_reg_date}
                             </td>
                         </tr>
                         <tr>
@@ -101,8 +107,9 @@
                         </tr>
                     </table><br>
                     <div class="admin_eventBoardAdd_div">
-                        <button type="button" class="admin_eventBoardAdd_button" onclick="modifyBtn()" style="margin: 0 0 0 165px; color:blue;">ADMIN 수정</button>
-                        <button type="button" class="admin_eventBoardAdd_button" onclick="deleteBtn()" style="margin: 0 auto; color:red;">ADMIN 삭제</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onclick="modifyBtn()" style="margin: 0 0 0 70px; color:blue; border-radius:5px;">ADMIN 수정</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onclick="location.href='admin_memberList'" style="margin: 0 auto; border-radius:5px;">ADMIN 리스트</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onclick="deleteBtn()" style="margin: 0 auto; color:red; border-radius:5px;">ADMIN 삭제</button>
                     </div>
                 </form>
             </main>

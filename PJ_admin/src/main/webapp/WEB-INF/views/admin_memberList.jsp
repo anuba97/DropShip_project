@@ -47,18 +47,20 @@
 				<div class="admin_memberListTableDiv">
 					<table class="admin_memberListTable">
 						<colgroup>
+							<col width="13%">
+							<col width="13%">
 							<col width="15%">
 							<col width="18%">
-							<col width="18%">
-							<col width="19%">
 							<col width="15%">
-							<col width="15%">
+							<col width="13%">
+							<col width="13%">
 						</colgroup>
 						<tr>
 							<th>관리자 번호</th>
 							<th>관리자 ID</th>
 							<th>관리자 이름</th>
 							<th>관리자 연락처</th>
+							<th>관리자 등록일</th>
 							<th>관리자 등급</th>
 							<th>관리자 상태</th>
 						</tr>
@@ -68,6 +70,7 @@
 								<td>${avo.admin_id}</td>
 								<td>${avo.admin_name}</td>
 								<td>${avo.admin_phone}</td>
+								<td>${avo.admin_reg_date}</td>
 								<c:if test="${avo.admin_issuper==1}">
 									<td style="color:blue; font-weight:bold;">슈퍼</td>
 								</c:if>
@@ -85,7 +88,7 @@
 					</table>
 				</div>
 				<div class="button-wrapper">
-					<a href="admin_memberAdd"><button type="button" style="color:red;">ADMIN 추가</button></a>
+					<a href="admin_memberAdd"><button type="button" style="color:red; border-radius: 10px;">ADMIN 추가</button></a>
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
