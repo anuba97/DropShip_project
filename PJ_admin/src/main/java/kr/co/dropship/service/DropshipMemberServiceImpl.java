@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.dropship.mapper.DropshipMemberMapper;
-import kr.co.dropship.vo.AdminMemberVo;
+import kr.co.dropship.vo.AdminVo;
 import kr.co.dropship.vo.DropshipMemberVo;
 
 @Service

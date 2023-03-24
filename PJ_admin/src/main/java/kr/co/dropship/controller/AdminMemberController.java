@@ -14,50 +14,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.dropship.service.AdminMemberService;
-import kr.co.dropship.vo.AdminMemberVo;
+import kr.co.dropship.service.AdminService;
+import kr.co.dropship.vo.AdminVo;
 
 @Controller
 public class AdminMemberController {
 	
 	@Autowired
-	AdminMemberService adminMemberService;
+	AdminService adminService;
 	
 	@Autowired
 	HttpSession session;
 	
 	@PostMapping("admin_login")//로그인하기
-	public String admin_login(@RequestParam String admin_id, @RequestParam String admin_pw, Model model) {
-		int loginResult = 0;
-		AdminMemberVo adminMemberVo = adminMemberService.adminMemberSelectOne(admin_id, admin_pw);
-		if ( adminMemberVo != null ) {
-			model.addAttribute("adminMemberVo", adminMemberVo);
-			session.setAttribute("sessionAdminId", adminMemberVo.getAdmin_id());
-			session.setAttribute("sessionAdminName", adminMemberVo.getAdmin_name());
-			session.setAttribute("sessionSuperAdmin", adminMemberVo.getAdmin_issuper());
-			session.setAttribute("sessionBan", adminMemberVo.getAdmin_ban());
+	public String admin_login(@RequestParam String admin_login_id, @RequestParam String admin_pw, Model model) {
+		int loginResult = 0;	// 기본 0
+		AdminVo adminVo = adminService.adminMemberSelectOne(admin_login_id, admin_pw);
+		if ( adminVo != null ) { // DB에 해당 관리자가 존재한다면
+			model.addAttribute("adminVo", adminVo);
+			session.setAttribute("sessionAdminId", adminVo.getId());	// 관리자 고유번호를 세션에 저장
+			session.setAttribute("sessionAdminLoginId", adminVo.getAdmin_login_id());	// 관리자 로그인 아이디를 세션에 저장
+			session.setAttribute("sessionAdminName", adminVo.getAdmin_name());	// 관리자 이름 세션에 저장
+			session.setAttribute("sessionSuperAdmin", adminVo.getAdmin_isSuper());	// 슈퍼관리자 여부 세션에 저장
+			session.setAttribute("sessionBan", adminVo.getAdmin_ban());	// 계정정지여부 세션에 저장
 			loginResult = 1;
-			model.addAttribute("loginResult", loginResult);
-		}else {
-			loginResult = 0;
-			model.addAttribute("loginResult", loginResult);
 		}
+		model.addAttribute("loginResult", loginResult);
 		return "doAdmin";
 	}//admin_login
 	
 	@GetMapping("admin_memberList")//admin 맴버 전체 정보 가져오기
 	public String admin_memberList(@RequestParam(defaultValue = "1") int page, Model model) {
-		Map<String, Object> map = adminMemberService.selectAdminList(page);
+		Map<String, Object> map = adminService.selectAdminList(page);
 		model.addAttribute("map", map);
 		return "admin_memberList";
 	}//admin_memberList
 	
 	@RequestMapping("admin_memberList")//슈퍼 관리자가 admin 1명의 연락처&등급&상태 수정
-	public String admin_memberChange(AdminMemberVo adminMemberVo, Model model) {
+	public String admin_memberUpdate(AdminVo adminVo, Model model) {
 		int updateResult = 0;
-		adminMemberService.updateAdminData(adminMemberVo);
-		model.addAttribute("adminMemberVo", adminMemberVo);
-		if(adminMemberVo != null) {
+		adminService.updateAdminData(adminVo);
+		model.addAttribute("adminVo", adminVo);
+		if(adminVo != null) {
 			updateResult = 1;
 			model.addAttribute("updateResult", updateResult);
 		}else {
@@ -66,7 +64,7 @@ public class AdminMemberController {
 		}
 		return "doAdmin";
 //		return "redirect:admin_memberList="+dataResult;
-	}//admin_memberChange
+	}//admin_memberUpdate
 	
 	@GetMapping("admin_memberAdd")//admin 추가 페이지 열기
 	public String admin_memberAdd(Model model) {
@@ -74,10 +72,10 @@ public class AdminMemberController {
 	}//admin_memberAdd
 	
 	@PostMapping("admin_memberAdd")//신규 admin 추가하기
-	public String admin_memberAdd(AdminMemberVo adminMemberVo, Model model) {
+	public String admin_memberAdd(AdminVo adminVo, Model model) {
 		int addResult = 0;
-		adminMemberService.insertMember(adminMemberVo);
-		if(adminMemberVo != null) {
+		adminService.insertMember(adminVo);
+		if(adminVo != null) {
 			addResult = 1;
 			model.addAttribute("addResult", addResult);
 		}else {
@@ -89,31 +87,33 @@ public class AdminMemberController {
 	
 	@PostMapping("adminMemberCheckId")//admin ID 중복 체크
 	@ResponseBody
-	public int adminMemberCheckId(@RequestParam String admin_id) {
-		int flag = adminMemberService.adminMemberCheckId(admin_id);
+	public int adminMemberCheckId(@RequestParam String admin_login_id) {
+		int flag = adminService.adminMemberCheckId(admin_login_id);
 		return flag;
 	}//adminMemberCheckId
 	
-	@GetMapping("admin_memberModify")//admin 1명 수정 페이지에서 정보보기
-	public String admin_memberModify(@RequestParam String admin_id, Model model) {
-		AdminMemberVo adminMemberVo = adminMemberService.selectOne(admin_id);
-		model.addAttribute("adminMemberVo", adminMemberVo);
-		return "admin_memberModify";
-	}//admin_memberModify
+	@GetMapping("admin_memberUpdate")//admin 1명 수정 페이지에서 정보보기
+	public String admin_memberUpdate(@RequestParam String admin_login_id, Model model) {
+		AdminVo adminVo = adminService.selectOne(admin_login_id);
+		model.addAttribute("adminVo", adminVo);
+		return "admin_memberUpdate";
+	}//admin_memberUpdate
 
-	@RequestMapping("admin_memberModifyPW")//admin 비번수정 페이지 이동하기
-	public String admin_memberModifyPW(@RequestParam String admin_id, Model model) {
-		AdminMemberVo adminMemberVo = adminMemberService.selectOne(admin_id);
-		model.addAttribute("adminMemberVo", adminMemberVo);
-		return "admin_memberModifyPW";
-	}//admin_memberModifyPW
+	@RequestMapping("admin_memberUpdatePW")//admin 비번수정 페이지 이동하기
+	public String admin_memberUpdatePW(@RequestParam String admin_login_id, Model model) {
+		AdminVo adminVo = adminService.selectOne(admin_login_id);
+		model.addAttribute("adminVo", adminVo);
+		return "admin_memberUpdatePW";
+	}//admin_memberUpdatePW
 	
 	@RequestMapping("admin_memberPW")//admin 자기 자신의 PW 수정
-	public String admin_memberChangePW(AdminMemberVo adminMemberVo, Model model) {
+	public String admin_memberUpdatePW(AdminVo adminVo, Model model) {
 		int PWResult = 0;
-		adminMemberService.updateAdminPW(adminMemberVo);
-		model.addAttribute("adminMemberVo", adminMemberVo);
-		if(adminMemberVo != null) {
+		System.out.println("adminVo admin_name :             " + adminVo.getAdmin_name() );
+		System.out.println("adminVo login_id :             " + adminVo.getAdmin_login_id() );
+		adminService.updateAdminPW(adminVo);
+		model.addAttribute("adminVo", adminVo);
+		if(adminVo != null) {
 			PWResult = 1;
 			model.addAttribute("PWResult", PWResult);
 		}else {
@@ -121,19 +121,16 @@ public class AdminMemberController {
 			model.addAttribute("PWResult", PWResult);
 		}
 		return "doAdmin";
-	}//admin_memberChangePW
+	}//admin_memberUpdatePW
 	
 	@GetMapping("admin_memberDelete") //1개 ADMIN 삭제하기
-	public String admin_memberDelete(@RequestParam String admin_id, Model model) {
-		adminMemberService.admin_memberDelete(admin_id);
+	public String admin_memberDelete(@RequestParam String admin_login_id, Model model) {
+		adminService.admin_memberDelete(admin_login_id);
 		int deleteResult = 0;
-		if(admin_id != null) {
+		if(admin_login_id != null) {
 			deleteResult = 1;
-			model.addAttribute("deleteResult", deleteResult);
-		}else {
-			deleteResult = 0;
-			model.addAttribute("deleteResult", deleteResult);
 		}
+		model.addAttribute("deleteResult", deleteResult);
 		return "doAdmin";
 	}//admin_memberDelete
 	

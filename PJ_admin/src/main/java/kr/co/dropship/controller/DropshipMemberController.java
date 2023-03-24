@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.dropship.service.DropshipMemberService;
-import kr.co.dropship.vo.AdminMemberVo;
+import kr.co.dropship.vo.AdminVo;
 import kr.co.dropship.vo.DropshipMemberVo;
 
 

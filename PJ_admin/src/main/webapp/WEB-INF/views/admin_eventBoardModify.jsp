@@ -51,7 +51,7 @@
 // 				alert("로그인되었습니다");
 <!-- 			</script> -->
 <%-- 	</c:if> --%>
-<%-- 	<c:if test="${sessionAdminId==null}"> --%>
+<%-- 	<c:if test="${sessionAdminLoginId==null}"> --%>
 <!-- 		<script> -->
 // 				alert("관리자만 접근할 수 있습니다!");
 // 				location.href="admin_login";

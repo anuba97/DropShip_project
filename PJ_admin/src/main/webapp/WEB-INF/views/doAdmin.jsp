@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<c:choose>
-			<c:when test="${sessionBan != 1}">
+			<c:when test="${sessionBan == 1 && loginResult == 1}">
 				<script>
 					alert("사용할 수 없는 관리자 계정입니다!\n담당자에게 문의해 주세요!");
 					location.href="admin_login";

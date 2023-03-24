@@ -16,14 +16,14 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <c:if test="${sessionAdminId != adminMemberVo.admin_id}">
+    <c:if test="${sessionAdminLoginId != adminVo.admin_login_id}">
         <script>
             alert("타인의 계정은 접근할 수 없습니다!");
             location.href = "admin_index";
         </script>
     </c:if>
     <script>
-        function modifyPwBtn() {
+        function updatePwBtn() {
             var pw = $("#admin_pw").val();
             var pw2 = $("#admin_pw2").val();
 
@@ -34,7 +34,7 @@
             }
 
             if (confirm("PW를 수정 하시겠습니까?")) {
-            	admin_memberChangePW.submit();
+            	admin_memberUpdatePW.submit();
             }
         }
     </script>
@@ -58,18 +58,19 @@
                         <div class="card-body">ADMIN 계정의 비밀번호만 변경할 수 있는 페이지입니다.</div>
                     </div>
                 </div>
-                <form action="admin_memberPW" name="admin_memberChangePW" method="post">
+                <form action="admin_memberPW" name="admin_memberUpdatePW" method="post">
                     <table class="admin_memberAddTableDiv">
                         <tr>
                             <th>관리자 이름</th>
                             <td>
-                                ${adminMemberVo.admin_name}
+                                ${adminVo.admin_name}
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 로그인 아이디</th>
                             <td>
-                                ${adminMemberVo.admin_id}
+								<input type="hidden" name="admin_login_id" id="admin_login_id" style="width: 100%; text-align:center;" value="${adminVo.admin_login_id}" required>                            
+                                ${adminVo.admin_login_id}
                             </td>
                         </tr>
                         <tr>
@@ -87,12 +88,12 @@
                         <tr>
                             <th>관리자 연락처</th>
                             <td>
-                                ${adminMemberVo.admin_phone}
+                                ${adminVo.admin_phone}
                             </td>
                         </tr>
                     </table><br>
                     <div class="admin_eventBoardAdd_div">
-                        <button type="button" onclick="modifyPwBtn()" style="color:red; border-radius:5px; margin-left:270px;">PW 수정</button>
+                        <button type="button" onclick="updatePwBtn()" style="color:red; border-radius:5px; margin-left:270px;">PW 수정</button>
                     </div>
                 </form>
             </main>

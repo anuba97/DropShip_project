@@ -8,13 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.dropship.service.AdminMemberService;
+import kr.co.dropship.service.AdminService;
 
 @Controller
 public class AdminFrontController {
 	
 	@Autowired
-	AdminMemberService adminMemberService;
+	AdminService adminMemberService;
 	
 	@Autowired
 	HttpSession session;
@@ -23,20 +23,14 @@ public class AdminFrontController {
 	public String admin_login(Model model) {
 		return "admin_login";
 	}//admin_login
-	
 	@RequestMapping("admin_index")
 	public String admin_index() {
 		return "admin_index";
 	}
-	
 	@GetMapping("admin_tables")
 	public String admin_tables(Model model) {
 		return "admin_tables";
 	}
-	
-	
-	
-	
 	@GetMapping("admin_orderList")
 	public String admin_orderList(Model model) {
 		return "admin_orderList";
@@ -56,14 +50,6 @@ public class AdminFrontController {
 	@GetMapping("admin_freeBoardList")
 	public String admin_freeBoardList(Model model) {
 		return "admin_freeBoardList";
-	}
-	@GetMapping("admin_workList")
-	public String admin_workList(Model model) {
-		return "admin_workList";
-	}
-	@GetMapping("admin_artistList")
-	public String admin_artistList(Model model) {
-		return "admin_artistList";
 	}
 	
 	

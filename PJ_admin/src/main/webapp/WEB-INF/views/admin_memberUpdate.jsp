@@ -17,17 +17,17 @@
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script>
-        function modifyBtn() {
+        function updateBtn() {
             if (confirm("해당 ADMIN 정보를 수정 하시겠습니까?")) {
-            	admin_memberChange.submit();
+            	admin_memberUpdate.submit();
             }
-        }//modifyBtn
+        }//updateBtn
         
         function deleteBtn() {
             if (confirm("해당 ADMIN을 삭제 하시겠습니까?")) {
-            	location.href="admin_memberDelete?admin_id=${adminMemberVo.admin_id}";
+            	location.href="admin_memberDelete?admin_login_id=${adminVo.admin_login_id}";
             }
-        }//modifyBtn
+        }//updateBtn
     </script>
 </head>
 <c:if test="${sessionSuperAdmin != 1}">
@@ -55,59 +55,60 @@
                         <div class="card-body">Super Admin이 일반 관리자를 관리하는 메뉴입니다.</div>
                     </div>
                 </div>
-                <form action="admin_memberList" name="admin_memberChange" method="post">
+                <form action="admin_memberList" name="admin_memberUpdate" method="post">
                     <table class="admin_memberAddTableDiv">
                          <tr>
                             <th>관리자 이름</th>
                             <td>
-                                ${adminMemberVo.admin_name}
+                                ${adminVo.admin_name}
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 로그인 아이디</th>
                             <td>
-                                ${adminMemberVo.admin_id}
+                            	<input type="hidden" name="admin_login_id" id="admin_login_id" style="width: 100%; text-align:center;" value="${adminVo.admin_login_id}" required>
+                                ${adminVo.admin_login_id}
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 비밀번호</th>
                             <td>
-                                <input type="password" name="admin_pw" id="admin_pw" style="width: 100%; text-align:center;" value="${adminMemberVo.admin_pw}" readonly>
+                                <input type="password" name="admin_pw" id="admin_pw" style="width: 100%; text-align:center;" value="${adminVo.admin_pw}" readonly>
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 연락처</th>
                             <td>
-                                <input type="text" name="admin_phone" id="admin_phone" style="width: 100%; text-align:center;" value="${adminMemberVo.admin_phone}">
+                                <input type="text" name="admin_phone" id="admin_phone" style="width: 100%; text-align:center;" value="${adminVo.admin_phone}">
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 등록일</th>
                             <td>
-                                ${adminMemberVo.admin_reg_date}
+                                ${adminVo.admin_reg_date}
                             </td>
                         </tr>
                         <tr>
 							<th>관리자 등급</th>
 							<td>
-								<input type="radio" id="true" name="admin_issuper" value="1" <c:if test="${adminMemberVo.admin_issuper=='1'}">checked</c:if>> 
+								<input type="radio" id="true" name="admin_issuper" value="1" <c:if test="${adminVo.admin_isSuper == '1'}">checked</c:if>> 
 								<label for="true">슈퍼</label> 
-								<input type="radio" id="false" name="admin_issuper" value="0" <c:if test="${adminMemberVo.admin_issuper=='0'}">checked</c:if>>
+								<input type="radio" id="false" name="admin_issuper" value="0" <c:if test="${adminVo.admin_isSuper == '0'}">checked</c:if>>
 								<label for="false">일반</label>
 							</td>
 						</tr>
                         <tr>
                             <th>관리자 상태</th>
                             <td>
-                                <input type="radio" id="true" name="admin_ban" value="1" <c:if test="${adminMemberVo.admin_ban=='1'}">checked</c:if> />
+                                <input type="radio" id="true" name="admin_ban" value="1" <c:if test="${adminVo.admin_ban == '1'}">checked</c:if> />
                                 <label for="true">사용</label>
-                                <input type="radio" id="false" name="admin_ban" value="0" <c:if test="${adminMemberVo.admin_ban=='0'}">checked</c:if> />
+                                <input type="radio" id="false" name="admin_ban" value="0" <c:if test="${adminVo.admin_ban == '0'}">checked</c:if> />
                                 <label for="false">정지</label>
                             </td>
                         </tr>
                     </table><br>
                     <div class="admin_eventBoardAdd_div">
-                        <button type="button" class="admin_eventBoardAdd_button" onclick="modifyBtn()" style="margin: 0 0 0 70px; color:blue; border-radius:5px;">ADMIN 수정</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onclick="updateBtn()" style="margin: 0 0 0 70px; color:blue; border-radius:5px;">ADMIN 수정</button>
                         <button type="button" class="admin_eventBoardAdd_button" onclick="location.href='admin_memberList'" style="margin: 0 auto; border-radius:5px;">ADMIN 리스트</button>
                         <button type="button" class="admin_eventBoardAdd_button" onclick="deleteBtn()" style="margin: 0 auto; color:red; border-radius:5px;">ADMIN 삭제</button>
                     </div>

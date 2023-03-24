@@ -8,13 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.dropship.service.AdminMemberService;
+import kr.co.dropship.service.AdminService;
 
 @Controller
 public class AdminBoardController {
 	
 	@Autowired
-	AdminMemberService adminMemberService;
+	AdminService adminMemberService;
 	
 	@Autowired
 	HttpSession session;
