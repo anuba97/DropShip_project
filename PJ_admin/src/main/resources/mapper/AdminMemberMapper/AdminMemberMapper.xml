@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dropship.mapper.AdminMemberMapper"> 
+
+	<!-- admin 로그인 -->
+	<select id="adminMemberSelectOne" resultType="kr.co.dropship.vo.AdminMemberVo">
+		select * from adminmember where admin_id = #{admin_id} and admin_pw = #{admin_pw}
+	</select>
+	<!-- admin 가입 -->
+	<insert id="insertMember">
+		insert into adminmember values (ADMINMEMBER_ID_SEQ.nextval, #{admin_id}, #{admin_pw}, #{admin_name}, #{admin_phone}, #{admin_issuper}, #{admin_ban}, sysdate)
+	</insert>
+	<!-- admin 리스트 정렬 -->
+	<select id="selectAdminList" resultType="kr.co.dropship.vo.AdminMemberVo">
+		select * from ( select rownum rnum, a. * from
+    	( select * from adminmember order by id ) a )
+    	where rnum between #{startRow} and #{endRow}
+	</select>
+	<!-- admin 개수 확인 -->
+	<select id="selectCount" resultType="int">
+		select count(*) count from adminmember
+	</select>
+	<!-- admin 1개 정보 가져오기 -->
+	<select id="selectOne" resultType="kr.co.dropship.vo.AdminMemberVo">
+		select * from adminmember where admin_id = #{admin_id}
+	</select>
+	<!-- admin 1개 전번&상태 변경하기 -->
+	<update id="updateAdminData">
+		update adminmember set admin_phone = #{admin_phone}, admin_issuper = #{admin_issuper}, admin_ban = #{admin_ban} where admin_id = #{admin_id}
+	</update>
+	<!-- admin 1개 PW 변경하기 -->
+	<update id="updateAdminPW">
+		update adminmember set admin_pw = #{admin_pw} where admin_id = #{admin_id}
+	</update>
+	<!-- admin 1개 삭제하기 -->
+	<update id="admin_memberDelete">
+		delete from adminmember where admin_id = #{admin_id}
+	</update>
+	<!-- admin 1개 확인하기 -->
+	<select id="adminMemberCheckId" parameterType="String" resultType="int">
+		select COUNT(id) from adminmember where admin_id = #{admin_id}
+	</select>
+	
+	
+</mapper>
