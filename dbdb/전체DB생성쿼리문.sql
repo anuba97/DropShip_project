@@ -150,44 +150,6 @@ INCREMENT BY 1;
 
 -- DROP SEQUENCE Print_Work_SEQ; 
 
-
----------↓--------↓ 인화작품 주문상세 테이블 (Print_Order_Detail) / 
--------↓---- 인화작품 주문상세 시퀀스(Print_Order_Detail_seq) 생성 / 
--------↓-----외래키 생성 ↓--------↓--------
-CREATE TABLE Print_Order_Detail
-(
-    id                NUMBER(4)    NOT NULL, 
-    print_order_id    NUMBER(4)    NOT NULL, 
-    work_id           NUMBER(4)    NOT NULL, 
-    option_id         NUMBER(4)    NOT NULL, 
-    final_price       NUMBER(7)    NOT NULL, 
-     PRIMARY KEY (id)
-);
-
-CREATE SEQUENCE Print_Order_Detail_SEQ
-START WITH 1
-INCREMENT BY 1;
-
--- DROP SEQUENCE Print_Order_Detail_SEQ; 
-
--- Foreign Key 설정 SQL - Print_Order_Detail(print_order_id) -> Print_Order(id)
-ALTER TABLE Print_Order_Detail
-    ADD CONSTRAINT FK_Print_Order_Detail_print_order_id_Print_Order_id FOREIGN KEY (print_order_id)
-        REFERENCES Print_Order (id) ;
-
--- Foreign Key 설정 SQL - Print_Order_Detail(option_id) -> Work_Option(id)
-ALTER TABLE Print_Order_Detail
-    ADD CONSTRAINT FK_Print_Order_Detail_option_id FOREIGN KEY (option_id)
-        REFERENCES Work_Option (id) ;
-
-
--- Foreign Key 설정 SQL - Print_Order_Detail(work_id) -> Print_Work(id)
-ALTER TABLE Print_Order_Detail
-    ADD CONSTRAINT FK_Print_Order_Detail_work_id FOREIGN KEY (work_id)
-        REFERENCES Print_Work (id) ;
-
-
-
 ---------↓--------↓ 회원주문 테이블 (Order_Member) / 
 -------↓---- 회원주문 시퀀스(Order_Member_seq) 생성 / 외래키 생성 ↓--------↓--------
 CREATE TABLE Order_Member
@@ -214,12 +176,12 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Order_Member(member_id) -> Member(id)
 ALTER TABLE Order_Member
-    ADD CONSTRAINT FK_Order_Member_member_id_Memb FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_Order_Member_member_id_Member_id FOREIGN KEY (member_id)
         REFERENCES Member (id) ;
 
 -- Foreign Key 설정 SQL - Order_Member(delivery_id) -> Delivery(id)
 ALTER TABLE Order_Member
-    ADD CONSTRAINT FK_Order_Member_delivery_id_De FOREIGN KEY (delivery_id)
+    ADD CONSTRAINT FK_Order_Member_delivery_id_Delivery_id FOREIGN KEY (delivery_id)
         REFERENCES Delivery (id) ;
 
 
@@ -227,21 +189,21 @@ ALTER TABLE Order_Member
 -------↓---- 작품 시퀀스(Work_seq) 생성 / 외래키 생성 ↓--------↓--------
 CREATE TABLE Work
 (
-    id                   NUMBER(4)         NOT NULL, 
-    work_name            VARCHAR2(200)     NOT NULL, 
-    artist_id            NUMBER(4)         NOT NULL, 
-    work_genre_name      VARCHAR2(50)      DEFAULT '초상화' NOT NULL, 
-    work_subject_name    VARCHAR2(50)      DEFAULT '봄' NOT NULL, 
-    work_img_url         VARCHAR2(300)     NOT NULL, 
-    work_content         VARCHAR2(4000)    NOT NULL, 
-    work_sale            NUMBER(4,2)       DEFAULT 0.00 NOT NULL, 
-    work_isBest          NUMBER(1)         DEFAULT 0 NOT NULL, 
-    work_reg_date        DATE              DEFAULT sysdate NOT NULL, 
-    work_price           NUMBER(9)         DEFAULT 10000 NOT NULL, 
-    work_dp              VARCHAR2(500)     DEFAULT 'https://www.google.com/maps?cid=13363865620386383060' NULL, 
-    work_hit             NUMBER(4)         DEFAULT 0 NOT NULL, 
-    admin_id             NUMBER(3)         DEFAULT 1 NULL, 
-    work_available       NUMBER(1)         DEFAULT 1 NOT NULL, 
+    id                    NUMBER(4)         NOT NULL, 
+    work_name             VARCHAR2(200)     NOT NULL, 
+    artist_id             NUMBER(4)         NOT NULL, 
+    work_genre	          VARCHAR2(50)      DEFAULT '초상화' NOT NULL, 
+    work_subject          VARCHAR2(50)      DEFAULT '봄' NOT NULL, 
+    work_img_url          VARCHAR2(300)     NOT NULL, 
+    work_content          VARCHAR2(4000)    NOT NULL, 
+    work_sale             NUMBER(4,2)       DEFAULT 0.00 NOT NULL, 
+    work_isBest           NUMBER(1)         DEFAULT 0 NOT NULL, 
+    work_reg_date         DATE              DEFAULT sysdate NOT NULL, 
+    work_price            NUMBER(9)         DEFAULT 10000 NOT NULL, 
+    work_display_position VARCHAR2(500)     DEFAULT 'https://www.google.com/maps?cid=13363865620386383060' NULL, 
+    work_hit              NUMBER(4)         DEFAULT 0 NOT NULL, 
+    admin_id              NUMBER(3)         DEFAULT 1 NULL, 
+    work_available        NUMBER(1)         DEFAULT 1 NOT NULL, 
      PRIMARY KEY (id)
 );
 
@@ -313,12 +275,12 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Order_NonMember(delivery_id) -> Delivery(id)
 ALTER TABLE Order_NonMember
-    ADD CONSTRAINT FK_Order_NonMember_delivery_id FOREIGN KEY (delivery_id)
+    ADD CONSTRAINT FK_Order_NonMember_delivery_id_Delivery_id FOREIGN KEY (delivery_id)
         REFERENCES Delivery (id) ;
 
 -- Foreign Key 설정 SQL - Order_NonMember(nonMember_id) -> Non_Member(id)
 ALTER TABLE Order_NonMember
-    ADD CONSTRAINT FK_Order_NonMember_nonMember_id FOREIGN KEY (nonMember_id)
+    ADD CONSTRAINT FK_Order_NonMember_nonMember_id_Non_Member_id FOREIGN KEY (nonMember_id)
         REFERENCES Non_Member (id) ;
 
 
@@ -326,18 +288,18 @@ ALTER TABLE Order_NonMember
 -------↓---- 작가미상 작품 시퀀스(Anonymous_Work_seq) 생성 ↓--------↓--------
 CREATE TABLE Anonymous_Work
 (
-    id                             NUMBER(4)         NOT NULL, 
-    anonymous_work_name            VARCHAR2(200)     NOT NULL, 
-    anonymous_work_genre_name      VARCHAR2(50)      NOT NULL, 
-    anonymous_work_subject_name    VARCHAR2(50)      NOT NULL, 
-    anonymous_work_img_url         VARCHAR2(500)     NOT NULL, 
-    anonymous_work_content         VARCHAR2(4000)    NOT NULL, 
-    anonymous_work_sale            NUMBER(4,2)       DEFAULT 0.00 NOT NULL, 
-    anonymous_work_reg_date        DATE              DEFAULT sysdate NOT NULL, 
-    anonymous_work_price           NUMBER(9)         NOT NULL, 
-    anonymous_work_dp              VARCHAR2(500)     NULL, 
-    anonymous_work_hit             NUMBER(4)         NOT NULL, 
-    anonymous_work_available       NUMBER(1)         NOT NULL, 
+    id                              NUMBER(4)         NOT NULL, 
+    anonymous_work_name             VARCHAR2(200)     NOT NULL, 
+    anonymous_work_genre    	    VARCHAR2(50)      NOT NULL, 
+    anonymous_work_subject          VARCHAR2(50)      NOT NULL, 
+    anonymous_work_img_url          VARCHAR2(500)     NOT NULL, 
+    anonymous_work_content          VARCHAR2(4000)    NOT NULL, 
+    anonymous_work_sale             NUMBER(4,2)       DEFAULT 0.00 NOT NULL, 
+    anonymous_work_reg_date         DATE              DEFAULT sysdate NOT NULL, 
+    anonymous_work_price            NUMBER(9)         NOT NULL, 
+    anonymous_work_display_position VARCHAR2(500)     NULL, 
+    anonymous_work_hit              NUMBER(4)         NOT NULL, 
+    anonymous_work_available        NUMBER(1)         NOT NULL, 
      PRIMARY KEY (id)
 );
 
@@ -374,24 +336,60 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Print_Order(member_id) -> Member(id)
 ALTER TABLE Print_Order
-    ADD CONSTRAINT FK_Print_Order_member_id_Membe FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_Print_Order_member_id_Member_id FOREIGN KEY (member_id)
         REFERENCES Member (id) ;
 
 -- Foreign Key 설정 SQL - Print_Order(delivery_id) -> Delivery(id)
 ALTER TABLE Print_Order
-    ADD CONSTRAINT FK_Print_Order_delivery_id_Del FOREIGN KEY (delivery_id)
+    ADD CONSTRAINT FK_Print_Order_delivery_id_Delivery_id FOREIGN KEY (delivery_id)
         REFERENCES Delivery (id) ;
-        
+
+
+---------↓--------↓ 인화작품 주문상세 테이블 (Print_Order_Detail) / 
+-------↓---- 인화작품 주문상세 시퀀스(Print_Order_Detail_seq) 생성 / 
+-------↓-----외래키 생성 ↓--------↓--------
+CREATE TABLE Print_Order_Detail
+(
+    id                NUMBER(4)    NOT NULL, 
+    print_order_id    NUMBER(4)    NOT NULL, 
+    work_id           NUMBER(4)    NOT NULL, 
+    option_id         NUMBER(4)    NOT NULL, 
+    final_price       NUMBER(7)    NOT NULL, 
+     PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE Print_Order_Detail_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+-- DROP SEQUENCE Print_Order_Detail_SEQ; 
+
+-- Foreign Key 설정 SQL - Print_Order_Detail(print_order_id) -> Print_Order(id)
+ALTER TABLE Print_Order_Detail
+    ADD CONSTRAINT FK_Print_Order_Detail_print_order_id_Print_Order_id FOREIGN KEY (print_order_id)
+        REFERENCES Print_Order (id) ;
+
+-- Foreign Key 설정 SQL - Print_Order_Detail(option_id) -> Work_Option(id)
+ALTER TABLE Print_Order_Detail
+    ADD CONSTRAINT FK_Print_Order_Detail_option_id_Work_Option_id FOREIGN KEY (option_id)
+        REFERENCES Work_Option (id) ;
+
+
+-- Foreign Key 설정 SQL - Print_Order_Detail(work_id) -> Print_Work(id)
+ALTER TABLE Print_Order_Detail
+    ADD CONSTRAINT FK_Print_Order_Detail_work_id_Print_Work_id FOREIGN KEY (work_id)
+        REFERENCES Print_Work (id) ;
+
         
 ---------↓--------↓ 비회원 장바구니 테이블 (Cart_NonMember) / 
 -------↓---- 비회원 장바구니 시퀀스(Cart_NonMember_seq) 생성 / 외래키 생성 ↓--------↓--------
 CREATE TABLE Cart_NonMember
 (
-    id                NUMBER(4)    NOT NULL, 
-    nonMember_id      NUMBER(3)    NOT NULL, 
-    work_id           NUMBER(4)    NOT NULL, 
-    option_id         NUMBER(4)    NOT NULL, 
-    cart_make_date    DATE         DEFAULT sysdate NOT NULL, 
+    id              NUMBER(4)    NOT NULL, 
+    nonMember_id    NUMBER(3)    NOT NULL, 
+    work_id         NUMBER(4)    NOT NULL, 
+    option_id       NUMBER(4)    NOT NULL, 
+    added_date      DATE         DEFAULT sysdate NOT NULL, 
      PRIMARY KEY (id)
 );
 
@@ -403,17 +401,17 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Cart_NonMember(work_id) -> Work(id)
 ALTER TABLE Cart_NonMember
-    ADD CONSTRAINT FK_Cart_NonMember_work_id_Work FOREIGN KEY (work_id)
+    ADD CONSTRAINT FK_Cart_NonMember_work_id_Work_id FOREIGN KEY (work_id)
         REFERENCES Work (id) ;
 
 -- Foreign Key 설정 SQL - Cart_NonMember(option_id) -> Work_Option(id)
 ALTER TABLE Cart_NonMember
-    ADD CONSTRAINT FK_Cart_NonMember_option_id_Op FOREIGN KEY (option_id)
+    ADD CONSTRAINT FK_Cart_NonMember_option_id_Work_Option_id FOREIGN KEY (option_id)
         REFERENCES Work_Option (id) ;
 
 -- Foreign Key 설정 SQL - Cart_NonMember(nonMember_id) -> Non_Member(id)
 ALTER TABLE Cart_NonMember
-    ADD CONSTRAINT FK_Cart_NonMember_nonMember_id FOREIGN KEY (nonMember_id)
+    ADD CONSTRAINT FK_Cart_NonMember_nonMember_id_Non_Member_id FOREIGN KEY (nonMember_id)
         REFERENCES Non_Member (id) ;
 
 
@@ -440,17 +438,17 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Order_Detail_NonMember(option_id) -> Work_Option(id)
 ALTER TABLE Order_Detail_NonMember
-    ADD CONSTRAINT FK_Order_Detail_NonMember_opti FOREIGN KEY (option_id)
+    ADD CONSTRAINT FK_Order_Detail_NonMember_Work_Option_id FOREIGN KEY (option_id)
         REFERENCES Work_Option (id) ;
 
 -- Foreign Key 설정 SQL - Order_Detail_NonMember(work_id) -> Work(id)
 ALTER TABLE Order_Detail_NonMember
-    ADD CONSTRAINT FK_Order_Detail_NonMember_work FOREIGN KEY (work_id)
+    ADD CONSTRAINT FK_Order_Detail_NonMember_work_id_Work_id FOREIGN KEY (work_id)
         REFERENCES Work (id) ;
 
 -- Foreign Key 설정 SQL - Order_Detail_NonMember(nonMember_order_id) -> Order_NonMember(id)
 ALTER TABLE Order_Detail_NonMember
-    ADD CONSTRAINT FK_Order_Detail_NonMember_nonM FOREIGN KEY (nonMember_order_id)
+    ADD CONSTRAINT FK_Order_Detail_NonMember_nonMember_order_id_Order_NonMember_id FOREIGN KEY (nonMember_order_id)
         REFERENCES Order_NonMember (id) ;
 
 
@@ -476,7 +474,7 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Work_Review(member_id) -> Member(id)
 ALTER TABLE Work_Review
-    ADD CONSTRAINT FK_Work_Review_member_id_Membe FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_Work_Review_member_id_Member_id FOREIGN KEY (member_id)
         REFERENCES Member (id) ;
 
 -- Foreign Key 설정 SQL - Work_Review(work_id) -> Work(id)
@@ -509,7 +507,7 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - EventBoard(member_id) -> Admin(id)
 ALTER TABLE EventBoard
-    ADD CONSTRAINT FK_EventBoard_member_id_Admin_ FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_EventBoard_member_id_Admin_id FOREIGN KEY (member_id)
         REFERENCES Admin (id) ;
 
 ---------↓--------↓ 공지게시판 테이블 (NoticeBoard) / 
@@ -536,13 +534,13 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - NoticeBoard(member_id) -> Admin(id)
 ALTER TABLE NoticeBoard
-    ADD CONSTRAINT FK_NoticeBoard_member_id_Admin FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_NoticeBoard_member_id_Admin_id FOREIGN KEY (member_id)
         REFERENCES Admin (id) ;
 
 
----------↓--------↓ 댓글 테이블 (Comment) / 
--------↓---- 댓글 시퀀스(Comment_seq) 생성 / 외래키 생성 ↓--------↓--------
-CREATE TABLE Comment
+---------↓--------↓ 댓글 테이블 (freeBoard_Comment) / 
+-------↓---- 댓글 시퀀스(freeBoard_Comment_seq) 생성 / 외래키 생성 ↓--------↓--------
+CREATE TABLE freeBoard_Comment
 (
     id                 NUMBER(4)         NOT NULL, 
     freeBoard_id       NUMBER(4)         NOT NULL, 
@@ -553,20 +551,20 @@ CREATE TABLE Comment
      PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE Comment_SEQ
+CREATE SEQUENCE freeBoard_Comment_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- DROP SEQUENCE Comment_SEQ; 
+-- DROP SEQUENCE freeBoard_Comment_SEQ; 
 
--- Foreign Key 설정 SQL - Comment(member_id) -> Member(id)
-ALTER TABLE Comment
-    ADD CONSTRAINT FK_Comment_member_id_Member_id FOREIGN KEY (member_id)
+-- Foreign Key 설정 SQL - freeBoard_Comment(member_id) -> Member(id)
+ALTER TABLE freeBoard_Comment
+    ADD CONSTRAINT FK_freeBoard_Comment_member_id_Member_id FOREIGN KEY (member_id)
         REFERENCES Member (id) ;
 
--- Foreign Key 설정 SQL - Comment(freeBoard_id) -> FreeBoard(id)
-ALTER TABLE Comment
-    ADD CONSTRAINT FK_Comment_freeBoard_id_FreeBo FOREIGN KEY (freeBoard_id)
+-- Foreign Key 설정 SQL - freeBoard_Comment(freeBoard_id) -> FreeBoard(id)
+ALTER TABLE freeBoard_Comment
+    ADD CONSTRAINT FK_freeBoard_Comment_freeBoard_id_FreeBoard_id FOREIGN KEY (freeBoard_id)
         REFERENCES FreeBoard (id) ;
 
 
@@ -574,9 +572,10 @@ ALTER TABLE Comment
 -------↓---- 찜리스트 시퀀스(Wishlist_seq) 생성 / 외래키 생성 ↓--------↓--------
 CREATE TABLE Wishlist
 (
-    id           NUMBER(4)    NOT NULL, 
-    member_id    NUMBER(4)    NOT NULL, 
-    work_id      NUMBER(4)    NOT NULL, 
+    id            NUMBER(4)    NOT NULL, 
+    member_id     NUMBER(4)    NOT NULL, 
+    work_id       NUMBER(4)    NOT NULL, 
+    added_date    DATE         DEFAULT sysdate NOT NULL, 
      PRIMARY KEY (id)
 );
 
@@ -588,7 +587,7 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Wishlist(member_id) -> Member(id)
 ALTER TABLE Wishlist
-    ADD CONSTRAINT FK_Wishlist_member_id_Member_i FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_Wishlist_member_id_Member_id FOREIGN KEY (member_id)
         REFERENCES Member (id) ;
 
 -- Foreign Key 설정 SQL - Wishlist(work_id) -> Work(id)
@@ -601,11 +600,11 @@ ALTER TABLE Wishlist
 -------↓---- 회원 장바구니 시퀀스(Cart_Member_seq) 생성 / 외래키 생성 ↓--------↓--------
 CREATE TABLE Cart_Member
 (
-    id                NUMBER(4)    NOT NULL, 
-    member_id         NUMBER(4)    NOT NULL, 
-    work_id           NUMBER(4)    NOT NULL, 
-    option_id         NUMBER(4)    NOT NULL, 
-    cart_make_date    DATE         DEFAULT sysdate NULL, 
+    id            NUMBER(4)    NOT NULL, 
+    member_id     NUMBER(4)    NOT NULL, 
+    work_id       NUMBER(4)    NOT NULL, 
+    option_id     NUMBER(4)    NOT NULL, 
+    added_date    DATE         DEFAULT sysdate NULL, 
      PRIMARY KEY (id)
 );
 
@@ -617,12 +616,12 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Cart_Member(option_id) -> Work_Option(id)
 ALTER TABLE Cart_Member
-    ADD CONSTRAINT FK_Cart_Member_option_id_Optio FOREIGN KEY (option_id)
+    ADD CONSTRAINT FK_Cart_Member_option_id_Work_Option_id FOREIGN KEY (option_id)
         REFERENCES Work_Option (id) ;
 
 -- Foreign Key 설정 SQL - Cart_Member(member_id) -> Member(id)
 ALTER TABLE Cart_Member
-    ADD CONSTRAINT FK_Cart_Member_member_id_Membe FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_Cart_Member_member_id_Member_id FOREIGN KEY (member_id)
         REFERENCES Member (id) ;
 
 -- Foreign Key 설정 SQL - Cart_Member(work_id) -> Work(id)
