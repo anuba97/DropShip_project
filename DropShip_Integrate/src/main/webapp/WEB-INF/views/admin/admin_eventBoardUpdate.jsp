@@ -10,30 +10,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>DropShip Admin - 공지</title>
+    <title>DropShip Admin - 이벤트</title>
     <link rel="shortcut icon" href="admin/img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+<script>
+    function eventModifyBtn() {
+        if ($("#eventTitle").val() == "") {
+            alert("이벤트 제목을 반드시 입력해야합니다!");
+            $("#eventTitle").focus();
+            return;
+        }
+
+        if ($("#eventContent").val() == "") {
+            alert("이벤트 내용을 반드시 입력해야합니다!");
+            $("#eventContent").focus();
+            return;
+        }
+
+        if (confirm("해당 ADMIN을 추가하시겠습니까?")) {
+            eventBoardModify.submit();
+        }
+    }
+</script>
 
 <body class="sb-nav-fixed">
     <%-- 	<c:if test="${result == 0}"> --%>
     <!-- 		<script> -->
-<!--     // alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요."); -->
-<!--     // location.href="admin_login"; -->
+    // alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요.");
+    // location.href="admin_login";
     <!-- 			</script> -->
     <%-- 	</c:if> --%>
     <%-- 	<c:if test="${result == 1}"> --%>
     <!-- 		<script> -->
-<!--     // alert("로그인되었습니다"); -->
+    // alert("로그인되었습니다");
     <!-- 			</script> -->
     <%-- 	</c:if> --%>
     <%-- 	<c:if test="${sessionAdminLoginId==null}"> --%>
     <!-- 		<script> -->
-<!--     // alert("관리자만 접근할 수 있습니다!"); -->
-<!--     // location.href="admin_login"; -->
+    // alert("관리자만 접근할 수 있습니다!");
+    // location.href="admin_login";
     <!-- 			</script> -->
     <%-- 	</c:if> --%>
     <!-- navBar 부분 시작 -->
@@ -48,27 +67,42 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">공지 관리</h1>
+                    <h1 class="mt-4">이벤트 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 공지 게시판을 관리하는 메뉴입니다. 공지 게시판의 글을 확인하고 관리하세요.</div>
+                        <div class="card-body">DropShip 이벤트 게시판을 관리하는 메뉴입니다. 이벤트를 등록 관리할 수 있습니다.</div>
                     </div>
                 </div>
                 <div>
-                    <table class="admin_noticeBoardAdd">
-                        <form action="admin_noticeBoardAdd" method="post" enctype="multipart/form-data">
+                    <table class="admin_eventBoardAdd">
+                        <form action="eventBoardModify" method="post" enctype="multipart/form-data">
                             <colgroup>
                                 <col width="25%">
                                 <col width="75%">
                             </colgroup>
                             <tr>
-                                <th><label for="noticeTitle">공지 제목</label></th>
-                                <td><input type="text" id="noticeTitle" name="noticeTitle" style="width:100%;" required><br></td>
+                                <th><label for="eventTitle">이벤트 제목</label></th>
+                                <td><input type="text" id="eventTitle" name="eventTitle" style="width:100%;" required><br></td>
                             </tr>
                             <tr>
-                                <th><label for="noticeContent">공지 내용</label></th>
+                                <th><label for="eventStartPeriod">이벤트 시작</label></th>
                                 <td>
-                                    <textarea id="noticeContent" name="noticeContent" cols="50" rows="10" style="width:100%;" required></textarea>
+                                    <input type="date" id="eventStartPeriod" name="eventStartPeriod" style="width:49%;">
+                                    <input type="time" id="eventStartTime" name="eventStartTime" style="width:49%;">
                                 </td>
+                            </tr>
+                            <tr>
+                                <th><label for="eventEndPeriod">이벤트 종료</label></th>
+                                <td>
+                                    <input type="date" id="eventStartPeriod" name="eventStartPeriod" style="width:49%;">
+                                    <input type="time" id="eventEndTime" name="eventEndTime" style="width:49%;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="eventContent">이벤트 내용</label></th>
+                                <td>
+                                    <textarea id="eventContent" name="eventContent" cols="50" rows="10" style="width:100%;" required></textarea>
+                                </td>
+
                             </tr>
                             <tr>
                                 <th><label for="eventFile">첨부 파일(이미지)</label></th>
@@ -80,9 +114,9 @@
                             </tr>
                         </form>
                     </table><br>
-                    <div class="button-wrapper">
-                        <button type="button" onclick="btn()" style="color:red;">공지 추가</button>
-                        <button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_noticeBoardList'" style="margin: 0 auto;">공지 리스트</button>
+                    <div classs="admin_eventBoardAdd_div">
+                        <button type="button" class="admin_eventBoardAdd_button" onClick="eventModifyBtn()" style="margin: 0 0 0 500px;">이벤트 수정</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_eventBoardList'" style="margin: 0 auto;">이벤트 리스트</button>
                     </div>
                 </div>
             </main>

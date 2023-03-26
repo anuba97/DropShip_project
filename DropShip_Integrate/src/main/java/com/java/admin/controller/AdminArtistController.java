@@ -32,14 +32,14 @@ public class AdminArtistController {
 	public String admin_artistList(Model model) {
 		List<ArtistVo> artistList = adminService.selectArtistAll();
 		model.addAttribute("artistList", artistList);
-		return "admin_artistList";
+		return "admin/admin_artistList";
 	}
 	
 	
 	// 아티스트 추가 페이지로 이동
 	@GetMapping("admin_artistAdd")
 	public String admin_artistAdd(Model model) {
-		return "admin_artistAdd";
+		return "admin/admin_artistAdd";
 	}
 	
 	// 아티스트를 db에 추가
@@ -121,7 +121,7 @@ public class AdminArtistController {
 		List<WorkVo> workList = adminService.selectWorksByArtist(artistVo.getId());
 		model.addAttribute("artistVo", artistVo);
 		model.addAttribute("workList", workList);
-		return "admin_artistView";
+		return "admin/admin_artistView";
 	}
 	
 	// 작가 수정 페이지로 이동
@@ -129,7 +129,7 @@ public class AdminArtistController {
 	public String admin_artistUpdate(String id, Model model) {
 		artistVo = adminService.selectArtistOne(Integer.parseInt(id));
 		model.addAttribute("artistVo", artistVo);
-		return "admin_artistUpdate";
+		return "admin/admin_artistUpdate";
 	}
 	
 	// 작가 수정 실행

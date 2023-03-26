@@ -11,9 +11,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Login - BX ADMIN</title>
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" href="admin/img/favicon.ico" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="admin/css/styles.css">
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
@@ -42,7 +42,7 @@
                         <div class="col-lg-5 ">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="adminlogo">
-                                    <img class="adminlogo" src="img/adminlogo.png">
+                                    <img class="adminlogo" src="admin/img/adminlogo.png">
                                 </div>
                                 <div class="card-header">
                                     <h3 class="text-center font-weight-light my-4">DropShip -
@@ -81,7 +81,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="admin/js/scripts.js"></script>
 </body>
 
 </html>

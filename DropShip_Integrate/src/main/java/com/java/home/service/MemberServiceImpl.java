@@ -3,7 +3,7 @@ package com.java.home.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.java.home.mapper.MemberMapper;
+import com.java.mapper.MemberMapper;
 import com.java.vo.MemberVo;
 
 @Service

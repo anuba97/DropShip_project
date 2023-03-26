@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>DropShip Admin - 고객 관리</title>
+    <title>DropShip Admin - 공지</title>
     <link rel="shortcut icon" href="admin/img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -48,41 +48,43 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">주문 현황</h1>
+                    <h1 class="mt-4">공지 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 고객 주문 현황 확인 페이지입니다. 결제 완료된 주문을 눌러 배송처리를 진행해 주세요.</div>
+                        <div class="card-body">DropShip 공지 게시판을 관리하는 메뉴입니다. 공지 게시판의 글을 확인하고 관리하세요.</div>
                     </div>
                 </div>
-                <div class="admin_orderListDiv">
-                    <table class="admin_orderListTable">
-                        <colgroup>
-                            <col width="10%">
-                            <col width="10%">
-                            <col width="10%">
-                            <col width="35%">
-                            <col width="10%">
-                            <col width="10%">
-                            <col width="15%">
-                        </colgroup>
-                        <tr>
-                            <th>주문 고유번호</th>
-                            <th>주문자 ID</th>
-                            <th>주문자</th>
-                            <th>주문 상품</th>
-                            <th>결제 가격</th>
-                            <th>주문 날짜</th>
-                            <th>주문 상태</th>
-                        </tr>
-                        <tr onClick="location.href='admin_orderDetail'" style="cursor:pointer;">
-                            <td>123123</td>
-                            <td>redbull</td>
-                            <td>회원</td>
-                            <td>양산을 든 여인 - 카미유와 장</td>
-                            <td>38,200원</td>
-                            <td>2023.03.15</td>
-                            <td>결제 대기 중</td>
-                        </tr>
-                    </table>
+                <div>
+                    <table class="admin_noticeBoardAdd">
+                        <form action="admin_noticeBoardAdd" method="post" enctype="multipart/form-data">
+                            <colgroup>
+                                <col width="25%">
+                                <col width="75%">
+                            </colgroup>
+                            <tr>
+                                <th><label for="noticeTitle">공지 제목</label></th>
+                                <td><input type="text" id="noticeTitle" name="noticeTitle" style="width:100%;" required><br></td>
+                            </tr>
+                            <tr>
+                                <th><label for="noticeContent">공지 내용</label></th>
+                                <td>
+                                    <textarea id="noticeContent" name="noticeContent" cols="50" rows="10" style="width:100%;" required></textarea>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th><label for="eventFile">첨부 파일(이미지)</label></th>
+                                <td><input type="file" id="eventFile" name="eventFile" style="width:100%;"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="eventLink">첨부 링크</label></th>
+                                <td><input type="text" id="eventLink" name="eventLink" style="width:100%;"></td>
+                            </tr>
+                        </form>
+                    </table><br>
+                    <div class="admin_noticeBoard_div">
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href=''" style="margin: 0 0 0 500px; color:red;">수정 완료</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_noticeBoardList'" style="margin: 0 auto;">공지 리스트</button>
+                    </div>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

@@ -39,14 +39,14 @@ public class AdminMemberController {
 			loginResult = 1;
 		}
 		model.addAttribute("loginResult", loginResult);
-		return "doAdmin";
+		return "admin/doAdmin";
 	}//admin_login
 	
 	@GetMapping("admin_memberList")//admin 맴버 전체 정보 가져오기
 	public String admin_memberList(@RequestParam(defaultValue = "1") int page, Model model) {
 		Map<String, Object> map = adminService.selectAdminList(page);
 		model.addAttribute("map", map);
-		return "admin_memberList";
+		return "admin/admin_memberList";
 	}//admin_memberList
 	
 	@RequestMapping("admin_memberList")//슈퍼 관리자가 admin 1명의 연락처&등급&상태 수정
@@ -61,13 +61,13 @@ public class AdminMemberController {
 			updateResult = 0;
 			model.addAttribute("updateResult", updateResult);
 		}
-		return "doAdmin";
-//		return "redirect:admin_memberList="+dataResult;
+		return "admin/doAdmin";
+//		return "admin/redirect:admin_memberList="+dataResult;
 	}//admin_memberUpdate
 	
 	@GetMapping("admin_memberAdd")//admin 추가 페이지 열기
 	public String admin_memberAdd(Model model) {
-		return "admin_memberAdd";
+		return "admin/admin_memberAdd";
 	}//admin_memberAdd
 	
 	@PostMapping("admin_memberAdd")//신규 admin 추가하기
@@ -81,7 +81,7 @@ public class AdminMemberController {
 			addResult = 0;
 			model.addAttribute("addResult", addResult);
 		}
-		return "doAdmin";
+		return "admin/doAdmin";
 	}//admin_memberAdd
 	
 	@PostMapping("adminMemberCheckId")//admin ID 중복 체크
@@ -95,14 +95,14 @@ public class AdminMemberController {
 	public String admin_memberUpdate(@RequestParam String admin_login_id, Model model) {
 		AdminVo adminVo = adminService.selectOne(admin_login_id);
 		model.addAttribute("adminVo", adminVo);
-		return "admin_memberUpdate";
+		return "admin/admin_memberUpdate";
 	}//admin_memberUpdate
 
 	@RequestMapping("admin_memberUpdatePW")//admin 비번수정 페이지 이동하기
 	public String admin_memberUpdatePW(@RequestParam String admin_login_id, Model model) {
 		AdminVo adminVo = adminService.selectOne(admin_login_id);
 		model.addAttribute("adminVo", adminVo);
-		return "admin_memberUpdatePW";
+		return "admin/admin_memberUpdatePW";
 	}//admin_memberUpdatePW
 	
 	@RequestMapping("admin_memberPW")//admin 자기 자신의 PW 수정
@@ -119,7 +119,7 @@ public class AdminMemberController {
 			PWResult = 0;
 			model.addAttribute("PWResult", PWResult);
 		}
-		return "doAdmin";
+		return "admin/doAdmin";
 	}//admin_memberUpdatePW
 	
 	@GetMapping("admin_memberDelete") //1개 ADMIN 삭제하기
@@ -130,12 +130,12 @@ public class AdminMemberController {
 			deleteResult = 1;
 		}
 		model.addAttribute("deleteResult", deleteResult);
-		return "doAdmin";
+		return "admin/doAdmin";
 	}//admin_memberDelete
 	
 	@GetMapping("admin_logout")//로그아웃 진행하기
 	public String admin_logout(Model model) {
-		return "admin_logout";
+		return "admin/admin_logout";
 	}//admin_logout
 
 }//Bx_adminMemberController

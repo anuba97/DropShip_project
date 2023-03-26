@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.java.admin.mapper.AdminMapper;
+import com.java.mapper.AdminMapper;
 import com.java.vo.AdminVo;
 import com.java.vo.ArtistVo;
 import com.java.vo.WorkVo;
@@ -29,8 +29,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public AdminVo adminMemberSelectOne(String admin_login_id, String admin_pw) {
-		AdminVo adminMemberVo = adminMapper.adminMemberSelectOne(admin_login_id, admin_pw);
-		return adminMemberVo;
+		AdminVo adminVo = adminMapper.adminMemberSelectOne(admin_login_id, admin_pw);
+		return adminVo;
 	}// adminMemberSelectOne
 
 	@Override

@@ -30,7 +30,7 @@ public class DropshipMemberController {
 		Map<String, Object> map = dropshipMemberService.selectMemberList(page);
 		model.addAttribute("map", map);
 		model.addAttribute("page", page);
-		return "dropship_memberList";
+		return "admin/dropship_memberList";
 	}
 	
 	@RequestMapping("dropship_memberDetail")//맴버 1명 정보보기
@@ -38,7 +38,7 @@ public class DropshipMemberController {
 		DropshipMemberVo dropshipMemberVo = dropshipMemberService.dropship_memberselectOne(member_login_id);
 		model.addAttribute("dropshipMemberVo", dropshipMemberVo);
 		model.addAttribute("page", page);
-		return "dropship_memberDetail";
+		return "admin/dropship_memberDetail";
 	}//admin_memberModify
 	
 	

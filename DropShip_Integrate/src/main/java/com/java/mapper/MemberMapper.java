@@ -1,4 +1,4 @@
-package com.java.home.mapper;
+package com.java.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 

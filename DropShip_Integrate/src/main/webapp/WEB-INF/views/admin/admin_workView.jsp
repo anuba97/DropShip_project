@@ -13,9 +13,9 @@
     <meta name="author" content="" />
     <title>DropShip Admin - 작품 상세 관리</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="shortcut icon" href="admin//img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 	<style>
 		#workImage {width: 300px; height: 300px; text-align: center; 
@@ -26,14 +26,14 @@
 		
 		function updateWorkBtn(){
 			alert("작품 정보 수정페이지로 이동합니다.");
-			location.href="admin_workUpdate?id=${workVo.getId()}";
+			location.href="admin/admin_workUpdate?id=${workVo.getId()}";
 		}//updateBtn()
 		
 		function deleteWorkBtn() {
 			if(confirm("작품을 삭제하시겠습니까?")){
-				location.href="deleteWork?id=${workVo.getId()}";
+				location.href="admin/deleteWork?id=${workVo.getId()}";
 				alert("작품이 삭제되었습니다.");
-				location.href="admin_workList";
+				location.href="admin/admin_workList";
             }// if
         } //deleteWorkBtn()
 		
@@ -78,7 +78,7 @@
                 </div>
                 
                 <!-- 작품 이미지 (이미지 등록때부터 반드시 입력받게 할거라 if문 안씀 -->
-                <img src="/img/work/${workVo.getWork_img_url()}" id="workImage">
+                <img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage">
                 
                 <div class="admin_workViewTableDiv">
                     <table class="admin_workViewTable">
@@ -182,9 +182,9 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="admin/js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    <script src="admin/js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

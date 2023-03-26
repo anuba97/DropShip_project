@@ -1,4 +1,4 @@
-package com.java.admin.mapper;
+package com.java.mapper;
 
 import java.util.List;
 

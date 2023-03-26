@@ -29,13 +29,13 @@ public class AdminWorkController {
 	public String admin_workList(Model model) {
 		List<WorkVo> list = adminService.selectWorkAll();
 		model.addAttribute("list", list);
-		return "admin_workList";
+		return "admin/admin_workList";
 	}
 
 	// 작품 추가 페이지로 이동
 	@GetMapping("admin_workAdd")
 	public String admin_workAdd(Model model) {
-		return "admin_workAdd";
+		return "admin/admin_workAdd";
 	}
 
 	// 작품을 db에 추가
@@ -94,7 +94,7 @@ public class AdminWorkController {
 	public String admin_workView(String id, Model model) {
 		workVo = adminService.selectWorkOne(Integer.parseInt(id));
 		model.addAttribute("workVo", workVo);
-		return "admin_workView";
+		return "admin/admin_workView";
 	}
 
 	// 작품 수정 페이지로 이동
@@ -102,7 +102,7 @@ public class AdminWorkController {
 	public String admin_workUpdate(String id, Model model) {
 		workVo = adminService.selectWorkOne(Integer.parseInt(id));
 		model.addAttribute("workVo", workVo);
-		return "admin_workUpdate";
+		return "admin/admin_workUpdate";
 	}
 
 	// 작품 수정 실행

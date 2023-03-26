@@ -13,9 +13,9 @@
     <meta name="author" content="" />
     <title>DropShip Admin - 작가 상세 관리</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="shortcut icon" href="admin/img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 	<style>
 		#artistImage {width: 300px; height: 300px; text-align: center; 
@@ -98,7 +98,7 @@
                 </div>
                 
                 <!-- 작가 이미지 (이미지 등록때부터 반드시 입력받게 할거라 if문 안씀 -->
-                <img src="/img/artist/${artistVo.getArtist_img_url()}" id="artistImage">
+                <img src="admin//img/artist/${artistVo.getArtist_img_url()}" id="artistImage">
                 
                 <div class="admin_artistViewTableDiv">
                     <table class="admin_artistViewTable">
@@ -139,7 +139,7 @@
                             <td>
 	                            <c:forEach items="${workList}" var="workVo">
 							        <a href="admin_workView?id=${workVo.getId()}">${workVo.getWork_name()}</a><br>
-							        <img src="/img/work/${workVo.getWork_img_url()}" id="workImage"><br>
+							        <img src="admin//img/work/${workVo.getWork_img_url()}" id="workImage"><br>
 							    </c:forEach>
                             </td>
                         </tr>
@@ -163,9 +163,9 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="admin/js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    <script src="admin/js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

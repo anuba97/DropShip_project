@@ -11,10 +11,10 @@
     <meta name="author" content="" />
     <title>DropShip Admin - 작품수정</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="shortcut icon" href="admin//img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <style>
 		#workImage {width: 200px; height: 200px; text-align: center; 
@@ -222,7 +222,7 @@
 						</tr>
 						<tr>
 							<th>기존 이미지</th>
-							<td><img src="/img/work/${workVo.getWork_img_url()}" id="workImage"></td>
+							<td><img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage"></td>
 						</tr>
                         <tr>
                             <th>작가 사진 첨부</th>
@@ -286,9 +286,9 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="admin/js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    <script src="admin/js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

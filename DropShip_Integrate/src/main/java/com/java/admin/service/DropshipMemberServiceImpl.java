@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.java.admin.mapper.DropshipMemberMapper;
+import com.java.mapper.DropshipMemberMapper;
 import com.java.vo.DropshipMemberVo;
 
 @Service
