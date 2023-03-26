@@ -97,11 +97,11 @@
 		        $("#artist_id").focus();
 		        return false;
 		    }
-		    if (!$("input[name='work_genre_name']").is(":checked")) {
+		    if (!$("input[name='work_genre']").is(":checked")) {
 		        alert("장르를 선택해주세요.");
 		        return false;
 		    }
-		    if (!$("input[name='work_subject_name']").is(":checked")) {
+		    if (!$("input[name='work_subject']").is(":checked")) {
 		        alert("주제를 선택해주세요.");
 		        return false;
 		    }
@@ -190,52 +190,52 @@
 						    <th>장르</th>
 						    <td>
 						        <label for="portrait">초상화</label>
-						        <input type="radio" id="portrait" name="work_genre_name" value="초상화">
+						        <input type="radio" id="portrait" name="work_genre" value="초상화">
 						        <label for="abstract">추상화</label>
-						        <input type="radio" id="abstract" name="work_genre_name" value="추상화">
+						        <input type="radio" id="abstract" name="work_genre" value="추상화">
 						        <label for="landScape">풍경</label>
-						        <input type="radio" id="landScape" name="work_genre_name" value="풍경">
+						        <input type="radio" id="landScape" name="work_genre" value="풍경">
 						        <label for="stillLife">정물</label>
-						        <input type="radio" id="stillLife" name="work_genre_name" value="정물">
+						        <input type="radio" id="stillLife" name="work_genre" value="정물">
 						        <label for="typography">타이포그래피</label>
-						        <input type="radio" id="typography" name="work_genre_name" value="타이포그래피"><br>
+						        <input type="radio" id="typography" name="work_genre" value="타이포그래피"><br>
 						        <label for="illustration">일러스트</label>
-						        <input type="radio" id="illustration" name="work_genre_name" value="일러스트">
+						        <input type="radio" id="illustration" name="work_genre" value="일러스트">
 						        <label for="poster">포스터</label>
-						        <input type="radio" id="poster" name="work_genre_name" value="포스터">
+						        <input type="radio" id="poster" name="work_genre" value="포스터">
 						        <label for="popArt">팝아트</label>
-						        <input type="radio" id="popArt" name="work_genre_name" value="팝아트">
+						        <input type="radio" id="popArt" name="work_genre" value="팝아트">
 						        <label for="hyper">초현실</label>
-						        <input type="radio" id="hyper" name="work_genre_name" value="초현실">
+						        <input type="radio" id="hyper" name="work_genre" value="초현실">
 						        <label for="cartoon">카툰</label>
-						        <input type="radio" id="cartoon" name="work_genre_name" value="카툰">
+						        <input type="radio" id="cartoon" name="work_genre" value="카툰">
 <!-- 						    	나중에 장르 수동으로 입력받으면 새 장르도 입력될 수 있도록     -->
-<!-- 						        <input type="text" name="work_genre_name" id="work_genre_name"  placeholder="그 외 장르를 입력해주세요(라디오버튼 체크 안할때만)"  style="width: 80%;" required> -->
+<!-- 						        <input type="text" name="work_genre" id="work_genre"  placeholder="그 외 장르를 입력해주세요(라디오버튼 체크 안할때만)"  style="width: 80%;" required> -->
 						    </td>
 						</tr>
                         <tr>
 						  <th>주제</th>
 						  <td>
 						    <label for="spring">봄</label>
-						    <input type="radio" id="spring" name="work_subject_name" value="봄">
+						    <input type="radio" id="spring" name="work_subject" value="봄">
 						    <label for="summer">여름</label>
-						    <input type="radio" id="summer" name="work_subject_name" value="여름">
+						    <input type="radio" id="summer" name="work_subject" value="여름">
 						    <label for="fall">가을</label>
-						    <input type="radio" id="fall" name="work_subject_name" value="가을">
+						    <input type="radio" id="fall" name="work_subject" value="가을">
 						    <label for="winter">겨울</label>
-						    <input type="radio" id="winter" name="work_subject_name" value="겨울">
+						    <input type="radio" id="winter" name="work_subject" value="겨울">
 						    <label for="animals">동물</label>
-						    <input type="radio" id="animals" name="work_subject_name" value="동물"><br>
+						    <input type="radio" id="animals" name="work_subject" value="동물"><br>
 						    <label for="plants">식물</label>
-						    <input type="radio" id="plants" name="work_subject_name" value="식물">
+						    <input type="radio" id="plants" name="work_subject" value="식물">
 						    <label for="city">도시</label>
-						    <input type="radio" id="city" name="work_subject_name" value="도시">
+						    <input type="radio" id="city" name="work_subject" value="도시">
 						    <label for="kids">어린이</label>
-						    <input type="radio" id="kids" name="work_subject_name" value="어린이">
+						    <input type="radio" id="kids" name="work_subject" value="어린이">
 						    <label for="indoor">실내</label>
-						    <input type="radio" id="indoor" name="work_subject_name" value="실내">
+						    <input type="radio" id="indoor" name="work_subject" value="실내">
 <!-- 					    	나중에 주제 수동으로 입력받으면 새 주제도 입력될 수 있도록     -->
-<!-- 						    <input type="text" name="work_subject_name" id="work_subject_name" placeholder="그 외 주제를 입력해주세요(라디오버튼 체크 안할때만)" style="width: 80%;" required> -->
+<!-- 						    <input type="text" name="work_subject" id="work_subject" placeholder="그 외 주제를 입력해주세요(라디오버튼 체크 안할때만)" style="width: 80%;" required> -->
 						  </td>
 						</tr>
 <!--                         <tr> -->
@@ -265,7 +265,7 @@
                         </tr>
                         <tr>
                             <th>전시 위치</th>
-                            <td><input type="url" name="work_dp" id="work_dp" style="width: 100%;"  placeholder="적어도 되고 귀찮으면 안적어도 됨" required></td>
+                            <td><input type="url" name="work_display_position" id="work_display_position" style="width: 100%;"  placeholder="적어도 되고 귀찮으면 안적어도 됨" required></td>
                         </tr>
                         <tr>
                             <th>작품 노출 상태</th>

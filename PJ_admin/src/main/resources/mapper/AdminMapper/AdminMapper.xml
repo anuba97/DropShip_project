@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.dropship.mapper.AdminMapper"> 
 
-	<!-- 	///////////////// ↓ AdminMember(관리자) 관련 ↓ /////////////////////////  -->
+	<!-- 	///////////////// ↓ Admin(관리자) 관련 ↓ /////////////////////////  -->
 
 	<!-- admin 로그인 -->
 	<select id="adminMemberSelectOne" resultType="kr.co.dropship.vo.AdminVo">
@@ -134,12 +134,12 @@
 	<!-- 작품 Work 저장 -->
 	<insert id="insertWork">  
 		INSERT INTO work (
-			id, work_name, artist_id, work_genre_name, work_subject_name, work_img_url,
+			id, work_name, artist_id, work_genre, work_subject, work_img_url,
 			work_content, work_isBest, work_reg_date, work_price, admin_id, work_available
 		)
 		VALUES (
 			work_seq.nextval, #{work_name}, #{artist_id}, 
-		  	#{work_genre_name}, #{work_subject_name}, #{work_img_url}, #{work_content}, #{work_isBest}, sysdate,
+		  	#{work_genre}, #{work_subject}, #{work_img_url}, #{work_content}, #{work_isBest}, sysdate,
 		  	#{work_price}, #{admin_id}, #{work_available}
 	  	)
   	</insert>
@@ -153,8 +153,8 @@
   	<select id="selectWorkOne" resultType="kr.co.dropship.vo.WorkVo">
   		SELECT * FROM (
 	        SELECT w.id AS id, w.work_name, a.id AS artist_id, a.artist_korean_name AS artist_name,
-			       w.work_genre_name, w.work_subject_name, w.work_img_url, w.work_content, w.work_sale, w.work_isBest,
-			       w.work_reg_date, w.work_price, w.work_dp, w.work_hit, w.admin_id, w.work_available
+			       w.work_genre, w.work_subject, w.work_img_url, w.work_content, w.work_sale, w.work_isBest,
+			       w.work_reg_date, w.work_price, w.work_display_position, w.work_hit, w.admin_id, w.work_available
 	        FROM Work w
 	        JOIN Artist a ON w.artist_id = a.id
         ) 
@@ -167,8 +167,8 @@
 	  UPDATE work SET 
 	        work_name = #{work_name},
 	        artist_id = #{artist_id},
-	        work_genre_name = #{work_genre_name},
-	        work_subject_name = #{work_subject_name},
+	        work_genre = #{work_genre},
+	        work_subject = #{work_subject},
 	        work_img_url = #{work_img_url},
 	        work_content = #{work_content},
 	        work_isBest = #{work_isBest},
