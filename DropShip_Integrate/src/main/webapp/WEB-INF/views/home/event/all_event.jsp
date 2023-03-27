@@ -175,7 +175,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 		<!-- header 부분 끝 -->
 
 <div id="gotop">
-    <a href="javascript:;"><span class="hide">맨위로가기dd</span></a>
+    <a href="javascript:;"><span class="hide">맨위로가기</span></a>
 </div>
 </div>
 
