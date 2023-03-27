@@ -57,7 +57,7 @@
 	                        <li><a href="../member/logout">로그아웃</a></li>
                     	</c:if>
 						<c:if test="${sessionMember_login_id == null }">
-	                        <li><a href="../bbs/register_intro">회원가입</a></li>
+	                        <li><a href="../bbs/register_intro">회원가입</a></li>	<!-- 이거 안됨 해결해야ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ -->
 						</c:if>
 						<c:if test="${sessionMember_login_id != null }">
                         	<li><a href="../myshop/mypage">마이페이지</a></li>

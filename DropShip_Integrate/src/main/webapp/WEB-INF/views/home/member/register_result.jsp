@@ -93,7 +93,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
             </ul>
         </div>
         <div class="join-result">
-            <img src="/img/common/logo.png" alt="DropShip갤러리">
+            <img src="/home/img/common/logo.png" alt="DropShip갤러리">
             <h3>민수님의 회원가입이 완료되었습니다.</h3>
 
                             <p>

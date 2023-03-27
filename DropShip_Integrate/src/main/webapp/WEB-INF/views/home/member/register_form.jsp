@@ -104,7 +104,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	        </div>
 	        
 	        <div class="join-form-wrap">
-	            <form name="registerform" id="registerform" action="register_form" method="post">
+	            <form name="registerform" id="registerform" action="register_result" method="post">
 	                <!-- <input type="hidden" name="w" value="">
 	                <input type="hidden" name="url" value="%2Fbbs%2Fregister_form.php">
 	                <input type="hidden" name="agree" value="1">
@@ -176,6 +176,8 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        <div class="right-con">
 	                            <input type="hidden" name="old_email" value="">
 	                            <input type="email" name="member_email" value="" id="reg_mb_email"  class="inp-type01 half email"  size="50" maxlength="100" placeholder="E-mail">
+	                            <span class="sm-notice-txt">이메일주소는 끝에 com, net, edu 로 끝나는 형식만 가능합니다.</span>
+	                            
 	                        </div>
 	                    </div>
 	
@@ -202,7 +204,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                            <label for="reg_mb_hp"><span class="f-color">*</span>휴대폰번호</label>
 	                        </div>
 	                        <div class="right-con">
-	                            <input type="text" name="member_phone" id="reg_mb_hp"  class="inp-type01 half"  maxlength="20" placeholder="휴대폰번호">
+	                            <input type="text" name="member_phone" id="reg_mb_hp"  class="inp-type01 half"  maxlength="11" placeholder="휴대폰번호">
 	                            <span class="sm-notice-txt">숫자로만 입력해주세요.</span>
 	                        </div>
 	                    </div>
@@ -338,7 +340,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 			  var pwPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()<>?]).{8,16}$/; // pw
 			  var namePattern = /^[가-힣]{1,10}$/; // 이름
 			  var nNamePattern = /^[a-zA-Z가-힣]{2,8}$/; // 닉네임
-			  var phonePattern = /^[0-9]{8,12}$/; // 핸드폰
+			  var phonePattern = /^[0-9]{8,11}$/; // 핸드폰
 			  var adressPattern = /^[0-9]{5,}$/; // 우편번호			 com, net, edu,
 			  var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.(com|net|edu)$/;
 			  //'^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
@@ -363,7 +365,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				  return false;
 			  }
 			  if(!pwPattern.test(pw)){
-				  alert("8~16자 영문, 숫자, 특수문자가 1개씩 포함되어야 합니다.");
+				  alert("비밀번호는 8~16자 영문, 숫자, 특수문자가 1개씩 포함되어야 합니다.");
 				  $("#reg_mb_password").focus();
 				  return false;
 			  }
@@ -389,7 +391,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				  return false;
 			  }
 			  if(!namePattern.test(name)){
-				  alert("이름을 제대로 입력해주세요.");
+				  alert("이름은 한글만 가능합니다.");
 				  $("#reg_mb_name").focus();
 				  return false;
 			  }
@@ -402,7 +404,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				  return false;
 			  }
 			  if(!nNamePattern.test(nName)){
-				  alert("닉네임을 제대로 입력해주세요");
+				  alert("닉네임을 한글,영문 2~8자로 입력해주세요");
 				  $("#reg_mb_nName").focus();
 				  return false;
 			  }
@@ -415,7 +417,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				  return false;
 			  }
 			  if(!phonePattern.test(phone)){
-				  alert("휴대폰번호를 제대로 입력해주세요.");
+				  alert("휴대폰번호를 숫자로 11자로 입력해주세요.");
 				  $("#reg_mb_hp").focus();
 				  return false;
 			  }
@@ -446,7 +448,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				  return false;
 			  }
 			  if(!emailPattern.test(email)){
-				  alert("이메일 주소를 올바르게 입력하세요.");
+				  alert("이메일 주소조건을 확인해주세요");
 				  $("#reg_mb_email").focus();
 				  return false;
 			  } 

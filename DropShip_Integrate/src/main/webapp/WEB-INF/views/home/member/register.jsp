@@ -80,7 +80,7 @@
                         </ul>
                     </div>
                     <div class="join-agree">
-                        <form name="fregister" id="fregister" action="../member/register_form" method="GET">
+                        <form name="fregister" id="fregister" action="register_form" method="GET">
                             <div id="fregister_chkall" class="chk-box fregister_agree">
                                 <input type="checkbox" name="chk_all" id="chk_all">
                                 <label for="chk_all"><strong>전체동의</strong> DropShip쇼핑몰의 모든 약관을 확인하고 전체 동의합니다.</label>

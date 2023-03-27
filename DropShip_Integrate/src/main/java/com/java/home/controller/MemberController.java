@@ -77,16 +77,19 @@ public class MemberController {
 		return flag;
 	}
 	
-	@PostMapping("member/register_form")  // 회원가입2 (form) 실행
-	public String register_form(MemberVo mvo, String mb_1,String mb_2,String mb_3, Model model) { 
+	@PostMapping("register_result")  // 회원가입2 (form) 실행
+	public String registerform(MemberVo mvo, String mb_1,String mb_2,String mb_3, Model model) { 
 		String mb = mb_1+mb_2+mb_3; // mb : 19991212
 		mvo.setMember_birth(mb); 
-		mservice.insertOneMember(mvo); 
+		mservice.insertOneMember(mvo);
+		System.out.println("");
+		//return "home/member/redirect:register_result";
 		return "home/member/register_result";
 	}
 	
-	@PostMapping("register_result")  // 회원가입 완료 페이지
+	@GetMapping("register_result")  // 회원가입 완료 페이지
 	public String register_result() {
+		//return "home/member/redirect:register_result";
 		return "home/member/register_result";
 	}
 	
