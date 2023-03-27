@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="/img/favicon.ico" />
-<title>자유게시판 글쓰기</title>
+<title>자유게시판 글쓰기1</title>
 <link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
