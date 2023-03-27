@@ -207,7 +207,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
     <div class="about-art">
         <div class="about-art-tit" data-aos="fade-up">
             <span>DropShip의 다양한 작품들을 만나보세요</span>
-            <h3>DropShipANG ART</h3>
+            <h3>DropShip ART</h3>
             <div class="btnwrap">
                 <a href="../shop/best_list" class="btnset btn-type01">
                     <svg height="50" width="180">
