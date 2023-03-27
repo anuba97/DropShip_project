@@ -2,33 +2,35 @@ package com.java.home.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("bxabout/")
 public class BxaboutController {
 	
-	@GetMapping("bxabout/about")  // 회사소개
+	@GetMapping("about")  // 회사소개
 	public String about() {
-		return"bxabout/about";
+		return "/home/bxabout/about";
 	}
 	
-	@GetMapping("bxabout/faq")  // Q&A
+	@GetMapping("faq")  // Q&A
 	public String faq() {
-		return"bxabout/faq";
+		return "/home/bxabout/faq";
 	}
 	
-	@GetMapping("bxabout/privacy")  // 개인정보처리방침
+	@GetMapping("privacy")  // 개인정보처리방침
 	public String privacy() {
-		return"bxabout/privacy";
+		return "/home/bxabout/privacy";
 	}
 	
-	@GetMapping("bxabout/term")  // 이용약관
+	@GetMapping("term")  // 이용약관
 	public String term() {
-		return"bxabout/term";
+		return "/home/bxabout/term";
 	}
 	
-	@GetMapping("bxabout/search")  // 검색창
+	@GetMapping("search")  // 검색창
 	public String search() {
-		return"bxabout/search";
+		return "/home/bxabout/search";
 	}
 	
 }

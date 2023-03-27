@@ -53,7 +53,7 @@ public class AdminArtistController {
 			long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
 			// a.jpg -> 123524123232_a.jpg 로 저장
 			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\workspace2\\PJ_admin\\src\\main\\resources\\static\\img\\artist\\";
+			String fileSaveUrl = "C:\\Users\\KV006\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\admin\\img\\artist\\";
 			File f = new File(fileSaveUrl + uploadFileName);  
 			try {
 				file.transferTo(f);
@@ -144,7 +144,7 @@ public class AdminArtistController {
 			long time = System.currentTimeMillis(); // 시간 밀리초 단위로
 			// a.jpg -> 123524123232_a.jpg 로 저장
 			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\Users\\KV006\\git\\DropShip_Spring\\PJ_admin\\src\\main\\resources\\static\\img\\artist\\";
+			String fileSaveUrl = "C:\\Users\\KV006\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\admin\\img\\artist\\";
 			File f = new File(fileSaveUrl + uploadFileName);
 			try {
 				file.transferTo(f);

@@ -166,48 +166,48 @@
                             <th>장르</th>
                             <td>
                                 <label for="portrait">초상화</label>
-                                <input type="radio" id="portrait" name="work_genre" value="초상화" <c:if test="${workVo.getwork_genre() == '초상화'}">checked</c:if>>
+                                <input type="radio" id="portrait" name="work_genre" value="초상화" <c:if test="${workVo.getWork_genre() == '초상화'}">checked</c:if>>
                                 <label for="abstract">추상화</label>
-                                <input type="radio" id="abstract" name="work_genre" value="추상화" <c:if test="${workVo.getwork_genre() == '추상화'}">checked</c:if>>
+                                <input type="radio" id="abstract" name="work_genre" value="추상화" <c:if test="${workVo.getWork_genre() == '추상화'}">checked</c:if>>
                                 <label for="landScape">풍경</label>
-                                <input type="radio" id="landScape" name="work_genre" value="풍경" <c:if test="${workVo.getwork_genre() == '풍경'}">checked</c:if>>
+                                <input type="radio" id="landScape" name="work_genre" value="풍경" <c:if test="${workVo.getWork_genre() == '풍경'}">checked</c:if>>
                                 <label for="stillLife">정물</label>
-                                <input type="radio" id="stillLife" name="work_genre" value="정물" <c:if test="${workVo.getwork_genre() == '정물'}">checked</c:if>>
+                                <input type="radio" id="stillLife" name="work_genre" value="정물" <c:if test="${workVo.getWork_genre() == '정물'}">checked</c:if>>
                                 <label for="typography">타이포그래피</label>
-                                <input type="radio" id="typography" name="work_genre" value="타이포그래피" <c:if test="${workVo.getwork_genre() == '타이포그래피'}">checked</c:if>><br>
+                                <input type="radio" id="typography" name="work_genre" value="타이포그래피" <c:if test="${workVo.getWork_genre() == '타이포그래피'}">checked</c:if>><br>
                                 <label for="illustration">일러스트</label>
-                                <input type="radio" id="illustration" name="work_genre" value="일러스트" <c:if test="${workVo.getwork_genre() == '일러스트'}">checked</c:if>>
+                                <input type="radio" id="illustration" name="work_genre" value="일러스트" <c:if test="${workVo.getWork_genre() == '일러스트'}">checked</c:if>>
                                 <label for="poster">포스터</label>
-                                <input type="radio" id="poster" name="work_genre" value="포스터" <c:if test="${workVo.getwork_genre() == '포스터'}">checked</c:if>>
+                                <input type="radio" id="poster" name="work_genre" value="포스터" <c:if test="${workVo.getWork_genre() == '포스터'}">checked</c:if>>
                                 <label for="popArt">팝아트</label>
-                                <input type="radio" id="popArt" name="work_genre" value="팝아트" <c:if test="${workVo.getwork_genre() == '팝아트'}">checked</c:if>>
+                                <input type="radio" id="popArt" name="work_genre" value="팝아트" <c:if test="${workVo.getWork_genre() == '팝아트'}">checked</c:if>>
                                 <label for="hyper">초현실</label>
-                                <input type="radio" id="hyper" name="work_genre" value="초현실" <c:if test="${workVo.getwork_genre() == '초현실'}">checked</c:if>>
+                                <input type="radio" id="hyper" name="work_genre" value="초현실" <c:if test="${workVo.getWork_genre() == '초현실'}">checked</c:if>>
                                 <label for="cartoon">카툰</label>
-                                <input type="radio" id="cartoon" name="work_genre" value="카툰" <c:if test="${workVo.getwork_genre() == '카툰'}">checked</c:if>>
+                                <input type="radio" id="cartoon" name="work_genre" value="카툰" <c:if test="${workVo.getWork_genre() == '카툰'}">checked</c:if>>
                             </td>
                         </tr>
                         <tr>
                             <th>주제</th>
                             <td>
                                 <label for="spring">봄</label>
-                                <input type="radio" id="spring" name="work_subject" value="봄" <c:if test="${workVo.getwork_subject() == '봄'}">checked</c:if>>
+                                <input type="radio" id="spring" name="work_subject" value="봄" <c:if test="${workVo.getWork_subject() == '봄'}">checked</c:if>>
                                 <label for="summer">여름</label>
-                                <input type="radio" id="summer" name="work_subject" value="여름" <c:if test="${workVo.getwork_subject() == '여름'}">checked</c:if>>
+                                <input type="radio" id="summer" name="work_subject" value="여름" <c:if test="${workVo.getWork_subject() == '여름'}">checked</c:if>>
                                 <label for="fall">가을</label>
-                                <input type="radio" id="fall" name="work_subject" value="가을" <c:if test="${workVo.getwork_subject() == '가을'}">checked</c:if>>
+                                <input type="radio" id="fall" name="work_subject" value="가을" <c:if test="${workVo.getWork_subject() == '가을'}">checked</c:if>>
                                 <label for="winter">겨울</label>
-                                <input type="radio" id="winter" name="work_subject" value="겨울" <c:if test="${workVo.getwork_subject() == '겨울'}">checked</c:if>>
+                                <input type="radio" id="winter" name="work_subject" value="겨울" <c:if test="${workVo.getWork_subject() == '겨울'}">checked</c:if>>
                                 <label for="animals">동물</label>
-                                <input type="radio" id="animals" name="work_subject" value="동물" <c:if test="${workVo.getwork_subject() == '동물'}">checked</c:if>><br>
+                                <input type="radio" id="animals" name="work_subject" value="동물" <c:if test="${workVo.getWork_subject() == '동물'}">checked</c:if>><br>
                                 <label for="plants">식물</label>
-                                <input type="radio" id="plants" name="work_subject" value="식물" <c:if test="${workVo.getwork_subject() == '식물'}">checked</c:if>>
+                                <input type="radio" id="plants" name="work_subject" value="식물" <c:if test="${workVo.getWork_subject() == '식물'}">checked</c:if>>
                                 <label for="city">도시</label>
-                                <input type="radio" id="city" name="work_subject" value="도시" <c:if test="${workVo.getwork_subject() == '도시'}">checked</c:if>>
+                                <input type="radio" id="city" name="work_subject" value="도시" <c:if test="${workVo.getWork_subject() == '도시'}">checked</c:if>>
                                 <label for="kids">어린이</label>
-                                <input type="radio" id="kids" name="work_subject" value="어린이" <c:if test="${workVo.getwork_subject() == '어린이'}">checked</c:if>>
+                                <input type="radio" id="kids" name="work_subject" value="어린이" <c:if test="${workVo.getWork_subject() == '어린이'}">checked</c:if>>
                                 <label for="indoor">실내</label>
-                                <input type="radio" id="indoor" name="work_subject" value="실내" <c:if test="${workVo.getwork_subject() == '실내'}">checked</c:if>>
+                                <input type="radio" id="indoor" name="work_subject" value="실내" <c:if test="${workVo.getWork_subject() == '실내'}">checked</c:if>>
                                 <!-- 나중에 주제 수동으로 입력받으면 새 주제도 입력될 수 있도록 -->
                                 <!-- <input type="text" name="work_subject" id="work_subject" placeholder="그 외 주제를 입력해주세요(라디오버튼 체크 안할때만)" style="width: 80%;" required> -->
                             </td>
@@ -254,7 +254,7 @@
                         </tr>
                         <tr>
                             <th>전시 위치</th>
-                            <td><input type="url" name="work_display_position" id="work_display_position" style="width: 100%;" placeholder="옵션" value="${workVo.getwork_display_position()}" required></td>
+                            <td><input type="url" name="work_display_position" id="work_display_position" style="width: 100%;" placeholder="옵션" value="${workVo.getWork_display_position()}" required></td>
                         </tr>
                         <tr>
                             <th>작품 노출 상태</th>

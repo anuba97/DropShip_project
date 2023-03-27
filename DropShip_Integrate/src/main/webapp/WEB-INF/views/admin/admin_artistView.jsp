@@ -98,7 +98,7 @@
                 </div>
                 
                 <!-- 작가 이미지 (이미지 등록때부터 반드시 입력받게 할거라 if문 안씀 -->
-                <img src="admin//img/artist/${artistVo.getArtist_img_url()}" id="artistImage">
+                <img src="admin/img/artist/${artistVo.getArtist_img_url()}" id="artistImage">
                 
                 <div class="admin_artistViewTableDiv">
                     <table class="admin_artistViewTable">
@@ -139,7 +139,7 @@
                             <td>
 	                            <c:forEach items="${workList}" var="workVo">
 							        <a href="admin_workView?id=${workVo.getId()}">${workVo.getWork_name()}</a><br>
-							        <img src="admin//img/work/${workVo.getWork_img_url()}" id="workImage"><br>
+							        <img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage"><br>
 							    </c:forEach>
                             </td>
                         </tr>
