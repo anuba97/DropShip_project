@@ -26,14 +26,14 @@
 		
 		function updateWorkBtn(){
 			alert("작품 정보 수정페이지로 이동합니다.");
-			location.href="admin/admin_workUpdate?id=${workVo.getId()}";
+			location.href="admin_workUpdate?id=${workVo.getId()}";
 		}//updateBtn()
 		
 		function deleteWorkBtn() {
 			if(confirm("작품을 삭제하시겠습니까?")){
-				location.href="admin/deleteWork?id=${workVo.getId()}";
+				location.href="deleteWork?id=${workVo.getId()}";
 				alert("작품이 삭제되었습니다.");
-				location.href="admin/admin_workList";
+				location.href="admin_workList";
             }// if
         } //deleteWorkBtn()
 		
