@@ -29,6 +29,11 @@ public class MyShopController {
 		return "home/myshop/mypage";
 	}
 	
+	@GetMapping("mypage_drone")	// 마이페이지  (드론페이지)
+	public String mypage_dron(Model model) {
+		return "home/myshop/mypage_drone";
+	}
+	
 	@GetMapping("orderinquiry")	// 주문조회, 주문목록/배송조회
 	public String orderinquiry(Model model) {
 		return "home/myshop/orderinquiry";
