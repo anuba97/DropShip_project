@@ -160,7 +160,16 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	            <td data-title="주문금액" class="td-numbig td-total">147,700원</td>
 	            <!--<td class="td-numbig">0원</td>-->
 	            <!--<td class="td-numbig">146,700원</td>-->
-	            <td data-title="주문상태" class="td-state">입금확인중</td>
+	            <td data-title="주문상태" class="td-state">입금확인중
+	            	<div><br>
+			            <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
+					       <a href="../myshop/mypage_drone" class="btnset btn-sight">
+					       	<svg height="45" width="140"><rect height="45" width="140"></rect></svg>
+					       </a>
+					     <span style="margin-left:-15px;">드론배송 현황</span>
+					    </button>
+	            	</div>
+	            </td>
 	          </tr>
             </tbody>
             </table>
