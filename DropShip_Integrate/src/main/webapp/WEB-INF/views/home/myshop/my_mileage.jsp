@@ -8,16 +8,16 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="shortcut icon" href="/img/favicon.ico" />
+<link rel="shortcut icon" href="/home/img/favicon.ico" />
 <title>마일리지</title>
-<link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
-<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/aos3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/nice-select3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/js/owl.carousel3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <link type="text/css" href="..//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" />
 <link type="text/css" href="../plugin/jquery-ui/style.css?ver=210618">
 
@@ -41,19 +41,19 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
 </script>
 <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
-<script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
-<script src="../js/common3816.js?ver=210618"></script>
-<script src="../js/wrest3816.js?ver=210618"></script>
-<script src="../js/placeholders.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
-<script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../home/js/common3816.js?ver=210618"></script>
+<script src="../home/js/wrest3816.js?ver=210618"></script>
+<script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 <body>
 <div id="hd_login_msg">오민수님 로그인 중 <a href="https://bxgs.co.kr/bbs/logout.php">로그아웃</a></div>

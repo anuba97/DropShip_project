@@ -10,15 +10,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <title>회원수정 완료페이지</title>
-<link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
-<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/aos3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/nice-select3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/js/owl.carousel3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/mobile/skin/member/basic/style3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/mobile/skin/member/basic/style3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
@@ -39,20 +39,20 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
 
 </script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="https://bxgs.co.kr/js/jquery-1.12.4.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/jquery-migrate-1.4.1.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/common.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/wrest.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/placeholders.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/swiper.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/gsap-3.6.0.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/aos.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.nice-select.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.sidr.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/modernizr.custom.70111.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/owl.carousel.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/unslider.min.js?ver=210618"></script>
+<link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../home/js/common3816.js?ver=210618"></script>
+<script src="../home/js/wrest3816.js?ver=210618"></script>
+<script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 <body>
 
@@ -86,7 +86,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 <section class="join">
     <div class="maxinner">
         <div class="join-result">
-            <img src="/img/common/logo.png" alt="DropShip갤러리">
+            <img src="/home/img/common/logo.png" alt="DropShip갤러리">
             <h3>민수님의 회원변경이 완료되었습니다.</h3>
 
                         <div class="btn-confirm-wrap">
@@ -107,10 +107,10 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 </div>
 
 
-<script src="https://bxgs.co.kr/js/sns.js"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/animate.css">
-<script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
+<script src="/home/js/sns.js"></script>
+<script src="/home/theme/buzinga/js/css3-animate-it.js"></script>
+<link rel="stylesheet" href="/home/theme/buzinga/css/animate.css">
+<script src="/home/theme/buzinga/js/base.js"></script><script src="/home/theme/buzinga/js/sub.js"></script>
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>

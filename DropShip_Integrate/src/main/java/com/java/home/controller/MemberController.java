@@ -15,6 +15,7 @@ import com.java.home.service.MemberService;
 import com.java.vo.MemberVo;
 
 @Controller
+@RequestMapping("member/")
 public class MemberController {
 	
 	@Autowired
@@ -26,12 +27,12 @@ public class MemberController {
 	@Autowired
 	MemberVo mvo;
 	
-	@GetMapping("member/login")  // 로그인 페이지
+	@GetMapping("login")  // 로그인 페이지
 	public String login() {
-		return "member/login";
+		return "home/member/login";
 	}
 	
-	@PostMapping("member/login") // 로그인 실행									
+	@PostMapping("login") // 로그인 실행									
 	public String login(String member_login_id, String member_pw, Model model) { 
 		int loginResult = 0;
 		mvo = mservice.memberSelectOne(member_login_id, member_pw);
@@ -46,30 +47,30 @@ public class MemberController {
 			loginResult = 0;
 			model.addAttribute("loginResult", loginResult);
 		}
-		return "member/doMember";
+		return "home/member/doMember";
 	}
 	
-	@GetMapping("member/logout")	// 로그아웃
+	@GetMapping("logout")	// 로그아웃
 	public String logout(Model model) {
-		return "member/logout";
+		return "home/member/logout";
 	}
 	
-	@GetMapping("member/register_intro")  // 회원가입 페이지
+	@GetMapping("register_intro")  // 회원가입 페이지
 	public String register_intro() {
-		return "member/register_intro";
+		return "home/member/register_intro";
 	}
 	
-	@GetMapping("member/register")  // 회원가입1 (약관동의) 페이지
+	@GetMapping("register")  // 회원가입1 (약관동의) 페이지
 	public String register() {
-		return "member/register";
+		return "home/member/register";
 	}
 	
-	@GetMapping("member/register_form")  // 회원가입2 (form) 페이지
+	@GetMapping("register_form")  // 회원가입2 (form) 페이지
 	public String register_form() {
-		return "member/register_form";
+		return "home/member/register_form";
 	}
 	
-	@PostMapping("member/memberCheckId")  // ID 중복체크
+	@PostMapping("memberCheckId")  // ID 중복체크
 	@ResponseBody
 	public int memberCheckId(@RequestParam String member_login_id) {
 		int flag = mservice.memberCheckId(member_login_id);
@@ -81,20 +82,20 @@ public class MemberController {
 		String mb = mb_1+mb_2+mb_3; // mb : 19991212
 		mvo.setMember_birth(mb); 
 		mservice.insertOneMember(mvo); 
-		return "member/register_result";
+		return "home/member/register_result";
 	}
 	
-	@PostMapping("member/register_result")  // 회원가입 완료 페이지
+	@PostMapping("register_result")  // 회원가입 완료 페이지
 	public String register_result() {
-		return "member/register_result";
+		return "home/member/register_result";
 	}
 	
-	@GetMapping("member/register_update_pwcheck")  // 회원정보 변경 (PW 확인) 페이지
+	@GetMapping("register_update_pwcheck")  // 회원정보 변경 (PW 확인) 페이지
 	public String register_update_pwcheck() {
-		return "member/register_update_pwcheck";
+		return "home/member/register_update_pwcheck";
 	}
 	
-	@PostMapping("member/register_update_intro")  // 회원정보 변경 (PW 확인) 실행
+	@PostMapping("register_update_intro")  // 회원정보 변경 (PW 확인) 실행
 	public String register_update_intro(@RequestParam String member_login_id, String member_pw, Model model) {
 		int pwResult = 0;
 		mvo = mservice.memberSelectOne(member_login_id, member_pw);
@@ -106,37 +107,37 @@ public class MemberController {
 			pwResult = 0;
 			model.addAttribute("pwResult",pwResult);
 		}
-		return "member/doMember";
+		return "home/member/doMember";
 	}
 	
-	@GetMapping("member/register_update_intro")  // 회원정보 변경 선택(비밀번호 변경, 개인정보 수정) 페이지 
+	@GetMapping("register_update_intro")  // 회원정보 변경 선택(비밀번호 변경, 개인정보 수정) 페이지 
 	public String register_update_intro() {
-		return "member/register_update_intro";
+		return "home/member/register_update_intro";
 	}
 	
-	@GetMapping("member/register_update_pw")  // 회원정보 (비밀번호 변경) 페이지 
+	@GetMapping("register_update_pw")  // 회원정보 (비밀번호 변경) 페이지 
 	public String register_update_pw() {
-		return "member/register_update_pw";
+		return "home/member/register_update_pw";
 	}
 	
-	@PostMapping("member/register_update_pw")  // 회원정보 (비밀번호 변경) 실행 
+	@PostMapping("register_update_pw")  // 회원정보 (비밀번호 변경) 실행 
 	public String register_update_pw(MemberVo mvo, Model model) { 
 		int pwModifyResult = 0;
 		mservice.memberPwModify(mvo);
 		pwModifyResult = 1;
 		model.addAttribute("pwModifyResult",pwModifyResult);
-		return "member/doMember";
+		return "home/member/doMember";
 	}
 	
-	@GetMapping("member/register_update_form")  // 회원정보 (개인정보 변경) 페이지
+	@GetMapping("register_update_form")  // 회원정보 (개인정보 변경) 페이지
 	public String register_update_form(Model model) {  
 		int id = (Integer)session.getAttribute("sessionMember_id");  //session id만 가져오기
 		mvo = mservice.selectOne(id); 
 		model.addAttribute("mvo", mvo);  
-		return "member/register_update_form";
+		return "home/member/register_update_form";
 	}
 	
-	@PostMapping("member/register_update_form") // 회원정보 (개인정보 변경) 실행
+	@PostMapping("register_update_form") // 회원정보 (개인정보 변경) 실행
 	public String register_update_form(MemberVo mvo, Model model) {
 		int registerUpdateResult = 0;
 		mservice.memberReModify(mvo);
@@ -145,20 +146,20 @@ public class MemberController {
 			registerUpdateResult = 1;
 		}
 		model.addAttribute("registerUpdateResult", registerUpdateResult);
-		return "member/doMember";
+		return "home/member/doMember";
 	}
 	
-	@GetMapping("member/register_update_result")  // 회원정보 변경(비밀번호 변경, 개인정보 수정) 완료 페이지
+	@GetMapping("register_update_result")  // 회원정보 변경(비밀번호 변경, 개인정보 수정) 완료 페이지
 	public String register_update_result() {
-		return "member/register_update_result";
+		return "home/member/register_update_result";
 	}
 	
-	@GetMapping("member/register_delete")  // 회원탈퇴 페이지
+	@GetMapping("register_delete")  // 회원탈퇴 페이지
 	public String register_delete() {
-		return "member/register_delete";
+		return "home/member/register_delete";
 	}
 	
-	@PostMapping("member/register_delete")  // 회원1명 삭제
+	@PostMapping("register_delete")  // 회원1명 삭제
 	public String register_delete(String member_login_id, Model model) {
 		mservice.memberDelete(member_login_id);
 		int memberDeleteResult = 0;
@@ -170,7 +171,7 @@ public class MemberController {
 			memberDeleteResult = 0;
 			model.addAttribute("memberDeleteResult", memberDeleteResult);
 		}
-		return "member/doMember";
+		return "home/member/doMember";
 	}
 	
 	

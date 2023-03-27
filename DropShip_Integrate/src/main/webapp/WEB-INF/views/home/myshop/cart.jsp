@@ -10,16 +10,16 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="shortcut icon" href="../img/favicon.ico" />
+<link rel="shortcut icon" href="../home/img/favicon.ico" />
 <title>장바구니</title>
-<link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
-<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/aos3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/nice-select3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/js/owl.carousel3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -40,19 +40,19 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 
 </script>
 <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
-<script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
-<script src="../js/common3816.js?ver=210618"></script>
-<script src="../js/wrest3816.js?ver=210618"></script>
-<script src="../js/placeholders.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
-<script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../home/js/common3816.js?ver=210618"></script>
+<script src="../home/js/wrest3816.js?ver=210618"></script>
+<script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 <body>
 
@@ -85,8 +85,8 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 
 
 <!-- 장바구니 시작 { -->
-<script src="../js/shop.js"></script>
-<script src="../js/shop.override.js"></script>
+<script src="../home/js/shop.js"></script>
+<script src="../home/js/shop.override.js"></script>
 
 <div id="sod_bsk" class="od_prd_list">
     <div class="maxinner">
@@ -109,7 +109,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td colspan="5" class="empty-content"><img src="../img/ico/ico-information-big.png" alt="알림"><p>장바구니에 담긴 상품이 없습니다.</p></td></tr>                    </tbody>
+                        <tr><td colspan="5" class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림"><p>장바구니에 담긴 상품이 없습니다.</p></td></tr>                    </tbody>
                 </table>
                 <div class="btn_cart_del">
                     <button type="button" onclick="return form_check('seldelete');">선택삭제</button>
@@ -225,10 +225,10 @@ function form_check(act) {
 </div>
 
 
-<script src="../js/sns.js"></script>
-<script src="../theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="../theme/buzinga/css/animate.css">
-<script src="../theme/buzinga/js/base.js"></script><script src="../theme/buzinga/js/sub.js"></script>
+<script src="../home/js/sns.js"></script>
+<script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
+<link rel="stylesheet" href="../home/theme/buzinga/css/animate.css">
+<script src="../home/theme/buzinga/js/base.js"></script><script src="../home/theme/buzinga/js/sub.js"></script>
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>

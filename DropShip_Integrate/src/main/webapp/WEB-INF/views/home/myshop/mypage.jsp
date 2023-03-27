@@ -10,14 +10,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <title>마이페이지</title>
-<link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
-<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/aos3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/nice-select3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/js/owl.carousel3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -38,19 +38,19 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
 </script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
-<script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
-<script src="../js/common3816.js?ver=210618"></script>
-<script src="../js/wrest3816.js?ver=210618"></script>
-<script src="../js/placeholders.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
-<script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../home/js/common3816.js?ver=210618"></script>
+<script src="../home/js/wrest3816.js?ver=210618"></script>
+<script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 
 <body>
@@ -139,7 +139,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				
 				  <div class="product-box">
 				    <div class="product-img">
-					  <div style="background-image:url(../data/item/1654135804/7JWE66qs65Oc64KY66y0.jpg)"></div>
+					  <div style="background-image:url(../home/data/item/1654135804/7JWE66qs65Oc64KY66y0.jpg)"></div>
 					</div>
 				    <div class="product-name">
 				      <strong>꽃 피는 아몬드 나무<span>빈센트 반 고흐</span></strong><p>외 1건</p>
@@ -149,7 +149,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	            
 	              <div class="product-box">
 				    <div class="product-img">
-					  <div style="background-image:url(../data/item/1654133549/656R6re466Oo7JWE64uk66as.jpg)"></div>
+					  <div style="background-image:url(../home/data/item/1654133549/656R6re466Oo7JWE64uk66as.jpg)"></div>
 					</div>
 					<div class="product-name"><strong>아를의 랑그루아 다리<span>빈센트 반 고흐</span></strong><p>외 1건</p>
 					<!-- <p>캔버스 / 캔버스판넬 / 마띠에르 리터치 선택 / 매트없음 / 90.0cm X 71.4cm</p> -->
@@ -173,14 +173,14 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 						<h3>찜리스트</h3>
 					</div>
 					<div class="grid-list">
-	<script src="../js/jquery.fancylist.js"></script>
+	<script src="../home/js/jquery.fancylist.js"></script>
 	
 	<!-- 메인상품진열 20 시작 { -->
 	<ul class="sct sct_20">
 	  <li class="sct_li">
 		<div class="li_wr">
 		  <div class="sct_img_wrap">
-		    <div class="sct_img" style="background-image:url(../data/item/1654133549/656R6re466Oo7JWE64uk66as.jpg)">
+		    <div class="sct_img" style="background-image:url(../home/data/item/1654133549/656R6re466Oo7JWE64uk66as.jpg)">
 		      <span class="hide">아를의 랑그루아 다리</span>
 		    </div>
 		    <div class="sct_opt_wrap">
@@ -206,7 +206,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	  <li class="sct_li">
 		<div class="li_wr">
 		  <div class="sct_img_wrap">
-			<div class="sct_img" style="background-image:url(../data/item/1654135291/67KE64W87J2Y7YWM65287Iqk.jpg)">
+			<div class="sct_img" style="background-image:url(../home/data/item/1654135291/67KE64W87J2Y7YWM65287Iqk.jpg)">
 			  <span class="hide">베르농의 테라스</span>
 			</div>
 			<div class="sct_opt_wrap">
@@ -232,7 +232,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	  <li class="sct_li">
 		<div class="li_wr">
 		  <div class="sct_img_wrap">
-			<div class="sct_img" style="background-image:url(../data/item/1653879158/7YKk7Iqk.jpg)">
+			<div class="sct_img" style="background-image:url(../home/data/item/1653879158/7YKk7Iqk.jpg)">
 			  <span class="hide">키스</span>
 			</div>
 			<div class="sct_opt_wrap">
@@ -275,7 +275,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
 <script src="https://bxgs.co.kr/js/sns.js"></script>
 <script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/animate.css">
+<link rel="stylesheet" href="home/theme/buzinga/css/animate.css">
 <script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->

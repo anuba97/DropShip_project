@@ -8,16 +8,16 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="shortcut icon" href="/img/favicon.ico" />
+<link rel="shortcut icon" href="/home/img/favicon.ico" />
 <title>작품구매 페이지</title>
-<link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
-<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/aos3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/nice-select3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/js/owl.carousel3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -39,20 +39,20 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 </script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
-<script src="https://bxgs.co.kr/js/shop.order.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/jquery-1.12.4.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/jquery-migrate-1.4.1.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/common.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/wrest.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/placeholders.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/swiper.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/gsap-3.6.0.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/aos.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.nice-select.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.sidr.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/modernizr.custom.70111.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/owl.carousel.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/unslider.min.js?ver=210618"></script>
+<script src="../home/js/shop.order.js?ver=210618"></script>
+<script src="../home/js/jquery-1.12.4.min.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min.js?ver=210618"></script>
+<script src="../home/js/common.js?ver=210618"></script>
+<script src="../home/js/wrest.js?ver=210618"></script>
+<script src="../home/js/placeholders.min.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.70111.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min.js?ver=210618"></script>
 
 
 
@@ -119,7 +119,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
                                     1                                </td>
                                 <td data-title="Product" class="td_prd">
                                     <div class="sod_img">
-                                        <a href="https://bxgs.co.kr/shop/item.php?it_id=1654129940" style="background-image:url(https://bxgs.co.kr/data/item/1654129940/shutterstock_423234622.jpg)">
+                                        <a href="../home/shop/item.php?it_id=1654129940" style="background-image:url(https://bxgs.co.kr/data/item/1654129940/shutterstock_423234622.jpg)">
                                             <span class="hide">제품이미지</span>
                                         </a>
                                     </div>
@@ -129,7 +129,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
                                         <input type="hidden" name="it_price[0]" value="74700">
                                         <input type="hidden" name="cp_id[0]" value="">
                                         <input type="hidden" name="cp_price[0]" value="0">
-                                                                                <a href="https://bxgs.co.kr/shop/item.php?it_id=1654129940" class="prd_name"><strong>양산을 든 여인 - 카미유와 장</strong><span>클로드 모네</span><span class="price_txt">(+38,200)</span><div class="sod_opt_txt"><p>사이즈 : 20.0cm x 35.7<span class="price_txt">(+36,500)</span></p><p>미디어 : 캔버스<span class="price_txt">(+0)</span></p><p>리터치 : 캔버스판넬<span class="price_txt">(+0)</span></p><p>프레임 : 없음<span class="price_txt">(+0)</span></p><p>매트(여백) : 없음<span class="price_txt">(+0)</span></p></div></a>                                                                            </div>
+                                                                                <a href="../home/shop/item.php?it_id=1654129940" class="prd_name"><strong>양산을 든 여인 - 카미유와 장</strong><span>클로드 모네</span><span class="price_txt">(+38,200)</span><div class="sod_opt_txt"><p>사이즈 : 20.0cm x 35.7<span class="price_txt">(+36,500)</span></p><p>미디어 : 캔버스<span class="price_txt">(+0)</span></p><p>리터치 : 캔버스판넬<span class="price_txt">(+0)</span></p><p>프레임 : 없음<span class="price_txt">(+0)</span></p><p>매트(여백) : 없음<span class="price_txt">(+0)</span></p></div></a>                                                                            </div>
                                 </td>
                                 <td data-title="Unit Price" class="td_numbig  text_right">38,200 원</td>
                                 <td data-title="Quantity" class="td_num">1</td>
@@ -630,7 +630,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
     <a href="javascript:history.go(-1);" class="btn01">취소하기</a>
 </div>
 <div id="display_pay_process" style="display:none">
-    <img src="https://bxgs.co.kr/shop/img/loading.gif" alt="">
+    <img src="../home/shop/img/loading.gif" alt="">
     <span>주문완료 중입니다. 잠시만 기다려 주십시오.</span>
 </div>
                                     </div>
@@ -1367,10 +1367,10 @@ function gumae2baesong() {
 </div>
 
 
-<script src="https://bxgs.co.kr/js/sns.js"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/animate.css">
-<script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
+<script src="../home/js/sns.js"></script>
+<script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
+<link rel="stylesheet" href="../home/theme/buzinga/css/animate.css">
+<script src="../home/theme/buzinga/js/base.js"></script><script src="../home/theme/buzinga/js/sub.js"></script>
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>

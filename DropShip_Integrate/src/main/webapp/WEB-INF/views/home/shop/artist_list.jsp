@@ -12,14 +12,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="../img/favicon.ico" />
 <title>작가별 페이지</title>
-<link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
-<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/aos3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/nice-select3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/js/owl.carousel3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -40,19 +40,19 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 
 </script>
 <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
-<script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
-<script src="../js/common3816.js?ver=210618"></script>
-<script src="../js/wrest3816.js?ver=210618"></script>
-<script src="../js/placeholders.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
-<script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../home/js/common3816.js?ver=210618"></script>
+<script src="../home/js/wrest3816.js?ver=210618"></script>
+<script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 <body>
 
@@ -151,7 +151,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist69232_0.jpg');">
+									<div class="sct_img" style="background-image:url(/home/data/artist/Wassily_Kandinsky.jpg);">
 										<span class="hide">바실리 칸딘스키</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -172,7 +172,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist69053_0.jpg');">
+									<div class="sct_img" style="background-image:url(/home/data/artist/artist69053_0.jpg);">
 										<span class="hide">마르크 샤갈</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -193,7 +193,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist68794_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist68794_0.jpg');">
 										<span class="hide">펠릭스 발로통</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -214,7 +214,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist68538_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist68538_0.jpg');">
 										<span class="hide">호안 미로</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -235,7 +235,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist68323_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist68323_0.jpg');">
 										<span class="hide">앙리 마티스</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -256,7 +256,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist68070_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist68070_0.jpg');">
 										<span class="hide">앙리 루소</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -277,7 +277,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist67772_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist67772_0.jpg');">
 										<span class="hide">페르낭 레제</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -298,7 +298,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist39691_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist39691_0.jpg');">
 										<span class="hide">장프랑수아 밀레</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -319,7 +319,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist39470_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist39470_0.jpg');">
 										<span class="hide">알폰스 무하</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -340,7 +340,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist39185_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist39185_0.jpg');">
 										<span class="hide">에드가 드가</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -361,7 +361,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist38938_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist38938_0.jpg');">
 										<span class="hide">아실 고르키</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -382,7 +382,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('../data/artist/artist38476_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist38476_0.jpg');">
 										<span class="hide">프란체스코 구아르디</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -403,7 +403,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 						<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('/data/artist/artist37994_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist37994_0.jpg');">
 										<span class="hide">폴 고갱</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -424,7 +424,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('/data/artist/artist35230_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist35230_0.jpg');">
 										<span class="hide">피에르 보나르</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -445,7 +445,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('/data/artist/artist32869_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist32869_0.jpg');">
 										<span class="hide">빈센트 반 고흐</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -466,7 +466,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('/data/artist/artist96434_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist96434_0.jpg');">
 										<span class="hide">구스타프 클림트</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -487,7 +487,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 							<li class="sct_li">
 							<div class="li_wr">
 								<div class="sct_img_wrap">
-									<div class="sct_img" style="background-image:url('/data/artist/artist65944_0.jpg');">
+									<div class="sct_img" style="background-image:url('../home/data/artist/artist65944_0.jpg');">
 										<span class="hide">클로드 모네</span>
 									</div>
 									<div class="sct_opt_wrap">
@@ -527,10 +527,10 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 </div>
 
 
-<script src="../js/sns.js"></script>
-<script src="../theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="../theme/buzinga/css/animate.css">
-<script src="../theme/buzinga/js/base.js"></script><script src="../theme/buzinga/js/sub.js"></script>
+<script src="../home/js/sns.js"></script>
+<script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
+<link rel="stylesheet" href="../home/theme/buzinga/css/animate.css">
+<script src="../home/theme/buzinga/js/base.js"></script><script src="../home/theme/buzinga/js/sub.js"></script>
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>

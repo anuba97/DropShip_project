@@ -3,7 +3,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <div class="mypage-info">
     <div class="mypage-info-txt">
-        <div class="img"><img src="/img/sub/mypage-info.png" alt=""></div>
+        <div class="img"><img src="/home/img/sub/mypage-info.png" alt=""></div>
         <div class="txt">
             <p><strong>${sessionMember_nName}</strong>님, 안녕하세요!</p>
             <p>고객님의 회원등급은<span class="f-color">개인회원 </span>입니다.</p>

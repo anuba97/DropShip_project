@@ -33,9 +33,9 @@ public class MemberController {
 		return "member/register_result";
 	}
 	
-	@GetMapping("member/register_update_intro")  // 회원정보 변경 인트로 페이지
-	public String register_update_intro() {
-		return "member/register_update_intro";
+	@GetMapping("member/register_update_pwcheck")  // 회원정보 변경 인트로 페이지
+	public String register_update_pwcheck() {
+		return "member/register_update_pwcheck";
 	}
 	
 	@PostMapping("member/register_update_form")  // 회원정보 변경 form 페이지
@@ -48,9 +48,9 @@ public class MemberController {
 		return "member/register_update_result";
 	}
 	
-	@GetMapping("member/register_out")  // 회원탈퇴 페이지
-	public String register_out() {
-		return "member/register_out";
+	@GetMapping("member/register_delete")  // 회원탈퇴 페이지
+	public String register_delete() {
+		return "member/register_delete";
 	}
 	
 	

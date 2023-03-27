@@ -6,61 +6,62 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("myshop/")
 public class MyShopController {
 	
-	@GetMapping("myshop/cart")	// 장바구니
+	@GetMapping("cart")	// 장바구니
 	public String cart(Model model) {
-		return "myshop/cart";
+		return "home/myshop/cart";
 	}
 	
-	@GetMapping("myshop/personalpay")	// 개인결제창
+	@GetMapping("personalpay")	// 개인결제창
 	public String personalpay(Model model) {
-		return "myshop/personalpay";
+		return "home/myshop/personalpay";
 	}
 	
-	@GetMapping("myshop/personalpayform")	// 개인결제창 다음단계
+	@GetMapping("personalpayform")	// 개인결제창 다음단계
 	public String personalpayform(Model model) {
-		return "myshop/personalpayform";
+		return "home/myshop/personalpayform";
 	}
 	
-	@GetMapping("myshop/mypage")	// 마이페이지  ( 로그인이 되었을때만 [회원가입 -> 마이페이지로] 변경해서 보이게함)
+	@GetMapping("mypage")	// 마이페이지  ( 로그인이 되었을때만 [회원가입 -> 마이페이지로] 변경해서 보이게함)
 	public String mypage(Model model) {
-		return "myshop/mypage";
+		return "home/myshop/mypage";
 	}
 	
-	@GetMapping("myshop/orderinquiry")	// 주문조회, 주문목록/배송조회
+	@GetMapping("orderinquiry")	// 주문조회, 주문목록/배송조회
 	public String orderinquiry(Model model) {
-		return "myshop/orderinquiry";
+		return "home/myshop/orderinquiry";
 	}
 	
-	@RequestMapping("myshop/order_form")	// 작품 구매 페이지
+	@RequestMapping("order_form")	// 작품 구매 페이지
 	public String order_form(Model model) {
-		return "myshop/order_form";
+		return "home/myshop/order_form";
 	}
 	
-	@RequestMapping("myshop/order_result")	// 작품 구매완료 페이지
+	@RequestMapping("order_result")	// 작품 구매완료 페이지
 	public String order_result(Model model) {
-		return "myshop/order_result";
+		return "home/myshop/order_result";
 	}
 	
-	@GetMapping("myshop/my_wishlist")	// 찜 리스트
+	@GetMapping("my_wishlist")	// 찜 리스트
 	public String my_wishlist(Model model) {
-		return "myshop/my_wishlist";
+		return "home/myshop/my_wishlist";
 	}
 	
-	@GetMapping("myshop/orderinquiry_view")	// 구매 상세내역
+	@GetMapping("orderinquiry_view")	// 구매 상세내역
 	public String orderinquiry_view(Model model) {
-		return "myshop/orderinquiry_view";
+		return "home/myshop/orderinquiry_view";
 	}
 	
-	@GetMapping("myshop/my_coupon")	// 나의 쿠폰
+	@GetMapping("my_coupon")	// 나의 쿠폰
 	public String my_coupon(Model model) {
-		return "myshop/my_coupon";
+		return "home/myshop/my_coupon";
 	}
 	
-	@GetMapping("myshop/my_mileage")  // 나의 마일리지
+	@GetMapping("my_mileage")  // 나의 마일리지
 	public String my_mileage(Model model) {
-		return "myshop/my_mileage";
+		return "home/myshop/my_mileage";
 	}
 	
 	

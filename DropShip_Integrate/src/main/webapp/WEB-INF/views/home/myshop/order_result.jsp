@@ -10,14 +10,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <title>작품 구매완료</title>
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/mobile_shop.css?ver=210618">
-<link rel="stylesheet" href="https://bxgs.co.kr/js/font-awesome/css/font-awesome.min.css?ver=210618">
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/swiper.min.css?ver=210618">
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/aos.css?ver=210618">
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/nice-select.css?ver=210618">
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/js/owl.carousel.css?ver=210618">
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/common.css?ver=210618">
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/sub.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -38,19 +38,19 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
 </script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="https://bxgs.co.kr/js/jquery-1.12.4.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/jquery-migrate-1.4.1.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/common.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/wrest.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/placeholders.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/swiper.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/gsap-3.6.0.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/aos.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.nice-select.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/jquery.sidr.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/js/modernizr.custom.70111.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/owl.carousel.min.js?ver=210618"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/unslider.min.js?ver=210618"></script>
+<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../home/js/common3816.js?ver=210618"></script>
+<script src="../home/js/wrest3816.js?ver=210618"></script>
+<script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 <body>
 <div id="hd_login_msg">오민수님 로그인 중 <a href="https://bxgs.co.kr/bbs/logout.php">로그아웃</a></div>
@@ -113,7 +113,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
                             <td data-title="Product" class="td_prd">
                                 <div class="sod_product">
                                     <div class="sod_img">
-                                        <a href="https://bxgs.co.kr/shop/item.php?it_id=1652406953" style="background-image:url(https://bxgs.co.kr/data/item/1652406953/7IiY66Co7Jew66q7.png)">
+                                        <a href="https://bxgs.co.kr/shop/item.php?it_id=1652406953" style="background-image:home/data/item/1652406953/7IiY66Co7Jew66q7.png)">
                                             <span class="hide">제품이미지</span>
                                         </a>
                                     </div>

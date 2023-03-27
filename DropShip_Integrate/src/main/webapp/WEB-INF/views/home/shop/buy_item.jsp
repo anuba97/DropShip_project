@@ -10,17 +10,17 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="shortcut icon" href="../img/favicon.ico" />
+<link rel="shortcut icon" href="../home/img/favicon.ico" />
 <title>수확하는 사람 &gt; ㅂ, ㅃ | DropShip 갤러리</title>
-<link rel="stylesheet" href="../theme/buzinga/css/mobile_shop3816.css?ver=210618">
-<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/aos3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/nice-select3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/js/owl.carousel3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/mobile/skin/shop/basic/style3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/common3816.css?ver=210618">
-<link rel="stylesheet" href="../theme/buzinga/css/sub3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
+<link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/mobile/skin/shop/basic/style3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -41,22 +41,22 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 
 </script>
 <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
-<script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
-<script src="../js/common3816.js?ver=210618"></script>
-<script src="../js/wrest3816.js?ver=210618"></script>
-<script src="../js/placeholders.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
-<script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
-<script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
-<script src="../js/jquery.bxslider3816.js?ver=210618"></script>
-<script src="../js/shop.list.action3816.js?ver=210618"></script>
-<script src="../js/viewimageresize3816.js?ver=210618"></script>
+<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+<script src="../home/js/common3816.js?ver=210618"></script>
+<script src="../home/js/wrest3816.js?ver=210618"></script>
+<script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+<script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+<script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+<script src="../home/js/jquery.bxslider3816.js?ver=210618"></script>
+<script src="../home/js/shop.list.action3816.js?ver=210618"></script>
+<script src="../home/js/viewimageresize3816.js?ver=210618"></script>
 </head>
 <body>
 
@@ -82,7 +82,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
         <main id="contents">
 
 <div id="sit_hhtml"></div>
-<script src="../js/shop.js"></script>
+<script src="../home/js/shop.js"></script>
 
 
 <div id="sit">
@@ -98,13 +98,13 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 <div id="sit_ov_wrap">
 	<!----- 배경 변경 ----->
 	<div id="sit_bg_preview">
-		<div class="bg-preview" style="background-image:url(../img/sub/item-detail-frame-bg01.jpg)"><div class="hide">배경이미지</div></div>
+		<div class="bg-preview" style="background-image:url('../home/img/sub/item-detail-frame-bg01.jpg')"><div class="hide">배경이미지</div></div>
 		<div class="bg-thumb-list">
-			<div class="bg-thumb on"><img src="../img/sub/item-detail-frame-bg01.jpg" alt=""></div>
-			<div class="bg-thumb"><img src="../img/sub/item-detail-frame-bg02.jpg" alt=""></div>
-			<div class="bg-thumb"><img src="../img/sub/item-detail-frame-bg03.jpg" alt=""></div>
-			<div class="bg-thumb"><img src="../img/sub/item-detail-frame-bg04.jpg" alt=""></div>
-			<div class="bg-thumb"><img src="../img/sub/item-detail-frame-bg05.jpg" alt=""></div>
+			<div class="bg-thumb on"><img src="../home/img/sub/item-detail-frame-bg01.jpg" alt=""></div>
+			<div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg02.jpg" alt=""></div>
+			<div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg03.jpg" alt=""></div>
+			<div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg04.jpg" alt=""></div>
+			<div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg05.jpg" alt=""></div>
 		</div>
 	</div>
 
@@ -115,7 +115,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 		<!----- 액자 미리보기 ----->
 		<div id="sit_frame_img">
 			<!-- 이미지 사이즈 3종류 있습니다.-->
-			<div class="frame-img" style="background-image:url(../data/item/1654133092/6rOg7Z2Q67K867Kg64qU64aN67aA.jpg); width: 540px; height: 390px;"><span class="hide">주문액자 미리보기</span></div>
+			<div class="frame-img" style="background-image:url('../home/data/item/1654133092/6rOg7Z2Q67K867Kg64qU64aN67aA.jpg'); width: 540px; height: 390px;"><span class="hide">주문액자 미리보기</span></div>
 		</div>
 
 		<!----- 상품 주문옵션 ----->
@@ -443,14 +443,14 @@ function chg_opt2()
 																	<li>
 										<label>
 											<input type="radio" name="opt1" value="1" checked onclick="chg_opt(), price_calculate()" >
-											<div class="opt-thumb"><img src="../img/sub/item-detail-step01-fineart.jpg"></div>
+											<div class="opt-thumb"><img src="../home/img/sub/item-detail-step01-fineart.jpg"></div>
 											<p>캔버스</p>
 										</label>
 									</li>
 																	<li>
 										<label>
 											<input type="radio" name="opt1" value="2"  onclick="chg_opt(), price_calculate()" >
-											<div class="opt-thumb"><img src="../img/sub/item-detail-step01-canvas.jpg"></div>
+											<div class="opt-thumb"><img src="../home/img/sub/item-detail-step01-canvas.jpg"></div>
 											<p>파인아트</p>
 										</label>
 									</li>
@@ -779,7 +779,7 @@ function chg_opt2()
                                     </script>
                                 </span>
 														<a href="https://story.kakao.com/share?url=http://bxgs.co.kr/shop/item.php?it_id=1654133092" class="sns_link sns_kakao target="_blank">
-								<img src="../img/ico/ico-social-login-kakao-on.png" alt="카카오">
+								<img src="../home/img/ico/ico-social-login-kakao-on.png" alt="카카오">
 							</a>
 																																			 
 						</div>
@@ -1028,7 +1028,7 @@ function chg_opt2()
 			<!----- DropShip프린트방법 ----->
 			<div class="sit_inf_explan_print">
 				<h3 class="hide">DropShip 프린팅 방법 특징</h3>
-				<img src="../img/sub/item-detail-contents.jpg" alt="">
+				<img src="../home/img/sub/item-detail-contents.jpg" alt="">
 			</div>                    
 		</div>
 	</div>
@@ -1211,7 +1211,7 @@ function chg_opt2()
 </div>
 
 <div id="sit_use_list">
-    <div class="empty-content"><img src="../img/ico/ico-information-big.png" alt="알림"><p>사용후기가 없습니다.</p></div></div>
+    <div class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림"><p>사용후기가 없습니다.</p></div></div>
 
 <div id="sit_use_wbtn">
     <a href="itemuseform0fd2.html?it_id=1654133092" class="btnset btn-type01 itemuse_form" onclick="return false;">
@@ -1298,7 +1298,7 @@ $(function(){
 
 <div id="sit_qa_list">
 
-    <div class="empty-content"><img src="../img/ico/ico-information-big.png" alt="알림"><p>상품문의가 없습니다.</p></div></div>
+    <div class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림"><p>상품문의가 없습니다.</p></div></div>
 
 
 
@@ -1875,10 +1875,10 @@ jQuery(function($){
 </div>
 
 
-<script src="../js/sns.js"></script>
-<script src="../theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="../theme/buzinga/css/animate.css">
-<script src="../theme/buzinga/js/base.js"></script><script src="../theme/buzinga/js/sub.js"></script>
+<script src="../home/js/sns.js"></script>
+<script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
+<link rel="stylesheet" href="../home/theme/buzinga/css/animate.css">
+<script src="../home/theme/buzinga/js/base.js"></script><script src="../home/theme/buzinga/js/sub.js"></script>
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>
