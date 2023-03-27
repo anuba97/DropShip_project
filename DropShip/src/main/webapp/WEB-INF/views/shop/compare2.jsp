@@ -65,7 +65,7 @@
 								<tbody>
 									<tr>
 										<th scope="row">
-											<div class="th_name">이미지</div>
+											<div class="th_name">이미지지</div>
 										</th>
 										<td class="compareProductItem_18640280">
 											<div class="item_wrap">
