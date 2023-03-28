@@ -247,6 +247,11 @@ CREATE TABLE FreeBoard
 ALTER TABLE FreeBoard
     ADD CONSTRAINT FK_FreeBoard_member_id_Member_id FOREIGN KEY (member_id)
         REFERENCES Member (id) ;
+        
+-- Foreign Key 설정 SQL - FreeBoard(admin_id) -> Admin(id)
+ALTER TABLE FreeBoard
+    ADD CONSTRAINT FK_FreeBoard_admin_id_Admin_id FOREIGN KEY (admin_id)
+        REFERENCES Admin (id) ;
 
 
 ---------↓--------↓ 비회원주문 테이블 (Order_NonMember) / 
@@ -489,7 +494,7 @@ CREATE TABLE EventBoard
 (
     id                        NUMBER(4)         NOT NULL, 
     eventBoard_isTop          NUMBER(1)         DEFAULT 0 NOT NULL, 
-    member_id                 NUMBER(4)         NOT NULL, 
+    admin_id                  NUMBER(4)         NOT NULL, 
     eventBoard_title          VARCHAR2(200)     NOT NULL, 
     eventBoard_content        VARCHAR2(4000)    NOT NULL, 
     eventBoard_date           DATE              NOT NULL, 
@@ -499,15 +504,17 @@ CREATE TABLE EventBoard
      PRIMARY KEY (id)
 );
 
+--alter table EventBoard rename column member_id to admin_id;
+
 CREATE SEQUENCE EventBoard_SEQ
 START WITH 1
 INCREMENT BY 1;
 
 -- DROP SEQUENCE EventBoard_SEQ; 
 
--- Foreign Key 설정 SQL - EventBoard(member_id) -> Admin(id)
+-- Foreign Key 설정 SQL - EventBoard(admin_id) -> Admin(id)
 ALTER TABLE EventBoard
-    ADD CONSTRAINT FK_EventBoard_member_id_Admin_id FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_EventBoard_admin_id_Admin_id FOREIGN KEY (admin_id)
         REFERENCES Admin (id) ;
 
 ---------↓--------↓ 공지게시판 테이블 (NoticeBoard) / 
@@ -516,7 +523,7 @@ CREATE TABLE NoticeBoard
 (
     id                         NUMBER(4)         NOT NULL, 
     noticeBoard_isTop          NUMBER(1)         DEFAULT 0 NOT NULL, 
-    member_id                  NUMBER(4)         NOT NULL, 
+    admin_id                   NUMBER(4)         NOT NULL, 
     noticeBoard_title          VARCHAR2(200)     NOT NULL, 
     noticeBoard_content        VARCHAR2(4000)    NOT NULL, 
     noticeBoard_date           DATE              DEFAULT sysdate NOT NULL, 
@@ -526,15 +533,15 @@ CREATE TABLE NoticeBoard
      PRIMARY KEY (id)
 );
 
+--alter table NoticeBoard rename column member_id to admin_id;
+
 CREATE SEQUENCE NoticeBoard_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- DROP SEQUENCE NoticeBoard_SEQ; 
-
--- Foreign Key 설정 SQL - NoticeBoard(member_id) -> Admin(id)
+-- Foreign Key 설정 SQL - NoticeBoard(admin_id) -> Admin(id)
 ALTER TABLE NoticeBoard
-    ADD CONSTRAINT FK_NoticeBoard_member_id_Admin_id FOREIGN KEY (member_id)
+    ADD CONSTRAINT FK_NoticeBoard_admin_id_Admin_id FOREIGN KEY (admin_id)
         REFERENCES Admin (id) ;
 
 
