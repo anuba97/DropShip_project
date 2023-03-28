@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../home/img/favicon.ico" />
-    <title>그림작품 view페이지</title>
+    <title>그림작품  view페이지</title>
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
