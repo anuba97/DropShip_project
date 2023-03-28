@@ -174,7 +174,7 @@
                     	<!-- 작품 등록하는 관리자의 고유번호를 hidden으로 보냄-->
                     	<input type="hidden" id="admin_id" name="admin_id" value=${sessionAdminId}>  
                         <tr>
-                            <th>작품 이름</th>
+                            <th>작품 이름${sessionAdminId}</th>
                             <td><input type="text" name="work_name" id="work_name" style="width: 100%;" required></td>
                         </tr>
                         <tr>
