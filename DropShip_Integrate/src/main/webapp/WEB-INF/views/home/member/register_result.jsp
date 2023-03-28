@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -93,8 +94,8 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
             </ul>
         </div>
         <div class="join-result">
-            <img src="/home/img/common/logo.png" alt="DropShip갤러리">
-            <h3>민수님의 회원가입이 완료되었습니다.</h3>
+            <img src="/home/img/common/logo2.png" alt="DropShip갤러리">
+            <h3>회원가입이 완료되었습니다.</h3>
 
                             <p>
                     Art &amp; Design DropShip입니다.<br>

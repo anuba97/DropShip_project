@@ -34,6 +34,8 @@ public class WorkVo {
     
     
     private String artist_name; // selectWorkAll(), selectWorkOne() 함수용. JOIN시 사용. 원래 Work테이블에 artist_name컬럼은 없음.
+    
+    
    
 	
 }

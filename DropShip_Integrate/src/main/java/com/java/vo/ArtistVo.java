@@ -27,6 +27,9 @@ public class ArtistVo {
 
     // 해당 아티스트의 작품목록을 저장한 list
     // admin_artistList.jsp에 표로 보여질 용도.
-    private List<WorkVo> workList;		
+    private List<WorkVo> workList;
+    
+    // 프론트 bestlist.jsp에 나타나는 용도.
+    private List<WorkVo> workBestList;		
     
 }

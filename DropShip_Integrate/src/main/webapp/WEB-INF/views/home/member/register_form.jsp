@@ -225,7 +225,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        </div>
 	                    </div>
 						<script>
-							// 다음주소찾기ㅇ
+							// 다음주소찾기
 							function addressBtn(){
 								new daum.Postcode({
 									oncomplete: function(data) {

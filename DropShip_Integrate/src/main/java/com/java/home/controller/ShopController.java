@@ -1,16 +1,32 @@
 package com.java.home.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.java.home.service.ShopService;
+import com.java.vo.WorkVo;
+
 @Controller
 @RequestMapping("shop/")
 public class ShopController {
 	
-	@GetMapping("best_list")	// 베스트	작품
-	public String best_list(Model model) {
+	@Autowired
+	ShopService shopservice;
+	
+	@Autowired
+	WorkVo workVo;
+	
+	@GetMapping("best_list")	// 베스트	작품 페이지로 이동
+	public String best_list(WorkVo workVo, Model model) {
+		List<WorkVo> list = shopservice.selectWorkBest();
+		//System.out.println("controller에서 보내는 list"+list);
+		model.addAttribute("list",list);
+		//System.out.println("DB에서 받아온 list 값"+list);
 		return "home/shop/best_list";
 	}
 	
@@ -19,8 +35,11 @@ public class ShopController {
 		return "home/shop/painting_list";
 	}
 	
-	@GetMapping("painting_item")	// 그림 구매창
-	public String painting_item(Model model) {
+	@GetMapping("painting_item")	// 작품 구매창 페이지로 이동
+	public String painting_item(String id, Model model) {
+		workVo = shopservice.selectWorkBuy(Integer.parseInt(id));
+		model.addAttribute("workVo", workVo);
+		System.out.println("DB에서 가져온 데이터 : "+workVo);
 		return "home/shop/painting_item";
 	}
 	
