@@ -425,7 +425,7 @@ ALTER TABLE Cart_NonMember
 CREATE TABLE Order_Detail_NonMember
 (
     id                    NUMBER(4)    NOT NULL, 
-    nonMember_order_id    NUMBER(4)    NOT NULL, 
+    order_NonMember_id    NUMBER(4)    NOT NULL, 
     work_id               NUMBER(4)    NOT NULL, 
     option_id             NUMBER(4)    NOT NULL, 
     total_price           NUMBER(7)    NOT NULL, 
@@ -642,7 +642,7 @@ ALTER TABLE Cart_Member
 CREATE TABLE Order_Detail
 (
     id                   NUMBER(4)    NOT NULL, 
-    member_order_id      NUMBER(4)    NOT NULL, 
+    order_member_id      NUMBER(4)    NOT NULL, 
     work_id              NUMBER(4)    NOT NULL, 
     option_id            NUMBER(4)    NOT NULL, 
     total_price          NUMBER(7)    NOT NULL, 
