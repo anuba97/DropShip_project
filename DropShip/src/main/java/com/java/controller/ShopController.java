@@ -37,6 +37,13 @@ public class ShopController {
 		return "shop/genre_list";
 	} 
 	
-	
+	@GetMapping("shop/compare")  // 나의 마일리지
+	public String compare(Model model) {
+		return "shop/compare";
+	}
+	@GetMapping("shop/compare2")  // 나의 마일리지
+	public String compare2(Model model) {
+		return "shop/compare2";
+	}
 	
 }

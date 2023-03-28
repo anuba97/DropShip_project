@@ -28,6 +28,11 @@ public class MyShopController {
 		return "myshop/mypage";
 	}
 	
+	@GetMapping("myshop/mypage_drone")	// 마이페이지  (드론페이지)
+	public String mypage_dron(Model model) {
+		return "myshop/mypage_drone";
+	}
+	
 	@GetMapping("myshop/orderinquiry")	// 주문조회, 주문목록/배송조회
 	public String orderinquiry(Model model) {
 		return "myshop/orderinquiry";
@@ -62,6 +67,8 @@ public class MyShopController {
 	public String my_mileage(Model model) {
 		return "myshop/my_mileage";
 	}
+	
+	
 	
 	
 	

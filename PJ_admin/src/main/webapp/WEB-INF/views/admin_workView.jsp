@@ -100,11 +100,11 @@
                         </tr>
                         <tr>
                             <th>장르</th>
-                            <td>${workVo.getWork_genre_name()}</td>
+                            <td>${workVo.getwork_genre()}</td>
                         </tr>
                         <tr>
                             <th>주제</th>
-                            <td>${workVo.getWork_subject_name()}</td>
+                            <td>${workVo.getwork_subject()}</td>
                         </tr>
                         <tr>
                             <th>작품 이미지 url</th>
@@ -142,7 +142,7 @@
                         </tr>
                         <tr>
                             <th>전시 위치</th>
-                            <td><a href="${workVo.getWork_dp()}" target="_blank">${workVo.getWork_dp()}</a></td>
+                            <td><a href="${workVo.getwork_display_position()}" target="_blank">${workVo.getwork_display_position()}</a></td>
                         </tr>
                         <tr>
                             <th>작품 조회수</th>
