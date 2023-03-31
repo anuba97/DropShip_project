@@ -243,6 +243,11 @@ CREATE TABLE FreeBoard
      PRIMARY KEY (id)
 );
 
+-- freeBoard_Seq 만들기
+CREATE SEQUENCE FreeBoard_seq
+START WITH 1
+INCREMENT BY 1;
+
 -- Foreign Key 설정 SQL - FreeBoard(member_id) -> Member(id)
 ALTER TABLE FreeBoard
     ADD CONSTRAINT FK_FreeBoard_member_id_Member_id FOREIGN KEY (member_id)
