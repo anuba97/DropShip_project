@@ -15,4 +15,6 @@ public interface ShopMapper {
 
 	WorkVo selectWorkBuy(int id);  // 작품(구매창) 1개 가져오기
 
+	WorkVo selectWorkOne(int id);	// 작품 주문용 1개 가져오기 (order_form.jsp)
+
 }

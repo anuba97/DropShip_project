@@ -39,7 +39,7 @@ public class ShopController {
 	public String painting_item(String id, Model model) {
 		workVo = shopservice.selectWorkBuy(Integer.parseInt(id));
 		model.addAttribute("workVo", workVo);
-		System.out.println("DB에서 가져온 데이터 : "+workVo);
+//		System.out.println("DB에서 가져온 데이터 : "+workVo);
 		return "home/shop/painting_item";
 	}
 	

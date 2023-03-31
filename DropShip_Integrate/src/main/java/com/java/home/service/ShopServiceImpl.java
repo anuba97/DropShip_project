@@ -42,6 +42,13 @@ public class ShopServiceImpl implements ShopService {
 		workVo = shopMapper.selectWorkBuy(id);
 		return workVo;
 	}
-	
+
+	// 주문페이지용 작품 1개 가져오기(전체컬럼 아니고 일부만 가져옴)
+	@Override
+	public WorkVo selectWorkOne(int id) {
+		workVo = shopMapper.selectWorkOne(id);
+		return workVo;
+	}
+
 	
 }

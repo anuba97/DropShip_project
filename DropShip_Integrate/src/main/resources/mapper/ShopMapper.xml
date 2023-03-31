@@ -27,6 +27,18 @@
    	    WHERE id = #{id}
 	
 	</select>
+	
+	
+	<!-- 작품 1개 가져오기 (주문할때 사용)-->
+	<select id="selectWorkOne" resultType="com.java.vo.WorkVo">
+		SELECT w.id AS id, w.work_name, w.work_img_url ,a.artist_korean_name AS artist_name, 
+				w.work_price 
+		FROM Work w
+		JOIN Artist a ON w.artist_id = a.id
+		WHERE w.id = #{id}
+	</select>
+	
+	
 			 
 
 </mapper>

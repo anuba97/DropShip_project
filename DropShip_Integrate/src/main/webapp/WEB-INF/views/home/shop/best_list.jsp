@@ -127,8 +127,8 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 				
 				  <div class="li_wr">
 					<div class="sct_img_wrap">
-					  <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.getWork_img_url()})">
-					    <span class="hide">${workVo.getWork_name()}</span>
+					  <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
+					    <span class="hide">${workVo.work_name}</span>
 					  </div>
 						<div class="sct_opt_wrap">
 						  <div class="sct_btn list-10-btn">

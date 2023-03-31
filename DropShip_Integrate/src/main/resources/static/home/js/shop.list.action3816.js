@@ -235,6 +235,7 @@ jQuery(function ($) {
                 //$opt.css("display","block");
             },
             error : function(request, status, error){
+				alert("ssssss");
                 alert('false ajax :'+request.responseText);
             }
         });
