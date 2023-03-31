@@ -181,6 +181,28 @@ Insert into DROPSHIP.ARTIST (ID,ARTIST_KOREAN_NAME,ARTIST_ENGLISH_NAME,ARTIST_IM
 
 
 -----------------------------work 데이터 입력(15개)-------------------------------
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (8,'지베르니 봄의 효과',3,'풍경','봄','1679899410536_지베르니_봄의_효과.png','''지베르니 봄의 효과''는 프랑스 인상파 화가 클로드 모네의 유명한 그림입니다. 1890년에 제작된 이 작품은 생동감 넘치는 색채와 빛과 그림자를 사용하여 자연의 아름다움을 포착한 것으로 유명합니다.
+
+이 그림은 모네가 오랫동안 거주하고 작업했던 프랑스 북부의 작은 마을 지베르니에 있는 모네의 정원의 한 장면을 묘사한 것입니다. 그림의 전경에는 붓꽃, 튤립, 수선화 등 다채로운 꽃들이 자연주의적이고 비대칭적인 방식으로 배열되어 있는 것을 볼 수 있습니다. 배경에는 수련, 버드나무, 작은 다리가 있는 연못이 있으며, 느슨한 붓질과 움직임과 분위기를 암시하는 색채 패치로 묘사되어 있습니다.
+
+''지베르니 봄의 효과''는 인상주의의 걸작으로 꼽히며 색채, 빛, 구도를 사용하여 자연 세계의 기쁨과 아름다움을 전달한 작품으로 찬사를 받고 있습니다. 모네는 계절의 변화와 빛과 날씨가 풍경에 미치는 영향에 매료된 것으로 유명하며, 이 그림은 자연의 아름다움과 덧없음을 예술로 포착하는 그의 기술을 보여주는 대표적인 예입니다.',0,1,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (9,'산지기의 집',8,'정물','식물','1679900833223_산지기의_집.png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
+
+하단 백상만의 설명을 참고해주세요.',0,1,to_date('23/03/27','RR/MM/DD'),42400,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (10,'키스',8,'추상화','봄','1679900969429_키스.jpg','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
+
+하단 백상만의 설명을 참고해주세요.',0,0,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (11,'헤르미네 갈리아의 초상',8,'정물','겨울','1679901057714_헤르미네_갈리아의_초상.png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
+
+하단 백상만의 설명을 참고해주세요.',0,0,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (12,'세느강의 봄',3,'풍경','봄','1679897594172_클로드_모네-세느강의_봄.png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
+
+하단 백상만의 설명을 참고해주세요.',0,0,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (13,'수련연못',3,'풍경','겨울','1679897832012_수련_연못.png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
+
+하단 백상만의 설명을 참고해주세요.',0,1,to_date('23/03/27','RR/MM/DD'),98000,'https://www.google.com/maps?cid=13363865620386383060',0,1,0);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (14,'앙티브이 아침',3,'풍경','가을','1679897929498_앙티브이_아침.png',' ',0,0,to_date('23/03/27','RR/MM/DD'),35700,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (15,'아테제 호수',8,'풍경','여름','1679901129291_아테제_호수.png','클림트 아테제 호수',0,1,to_date('23/03/27','RR/MM/DD'),42400,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
 Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (1,'베르농의 테라스',15,'풍경','가을','1679949748459_베르농의_테라스.jpg','보나르는 노르망디 등을 정기적으로 여행하면서 베르농과 지베르니를 방문했다.
 
 1912년 센 강변의 시골 마을 베르농(Vernon)의 근교 베르노네(Vernonnet)에 집을 사서 1939년까지 회화 주제로 사용하였다. 
@@ -194,7 +216,7 @@ Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_I
 
 "예전에도 말했듯이 아기 이름은 형의 이름을 따서 빈센트라고 짓겠어. 이 애가 형처럼 단호하고 용감한 사람으로 자라기를 기도해." 당연하게도 이 그림은 반 고흐 가족에게 가장 소중한 작품으로 남았다.
 
-빈센트 빌럼은 후일 반 고흐 미술관을 창립했다.',0,1,to_date('23/03/28','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+빈센트 빌럼은 후일 반 고흐 미술관을 창립했다.',0,0,to_date('23/03/28','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
 Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (3,'밤의 프로방스 시골길',16,'풍경','여름','1679949958045_밤의_프로방스_시골길.jpg','1888년 12월 13일 아를(Arles)에서 함께 지내기로 한 동료화가 고갱(Eugène Henri Paul Gauguin, 1848- 1903)과의 다툼에 반 고흐는 자신의 한쪽 귀를 자르는 일을 벌였다.
 
 빈센트는 이후 여러 번 발작증세를 일으켰다. 계속되는 증세에 반 고흐는 스스로 3개월간 생레미(Saint Remy)의 정신병원에 입원하기로 결심했다. 
@@ -237,7 +259,7 @@ Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_I
 
 화가 공동체를 만들고, 그토록 동경하던 고갱과 함께 그림을 그릴 수 있다는 생각에 고흐는 이주에 따른 스트레스도 느낄 새가 없었다. 
 
-처음 아를에 도착한 무렵에 그린 고흐의 그림들은 밝은 햇살로 가득한 것처럼 보인다. 희망의 노란색이 화면을 뒤덮고 있는 것을 볼 수가 있다. 그 중 하나가 아를에 있는 현수교를 그린 [아를의 랑그루아 다리]이다.',0,1,to_date('23/03/28','RR/MM/DD'),38200,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+처음 아를에 도착한 무렵에 그린 고흐의 그림들은 밝은 햇살로 가득한 것처럼 보인다. 희망의 노란색이 화면을 뒤덮고 있는 것을 볼 수가 있다. 그 중 하나가 아를에 있는 현수교를 그린 [아를의 랑그루아 다리]이다.',0,0,to_date('23/03/28','RR/MM/DD'),38200,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
 Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (6,'수확하는 사람',16,'풍경','가을','1679950161455_수확하는_사람.jpg','빈센트 반 고흐는 장 프랑수아 밀레(Jean Francois Millet)의 <씨 뿌리는 사람>(1850) 및 <이삭 줍는 여인들-이삭줍기>(1857)와 같은 작품들에서 영감을 받아 농촌에서 행해지는 일들에 관심이 많았고,
 
 그와 관련한 다수의 연작들을 그렸다. 농사는 대지에 대한 신의 은총을 가져오는 인간의 역할을 나타내는 상징적 의미가 있다.
@@ -264,8 +286,8 @@ Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_I
 
 들에서 수확을 하고 있는 농부의 모습과 더불어 수확기의 황금빛 밀밭의 색채가 내는 효과가 보는 이의 시선을 사로잡는다.
 
-반 고흐는 눈앞에 있는 대상을 정확하게 재현하려고 애쓰기 보다는 오히려 자신의 존재를 강하게 표현하게 위해 내면의 빛을 찾고자 했으며, 그에 따라 색채를 더 자유롭게 사용하고자 했음을 알 수 있다.',0,1,to_date('23/03/28','RR/MM/DD'),38200,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (7,'양산을 든 여인 - 카미유와 장',3,'초상화','봄','1679895865047_클로드 모네 양산을 든 여인 - 카미유와 장.jpg','마네의 도움으로 1871년 모네는 아르장퇴유에 거처를 마련하였다. 양산을 든 여인(1875)는 1875년 여름에서 1876년 사이에 그린 일련의 작품 시리즈 가운데 하나이다. 이때 그린 시리즈물의 풍경은 파리 외곽인 아르장퇴유의 두 번째 집 주위의 정원을 묘사하고 있다.
+반 고흐는 눈앞에 있는 대상을 정확하게 재현하려고 애쓰기 보다는 오히려 자신의 존재를 강하게 표현하게 위해 내면의 빛을 찾고자 했으며, 그에 따라 색채를 더 자유롭게 사용하고자 했음을 알 수 있다.',0,0,to_date('23/03/28','RR/MM/DD'),38200,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
+Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (7,'양산을 든 여인 - 카미유와 장',3,'초상화','봄','1679895865047_클로드_모네_양산을_든_여인-카미유와_장.jpg','마네의 도움으로 1871년 모네는 아르장퇴유에 거처를 마련하였다. 양산을 든 여인(1875)는 1875년 여름에서 1876년 사이에 그린 일련의 작품 시리즈 가운데 하나이다. 이때 그린 시리즈물의 풍경은 파리 외곽인 아르장퇴유의 두 번째 집 주위의 정원을 묘사하고 있다.
 
 
 
@@ -282,27 +304,5 @@ Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_I
 바람은 언덕 들꽃의 꽃대와 풀잎의 흔들거림 속으로 불어와 여인의 치마폭을 휘감아 올라가 베일과 머리카락을 흩날리고 양산을 한껏 팽팽히 부풀리고 있다.
 
 이같은 생생한 현실감으로 인해 관람자는 마치 그런 바람을 맞으며 야외에 함께 나와 있는 것 같은 개방감을 느끼게 된다. ',0,0,to_date('23/03/27','RR/MM/DD'),38200,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (8,'지베르니 봄의 효과',3,'풍경','봄','1679899410536_지베르니_봄의_효과.png','''지베르니 봄의 효과''는 프랑스 인상파 화가 클로드 모네의 유명한 그림입니다. 1890년에 제작된 이 작품은 생동감 넘치는 색채와 빛과 그림자를 사용하여 자연의 아름다움을 포착한 것으로 유명합니다.
-
-이 그림은 모네가 오랫동안 거주하고 작업했던 프랑스 북부의 작은 마을 지베르니에 있는 모네의 정원의 한 장면을 묘사한 것입니다. 그림의 전경에는 붓꽃, 튤립, 수선화 등 다채로운 꽃들이 자연주의적이고 비대칭적인 방식으로 배열되어 있는 것을 볼 수 있습니다. 배경에는 수련, 버드나무, 작은 다리가 있는 연못이 있으며, 느슨한 붓질과 움직임과 분위기를 암시하는 색채 패치로 묘사되어 있습니다.
-
-''지베르니 봄의 효과''는 인상주의의 걸작으로 꼽히며 색채, 빛, 구도를 사용하여 자연 세계의 기쁨과 아름다움을 전달한 작품으로 찬사를 받고 있습니다. 모네는 계절의 변화와 빛과 날씨가 풍경에 미치는 영향에 매료된 것으로 유명하며, 이 그림은 자연의 아름다움과 덧없음을 예술로 포착하는 그의 기술을 보여주는 대표적인 예입니다.',0,1,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (9,'산지기의 집',8,'정물','식물','1679900833223_산지기의_집.png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
-
-하단 백상만의 설명을 참고해주세요.',0,1,to_date('23/03/27','RR/MM/DD'),42400,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (10,'키스',8,'추상화','봄','1679900969429_키스.jpg','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
-
-하단 백상만의 설명을 참고해주세요.',0,0,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (11,'헤르미네 갈리아의 초상',8,'정물','겨울','1679901057714_헤르미네_갈리아의_초상.png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
-
-하단 백상만의 설명을 참고해주세요.',0,0,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (12,'세느강의 봄',3,'풍경','봄','1679897594172_클로드_모네-세느강의_봄 .png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
-
-하단 백상만의 설명을 참고해주세요.',0,0,to_date('23/03/27','RR/MM/DD'),36500,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (13,'수련연못',3,'풍경','겨울','1679897832012_수련_연못.png','해당 그림은 예시로, 프레임의 무늬 및 그림 비율에 따라 달리 보일 수 있습니다.
-
-하단 백상만의 설명을 참고해주세요.',0,1,to_date('23/03/27','RR/MM/DD'),98000,'https://www.google.com/maps?cid=13363865620386383060',0,1,0);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (14,'앙티브이 아침',3,'풍경','가을','1679897929498_앙티브이_아침.png',' ',0,0,to_date('23/03/27','RR/MM/DD'),35700,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
-Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_IMG_URL,WORK_CONTENT,WORK_SALE,WORK_ISBEST,WORK_REG_DATE,WORK_PRICE,WORK_DISPLAY_POSITION,WORK_HIT,ADMIN_ID,WORK_AVAILABLE) values (15,'아테제 호수',8,'풍경','여름','1679901129291_아테제_호수.png','클림트 아테제 호수',0,1,to_date('23/03/27','RR/MM/DD'),42400,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
 
 commit;
