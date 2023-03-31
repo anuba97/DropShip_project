@@ -305,4 +305,8 @@ Insert into DROPSHIP.WORK (ID,WORK_NAME,ARTIST_ID,WORK_GENRE,WORK_SUBJECT,WORK_I
 
 이같은 생생한 현실감으로 인해 관람자는 마치 그런 바람을 맞으며 야외에 함께 나와 있는 것 같은 개방감을 느끼게 된다. ',0,0,to_date('23/03/27','RR/MM/DD'),38200,'https://www.google.com/maps?cid=13363865620386383060',0,1,1);
 
+<<<<<<< HEAD
 commit;
+=======
+commit;
+>>>>>>> branch 'main' of https://github.com/minsoodd/DropShip_Spring.git

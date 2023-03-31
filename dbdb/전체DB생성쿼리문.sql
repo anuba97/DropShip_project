@@ -243,6 +243,11 @@ CREATE TABLE FreeBoard
      PRIMARY KEY (id)
 );
 
+-- freeBoard_Seq 만들기
+CREATE SEQUENCE FreeBoard_seq
+START WITH 1
+INCREMENT BY 1;
+
 -- Foreign Key 설정 SQL - FreeBoard(member_id) -> Member(id)
 ALTER TABLE FreeBoard
     ADD CONSTRAINT FK_FreeBoard_member_id_Member_id FOREIGN KEY (member_id)
@@ -466,7 +471,7 @@ CREATE TABLE Work_Review
     member_id         NUMBER(4)        NOT NULL, 
     review_date       DATE             DEFAULT sysdate NOT NULL, 
     review_rate       NUMBER(1)        DEFAULT 5 NOT NULL, 
-    review_title      VARCHAR2(20)     NOT NULL, 
+    review_title      VARCHAR2(100)     NOT NULL, 
     review_content    VARCHAR2(600)    NOT NULL, 
      PRIMARY KEY (id)
 );
