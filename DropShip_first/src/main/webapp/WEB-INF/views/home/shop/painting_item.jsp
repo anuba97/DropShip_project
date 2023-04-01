@@ -1348,13 +1348,14 @@
                             return false;
                         }
 
-                        f.action = "../myshop/order_form"; // 구매페이지 이동
                         f.target = "";
 
                         if (document.pressed == "장바구니") {
                             f.sw_direct.value = 0;
+	                        f.action = "../myshop/cart"; // 장바구니 페이지 이동
                         } else { // 바로구매
                             f.sw_direct.value = 1;
+	                        f.action = "../myshop/order_form"; // 구매페이지 이동
                         }
 
                         // 판매가격이 0 보다 작다면

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,7 +45,7 @@ public class MyShopController {
 	@Autowired
 	OptionVo optionVo;
 
-	@GetMapping("cart") // 장바구니
+	@PostMapping("cart") // 장바구니
 	public String cart(Model model) {
 		return "home/myshop/cart";
 	}
@@ -73,21 +74,26 @@ public class MyShopController {
 	
 	@GetMapping("orderinquiry") // 주문조회, 주문목록/배송조회
 	public String orderinquiry(Model model) {
-		int member_id = (int) session.getAttribute("sessionMember_id"); 
-		List<Order_Detail_inquireVo> order_detail_list = shopservice.selectOrderDetailByMemberId(member_id);
-	    model.addAttribute("order_detail_list", order_detail_list);
+		int member_id = 0;
+		if(session.getAttribute("sessionMember_id") != null) {
+			member_id = (int) session.getAttribute("sessionMember_id"); 
+			List<Order_Detail_inquireVo> order_detail_list = shopservice.selectOrderDetailByMemberId(member_id);
+			model.addAttribute("order_detail_list", order_detail_list);
+		}
 		return "home/myshop/orderinquiry";
 	}
 	
 	@GetMapping("orderinquiry_view") // 구매 상세내역
 	public String orderinquiry_view(String order_member_id, Model model) {
-		
+		int member_id = 0;
 		int order_member_id_int = Integer.parseInt(order_member_id);	// 이전페이지인 orderinquiry에서 url로 전달받은 order_member_id(회원 주문번호) 가져오기
 		
-//		// 회원 객체 가져옴
-//		int member_id = (int) session.getAttribute("sessionMember_id");		
-//		memberVo = memberservice.selectOne(member_id);
-//		
+		// 회원 객체 가져옴 (아직 비회원 구매기능은 구현 안해놔서 로그인 했을때만 제대로 작동)
+		if(session.getAttribute("sessionMember_id") != null) {
+			member_id = (int) session.getAttribute("sessionMember_id"); 
+			memberVo = memberservice.selectOne(member_id);
+		} 
+		
 //		// 전달받았던 order_member_id_int(회원 주문번호)를 사용해서   회원 주문 객체(order_memberVo)를 통째로 가져옴.
 //		Order_MemberVo order_memberVo = shopservice.selectOrderMemberOne_result(order_member_id_int);	// 회원 주문 객체. 회원 주문은 1개. 1개 주문에 대한 view니까.
 //		
@@ -109,9 +115,15 @@ public class MyShopController {
 //		model.addAttribute("workVoList", workVoList);
 //		model.addAttribute("artistVoList", artistVoList);
 //		model.addAttribute("optionVoList", optionVoList);
+//		
+//		model.addAttribute("optionVoListSize", optionVoList.size());
+//		System.out.println("optionVoListSize : " + optionVoList.size());
+//		System.out.println("workVoList : " + workVoList.get(0).getWork_img_url());
 		
 		
-		// 원래 내 무지성 join 방식.
+		
+		
+//		// 원래 내 무지성 join 방식.
 		Order_Detail_inquire_viewVo order_Detail_inquire_viewVo = shopservice.selectOptionOneInquiryView(order_member_id_int);
 		model.addAttribute("order_Detail_inquire_viewVo", order_Detail_inquire_viewVo);
 		
