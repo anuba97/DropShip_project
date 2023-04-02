@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.java.mapper.ShopMapper;
 import com.java.vo.ArtistVo;
+import com.java.vo.Cart_MemberVo;
+import com.java.vo.DeliveryVo;
 import com.java.vo.OptionVo;
 import com.java.vo.Order_DetailVo;
 import com.java.vo.Order_Detail_inquireVo;
@@ -178,21 +180,23 @@ public class ShopServiceImpl implements ShopService {
 	
 	// 회원 주문 시 회원 주문 테이블에 주문 정보 저장
 	@Override
-	public void insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo) {
+	public int insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo) {
 		String delivery_name = order_memberVo.getDelivery_name();
 		String delivery_phone = order_memberVo.getDelivery_phone();
 		String delivery_zip = order_memberVo.getDelivery_zip();
 		String delivery_road = order_memberVo.getDelivery_road();
 		String delivery_address = order_memberVo.getDelivery_address();
 		String delivery_request = order_memberVo.getDelivery_request();
-		shopMapper.insertOrder_Member(member_id, delivery_id, delivery_name, delivery_phone, delivery_zip,
+		int order_member_id = shopMapper.insertOrder_Member(member_id, delivery_id, delivery_name, delivery_phone, delivery_zip,
 				delivery_road, delivery_address, delivery_request);
-//		shopMapper.insertOrder_Member(member_id, delivery_id, order_memberVo);	// 왜 order_memberVo객체 자체론 안되지?
+//		shopMapper.insertOrder_Member(member_id, delivery_id, order_memberVo);	// 왜 order_memberVo객체 자체론 안되지? 안돼서 getter로 일일이 할 수밖에..
+		return order_member_id;
 	}
 
 	@Override
-	public void insertDelivery() {
-		shopMapper.insertDelivery();
+	public int insertDelivery(DeliveryVo deliveryVo) {
+		int delivery_id = shopMapper.insertDelivery(deliveryVo);
+		return delivery_id;
 	}
 
 	@Override
@@ -213,8 +217,9 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public void insertOption(OptionVo optionVo) {
-		shopMapper.insertOption(optionVo);
+	public int insertOption(OptionVo optionVo) {
+		int option_id = shopMapper.insertOption(optionVo); 
+		return optionVo.getId();	// 여기를 option_id로 하면 무조건 1만 나옴(왜..). insertOption실행하면 optionVo에 id부분에 currval이 세팅되어있으니까 이렇게 가져오는 것
 	}
 
 	@Override
@@ -278,6 +283,7 @@ public class ShopServiceImpl implements ShopService {
 	// 회원 주문 상세용 work객체들 가져오기 + artist 객체들 가져오기
 	@Override
 	public Map<String, List<? extends Object>> selectMemberWorkList(List<Integer> workIdList) {
+		
 		List<WorkVo> workVoList = shopMapper.selectMemberWorkList(workIdList);
 
 		// 작가 한글이름도 order_inquiry_view.jsp에 필요. 근데 작가는 작품(work)이랑만 연결되어있음.
@@ -298,6 +304,33 @@ public class ShopServiceImpl implements ShopService {
 		workArtistVoMap.put("artistVoList", artistVoList);
 
 		return workArtistVoMap; // 주문 상세에 대한 work, artist 객체들 담김
+	}
+
+	@Override
+	public void insertCart_Member(int member_id, int work_id_int, int option_id) {
+		shopMapper.insertCart_Member(member_id, work_id_int, option_id);
+	}
+
+	
+	@Override
+	public Map<String, List<Integer>> selectCart_MemberList(int member_id) {
+		List<Cart_MemberVo> cart_MemberVoList = shopMapper.selectCart_MemberList(member_id);
+		System.out.println("장바구니 객체 개수 : " + cart_MemberVoList.size());
+		
+		List<Integer> workIdList = new ArrayList<>();
+		List<Integer> optionIdList = new ArrayList<>();
+		Map<String, List<Integer>> map = new HashMap<>();
+		
+		System.out.println("optionIdList 비어있나 확인용 : " + optionIdList);
+		
+		for(Cart_MemberVo cart_MemberVo : cart_MemberVoList) {
+			workIdList.add(cart_MemberVo.getWork_id());
+			optionIdList.add(cart_MemberVo.getOption_id());
+		}
+		map.put("workIdList" , workIdList);
+		map.put("optionIdList" , optionIdList);
+		
+		return map;
 	}
 
 }

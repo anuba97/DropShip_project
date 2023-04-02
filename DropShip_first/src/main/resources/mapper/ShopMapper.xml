@@ -92,7 +92,7 @@
 	<!-- 작품 1개 가져오기 (주문할때 사용)-->
 	<select id="selectWorkOneOrder" resultType="com.java.vo.WorkVo">
 		SELECT w.id AS id, w.work_name, w.work_img_url ,a.artist_korean_name AS artist_name, 
-				w.work_price 
+				w.work_price, w.artist_id
 		FROM Work w
 		JOIN Artist a ON w.artist_id = a.id
 		WHERE w.id = #{id}
@@ -100,41 +100,60 @@
 	
 	
 	<!-- 주문 저장 전 배송 데이터 저장  -->
-	<insert id="insertDelivery">  
-	  	INSERT INTO Delivery (id, delivery_start, delivery_end)
-		VALUES (Delivery_SEQ.NEXTVAL, sysdate+1, sysdate+3)
-  	</insert>
+<!-- 	<insert id="insertDelivery">   -->
+<!-- 	  	INSERT INTO Delivery (id, delivery_start, delivery_end) -->
+<!-- 		VALUES (Delivery_SEQ.NEXTVAL, sysdate+1, sysdate+3) -->
+<!--   	</insert> -->
 	
-	<!-- 배송 데이터 저장 후 Delivery_seq.currval 가져오기 -->
-	<select id="selectDeliverySeq" resultType="int">
-		SELECT Delivery_SEQ.CURRVAL FROM DUAL
-	</select>
+	
+	<insert id="insertDelivery" parameterType="com.java.vo.DeliveryVo">
+	    <selectKey resultType="int" keyProperty="id" order="BEFORE">
+	        SELECT Delivery_SEQ.nextval FROM dual
+	    </selectKey>
+	    INSERT INTO Delivery (id, delivery_start, delivery_end)
+		VALUES (#{id}, sysdate+1, sysdate+3)
+	</insert>
+	
+	
+	
+	
 	
 	<!-- 회원 주문 저장  -->
-	<insert id="insertOrder_Member">  
-	  	INSERT INTO Order_Member (id, member_id, order_date, order_status, delivery_id, delivery_name, 
-	  	delivery_phone, delivery_zip, delivery_road, delivery_address, delivery_request)
-		VALUES (Order_Member_SEQ.NEXTVAL, #{member_id}, SYSDATE, 0, #{delivery_id}, #{delivery_name}, 
-		#{delivery_phone}, #{delivery_zip}, #{delivery_road}, #{delivery_address}, #{delivery_request})
-  	</insert>
+<!-- 	<insert id="insertOrder_Member">   -->
+<!-- 	  	INSERT INTO Order_Member (id, member_id, order_date, order_status, delivery_id, delivery_name,  -->
+<!-- 	  	delivery_phone, delivery_zip, delivery_road, delivery_address, delivery_request) -->
+<!-- 		VALUES (Order_Member_SEQ.NEXTVAL, #{member_id}, SYSDATE, 0, #{delivery_id}, #{delivery_name},  -->
+<!-- 		#{delivery_phone}, #{delivery_zip}, #{delivery_road}, #{delivery_address}, #{delivery_request}) -->
+<!--   	</insert> -->
+  	
+  	
+  	<insert id="insertOrder_Member" parameterType="com.java.vo.Order_MemberVo">
+	    <selectKey resultType="int" keyProperty="id" order="BEFORE">
+	        SELECT Order_Member_SEQ.nextval FROM dual
+	    </selectKey>
+	    INSERT INTO Order_Member (id, member_id, order_date, order_status, delivery_id, delivery_name, 
+		  	delivery_phone, delivery_zip, delivery_road, delivery_address, delivery_request)
+			VALUES (#{id}, #{member_id}, SYSDATE, 0, #{delivery_id}, #{delivery_name}, 
+			#{delivery_phone}, #{delivery_zip}, #{delivery_road}, #{delivery_address}, #{delivery_request})
+	</insert>
+  	
+  	
   	
   	<!-- 회원 주문 저장 후 order_member_seq.currval(회원 주문 고유번호) 가져오기 -->
 	<select id="selectOrderMemberSeq" resultType="int">
 		SELECT Order_Member_SEQ.CURRVAL FROM DUAL
 	</select>
 	
-	<!-- 작품 옵션(Work_Option) 저장  -->
-	<insert id="insertOption">  
-	    INSERT INTO Work_Option (id, option_size, option_size_added_price, option_media, option_media_price_multiple, 
-	      option_mattier, option_frame, option_frame_added_price, option_matt, option_matt_added_price, option_quantity, option_selected_price)
-	    VALUES (Work_Option_SEQ.NEXTVAL, #{option_size}, #{option_size_added_price}, #{option_media}, #{option_media_price_multiple}, 
-	      #{option_mattier}, #{option_frame}, #{option_frame_added_price}, #{option_matt}, #{option_matt_added_price}, #{option_quantity}, #{option_selected_price})
-  	</insert>
-	
 	<!-- 작품 옵션 저장 후 Work_Option_SEQ.CURRVAL(작품 옵션 고유번호) 가져오기 -->
-	<select id="selectOptionSeq" resultType="int">
-		SELECT Work_Option_SEQ.CURRVAL FROM DUAL
-	</select>
+  	<insert id="insertOption" parameterType="com.java.vo.OptionVo">
+	    <selectKey resultType="int" keyProperty="id" order="BEFORE">
+	        SELECT work_option_seq.nextval FROM dual
+	    </selectKey>
+	    INSERT INTO work_option VALUES (#{id}, #{option_size}, #{option_size_added_price}, 
+		    #{option_media}, #{option_media_price_multiple}, #{option_mattier}, #{option_frame}, #{option_frame_added_price}, 
+		    #{option_matt}, #{option_matt_added_price}, #{option_quantity}, #{option_selected_price})
+	</insert>
+	
 	
 	<!-- 회원 주문 객체 가져오기(주문 결과 띄우기용) -->
 	<select id="selectOrderMemberOne_result" resultType="com.java.vo.Order_MemberVo">
@@ -189,14 +208,34 @@
 	  	WHERE order_member_id = #{order_member_id}
 	  </select>
 	  
-	  <!-- 회원 주문 상세용 option객체들 가져오기 -->
+	  <!-- 회원 주문 상세/ 회원 장바구니 조희용 option객체들 가져오기 -->
+<!-- 	  <select id="selectOptionList" resultType="com.java.vo.OptionVo"> -->
+<!-- 	  	SELECT * FROM work_option WHERE id IN ( -->
+<!--             <foreach collection="optionIdList" item="optionId" separator=","> -->
+<!--                 #{optionId} -->
+<!--             </foreach> -->
+<!--         ) ORDER BY id DESC -->
+<!-- 	  </select> -->
+	  
+	  
+	  
 	  <select id="selectOptionList" resultType="com.java.vo.OptionVo">
-	  	SELECT * FROM work_option WHERE id IN (
-            <foreach collection="optionIdList" item="optionId" separator=",">
-                #{optionId}
-            </foreach>
-        ) 
+		    <if test="optionIdList != null and optionIdList.size() > 0">
+		        SELECT * FROM work_option WHERE id IN (
+		            <foreach collection="optionIdList" item="optionId" separator=",">
+		                #{optionId}
+		            </foreach>
+		        ) ORDER BY id DESC
+		    </if>
 	  </select>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  
 	  <!-- 회원 주문 상세용 work객체들 가져오기 -->
 	  <select id="selectMemberWorkList" resultType="com.java.vo.WorkVo">
@@ -204,18 +243,29 @@
             <foreach collection="workIdList" item="workId" separator=",">
                 #{workId}
             </foreach>
-        ) 
+        ) ORDER BY id DESC
 	  </select>
 	  
-	  
+	  <!-- 회원 주문 상세용 Artist객체들 가져오기 -->
 	  <select id="selectArtistOrderList" resultType="com.java.vo.ArtistVo">
 	  	SELECT artist_korean_name FROM artist WHERE id IN (
             <foreach collection="artistIdList" item="artistId" separator=",">
                 #{artistId}
             </foreach>
-        ) 
+        ) ORDER BY id DESC
 	  </select>
 	  
+	  <!-- 회원 장바구니 저장  -->
+	 <insert id="insertCart_Member">
+	 	 INSERT INTO Cart_Member
+		 VALUES (CART_MEMBER_SEQ.NEXTVAL, #{member_id}, #{work_id}, #{option_id}, sysdate)
+	 </insert>
+	  
+	  
+	  <!-- 회원 장바구니 가져오기 -->
+	 <select id="selectCart_MemberList" resultType="com.java.vo.Cart_MemberVo">
+	  	SELECT * FROM Cart_Member WHERE member_id = #{member_id} ORDER BY added_date desc
+     </select>
 			 
 			
 			

@@ -126,70 +126,70 @@
                                                     </a>
                                                     <div class="sod_opt">
                                                         <ul>
-                                                        	<c:if test="${optionVo.option_size == 0}">
+                                                        	<c:if test="${optionVo.option_size == 1}">
 	                                                            <li>사이즈 : 20.0cm x 35.7cm(+36,500)</li>
                                                         	</c:if>
-                                                        	<c:if test="${optionVo.option_size == 1}">
+                                                        	<c:if test="${optionVo.option_size == 2}">
 	                                                            <li>사이즈 : 25.0cm x 44.6cm(+50,300)</li>
                                                         	</c:if>
-                                                        	<c:if test="${optionVo.option_media == 0}">
+                                                        	<c:if test="${optionVo.option_media == 1}">
 	                                                            <li>미디어 : 캔버스(+0)</li>
                                                         	</c:if>
-                                                        	<c:if test="${optionVo.option_media == 1}">
+                                                        	<c:if test="${optionVo.option_media == 2}">
 	                                                            <li>미디어 : 파인아트(+${optionVo.option_selected_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price})</li>
                                                         	</c:if>
-                                                        	<c:if test="${optionVo.option_mattier == 0}">
+                                                        	<c:if test="${optionVo.option_mattier == 1}">
 	                                                            <li>리터치 : 없음(+0)</li>
                                                         	</c:if>
-                                                        	<c:if test="${optionVo.option_mattier == 1}">
+                                                        	<c:if test="${optionVo.option_mattier == 2}">
 	                                                            <li>리터치 : 선택(+0)</li>
                                                         	</c:if>
                                                         	<c:choose>
-																<c:when test="${optionVo.option_frame == 0}">
+																<c:when test="${optionVo.option_frame == 1}">
 																	<li>프레임 : 캔버스판넬(+0)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 1}">
+																<c:when test="${optionVo.option_frame == 2}">
 																	<li>프레임 : 래핑캔버스(+0)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 2}">
+																<c:when test="${optionVo.option_frame == 3}">
 																	<li>프레임 : 띄움(+4,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 3}">
+																<c:when test="${optionVo.option_frame == 4}">
 																	<li>프레임 : 원목 띄움(+16,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 4}">
+																<c:when test="${optionVo.option_frame == 5}">
 																	<li>프레임 : 올림우드(+20,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 5}">
+																<c:when test="${optionVo.option_frame == 6}">
 																	<li>프레임 : 앤틱D실버(+0)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 6}">
+																<c:when test="${optionVo.option_frame == 7}">
 																	<li>프레임 : 원목베이지(+30,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 7}">
+																<c:when test="${optionVo.option_frame == 8}">
 																	<li>프레임 : 관화이트(+28,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 8}">
+																<c:when test="${optionVo.option_frame == 9}">
 																	<li>프레임 : 관우드(+28,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_frame == 9}">
+																<c:when test="${optionVo.option_frame == 10}">
 																	<li>프레임 : 관블랙(+28,000)</li>
 																</c:when>
 															</c:choose>
 															<c:choose>
-																<c:when test="${optionVo.option_matt == 0}">
+																<c:when test="${optionVo.option_matt == 1}">
 																	<li>매트(여백) : 없음(+0)</li>
 																</c:when>
-																<c:when test="${optionVo.option_matt == 1}">
+																<c:when test="${optionVo.option_matt == 2}">
 																	<li>매트(여백) : 2cm(+10,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_matt == 2}">
+																<c:when test="${optionVo.option_matt == 3}">
 																	<li>매트(여백) : 3cm(+20,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_matt == 3}">
+																<c:when test="${optionVo.option_matt == 4}">
 																	<li>매트(여백) : 6cm(+30,000)</li>
 																</c:when>
-																<c:when test="${optionVo.option_matt == 4}">
+																<c:when test="${optionVo.option_matt == 5}">
 																	<li>매트(여백) : 11cm(+40,000)</li>
 																</c:when>
 															</c:choose>

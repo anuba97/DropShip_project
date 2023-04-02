@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.java.vo.ArtistVo;
+import com.java.vo.Cart_MemberVo;
+import com.java.vo.DeliveryVo;
 import com.java.vo.OptionVo;
 import com.java.vo.Order_DetailVo;
 import com.java.vo.Order_Detail_inquireVo;
@@ -45,18 +47,18 @@ public interface ShopMapper {
 	WorkVo selectWorkOneOrder(int id);	// 작품 주문용 1개 가져오기 (order_form.jsp)
 
 	// 회원 주문 시 회원 주문 테이블(Order_Member)에 데이터 저장
-	void insertOrder_Member(int member_id, int delivery_id, String delivery_name, String delivery_phone,
+	int insertOrder_Member(int member_id, int delivery_id, String delivery_name, String delivery_phone,
 			String delivery_zip, String delivery_road, String delivery_address, String delivery_request);
 //	void insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo);
 
-	void insertDelivery();
+	int insertDelivery(DeliveryVo deliveryVo);
 
 	int selectDeliverySeq();
 
 	int selectOrderMemberSeq();
 
-	// Work_Option 테이블 (작품 옵션 테이블) 에 optionVo 저장 
-	void insertOption(OptionVo optionVo);
+	// Work_Option 테이블 (작품 옵션 테이블) 에 optionVo 저장후 바로 option고유번호(id)반환받기
+	int insertOption(OptionVo optionVo);
 	
 	void insertOrder_Detail(int order_member_id, int work_id, int option_id, int total_price);
 
@@ -66,8 +68,10 @@ public interface ShopMapper {
 
 	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id);
 
+	//////////////// 마이페이지 회원 주문조회 상세페이지 보여줄 때 join 5번 하는 대신 DB 1번 왕복하는 방식 /////////////  
 	Order_Detail_inquire_viewVo selectOptionOneInquiryView(int id);
 
+	//////////////// 마이페이지 회원 주문조회 상세페이지 보여줄 때 join하지 않는 대신 DB 5번 왕복하는 방식 /////////////  
 	List<Order_DetailVo> selectOrderDetail(int order_member_id);
 
 	List<OptionVo> selectOptionList(List<Integer> optionIdList);
@@ -77,6 +81,11 @@ public interface ShopMapper {
 	List<WorkVo> selectMemberWorkList(List<Integer> workIdList);
 
 	List<ArtistVo> selectArtistOrderList(List<Integer> artistIdList);
+
+	// 회원 장바구니(Cart_Member)에 작품 insert
+	void insertCart_Member(int member_id, int work_id, int option_id);
+
+	List<Cart_MemberVo> selectCart_MemberList(int member_id);
 
 
 

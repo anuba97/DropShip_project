@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../home/img/favicon.ico" />
     <title>장바구니</title>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -92,6 +93,8 @@
             <div id="sod_bsk" class="od_prd_list">
                 <div class="maxinner">
                     <form name="frmcartlist" id="sod_bsk_list" class="2017_renewal_itemform" method="post" action="https://bxgs.co.kr/shop/cartupdate.php">
+                                    <input type="hidden" name="selectedWorksId" value="">
+                                    <input type="hidden" name="selectedOptionsId" value=""> <!-- 이름 checked로 바꾸는게 좋을듯  -->
                         <div class="tbl_order">
                             <table>
                                 <caption>장바구니 리스트</caption>
@@ -110,11 +113,116 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td colspan="5" class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림">
-                                            <p>장바구니에 담긴 상품이 없습니다.</p>
-                                        </td>
-                                    </tr>
+                                	<c:forEach items="${optionVoList}" var="optionVo" varStatus="loop">
+	                                    <tr>
+	                                        <td data-title="No" class="td_chk chk-box">
+	                                            <input type="checkbox" name="ct_chk[]" value="${workVoList[loop.index].id}" id="ct_chk_${workVoList[loop.index].id}" checked="checked" class="selec_chk">
+	                                            <label for="ct_chk_${workVoList[loop.index].id}"><span></span><b class="sound_only">상품</b></label>
+	                                        </td>
+	                                        <td data-title="Product" class="td_prd">
+	                                            <div class="sod_img"><a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" style="background-image:url(/admin/img/work/${workVoList[loop.index].work_img_url})"><span class="hide">제품이미지</span></a></div>
+	                                            <div class="sod_name">
+	                                                <input type="hidden" name="it_id[]" value="${workVoList[loop.index].id}">
+<%-- 	                                                <input type="hidden" name="it_name[${workVoList[loop.index].id}]" value="${workVoList[loop.index].work_name}"> --%>
+	                                                <input type="hidden" name="optionIdList[]" value="${optionVo.id}">
+	                                                <a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" class="prd_name"><strong>${workVoList[loop.index].work_name}</strong><span>${artistVoList[loop.index].artist_korean_name}</span><span class="price_txt"></span>
+	                                                    <div class="sod_opt_txt">
+	                                                        <c:choose>
+	                                                            <c:when test="${optionVo.option_size == 0}">
+	                                                                <p>사이즈 : 20.0cm x 35.7cm<span class="price_txt">(+${optionVo.option_size_added_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_size == 1}">
+	                                                                <p>사이즈 : 25.0cm x 44.6cm<span class="price_txt">(+${optionVo.option_size_added_price})</span></p>
+	                                                            </c:when>
+	                                                        </c:choose>
+	
+	                                                        <c:choose>
+	                                                            <c:when test="${optionVo.option_media == 1}">
+	                                                                <p>미디어 : 캔버스<span class="price_txt">(+${optionVo.option_selected_price - optionVo.option_size_added_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price - workVo.work_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_media == 2}">
+	                                                                <p>미디어 : 파인아트<span class="price_txt">(+${optionVo.option_selected_price - optionVo.option_size_added_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price - workVo.work_price})</span></p>
+	                                                            </c:when>
+	                                                        </c:choose>
+	
+	                                                        <c:choose>
+	                                                            <c:when test="${optionVo.option_mattier == 1}">
+	                                                                <p>리터치 : 없음<span class="price_txt">(+0)</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_mattier == 2}">
+	                                                                <p>리터치 : 선택<span class="price_txt">(+0)</span></p>
+	                                                            </c:when>
+	                                                        </c:choose>
+	
+	                                                        <c:choose>
+	                                                            <c:when test="${optionVo.option_frame == 1}">
+	                                                                <p>프레임 : 캔버스판넬<span class="price_txt">(+0)</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 2}">
+	                                                                <p>프레임 : 래핑캔버스<span class="price_txt">(+0)</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 3}">
+	                                                                <p>프레임 : 띄움<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 4}">
+	                                                                <p>프레임 : 원목 띄움<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 5}">
+	                                                                <p>프레임 : 올림우드<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 6}">
+	                                                                <p>프레임 : 앤틱D실버<span class="price_txt">(+0)</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 7}">
+	                                                                <p>프레임 : 원목베이지<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 8}">
+	                                                                <p>프레임 : 관화이트<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 9}">
+	                                                                <p>프레임 : 관우드<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+	                                                            </c:when>
+	                                                            <c:when test="${optionVo.option_frame == 10}">
+	                                                                <p>프레임 : 관블랙<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+	                                                            </c:when>
+	                                                        </c:choose>
+	                                                        <p>매트(여백) :
+	                                                            <c:choose>
+	                                                                <c:when test="${optionVo.option_matt == 1}">
+	                                                                    없음<span class="price_txt">(+0)</span>
+	                                                                </c:when>
+	                                                                <c:when test="${optionVo.option_matt == 2}">
+	                                                                    2cm<span class="price_txt">(+10000)</span>
+	                                                                </c:when>
+	                                                                <c:when test="${optionVo.option_matt == 3}">
+	                                                                    3cm<span class="price_txt">(+20000)</span>
+	                                                                </c:when>
+	                                                                <c:when test="${optionVo.option_matt == 4}">
+	                                                                    6cm<span class="price_txt">(+30000)</span>
+	                                                                </c:when>
+	                                                                <c:when test="${optionVo.option_matt == 5}">
+	                                                                    11cm<span class="price_txt">(+40000)</span>
+	                                                                </c:when>
+	                                                            </c:choose>
+	                                                        </p>
+	                                                    </div>
+	                                                </a> </div>
+	                                        </td>
+	                                        <td data-title="Unit price" class="td_numbig">${workVoList[loop.index].work_price} 원</td>
+	                                        <td data-title="Quantity" class="td_num">${optionVo.option_quantity}</td>
+	                                        
+	                                        <input type="hidden" name="option_quantity[]" value="${optionVo.option_quantity}">
+	                                        <!--<td class="td_numbig">6,000</td>-->
+	                                        <!--<td class="td_dvr">선불</td>-->
+	                                        <td data-title="Subtotal" class="td_numbig text_right"><span id="sell_price_0" class="total_prc">${optionVo.option_selected_price}원 * ${optionVo.option_quantity}개 <br><br> ${optionVo.option_selected_price * optionVo.option_quantity}</span> 원</td>
+	                                    </tr>
+                                    </c:forEach>
+                                    <!-- 아래는 장바구니 담긴 상품 없을 때. if문으로 해야 -->
+                                    <!--                                     <tr> -->
+                                    <!--                                         <td colspan="5" class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림"> -->
+                                    <!--                                             <p>장바구니에 담긴 상품이 없습니다.</p> -->
+                                    <!--                                         </td> -->
+                                    <!--                                     </tr> -->
                                 </tbody>
                             </table>
                             <div class="btn_cart_del">
@@ -123,10 +231,43 @@
                             </div>
                         </div>
 
+                        <div id="sod_bsk_tot">
+                            <ul>
+                                <li class="sod_bsk_cos">
+                                    <span>총 상품금액</span>
+                                    <strong>${cart_total_price}</strong>
+                                    <em>원</em>
+                                </li>
+                                <li class="sod_bsk_dvr">
+                                    <i>+</i>
+                                    <span>배송비</span>
+                                    <strong>2000</strong>
+                                    <em>원</em>
+                                </li>
+                                <!--
+			                    <li class="sod_bsk_pt">
+			                        <i>+</i>
+			                        <span>포인트</span>
+			                        <strong>6,000</strong>
+			                        <em>원</em>
+			                    </li>
+			                    -->
+                                <li class="sod_bsk_cnt">
+                                    <i>=</i>
+                                    <span>총 결제금액</span>
+                                    <strong>${cart_total_price + 2000}</strong>
+                                    <em>원</em>
+                                </li>
+                            </ul>
+                        </div>
 
                         <div id="sod_bsk_act">
                             <div class="btn-confirm-wrap">
-                                <a href="/" class="btnset btn-type04">쇼핑 계속하기</a>
+                                <input type="hidden" name="url" value="./orderform.php">
+                                <input type="hidden" name="records" value="1">
+                                <input type="hidden" name="act" value="">
+                                <a href="https://bxgs.co.kr/shop/" class="btnset btn-type04">쇼핑 계속하기</a>
+                                <button type="button" onclick="return form_check('buy');" class="btnset btn-type04 btn-line-brown">선택상품 주문</button>
                             </div>
                         </div>
                     </form>
@@ -188,6 +329,8 @@
                 function form_check(act) {
                     var f = document.frmcartlist;
                     var cnt = f.records.value;
+                    var selectedWorksId = [];
+                    var selectedOptionsId = [];
 
                     if (act == "buy") {
                         if ($("input[name^=ct_chk]:checked").length < 1) {
@@ -196,10 +339,24 @@
                         }
 
                         f.act.value = act;
+                        /* 체크된 작품의 id만 넘기게 */
+                	    $('input[name="ct_chk[]"]').each(function() {
+                	        if ($(this).is(':checked')) {
+               	        	   selectedWorksId.push($(this).val());	/* 체크된 작품의 workId들을 배열에 집어넣기 */
+               	        	   
+               	        	   var optionId= $(this).closest('tr').find('input[name="optionIdList[]"]').val(); 
+               	        	   selectedOptionsId.push(optionId); /* 체크된 작품의 optionId들을 배열에 집어넣기 */
+                	        }
+                     	 });
+                	    $('input[name="selectedWorksId"]').val(selectedWorksId);
+                	    $('input[name="selectedOptionsId"]').val(selectedOptionsId);
+                        f.action = "../myshop/order_form";
                         f.submit();
+                        
                     } else if (act == "alldelete") {
                         f.act.value = act;
-                        f.submit();
+//                         f.action = "../myshop/mypage_drone";
+//                         f.submit();
                     } else if (act == "seldelete") {
                         if ($("input[name^=ct_chk]:checked").length < 1) {
                             alert("삭제하실 상품을 하나이상 선택해 주십시오.");
@@ -207,7 +364,8 @@
                         }
 
                         f.act.value = act;
-                        f.submit();
+//                         f.action = "../shop/best_list";
+//                         f.submit();
                     }
 
                     return true;

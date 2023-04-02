@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.java.vo.ArtistVo;
+import com.java.vo.Cart_MemberVo;
+import com.java.vo.DeliveryVo;
 import com.java.vo.OptionVo;
 import com.java.vo.Order_Detail_inquireVo;
 import com.java.vo.Order_Detail_inquire_viewVo;
@@ -37,9 +39,9 @@ public interface ShopService {
 	Map<String, Object> selectArtistList(int page);  // 작가별 작가와 page 불러오기
 
 	// 회원 주문 시 회원 주문 테이블에 주문 정보 저장
-	void insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo);
+	int insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo);
 
-	void insertDelivery();
+	int insertDelivery(DeliveryVo deliveryVo);
 
 	int selectDeliverySeq();
 
@@ -47,7 +49,7 @@ public interface ShopService {
 
 	void insertOrder_Detail(int order_member_id, int work_id_int, int option_id, int total_price_int);
 
-	void insertOption(OptionVo optionVo);
+	int insertOption(OptionVo optionVo);
 
 	int selectOptionSeq();
 
@@ -63,6 +65,10 @@ public interface ShopService {
 	List<OptionVo> selectOptionList(List<Integer> optionIdList);
 
 	Map<String, List<? extends Object>> selectMemberWorkList(List<Integer> workIdList);
+
+	void insertCart_Member(int member_id, int work_id_int, int option_id);
+
+	Map<String, List<Integer>> selectCart_MemberList(int member_id);
 
 	
 	

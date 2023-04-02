@@ -95,8 +95,9 @@
                     <input type="hidden" name="sw_direct">
                     <input type="hidden" name="url">
                     
-                    <input type="hidden" name="id" value="${param.work_id}">	<!-- work_id 를 order_form.jsp로 보내기  -->
+                    <input type="hidden" name="work_id" value="${param.work_id}">	<!-- work_id 를 order_form.jsp로 보내기  -->
 
+				 	
                     <div id="sit_ov_wrap">
                         <!----- 배경 변경 ----->
                         <div id="sit_bg_preview">

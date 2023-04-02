@@ -115,14 +115,14 @@
 	                                        <td data-title="Product" class="td_prd">
 	                                            <div class="sod_product">
 	                                                <div class="sod_img">
-	                                                    <a href="../shop/painting_item?id=${workVoList[loop.index-1].work_id}" style="background-image:url(../admin/img/work/${workVoList[loop.index-1].work_img_url})">
+	                                                    <a href="../shop/painting_item?id=${workVoList[loop.index].id}" style="background-image:url(../admin/img/work/${workVoList[loop.index].work_img_url})">
 	                                                        <span class="hide">제품이미지</span>
 	                                                    </a>
 	                                                </div>
 	                                                  <div class="sod_name">
-	                                                    <a href="../shop/painting_item?id=${workVoList[loop.index-1].work_id}" class="prd_name">
-	                                                        <strong>${workVoList[loop.index-1].work_name}</strong>
-	                                                        <span>${artistVoList[loop.index-1].artist_korean_name}</span>
+	                                                    <a href="../shop/painting_item?id=${workVoList[loop.index].id}" class="prd_name">
+	                                                        <strong>${workVoList[loop.index].work_name}</strong>
+	                                                        <span>${artistVoList[loop.index].artist_korean_name}</span>
 	                                                    </a>
 	                                                    <div class="sod_opt">
 	                                                        <ul>
@@ -198,11 +198,11 @@
 	                                                </div>
 	                                            </div>
 	                                        </td>
-	                                        <td data-title="Unit price" class="td_numbig text_right">${workVoList[loop.index-1].work_price} 원</td>
-	                                        <td data-title="Quantity" class="td_num">${optionVo.option_quantity}</td>
+	                                        <td data-title="Unit price" class="td_numbig text_right">${workVoList[loop.index].work_price} 원</td>
+	                                        <td data-title="Quantity" class="td_num">${optionVo.option_quantity}개</td>
 	                                        <td data-title="Subtotal" class="td_numbig text_right"><span class="total_price">${optionVo.option_selected_price}원 * ${optionVo.option_quantity}개 <br><br> ${optionVo.option_selected_price * optionVo.option_quantity}</span> 원</td>
 	                                    </tr>
-                                	</c:forEach>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -214,11 +214,11 @@
                             <div class="fin_total_box">
                                 <div class="fin_total_top">
                                     <div class="fin_total_cate">총 주문금액</div>
-                                    <div class="fin_total_price"><strong>${order_Detail_inquire_viewVo.option_selected_price * order_Detail_inquire_viewVo.option_quantity+2000}</strong> 원</div><!--나중에 리스트로 받아오는거 구현하고 해야  -->
+                                    <div class="fin_total_price"><strong>${optionVo.option_selected_price * optionVo.option_quantity+2000}</strong> 원</div><!--나중에 리스트로 받아오는거 구현하고 해야  -->
                                 </div>
                                 <div class="fin_total_btm">
                                     <div class="fin_total_cate">주문금액</div>
-                                    <div class="fin_total_price"><strong>${order_Detail_inquire_viewVo.option_selected_price * order_Detail_inquire_viewVo.option_quantity}</strong> 원</div>
+                                    <div class="fin_total_price"><strong>${optionVo.option_selected_price * optionVo.option_quantity}</strong> 원</div>
                                 </div>
                             </div>
 
