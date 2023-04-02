@@ -34,6 +34,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public int memberCheckNic(String member_nName) { // 닉네임 중복체크
+		int result = mMapper.memberCheckNic(member_nName);
+		return result;
+	}
+	
+	@Override
 	public void insertOneMember(MemberVo mvo) { // 회원 1명 추가
 		mMapper.insertOneMember(mvo);
 		
@@ -55,6 +61,8 @@ public class MemberServiceImpl implements MemberService {
 	public void memberDelete(String member_login_id) {  // 회원 1명 삭제 (탈퇴)
 		mMapper.memberDelete(member_login_id);
 	}
+
+	
 	
 	
 

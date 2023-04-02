@@ -116,6 +116,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                <input type="hidden" name="mb_sex" value=""> -->
 	
 	                <div class="form-box-wrap">
+	                
 	                    <div class="form-box">
 	                        <div class="left-con">
 	                            <label for="reg_mb_id"><span class="f-color">*</span>아이디</label>
@@ -126,7 +127,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkIdBtn" value="중복확인">     
 	                            </div>
 	                            <span class="sm-notice-txt">5~12자의 영문 소문자,숫자만 사용가능합니다.</span>
-	                            <strong><span id="result_checkId" style="font-size:14px; color:gray; display:none">※ ID 중복 확인을 진행해주세요.</span></strong>
+	                            <strong><span id="result_checkId" style="font-size:14px; color:red; display:none">※ ID 중복 확인을 진행해주세요.</span></strong>
 	                        </div>
 	                    </div>
 						
@@ -164,8 +165,12 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                            <label for="reg_mb_name"><span class="f-color">*</span>닉네임</label>
 	                        </div>
 	                        <div class="right-con">
-	                            <input type="text" id="reg_mb_nName" name="member_nName" value=""   class="inp-type01 half"  placeholder="닉네임">
+	                            <div class="box-id">
+	                                <input type="text" name="member_nName"  id="reg_mb_nName" class="inp-type01 half" minlength="2" maxlength="8"  placeholder="닉네임">
+	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkNicBtn" value="중복확인">     
+	                            </div>
 	                            <span class="sm-notice-txt">한글, 영문만 2-8자</span>
+	                            <strong><span id="result_checkNic" style="font-size:14px; color:red; display:none">※ 닉네임 중복 확인을 진행해주세요.</span></strong>
 	                        </div>
 	                    </div>
 	
@@ -290,8 +295,8 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 		<script>
 	
 		  // 사이트 열리자마자 dup을 0으로 설정(중복확인 안누른 상태가 0). 눌렀으면 1
-		  var dup = 0; 
-		  
+		  var dup = 0;
+		  var dup2 = 0;
 		  $(function(){
 			  
 			  var now = new Date();
@@ -330,6 +335,8 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				  }
 			  }
 			  $("#mb_3").html(htmlData);
+			  
+			  
 		  });//jquery
 		
 		  
@@ -344,6 +351,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 			  var adressPattern = /^[0-9]{5,}$/; // 우편번호			 com, net, edu,
 			  var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.(com|net|edu)$/;
 			  //'^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+			  
 			  // id부분
 			  var id = $("#reg_mb_id").val();
 			  if(id==""){
@@ -452,25 +460,47 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 				  $("#reg_mb_email").focus();
 				  return false;
 			  } 
+			  // 아이디중복확인 버튼 안눌렀을 때
 			  if(dup==0){
 				  $("#result_checkId").show();
 				  $("#reg_mb_id").focus();
 				  return false;
 			  }
+			  // 닉네임중복확인 버튼 안눌렀을 때
+			  if(dup2==0){
+				  $("#result_checkNic").show();
+				  $("#reg_mb_nName").focus();
+				  return false;
+			  }
 			  registerform.submit();
 		  }//joinBtn()
 			
-			 // 중복확인 버튼
+			 // ID중복확인 버튼
 		 	 $(function(){
+		 		// ID중복확인 버튼을 눌렀을 때
 			 	$("#checkIdBtn").click(function(){
 			 		dup = 1; // 중복확인 버튼 클릭-> dup을 0에서 1로 바꾸기. span 글자 보이게 할려고 사용
-			 		let member_login_id = $("#reg_mb_id").val();  
-			 		console.log(member_login_id);
+			 		let member_login_id = $("#reg_mb_id").val();
+			 		var idPattern = /^[a-zA-Z0-9]{5,12}$/; // id
+			 		if(member_login_id == ""){
+			 			alert("아이디를 입력하세요.");
+			 			$("#reg_mb_id").focus();
+			 			dup = 0;
+			 			return false;
+			 		}
+			 		if(!idPattern.test(member_login_id)){
+					  	alert("아이디는 5자리이상 11자리이하 영문,숫자만 입력 가능합니다.");
+					  	$("#reg_mb_id").focus();
+					  	dup = 0;
+					  	return false;
+					}
+
 			 		$.ajax({
 			 			url: "memberCheckId", 
 			 			type: 'post',		
 			 			data: {"member_login_id":member_login_id}, 
 			 			success: function(flag){
+			 				
 	 		 				if(flag == 0){ // 만약 성공할시
 	 		 					result = "사용 가능한 아이디입니다.";
 	 		 					$("#result_checkId").html(result).css("color","blue").show();
@@ -486,7 +516,65 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 			 			},	
 						error : function(){alert("시스템오류입니다.");}		 			
 			 		})//ajax
-			 	});//checkIdBtn 		 
+			 	});//checkIdBtn
+			 	
+			 // 아이디 입력 필드의 값이 변경될 때마다 중복확인 상태 초기화
+			 	$("#reg_mb_id").on("change", function(){
+			 	    dup = 0;
+			 	    $("#result_checkId").hide();
+			 	    $("#result_checkId").text("* ID 중복 확인을 진행해주세요.").css("color","red").show();
+			 	  });//reg_mb_id
+			 	
+			 	
+			 	
+		 		// 닉네임 중복확인 버튼을 눌렀을 때
+			 	$("#checkNicBtn").click(function(){
+			 		dup2 = 1; // 중복확인 버튼 클릭-> dup을 0에서 1로 바꾸기. span 글자 보이게 할려고 사용
+			 		let member_nName = $("#reg_mb_nName").val();
+			 		var nNamePattern = /^[a-zA-Z가-힣]{2,8}$/; // 닉네임
+			 		if(member_nName == ""){
+			 			alert("닉네임을 입력하세요.");
+			 			$("#member_nName").focus();
+			 			dup2 = 0;
+			 			return false;
+			 		}
+			 		if(!nNamePattern.test(member_nName)){
+					  	alert("닉네임을 한글,영문 2~8자로 입력해주세요");
+					  	$("#member_nName").focus();
+					  	dup2 = 0;
+					  	return false;
+					}
+
+			 		$.ajax({
+			 			url: "memberCheckNic", 
+			 			type: 'post',		
+			 			data: {"member_nName":member_nName}, 
+			 			success: function(flag){
+			 				
+	 		 				if(flag == 0){ // 만약 성공할시
+	 		 					result = "사용 가능한 닉네임입니다.";
+	 		 					$("#result_checkNic").html(result).css("color","blue").show();
+	 		 					$("#reg_mb_email").trigger("focus");
+	 		 					dup2 = 1;
+			 					
+	 		 				}else{ // 만약 실패할시
+	 		 					result = "이미 사용중인 닉네임입니다.";
+	 		 						$("#result_checkNic").html(result).css("color","red").show();
+	 		 						$("#reg_mb_nName").val("").trigger("focus");
+	 		 						dup2 = 0;
+	 		 				}
+			 			},	
+						error : function(){alert("시스템오류입니다.");}		 			
+			 		})//ajax
+			 	});//checkIdBtn
+			 	
+			 // 아이디 입력 필드의 값이 변경될 때마다 중복확인 상태 초기화
+			 	$("#reg_mb_nName").on("change", function(){
+			 	    dup2 = 0;
+			 	    $("#result_checkNic").hide();
+			 	    $("#result_checkNic").text("* 닉네임 중복 확인을 진행해주세요.").css("color","red").show();
+			 	  });
+			 	
 		 	 });//function
 		  
 		</script>

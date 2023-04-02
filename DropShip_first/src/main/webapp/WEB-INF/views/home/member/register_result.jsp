@@ -103,7 +103,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
                 </p>
                         <div class="btn-confirm-wrap">
                 <a href="/" class="btnset btn-type04">메인으로</a>
-                <a href="https://bxgs.co.kr/bbs/login.php" class="btnset btn-type04 btn-line-brown">로그인</a>
+                <a href="login" class="btnset btn-type04 btn-line-brown">로그인</a>
             </div>
         </div>
     </div>
