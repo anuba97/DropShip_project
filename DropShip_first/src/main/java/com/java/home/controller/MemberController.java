@@ -77,6 +77,13 @@ public class MemberController {
 		return flag;
 	}
 	
+	@PostMapping("memberCheckNic")  // 닉네임 중복체크
+	@ResponseBody
+	public int memberCheckNic(@RequestParam String member_nName) {
+		int flag = mservice.memberCheckNic(member_nName);
+		return flag;
+	}
+	
 	@PostMapping("register_result")  // 회원가입2 (form) 실행
 	public String registerform(MemberVo mvo, String mb_1,String mb_2,String mb_3, Model model) { 
 		String mb = mb_1+mb_2+mb_3; // mb : 19991212
