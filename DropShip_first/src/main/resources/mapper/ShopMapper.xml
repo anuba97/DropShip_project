@@ -100,19 +100,24 @@
 	
 	
 	<!-- 주문 저장 전 배송 데이터 저장  -->
-<!-- 	<insert id="insertDelivery">   -->
-<!-- 	  	INSERT INTO Delivery (id, delivery_start, delivery_end) -->
-<!-- 		VALUES (Delivery_SEQ.NEXTVAL, sysdate+1, sysdate+3) -->
-<!--   	</insert> -->
+	<insert id="insertDelivery">  
+	  	INSERT INTO Delivery (id, delivery_start, delivery_end)
+		VALUES (Delivery_SEQ.NEXTVAL, sysdate+1, sysdate+3)
+  	</insert>
+  	
+  	<select id="selectDeliverySeq" resultType="int">
+  		SELECT DELIVERY_SEQ.CURRVAL FROM DUAL
+  	</select>
 	
 	
-	<insert id="insertDelivery" parameterType="com.java.vo.DeliveryVo">
-	    <selectKey resultType="int" keyProperty="id" order="BEFORE">
-	        SELECT Delivery_SEQ.nextval FROM dual
+	<insert id="insertDelivery2">
+	    <selectKey resultType="int" keyProperty="id" order="AFTER">
+	        SELECT Delivery_SEQ.currval FROM dual
 	    </selectKey>
 	    INSERT INTO Delivery (id, delivery_start, delivery_end)
-		VALUES (#{id}, sysdate+1, sysdate+3)
+		VALUES (Delivery_SEQ.nextval, sysdate+1, sysdate+3)
 	</insert>
+	
 	
 	
 	
@@ -127,15 +132,18 @@
 <!--   	</insert> -->
   	
   	
-  	<insert id="insertOrder_Member" parameterType="com.java.vo.Order_MemberVo">
-	    <selectKey resultType="int" keyProperty="id" order="BEFORE">
+  	<insert id="insertOrder_Member2" >
+	    <selectKey resultType="int" keyProperty="order_memberVo.id" order="BEFORE">  <!-- keyProperty를 원랜 id만 적어도 넘어온 vo의 id인스턴수 변수를 찾을 수 있는데 인자로 여러개 넘어오면 이렇게 뭐의 id인지 지정해줘야.  -->
 	        SELECT Order_Member_SEQ.nextval FROM dual
 	    </selectKey>
 	    INSERT INTO Order_Member (id, member_id, order_date, order_status, delivery_id, delivery_name, 
 		  	delivery_phone, delivery_zip, delivery_road, delivery_address, delivery_request)
-			VALUES (#{id}, #{member_id}, SYSDATE, 0, #{delivery_id}, #{delivery_name}, 
-			#{delivery_phone}, #{delivery_zip}, #{delivery_road}, #{delivery_address}, #{delivery_request})
+			VALUES (#{order_memberVo.id}, #{member_id}, SYSDATE, 0, #{delivery_id}, #{order_memberVo.delivery_name}, 
+			#{order_memberVo.delivery_phone}, #{order_memberVo.delivery_zip}, #{order_memberVo.delivery_road}, #{order_memberVo.delivery_address}, #{order_memberVo.delivery_request})
 	</insert>
+  	
+  	
+  	
   	
   	
   	
@@ -160,13 +168,30 @@
 		SELECT * FROM Order_Member WHERE id = #{order_member_id}
 	</select>
 	
-	<!-- 회원 주문상세 저장  -->
+	<!-- 회원 주문상세 저장 (작품상세페이지에서만 넘어왔을 때)  -->
 	<insert id="insertOrder_Detail">
 		 INSERT INTO Order_Detail (id, order_member_id, work_id, option_id, total_price, 
 		 							event_work_sale, event_period_sale, final_price)
 		 VALUES (Order_Detail_SEQ.NEXTVAL, #{order_member_id}, #{work_id}, #{option_id}, #{total_price}, 
 		 		0, 0, #{total_price})	<!-- 마지막  #{total_price}는 원랜 final_price가 되어야 함. 근데 할인 구현 안하고있으니까 그냥 total_price로 넣음 -->
 	</insert>
+	
+	
+	
+<!-- 	회원 주문상세 저장 (cart에서 주문할때도 가능하게)  -->
+<!-- 	<insert id="insertOrder_Details" parameterType="java.util.List"> -->
+<!-- 	    INSERT ALL -->
+<!-- 	    <foreach collection="workIdList" item="workId" index="index" separator=" "> -->
+<!-- 	        INTO order_detail (id, order_member_id, work_id, option_id, total_price, -->
+<!-- 	        				event_work_sale, event_period_sale, final_price) -->
+<!-- 	        VALUES (Order_Detail_SEQ.NEXTVAL, #{order_member_id}, #{workId}, #{optionIdList[${index}]}, #{total_price},  -->
+<!-- 	        0, 0, #{total_price}) -->
+<!-- 	    </foreach> -->
+<!-- 	    SELECT * FROM DUAL -->
+<!-- 	</insert> -->
+	
+	
+	
 	
 	<!-- 회원 마이페이지주문조회  -->
 	  <select id="selectOrderDetailByMemberId" resultType="com.java.vo.Order_Detail_inquireVo">
@@ -228,10 +253,6 @@
 		        ) ORDER BY id DESC
 		    </if>
 	  </select>
-	  
-	  
-	  
-	  
 	  
 	  
 	  

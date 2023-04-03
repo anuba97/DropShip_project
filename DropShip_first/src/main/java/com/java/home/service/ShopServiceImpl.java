@@ -181,24 +181,23 @@ public class ShopServiceImpl implements ShopService {
 	// 회원 주문 시 회원 주문 테이블에 주문 정보 저장
 	@Override
 	public int insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo) {
-		String delivery_name = order_memberVo.getDelivery_name();
-		String delivery_phone = order_memberVo.getDelivery_phone();
-		String delivery_zip = order_memberVo.getDelivery_zip();
-		String delivery_road = order_memberVo.getDelivery_road();
-		String delivery_address = order_memberVo.getDelivery_address();
-		String delivery_request = order_memberVo.getDelivery_request();
-		int order_member_id = shopMapper.insertOrder_Member(member_id, delivery_id, delivery_name, delivery_phone, delivery_zip,
-				delivery_road, delivery_address, delivery_request);
-//		shopMapper.insertOrder_Member(member_id, delivery_id, order_memberVo);	// 왜 order_memberVo객체 자체론 안되지? 안돼서 getter로 일일이 할 수밖에..
-		return order_member_id;
+		int successOrFail = shopMapper.insertOrder_Member2(member_id, delivery_id, order_memberVo);	// 왜 order_memberVo객체 자체론 안되지? 안돼서 getter로 일일이 할 수밖에..
+		System.out.println("insertOrder_Member selectKey 성공여부 :  " + successOrFail); // selectKey의 결과로는 0(실패)또는 1(성공)만 나옴
+		return order_memberVo.getId();	// selectKey 실행되면 원하는 결과물은 Vo의 인스턴스 변수에 set됨. 따라서 애초에 Vo를 반드시 전달해줘야.
 	}
 
 	@Override
-	public int insertDelivery(DeliveryVo deliveryVo) {
-		int delivery_id = shopMapper.insertDelivery(deliveryVo);
+	public int insertDelivery() {
+		int delivery_id = shopMapper.insertDelivery();
 		return delivery_id;
 	}
 
+	@Override
+	public int insertDelivery2() {
+		int delivery_id2 = shopMapper.insertDelivery2();
+		return delivery_id2;
+	}
+	
 	@Override
 	public int selectDeliverySeq() {
 		int delivery_id = shopMapper.selectDeliverySeq();
@@ -216,9 +215,21 @@ public class ShopServiceImpl implements ShopService {
 		shopMapper.insertOrder_Detail(order_member_id, work_id_int, option_id, total_price_int);
 	}
 
+	// 작품상세페이지 or 장바구니에서 주문할 때 주문상세 DB에 저장
+	@Override
+	public void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
+			int total_price_int) {
+		shopMapper.insertOrder_Details(order_member_id, workIdList, optionIdList, total_price_int);
+	}
+//	@Override
+//	public void insertOrder_Details2(Map<String, Object> paramMap) {
+//		shopMapper.insertOrder_Details2(paramMap);
+//	}
+	
 	@Override
 	public int insertOption(OptionVo optionVo) {
-		int option_id = shopMapper.insertOption(optionVo); 
+		int successOrFail = shopMapper.insertOption(optionVo); 
+		System.out.println("insertOption 성공이냐 실패냐 : 	" + successOrFail);
 		return optionVo.getId();	// 여기를 option_id로 하면 무조건 1만 나옴(왜..). insertOption실행하면 optionVo에 id부분에 currval이 세팅되어있으니까 이렇게 가져오는 것
 	}
 
@@ -332,5 +343,13 @@ public class ShopServiceImpl implements ShopService {
 		
 		return map;
 	}
+
+	
+
+	
+
+	
+
+	
 
 }

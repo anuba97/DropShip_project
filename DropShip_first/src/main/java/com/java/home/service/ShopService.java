@@ -41,7 +41,8 @@ public interface ShopService {
 	// 회원 주문 시 회원 주문 테이블에 주문 정보 저장
 	int insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo);
 
-	int insertDelivery(DeliveryVo deliveryVo);
+	int insertDelivery();
+	int insertDelivery2();
 
 	int selectDeliverySeq();
 
@@ -69,6 +70,13 @@ public interface ShopService {
 	void insertCart_Member(int member_id, int work_id_int, int option_id);
 
 	Map<String, List<Integer>> selectCart_MemberList(int member_id);
+
+	void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
+			int total_price_int);
+//	void insertOrder_Details2(Map<String, Object> paramMap);
+
+
+
 
 	
 	

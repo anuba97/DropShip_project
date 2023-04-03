@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,11 @@ public class MyShopController {
 
 	@Autowired
 	OptionVo optionVo;
+	
+	@Autowired
+	DeliveryVo deliveryVo; 
 
-	@PostMapping("cart") // 장바구니에 저장 (주문과 비슷)
+	@PostMapping("cart") // 장바구니 DB에 저장 (주문과 비슷)
 	public String cartPost(String work_id, String opt1, String opt2, String opt3, 
 			String opt4, String opt5, @RequestParam("ct_qty[1654133092][]") String option_quantity, Model model) {
 		
@@ -86,7 +88,6 @@ public class MyShopController {
 	@GetMapping("cart")
 	public String cartGet(Model model) {
         ////////------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
-		System.out.println("cart 보여주는 페이지로 옴!!!!");
 		int member_id = 1;
 		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
 			
@@ -109,7 +110,6 @@ public class MyShopController {
 			for(OptionVo optionVo : optionVoList) {
 				cart_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
 			}
-			System.out.println("장바구니 총 상품금액 : "  + cart_total_price);
 			
 			model.addAttribute("cart_total_price", cart_total_price);
 			model.addAttribute("workVoList", workVoList);
@@ -203,7 +203,6 @@ public class MyShopController {
 		return "home/myshop/orderinquiry_view2";	// view2는 join을 최대한 적게 하는 방식 -> 대신 테이블별로 다 나눠져서 데이터를 넘김
 	}
 	
-
 	@RequestMapping("order_form") // 작품 상세페이지 or 장바구니 페이지에서 -> 작품 주문 페이지로 이동. DB에 저장하는 건 없음. DB저장은 실제로 주문할 때만.
 	public String order_form(@RequestParam(name = "work_id", required = false) String work_id, @RequestParam(name = "opt1", required = false) String option_media, 
 			@RequestParam(name = "opt2", required = false) String option_frame, @RequestParam(name = "opt3", required = false) String option_matt, 
@@ -221,6 +220,8 @@ public class MyShopController {
 		List<WorkVo> workVoList = new ArrayList<>();
 		List<OptionVo> optionVoList = new ArrayList<>();
 		int member_id = 1;
+		String fromWhatPage = "";
+		
 		
 		// 주문정보에 들어갈 고객(회원) 정보 DB에서 가져오기 (비회원은 정보 가져올 거 없음)
 		if (session.getAttribute("sessionMember_id") != null) { // 회원일때만 member객체 가져오기
@@ -257,6 +258,9 @@ public class MyShopController {
 			optionVo.setOption_quantity(Integer.parseInt(option_quantity));
 			optionVo = settingOptions(optionVo, work_price);	// optionVo의 id는 DB에서 SEQ.nextval로 세팅해야. 
 			optionVoList.add(optionVo);
+			
+			fromWhatPage = "painting_item";
+			
 		}
 		//-------------------  작품 및 옵션 정보들 이전페이지(painting_item.jsp 또는 cart.jsp)와 DB에서 가져오기 ---------------//
 		
@@ -265,60 +269,75 @@ public class MyShopController {
 			total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
 		}
 		
+		
 		// model에 작품, 회원, 옵션 정보들 담아서 order_form페이지에 전달 하기
 		model.addAttribute("memberVo", memberVo);
 		model.addAttribute("workVoList", workVoList);
 		model.addAttribute("optionVoList", optionVoList);
 		model.addAttribute("total_price", total_price);
+		model.addAttribute("workIdList", workIdList);
+		model.addAttribute("optionIdList", optionIdList);
+		model.addAttribute("fromWhatPage", fromWhatPage);
+		
+		System.out.println("order_form에서 확인해보는 optionIdList의 크기 : " + optionIdList.size());
 		
 		return "home/myshop/order_form";
 	}
 
 	
 	@PostMapping("order_result") // order_form에서 '주문하기'버튼 클릭 후 주문작업(DB에 정보 집어넣기). 
-	public String order_resultPost(Order_MemberVo order_memberVo, 
+	public String order_resultPost(Order_MemberVo order_memberVo, String fromWhatPage,
 			String total_price, String work_id, Model model) {
 		// order_form에서 order_result로 보내는 정보들 : optionVo(session으로받), delivery_name,phone,zip,road,address,request(order_memberVo로 받음), 
 		//total_price, final_price, work_id 총 8개
 		
-		// 변수들 초기화
-		List<Integer> workIdList = new ArrayList<>();
-		List<Integer> optionIdList = new ArrayList<>();
-		
+		int option_id = 1; // 변수 초기화용.
 		
 		int member_id = (int) session.getAttribute("sessionMember_id");
 		
-		optionVo = (OptionVo) session.getAttribute("optionVo"); // order_form.jsp에서 <c:set var="optionVo" value="${optionVo}" scope="session"/> 이렇게 세션으로 set했었음
-//		session.removeAttribute("optionVo");	// 세션 일단 지우면 안됨
+		// 작품 상세페이지에서 넘어온 경우에만 optionVo(1개)를 DB에 저장하기. 
+		if(fromWhatPage.equals("painting_item")) {    
+			// 작품 상세페이지에서 order_result로 넘어온 경우 optionVo가 order_form을 통해 만들어져있긴 한데 DB에 저장은 안돼있음. DB에 저장해야.  // 장바구니를 통해서 1개 이상의 작품을 구매하는 경우엔 이미 cart.jsp에서 optionVo들을 DB에 저장해놨음. 
+			optionVo = (OptionVo) session.getAttribute("optionVo"); // order_form.jsp에서 <c:set var="optionVo" value="${optionVo}" scope="session"/> 이렇게 세션으로 set했었음
+			
+			// 회원 주문상세 테이블(Order_Detail)에 주문 저장하기 "전에" 
+			// optionVo의 id가 필요하기 때문에 optionVo를 Work_Option테이블에 저장
+			option_id = shopservice.insertOption(optionVo);
+			System.out.println("painting_item에서 넘어오고 저장한 optionVo의 option_id : " + option_id);
+			session.removeAttribute("optionVo");	// optionVo를 DB에 저장했으니까 session은 지우기
+		} 
 		
 		// 배송 테이블 값부터 먼저 insert(회원 주문 테이블에 배송고유번호가 외래키로 배송테이블을 참조하고 있어서 얘 먼저 해줘야 가능)후 delivery_id 리턴 받음
-		DeliveryVo deliveryVo = new DeliveryVo();
-		int delivery_id = shopservice.insertDelivery(deliveryVo);
+		shopservice.insertDelivery();
+		int delivery_id2 = shopservice.insertDelivery2();
+		System.out.println("송장번호 한꺼번에 : "+ delivery_id2);
 		
-		// 회원 주문 테이블(Order_Member)에 주문 저장 후 Order_Member_SEQ의 현재 번호(회원주문 고유번호) 가져옴
+		
+		int delivery_id = shopservice.selectDeliverySeq();
+//		System.out.println("만들어진 송장번호1111 : " + delivery_id);
+		
+		// 회원 주문 테이블(Order_Member)DB에 주문 저장!! 직후 Order_Member_SEQ의 현재 번호(회원주문 고유번호) 리턴받음
 		int order_member_id = shopservice.insertOrder_Member(member_id, delivery_id, order_memberVo);	// order_memberVo는 이전페이지에서 받아옴
-		
-//		// 해당 주문건의 회원 주문 상세 테이블 가져오기
-//		Map<String, List<Integer>> orderDetail = shopservice.selectOrderDetail(order_member_id);
-//		
-//		Map<String, List<? extends Object>> workArtistVoMap = shopservice.selectMemberWorkList(orderDetail.get("workIdList")); // workArtistVoMap에 workVoList와 artistVoList가 담겨있음
-//		
-//		List<WorkVo> workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList"); 
-//		List<OptionVo> optionVoList = shopservice.selectOptionList(orderDetail.get("optionIdList")); // 주문 상세에 대한 option객체
-		
-		
-		// 회원 주문상세 테이블(Order_Detail)에 주문 저장 "전에" optionVo의 id가 필요하기 때문에 optionVo를 Work_Option테이블에 저장
-		int option_id = shopservice.insertOption(optionVo);
+		System.out.println("주문 저장 완료           !!!! ");
 		
 		// 회원 주문상세 테이블(Order_Detail)에 주문 저장
 		int total_price_int = Integer.parseInt(total_price);
-		int work_id_int = Integer.parseInt(work_id);
-		shopservice.insertOrder_Detail(order_member_id, work_id_int, option_id, total_price_int);	// final_price도 넣어야하지만 일단 할인 구현 안하고 있으므로 total_price와 같아서 final_price대신 total_price 또 사용할 것.
+		
+		List<Integer> workIdList = (List<Integer>) session.getAttribute("workIdList");
+		List<Integer> optionIdList = (List<Integer>) session.getAttribute("optionIdList");
+		
+		
+		if(fromWhatPage.equals("painting_item")) { // 작품상세페이지에서 넘어온 경우라면 따로 optionVo의 id를 가져와줘야함.    
+			optionIdList.add(option_id);
+		} 
+		
+		for(int i = 0; i < workIdList.size(); i++) {
+			shopservice.insertOrder_Detail(order_member_id, workIdList.get(i), optionIdList.get(i), total_price_int);
+		}
 		
 		return "redirect:order_result?order_member_id="+order_member_id;
 	}
 
-	
 	@GetMapping("order_result")	// 주문작업 완료 후(-PostMapping으로 한 order_result. DB에 집어넣기) 결과물 보여주기(DB에서 다시 가져오기)
 	public String order_resultGet(int order_member_id, Model model) {
 		
@@ -327,6 +346,8 @@ public class MyShopController {
 		
 		// 해당 주문건의 회원 주문 상세 테이블 가져오기
 		Map<String, List<Integer>> orderDetail = shopservice.selectOrderDetail(order_member_id);	// optionIdList와 workIdList가 담겨있음.
+		System.out.println("회원 주문 상세 입력 완료1!!!!!");
+		
 		
 		// 옵션 객체들 DB에서 가져오기
 		List<OptionVo> optionVoList = shopservice.selectOptionList(orderDetail.get("optionIdList"));
@@ -334,10 +355,22 @@ public class MyShopController {
 		Map<String, List<? extends Object>> workArtistMap = shopservice.selectMemberWorkList(orderDetail.get("workIdList"));
 		List<WorkVo> workVoList = (List<WorkVo>) workArtistMap.get("workVoList");
 		
+		int order_total_price = 0;
+		for(OptionVo optionVo : optionVoList) {
+			order_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
+		}
 		
+		
+//		// 회원 객체 가져옴 (아직 비회원 구매기능은 구현 안해놔서 로그인 했을때만 제대로 작동)
+//		if(session.getAttribute("sessionMember_id") != null) {
+//			member_id = (int) session.getAttribute("sessionMember_id"); 
+//			memberVo = memberservice.selectOne(member_id);
+//		} 
+		
+		model.addAttribute("order_total_price", order_total_price);
 		model.addAttribute("memberVo", memberVo);
 		model.addAttribute("workVoList", workVoList);
-		model.addAttribute("optionVoList", optionVoList);	// 옵션은 세션으로 set해놔서 필요없음
+		model.addAttribute("optionVoList", optionVoList);	
 		model.addAttribute("order_memberVo",order_memberVo);
 		
 		return "home/myshop/order_result";

@@ -92,7 +92,12 @@
 
 
             <form name="forderform" id="forderform" method="post" action="order_result" autocomplete="off">
+            	<input type="hidden" name="fromWhatPage" value="${fromWhatPage}">
             	<input type="hidden" name="total_price" value="${total_price}">
+            	
+            	<c:set var="workIdList" value="${workIdList}" scope="session"/>
+            	<c:set var="optionIdList" value="${optionIdList}" scope="session"/>
+            	
                 <div id="sod_frm" class="sod_frm_pc">
                     <div class="maxinner">
                         <!-- 주문상품 확인 시작 { -->

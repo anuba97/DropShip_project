@@ -109,100 +109,101 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-title="No" class="td_no">
-                                            1 </td>
-                                        <td data-title="Product" class="td_prd">
-                                            <div class="sod_product">
-                                                <div class="sod_img">
-                                                    <a href="https://bxgs.co.kr/shop/item.php?it_id=1652406953" style="background-image: url(/admin/img/work/${workVo.work_img_url})">
-                                                        <span class="hide">제품이미지</span>
-                                                    </a>
-                                                </div>
-                                                <div class="sod_name">
-                                                    <a href="../shop/painting_item?id=${workVo.id}" class="prd_name">
-                                                        <strong>${workVo.work_name}</strong>
-                                                        <span>${workVo.artist_name}</span>
-                                                    </a>
-                                                    <div class="sod_opt">
-                                                        <ul>
-                                                        	<c:if test="${optionVo.option_size == 1}">
-	                                                            <li>사이즈 : 20.0cm x 35.7cm(+36,500)</li>
-                                                        	</c:if>
-                                                        	<c:if test="${optionVo.option_size == 2}">
-	                                                            <li>사이즈 : 25.0cm x 44.6cm(+50,300)</li>
-                                                        	</c:if>
-                                                        	<c:if test="${optionVo.option_media == 1}">
-	                                                            <li>미디어 : 캔버스(+0)</li>
-                                                        	</c:if>
-                                                        	<c:if test="${optionVo.option_media == 2}">
-	                                                            <li>미디어 : 파인아트(+${optionVo.option_selected_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price})</li>
-                                                        	</c:if>
-                                                        	<c:if test="${optionVo.option_mattier == 1}">
-	                                                            <li>리터치 : 없음(+0)</li>
-                                                        	</c:if>
-                                                        	<c:if test="${optionVo.option_mattier == 2}">
-	                                                            <li>리터치 : 선택(+0)</li>
-                                                        	</c:if>
-                                                        	<c:choose>
-																<c:when test="${optionVo.option_frame == 1}">
-																	<li>프레임 : 캔버스판넬(+0)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 2}">
-																	<li>프레임 : 래핑캔버스(+0)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 3}">
-																	<li>프레임 : 띄움(+4,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 4}">
-																	<li>프레임 : 원목 띄움(+16,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 5}">
-																	<li>프레임 : 올림우드(+20,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 6}">
-																	<li>프레임 : 앤틱D실버(+0)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 7}">
-																	<li>프레임 : 원목베이지(+30,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 8}">
-																	<li>프레임 : 관화이트(+28,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 9}">
-																	<li>프레임 : 관우드(+28,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_frame == 10}">
-																	<li>프레임 : 관블랙(+28,000)</li>
-																</c:when>
-															</c:choose>
-															<c:choose>
-																<c:when test="${optionVo.option_matt == 1}">
-																	<li>매트(여백) : 없음(+0)</li>
-																</c:when>
-																<c:when test="${optionVo.option_matt == 2}">
-																	<li>매트(여백) : 2cm(+10,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_matt == 3}">
-																	<li>매트(여백) : 3cm(+20,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_matt == 4}">
-																	<li>매트(여백) : 6cm(+30,000)</li>
-																</c:when>
-																<c:when test="${optionVo.option_matt == 5}">
-																	<li>매트(여백) : 11cm(+40,000)</li>
-																</c:when>
-															</c:choose>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td data-title="Unit price" class="td_numbig text_right">${workVo.work_price} 원</td>
-                                        <td data-title="Quantity" class="td_num">${optionVo.option_quantity}</td>
-                                        <td data-title="Subtotal" class="td_numbig text_right"><span class="total_price">${optionVo.option_selected_price}원 * ${optionVo.option_quantity}개 <br><br> ${optionVo.option_selected_price * optionVo.option_quantity}</span> 원</td>
-                                    </tr>
-
+                                	<c:forEach items="${optionVoList}" var="optionVo" varStatus="loop">
+	                                    <tr>
+	                                        <td data-title="No" class="td_no">
+	                                            ${loop.index+1} </td>
+	                                        <td data-title="Product" class="td_prd">
+	                                            <div class="sod_product">
+	                                                <div class="sod_img">
+	                                                    <a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" style="background-image: url(/admin/img/work/${workVoList[loop.index].work_img_url})">
+	                                                        <span class="hide">제품이미지</span>
+	                                                    </a>
+	                                                </div>
+	                                                <div class="sod_name">
+	                                                    <a href="../shop/painting_item?id=${workVoList[loop.index].id}" class="prd_name">
+	                                                        <strong>${workVoList[loop.index].work_name}</strong>
+	                                                        <span>${workVoList[loop.index].artist_name}</span>
+	                                                    </a>
+	                                                    <div class="sod_opt">
+	                                                        <ul>
+	                                                        	<c:if test="${optionVo.option_size == 0}">
+		                                                            <li>사이즈 : 20.0cm x 35.7cm(+36,500)</li>
+	                                                        	</c:if>
+	                                                        	<c:if test="${optionVo.option_size == 1}">
+		                                                            <li>사이즈 : 25.0cm x 44.6cm(+50,300)</li>
+	                                                        	</c:if>
+	                                                        	<c:if test="${optionVo.option_media == 1}">
+		                                                            <li>미디어 : 캔버스(+0)</li>
+	                                                        	</c:if>
+	                                                        	<c:if test="${optionVo.option_media == 2}">
+		                                                            <li>미디어 : 파인아트(+${optionVo.option_selected_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price})</li>
+	                                                        	</c:if>
+	                                                        	<c:if test="${optionVo.option_mattier == 1}">
+		                                                            <li>리터치 : 없음(+0)</li>
+	                                                        	</c:if>
+	                                                        	<c:if test="${optionVo.option_mattier == 2}">
+		                                                            <li>리터치 : 선택(+0)</li>
+	                                                        	</c:if>
+	                                                        	<c:choose>
+																	<c:when test="${optionVo.option_frame == 1}">
+																		<li>프레임 : 캔버스판넬(+0)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 2}">
+																		<li>프레임 : 래핑캔버스(+0)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 3}">
+																		<li>프레임 : 띄움(+4,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 4}">
+																		<li>프레임 : 원목 띄움(+16,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 5}">
+																		<li>프레임 : 올림우드(+20,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 6}">
+																		<li>프레임 : 앤틱D실버(+0)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 7}">
+																		<li>프레임 : 원목베이지(+30,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 8}">
+																		<li>프레임 : 관화이트(+28,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 9}">
+																		<li>프레임 : 관우드(+28,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_frame == 10}">
+																		<li>프레임 : 관블랙(+28,000)</li>
+																	</c:when>
+																</c:choose>
+																<c:choose>
+																	<c:when test="${optionVo.option_matt == 1}">
+																		<li>매트(여백) : 없음(+0)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_matt == 2}">
+																		<li>매트(여백) : 2cm(+10,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_matt == 3}">
+																		<li>매트(여백) : 3cm(+20,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_matt == 4}">
+																		<li>매트(여백) : 6cm(+30,000)</li>
+																	</c:when>
+																	<c:when test="${optionVo.option_matt == 5}">
+																		<li>매트(여백) : 11cm(+40,000)</li>
+																	</c:when>
+																</c:choose>
+	                                                        </ul>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </td>
+	                                        <td data-title="Unit price" class="td_numbig text_right">${workVoList[loop.index].work_price} 원</td>
+	                                        <td data-title="Quantity" class="td_num">${optionVo.option_quantity}</td>
+	                                        <td data-title="Subtotal" class="td_numbig text_right"><span class="total_price">${optionVo.option_selected_price}원 * ${optionVo.option_quantity}개 <br><br> ${optionVo.option_selected_price * optionVo.option_quantity}</span> 원</td>
+	                                    </tr>
+                                	</c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -214,11 +215,11 @@
                             <div class="fin_total_box">
                                 <div class="fin_total_top">
                                     <div class="fin_total_cate">총 주문금액</div>
-                                    <div class="fin_total_price"><strong>${optionVo.option_selected_price * optionVo.option_quantity+2000}</strong> 원</div><!--나중에 리스트로 받아오는거 구현하고 해야  -->
+                                    <div class="fin_total_price"><strong>${order_total_price+2000}</strong> 원</div><!--나중에 리스트로 받아오는거 구현하고 해야  -->
                                 </div>
                                 <div class="fin_total_btm">
                                     <div class="fin_total_cate">주문금액</div>
-                                    <div class="fin_total_price"><strong>${optionVo.option_selected_price * optionVo.option_quantity}</strong> 원</div>
+                                    <div class="fin_total_price"><strong>${order_total_price}</strong> 원</div>
                                 </div>
                                 <div class="fin_total_btm">
                                     <div class="fin_total_cate">배송비</div>
@@ -236,11 +237,11 @@
                             <div class="fin_total_box">
                                 <div class="fin_total_top">
                                     <div class="fin_total_cate">총 결제금액</div>
-                                    <div class="fin_total_price"><strong class="f-color">${optionVo.option_selected_price * optionVo.option_quantity+2000}</strong> 원</div>
+                                    <div class="fin_total_price"><strong class="f-color">${order_total_price+2000}</strong> 원</div>
                                 </div>
                                 <div class="fin_total_btm">
                                     <div class="fin_total_cate">총 주문금액</div>
-                                    <div class="fin_total_price"><strong>${optionVo.option_selected_price * optionVo.option_quantity+2000}</strong> 원</div>
+                                    <div class="fin_total_price"><strong>${order_total_price+2000}</strong> 원</div>
                                 </div>
                                 <div class="fin_total_btm">
                                     <div class="fin_total_cate">미결제액</div>

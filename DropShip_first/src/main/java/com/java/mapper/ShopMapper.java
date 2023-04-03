@@ -1,6 +1,7 @@
 package com.java.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,6 +18,8 @@ import com.java.vo.WorkVo;
 @Mapper
 public interface ShopMapper {
 
+	
+	
 	//////////////////↓  Work(작품) 관련 ↓         /////////////////////////
 	
 	int selectWorkCount();  // 작품 list page 카운트하는 구문
@@ -51,7 +54,8 @@ public interface ShopMapper {
 			String delivery_zip, String delivery_road, String delivery_address, String delivery_request);
 //	void insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo);
 
-	int insertDelivery(DeliveryVo deliveryVo);
+	int insertDelivery();
+	int insertDelivery2();
 
 	int selectDeliverySeq();
 
@@ -61,7 +65,14 @@ public interface ShopMapper {
 	int insertOption(OptionVo optionVo);
 	
 	void insertOrder_Detail(int order_member_id, int work_id, int option_id, int total_price);
+//	void insertOrder_Details2(Map<String, Object> paramMap);
+	
 
+	// 작품상세페이지 or 장바구니에서 주문할 때 주문상세 DB에 저장
+	void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
+			int total_price_int);
+
+	
 	int selectOptionSeq();
 
 	Order_MemberVo selectOrderMemberOne_result(int order_member_id);
@@ -87,6 +98,10 @@ public interface ShopMapper {
 
 	List<Cart_MemberVo> selectCart_MemberList(int member_id);
 
+	int insertOrder_Member2(int member_id, int delivery_id, Order_MemberVo order_memberVo);
+
+
+	
 
 
 
