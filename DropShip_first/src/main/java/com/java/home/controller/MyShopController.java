@@ -87,6 +87,7 @@ public class MyShopController {
 	// 장바구니 페이지 보여줄 때
 	@GetMapping("cart")
 	public String cartGet(Model model) {
+		
         ////////------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
 		int member_id = 1;
 		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
@@ -96,26 +97,32 @@ public class MyShopController {
 			// cart_MemberMap엔 workIdList(int)와 optionIdList(int)를 리턴받음.
 			Map<String, List<Integer>> cart_MemberMap = shopservice.selectCart_MemberList(member_id);
 			
-			// 리턴받았던 work와 option 각각의 id들을 토대로 optionVo들과 workVo들과 artistVo들이 담긴 List를 가져옴
-			List<OptionVo> optionVoList = shopservice.selectOptionList(cart_MemberMap.get("optionIdList"));
-			Map<String, List<? extends Object>> workArtistVoMap= shopservice.selectMemberWorkList(cart_MemberMap.get("workIdList"));
-		//////////------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
-			
-	        //////////------------- cart.jsp에 뿌려주기 위한 과정 ---------------------//////////
-			List<WorkVo> workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList");
-			List<ArtistVo> artistVoList = (List<ArtistVo>) workArtistVoMap.get("artistVoList");
-			
-			
-			int cart_total_price = 0;
-			for(OptionVo optionVo : optionVoList) {
-				cart_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
+			if(cart_MemberMap.get("workIdList").size() != 0) {	// 장바구니에 작품이 존재할 때
+				// 리턴받았던 work와 option 각각의 id들을 토대로 optionVo들과 workVo들과 artistVo들이 담긴 List를 가져옴
+				List<OptionVo> optionVoList = shopservice.selectOptionList(cart_MemberMap.get("optionIdList"));
+				Map<String, List<? extends Object>> workArtistVoMap= shopservice.selectMemberWorkList(cart_MemberMap.get("workIdList"));
+				//////////------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
+				
+				//////////------------- cart.jsp에 뿌려주기 위한 과정 ---------------------//////////
+				List<WorkVo> workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList");
+				List<ArtistVo> artistVoList = (List<ArtistVo>) workArtistVoMap.get("artistVoList");
+				
+				
+				int cart_total_price = 0;
+				for(OptionVo optionVo : optionVoList) {
+					cart_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
+				}
+				
+				model.addAttribute("cart_total_price", cart_total_price);
+				model.addAttribute("workVoList", workVoList);
+				model.addAttribute("artistVoList", artistVoList);
+				model.addAttribute("optionVoList", optionVoList);
+				//////////------------- cart.jsp에 뿌려주기 위한 과정 ----------------------///////////
+			} else {	// 장바구니에 작품이 존재하지 않을 때
+				model.addAttribute("isEmptyCart", "Empty");
 			}
 			
-			model.addAttribute("cart_total_price", cart_total_price);
-			model.addAttribute("workVoList", workVoList);
-			model.addAttribute("artistVoList", artistVoList);
-			model.addAttribute("optionVoList", optionVoList);
-	        //////////------------- cart.jsp에 뿌려주기 위한 과정 ----------------------///////////
+			
 		} 
 		return "home/myshop/cart";
 	}
@@ -221,7 +228,6 @@ public class MyShopController {
 		List<OptionVo> optionVoList = new ArrayList<>();
 		int member_id = 1;
 		String fromWhatPage = "";
-		
 		
 		// 주문정보에 들어갈 고객(회원) 정보 DB에서 가져오기 (비회원은 정보 가져올 거 없음)
 		if (session.getAttribute("sessionMember_id") != null) { // 회원일때만 member객체 가져오기
@@ -360,18 +366,17 @@ public class MyShopController {
 			order_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
 		}
 		
-		
-//		// 회원 객체 가져옴 (아직 비회원 구매기능은 구현 안해놔서 로그인 했을때만 제대로 작동)
-//		if(session.getAttribute("sessionMember_id") != null) {
-//			member_id = (int) session.getAttribute("sessionMember_id"); 
-//			memberVo = memberservice.selectOne(member_id);
-//		} 
-		
 		model.addAttribute("order_total_price", order_total_price);
 		model.addAttribute("memberVo", memberVo);
 		model.addAttribute("workVoList", workVoList);
 		model.addAttribute("optionVoList", optionVoList);	
 		model.addAttribute("order_memberVo",order_memberVo);
+
+		// 장바구니에서 주문한거면 주문끝났으니 장바구니 테이블에서 work_id, option_id 삭제
+		System.out.println("멤버고유번호 : "+ memberVo.getId());	// 안나올수도.
+//		shopservice.deleteCart_member(memberVo.getId());
+		
+		
 		
 		return "home/myshop/order_result";
 	}

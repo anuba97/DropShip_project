@@ -113,116 +113,120 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<c:forEach items="${optionVoList}" var="optionVo" varStatus="loop">
-	                                    <tr>
-	                                        <td data-title="No" class="td_chk chk-box">
-	                                            <input type="checkbox" name="ct_chk[]" value="${workVoList[loop.index].id}" id="ct_chk_${workVoList[loop.index].id}" checked="checked" class="selec_chk">
-	                                            <label for="ct_chk_${workVoList[loop.index].id}"><span></span><b class="sound_only">상품</b></label>
-	                                        </td>
-	                                        <td data-title="Product" class="td_prd">
-	                                            <div class="sod_img"><a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" style="background-image:url(/admin/img/work/${workVoList[loop.index].work_img_url})"><span class="hide">제품이미지</span></a></div>
-	                                            <div class="sod_name">
-	                                                <input type="hidden" name="it_id[]" value="${workVoList[loop.index].id}">
-<%-- 	                                                <input type="hidden" name="it_name[${workVoList[loop.index].id}]" value="${workVoList[loop.index].work_name}"> --%>
-	                                                <input type="hidden" name="optionIdList[]" value="${optionVo.id}">
-	                                                <a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" class="prd_name"><strong>${workVoList[loop.index].work_name}</strong><span>${artistVoList[loop.index].artist_korean_name}</span><span class="price_txt"></span>
-	                                                    <div class="sod_opt_txt">
-	                                                        <c:choose>
-	                                                            <c:when test="${optionVo.option_size == 0}">
-	                                                                <p>사이즈 : 20.0cm x 35.7cm<span class="price_txt">(+${optionVo.option_size_added_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_size == 1}">
-	                                                                <p>사이즈 : 25.0cm x 44.6cm<span class="price_txt">(+${optionVo.option_size_added_price})</span></p>
-	                                                            </c:when>
-	                                                        </c:choose>
-	
-	                                                        <c:choose>
-	                                                            <c:when test="${optionVo.option_media == 1}">
-	                                                                <p>미디어 : 캔버스<span class="price_txt">(+${optionVo.option_selected_price - optionVo.option_size_added_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price - workVo.work_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_media == 2}">
-	                                                                <p>미디어 : 파인아트<span class="price_txt">(+${optionVo.option_selected_price - optionVo.option_size_added_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price - workVo.work_price})</span></p>
-	                                                            </c:when>
-	                                                        </c:choose>
-	
-	                                                        <c:choose>
-	                                                            <c:when test="${optionVo.option_mattier == 1}">
-	                                                                <p>리터치 : 없음<span class="price_txt">(+0)</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_mattier == 2}">
-	                                                                <p>리터치 : 선택<span class="price_txt">(+0)</span></p>
-	                                                            </c:when>
-	                                                        </c:choose>
-	
-	                                                        <c:choose>
-	                                                            <c:when test="${optionVo.option_frame == 1}">
-	                                                                <p>프레임 : 캔버스판넬<span class="price_txt">(+0)</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 2}">
-	                                                                <p>프레임 : 래핑캔버스<span class="price_txt">(+0)</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 3}">
-	                                                                <p>프레임 : 띄움<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 4}">
-	                                                                <p>프레임 : 원목 띄움<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 5}">
-	                                                                <p>프레임 : 올림우드<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 6}">
-	                                                                <p>프레임 : 앤틱D실버<span class="price_txt">(+0)</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 7}">
-	                                                                <p>프레임 : 원목베이지<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 8}">
-	                                                                <p>프레임 : 관화이트<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 9}">
-	                                                                <p>프레임 : 관우드<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
-	                                                            </c:when>
-	                                                            <c:when test="${optionVo.option_frame == 10}">
-	                                                                <p>프레임 : 관블랙<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
-	                                                            </c:when>
-	                                                        </c:choose>
-	                                                        <p>매트(여백) :
-	                                                            <c:choose>
-	                                                                <c:when test="${optionVo.option_matt == 1}">
-	                                                                    없음<span class="price_txt">(+0)</span>
-	                                                                </c:when>
-	                                                                <c:when test="${optionVo.option_matt == 2}">
-	                                                                    2cm<span class="price_txt">(+10000)</span>
-	                                                                </c:when>
-	                                                                <c:when test="${optionVo.option_matt == 3}">
-	                                                                    3cm<span class="price_txt">(+20000)</span>
-	                                                                </c:when>
-	                                                                <c:when test="${optionVo.option_matt == 4}">
-	                                                                    6cm<span class="price_txt">(+30000)</span>
-	                                                                </c:when>
-	                                                                <c:when test="${optionVo.option_matt == 5}">
-	                                                                    11cm<span class="price_txt">(+40000)</span>
-	                                                                </c:when>
-	                                                            </c:choose>
-	                                                        </p>
-	                                                    </div>
-	                                                </a> </div>
-	                                        </td>
-	                                        <td data-title="Unit price" class="td_numbig">${workVoList[loop.index].work_price} 원</td>
-	                                        <td data-title="Quantity" class="td_num">${optionVo.option_quantity}</td>
-	                                        
-	                                        <input type="hidden" name="option_quantity[]" value="${optionVo.option_quantity}">
-	                                        <!--<td class="td_numbig">6,000</td>-->
-	                                        <!--<td class="td_dvr">선불</td>-->
-	                                        <td data-title="Subtotal" class="td_numbig text_right"><span id="sell_price_0" class="total_prc">${optionVo.option_selected_price}원 * ${optionVo.option_quantity}개 <br><br> ${optionVo.option_selected_price * optionVo.option_quantity}</span> 원</td>
-	                                    </tr>
-                                    </c:forEach>
-                                    <!-- 아래는 장바구니 담긴 상품 없을 때. if문으로 해야 -->
-                                    <!--                                     <tr> -->
-                                    <!--                                         <td colspan="5" class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림"> -->
-                                    <!--                                             <p>장바구니에 담긴 상품이 없습니다.</p> -->
-                                    <!--                                         </td> -->
-                                    <!--                                     </tr> -->
+                                	<c:if test="${isEmptyCart != 'Empty'}">
+	                                	<c:forEach items="${optionVoList}" var="optionVo" varStatus="loop">
+		                                    <tr>
+		                                        <td data-title="No" class="td_chk chk-box">
+		                                            <input type="checkbox" name="ct_chk[]" value="${workVoList[loop.index].id}" id="ct_chk_${workVoList[loop.index].id}" checked="checked" class="selec_chk">
+		                                            <label for="ct_chk_${workVoList[loop.index].id}"><span></span><b class="sound_only">상품</b></label>
+		                                        </td>
+		                                        <td data-title="Product" class="td_prd">
+		                                            <div class="sod_img"><a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" style="background-image:url(/admin/img/work/${workVoList[loop.index].work_img_url})"><span class="hide">제품이미지</span></a></div>
+		                                            <div class="sod_name">
+		                                                <input type="hidden" name="it_id[]" value="${workVoList[loop.index].id}">
+	<%-- 	                                                <input type="hidden" name="it_name[${workVoList[loop.index].id}]" value="${workVoList[loop.index].work_name}"> --%>
+		                                                <input type="hidden" name="optionIdList[]" value="${optionVo.id}">
+		                                                <a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" class="prd_name"><strong>${workVoList[loop.index].work_name}</strong><span>${artistVoList[loop.index].artist_korean_name}</span><span class="price_txt"></span>
+		                                                    <div class="sod_opt_txt">
+		                                                        <c:choose>
+		                                                            <c:when test="${optionVo.option_size == 0}">
+		                                                                <p>사이즈 : 20.0cm x 35.7cm<span class="price_txt">(+${optionVo.option_size_added_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_size == 1}">
+		                                                                <p>사이즈 : 25.0cm x 44.6cm<span class="price_txt">(+${optionVo.option_size_added_price})</span></p>
+		                                                            </c:when>
+		                                                        </c:choose>
+		
+		                                                        <c:choose>
+		                                                            <c:when test="${optionVo.option_media == 1}">
+		                                                                <p>미디어 : 캔버스<span class="price_txt">(+${optionVo.option_selected_price - optionVo.option_size_added_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price - workVo.work_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_media == 2}">
+		                                                                <p>미디어 : 파인아트<span class="price_txt">(+${optionVo.option_selected_price - optionVo.option_size_added_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price - workVo.work_price})</span></p>
+		                                                            </c:when>
+		                                                        </c:choose>
+		
+		                                                        <c:choose>
+		                                                            <c:when test="${optionVo.option_mattier == 1}">
+		                                                                <p>리터치 : 없음<span class="price_txt">(+0)</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_mattier == 2}">
+		                                                                <p>리터치 : 선택<span class="price_txt">(+0)</span></p>
+		                                                            </c:when>
+		                                                        </c:choose>
+		
+		                                                        <c:choose>
+		                                                            <c:when test="${optionVo.option_frame == 1}">
+		                                                                <p>프레임 : 캔버스판넬<span class="price_txt">(+0)</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 2}">
+		                                                                <p>프레임 : 래핑캔버스<span class="price_txt">(+0)</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 3}">
+		                                                                <p>프레임 : 띄움<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 4}">
+		                                                                <p>프레임 : 원목 띄움<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 5}">
+		                                                                <p>프레임 : 올림우드<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 6}">
+		                                                                <p>프레임 : 앤틱D실버<span class="price_txt">(+0)</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 7}">
+		                                                                <p>프레임 : 원목베이지<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 8}">
+		                                                                <p>프레임 : 관화이트<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 9}">
+		                                                                <p>프레임 : 관우드<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+		                                                            </c:when>
+		                                                            <c:when test="${optionVo.option_frame == 10}">
+		                                                                <p>프레임 : 관블랙<span class="price_txt">(+${optionVo.option_frame_added_price})</span></p>
+		                                                            </c:when>
+		                                                        </c:choose>
+		                                                        <p>매트(여백) :
+		                                                            <c:choose>
+		                                                                <c:when test="${optionVo.option_matt == 1}">
+		                                                                    없음<span class="price_txt">(+0)</span>
+		                                                                </c:when>
+		                                                                <c:when test="${optionVo.option_matt == 2}">
+		                                                                    2cm<span class="price_txt">(+10000)</span>
+		                                                                </c:when>
+		                                                                <c:when test="${optionVo.option_matt == 3}">
+		                                                                    3cm<span class="price_txt">(+20000)</span>
+		                                                                </c:when>
+		                                                                <c:when test="${optionVo.option_matt == 4}">
+		                                                                    6cm<span class="price_txt">(+30000)</span>
+		                                                                </c:when>
+		                                                                <c:when test="${optionVo.option_matt == 5}">
+		                                                                    11cm<span class="price_txt">(+40000)</span>
+		                                                                </c:when>
+		                                                            </c:choose>
+		                                                        </p>
+		                                                    </div>
+		                                                </a> </div>
+		                                        </td>
+		                                        <td data-title="Unit price" class="td_numbig">${workVoList[loop.index].work_price} 원</td>
+		                                        <td data-title="Quantity" class="td_num">${optionVo.option_quantity}</td>
+		                                        
+		                                        <input type="hidden" name="option_quantity[]" value="${optionVo.option_quantity}">
+		                                        <!--<td class="td_numbig">6,000</td>-->
+		                                        <!--<td class="td_dvr">선불</td>-->
+		                                        <td data-title="Subtotal" class="td_numbig text_right"><span id="sell_price_0" class="total_prc">${optionVo.option_selected_price}원 * ${optionVo.option_quantity}개 <br><br> ${optionVo.option_selected_price * optionVo.option_quantity}</span> 원</td>
+		                                    </tr>
+	                                    </c:forEach>
+                                    </c:if>
+                                    <!-- 장바구니 담긴 상품 없을 때. -->
+                                    <c:if test="${isEmptyCart == 'Empty'}">
+	                                     <tr>
+	                                         <td colspan="5" class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림">
+	                                             <p>장바구니에 담긴 상품이 없습니다.</p>
+	                                         </td>
+	                                     </tr>
+                                    </c:if>
                                 </tbody>
                             </table>
                             <div class="btn_cart_del">
