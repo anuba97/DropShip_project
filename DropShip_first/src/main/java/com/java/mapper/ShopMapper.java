@@ -59,6 +59,8 @@ public interface ShopMapper {
 
 	int selectDeliverySeq();
 
+	int insertOrder_Member2(int member_id, int delivery_id, Order_MemberVo order_memberVo);
+	
 	int selectOrderMemberSeq();
 
 	// Work_Option 테이블 (작품 옵션 테이블) 에 optionVo 저장후 바로 option고유번호(id)반환받기
@@ -98,7 +100,8 @@ public interface ShopMapper {
 
 	List<Cart_MemberVo> selectCart_MemberList(int member_id);
 
-	int insertOrder_Member2(int member_id, int delivery_id, Order_MemberVo order_memberVo);
+	// 장바구니에서 작품 주문 후 장바구니에 담긴 것들 삭제
+	void deleteCart_member(int member_id, List<Integer> optionIdList);
 
 
 	

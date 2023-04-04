@@ -75,6 +75,9 @@ public interface ShopService {
 			int total_price_int);
 //	void insertOrder_Details2(Map<String, Object> paramMap);
 
+	// 장바구니에서 작품 주문 후 장바구니에 담긴 것들 삭제
+	void deleteCart_member(int member_id, List<Integer> optionIdList);
+
 
 
 

@@ -231,40 +231,42 @@
                             </table>
                             <div class="btn_cart_del">
                                 <button type="button" onclick="return form_check('seldelete');">선택삭제</button>
+<!--                                 <button type="button" onclick="return form_check('seldelete');">선택삭제</button> -->
                                 <button type="button" onclick="return form_check('alldelete');">장바구니 비우기</button>
                             </div>
                         </div>
 
                         <div id="sod_bsk_tot">
-                            <ul>
-                                <li class="sod_bsk_cos">
-                                    <span>총 상품금액</span>
-                                    <strong>${cart_total_price}</strong>
-                                    <em>원</em>
-                                </li>
-                                <li class="sod_bsk_dvr">
-                                    <i>+</i>
-                                    <span>배송비</span>
-                                    <strong>2000</strong>
-                                    <em>원</em>
-                                </li>
-                                <!--
-			                    <li class="sod_bsk_pt">
-			                        <i>+</i>
-			                        <span>포인트</span>
-			                        <strong>6,000</strong>
-			                        <em>원</em>
-			                    </li>
-			                    -->
-                                <li class="sod_bsk_cnt">
-                                    <i>=</i>
-                                    <span>총 결제금액</span>
-                                    <strong>${cart_total_price + 2000}</strong>
-                                    <em>원</em>
-                                </li>
-                            </ul>
+		                    <c:if test="${isEmptyCart != 'Empty'}">
+	                            <ul>
+	                                <li class="sod_bsk_cos">
+	                                    <span>총 상품금액</span>
+	                                    <strong>${cart_total_price}</strong>
+	                                    <em>원</em>
+	                                </li>
+	                                <li class="sod_bsk_dvr">
+	                                    <i>+</i>
+	                                    <span>배송비</span>
+	                                    <strong>2000</strong>
+	                                    <em>원</em>
+	                                </li>
+	                                <!--
+				                    <li class="sod_bsk_pt">
+				                        <i>+</i>
+				                        <span>포인트</span>
+				                        <strong>6,000</strong>
+				                        <em>원</em>
+				                    </li>
+				                    -->
+	                                <li class="sod_bsk_cnt">
+	                                    <i>=</i>
+	                                    <span>총 결제금액</span>
+	                                    <strong>${cart_total_price + 2000}</strong>
+	                                    <em>원</em>
+	                                </li>
+	                            </ul>
+		                    </c:if>
                         </div>
-
                         <div id="sod_bsk_act">
                             <div class="btn-confirm-wrap">
                                 <input type="hidden" name="url" value="./orderform.php">
@@ -370,7 +372,35 @@
                         f.act.value = act;
 //                         f.action = "../shop/best_list";
 //                         f.submit();
-                    }
+
+						/* 체크된 작품의 id만 삭제하게. 구매와 동일 */
+                	    $('input[name="ct_chk[]"]').each(function() {
+                	        if ($(this).is(':checked')) {
+               	        	   selectedWorksId.push($(this).val());	/* 체크된 작품의 workId들을 배열에 집어넣기 */
+               	        	   
+               	        	   var optionId= $(this).closest('tr').find('input[name="optionIdList[]"]').val(); 
+               	        	   selectedOptionsId.push(optionId); /* 체크된 작품의 optionId들을 배열에 집어넣기 */
+                	        }
+                     	 });
+                	    $('input[name="selectedWorksId"]').val(selectedWorksId);
+                	    $('input[name="selectedOptionsId"]').val(selectedOptionsId);
+                	    
+						$.ajax({
+							url : "../myshop/deleteCart",
+							data : { "work_id_array" : JSON.stringify(selectedWorksId), 
+								"option_id_array" : JSON.stringify(selectedOptionsId)},
+							dataType : "POST",
+							success : function(result){
+								alert(result);
+								location.href=""
+							}, 
+							error : function(){
+								alert("ajax실패");
+							}
+							
+						}); // ajax
+
+                    } // act 관련 if
 
                     return true;
                 }

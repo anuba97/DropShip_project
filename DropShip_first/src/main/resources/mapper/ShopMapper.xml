@@ -207,7 +207,7 @@
 	  </select>
 	  
 	  
-	<!-- 회원 마이페이지주문 상세조회  -->
+	<!-- 회원 마이페이지주문 상세조회(join5번 하는 경우)  -->
 	  <select id="selectOptionOneInquiryView" resultType="com.java.vo.Order_Detail_inquire_viewVo">
 	    SELECT om.id, om.order_date, om.delivery_name, om.delivery_phone, om.delivery_zip, om.delivery_road, om.delivery_address, om.delivery_request,
 		       wo.option_size, wo.option_size_added_price, wo.option_media, wo.option_media_price_multiple, wo.option_mattier, wo.option_frame,
@@ -223,7 +223,7 @@
 		JOIN Member m ON om.member_id = m.id
 		WHERE om.id = #{order_member_id}
 	  </select>
-	<!-- 위 방식은 무식하게 조인으로 한번에 하는 방식. 편하고 성능 좋아  -->
+	<!-- 위 방식은 무식하게 조인으로 한번에 하는 방식. 편하지만 테이블에 데이터 많아지면 느려질 수.  -->
 	
 	<!-- 아래 방식은 조인 적게하는 대신 여러번 걸쳐서 가져오는 방식. 유지보수/확장성 장점  -->
 	<!--  회원 주문 상세 객체 리스트를 받아옴 -->
@@ -241,9 +241,7 @@
 <!--             </foreach> -->
 <!--         ) ORDER BY id DESC -->
 <!-- 	  </select> -->
-	  
-	  
-	  
+
 	  <select id="selectOptionList" resultType="com.java.vo.OptionVo">
 		    <if test="optionIdList != null and optionIdList.size() > 0">
 		        SELECT * FROM work_option WHERE id IN (
@@ -253,10 +251,6 @@
 		        ) ORDER BY id DESC
 		    </if>
 	  </select>
-	  
-	  
-	  
-	  
 	  
 	  <!-- 회원 주문 상세용 work객체들 가져오기 -->
 	  <select id="selectMemberWorkList" resultType="com.java.vo.WorkVo">
@@ -282,11 +276,28 @@
 		 VALUES (CART_MEMBER_SEQ.NEXTVAL, #{member_id}, #{work_id}, #{option_id}, sysdate)
 	 </insert>
 	  
-	  
 	  <!-- 회원 장바구니 가져오기 -->
 	 <select id="selectCart_MemberList" resultType="com.java.vo.Cart_MemberVo">
 	  	SELECT * FROM Cart_Member WHERE member_id = #{member_id} ORDER BY added_date desc
      </select>
+     
+<!--      장바구니에서 모든 작품을 주문 후 장바구니에 담긴 것들 싹 다 삭제. -->
+<!--      <delete id="deleteCart_member"> -->
+<!--      	DELETE FROM cart_member WHERE member_id = #{member_id} -->
+<!--      </delete> -->
+     
+     <!-- 장바구니에서 일부 작품을 구매한거라면? -->
+     <delete id="deleteCart_member">
+		  DELETE FROM cart_member
+		  WHERE member_id = #{member_id}
+		  AND option_id IN (
+            <foreach collection="optionIdList" item="optionId" separator=",">
+                #{optionId}
+            </foreach>
+           )
+	  </delete>
+     
+     
 			 
 			
 			

@@ -344,6 +344,12 @@ public class ShopServiceImpl implements ShopService {
 		return map;
 	}
 
+	@Override
+	public void deleteCart_member(int member_id, List<Integer> optionIdList) {
+		shopMapper.deleteCart_member(member_id, optionIdList);
+		
+	}
+
 	
 
 	

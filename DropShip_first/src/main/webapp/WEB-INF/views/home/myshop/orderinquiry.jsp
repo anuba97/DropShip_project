@@ -207,12 +207,14 @@
 	                                        </tr>
                                     	</c:if>
                                     	<c:if test="${fn:length(order_detail_list) != 0}">
-	                                    	<c:forEach items="${order_detail_list}" var="order_detail_inquireVo">
+	                                    	<c:forEach items="${order_detail_list}" var="order_detail_inquireVo" varStatus="loop">
 		                                        <tr>
-		                                            <td data-title="주문번호" class="td-num">
-		                                                <div><fmt:formatDate value="${order_detail_inquireVo.order_date}" pattern="yyyy-MM-dd (E)  HH시 mm분"/></div>
-		                                                <a href="orderinquiry_view?order_member_id=${order_detail_inquireVo.order_member_id}">${order_detail_inquireVo.order_member_id}</a>
-		                                            </td>
+		                                            <c:if test="${loop.first || order_detail_inquireVo.order_member_id ne prevOrderMemberId}">	<!-- 이거 왜 이렇게하는지 1도 모르겠음. GPT쩐다 ㅋㅋㅋ -->
+											            <td data-title="주문번호" class="td-num" rowspan="${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}">
+											                <div><fmt:formatDate value="${order_detail_inquireVo.order_date}" pattern="yyyy-MM-dd (E)  HH시 mm분"/></div>
+											                <a href="orderinquiry_view?order_member_id=${order_detail_inquireVo.order_member_id}">${order_detail_inquireVo.order_member_id}</a>
+											            </td>
+											        </c:if>
 		                                            <td data-title="상품정보" class="td-product">
 		                                                <div class="product-box">
 		                                                    <div class="product-img">
@@ -231,7 +233,7 @@
 		                                            <!--<td class="td-numbig">146,700원</td>-->
 		                                            <td data-title="주문상태" class="td-state">
 													    <c:choose>
-													        <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
+													        <c:when test="${order_detail_inquireVo.order_status == 0}">입금${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}확인중</c:when>
 													        <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
 													        <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
 													        <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
@@ -240,6 +242,7 @@
 													    </c:choose>
 													</td>
 		                                        </tr>
+		                                        <c:set var="prevOrderMemberId" value="${order_detail_inquireVo.order_member_id}"/>
 	                                        </c:forEach>
                                     	</c:if>
                                     </tbody>
