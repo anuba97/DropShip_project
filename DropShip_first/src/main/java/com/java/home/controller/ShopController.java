@@ -48,8 +48,8 @@ public class ShopController {
 	}
 	
 	@GetMapping("painting_item")	// 작품 구매창 페이지로 이동
-	public String painting_item(String work_id, String artist_id, Model model) {
-		workVo = shopservice.selectWorkBuy(Integer.parseInt(work_id)); 
+	public String painting_item(int work_id, int artist_id, Model model) {
+		workVo = shopservice.selectWorkBuy(work_id); 
 		List<WorkVo> list = shopservice.selectWorkArtistAll(artist_id);
 		artistVo = shopservice.selectArtistAll(artist_id);
 		
@@ -72,7 +72,7 @@ public class ShopController {
 	}
 	
 	@GetMapping("artist_view")	  // 작가별 상세페이지
-	public String artist_view(String artist_id, Model model) {
+	public String artist_view(int artist_id, Model model) {
 		artistVo = shopservice.selectArtistAll(artist_id); 
 		List<WorkVo> list = shopservice.selectWorkArtistAll(artist_id);  
 		model.addAttribute("artistVo", artistVo); // 작가 전체  

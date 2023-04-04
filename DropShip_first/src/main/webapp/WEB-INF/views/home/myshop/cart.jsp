@@ -272,7 +272,7 @@
                                 <input type="hidden" name="url" value="./orderform.php">
                                 <input type="hidden" name="records" value="1">
                                 <input type="hidden" name="act" value="">
-                                <a href="https://bxgs.co.kr/shop/" class="btnset btn-type04">쇼핑 계속하기</a>
+                                <a href="/shop/painting_list" class="btnset btn-type04">쇼핑 계속하기</a>
                                 <button type="button" onclick="return form_check('buy');" class="btnset btn-type04 btn-line-brown">선택상품 주문</button>
                             </div>
                         </div>
@@ -389,15 +389,14 @@
 							url : "../myshop/deleteCart",
 							data : { "work_id_array" : JSON.stringify(selectedWorksId), 
 								"option_id_array" : JSON.stringify(selectedOptionsId)},
-							dataType : "POST",
+							type : "POST",
 							success : function(result){
 								alert(result);
-								location.href=""
+								location.href = "cart";
 							}, 
 							error : function(){
 								alert("ajax실패");
 							}
-							
 						}); // ajax
 
                     } // act 관련 if

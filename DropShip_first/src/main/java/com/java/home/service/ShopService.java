@@ -25,7 +25,7 @@ public interface ShopService {
 	
 	List<WorkVo> selectWorkNew();  // 작품 new 가져오기
 	
-	List<WorkVo> selectWorkArtistAll(String artist_id);  // 작가의 작품들 가져오기
+	List<WorkVo> selectWorkArtistAll(int artist_id);  // 작가의 작품들 가져오기
 
 	WorkVo selectWorkBuy(int work_id);  // 작품(구매창) 1개 가져오기
 
@@ -34,7 +34,7 @@ public interface ShopService {
 	
 	//////////////////↓  Artist(아티스트) 관련 ↓         /////////////////////////
 		
-	ArtistVo selectArtistAll(String artist_id);  // 작가 전체 가져오기
+	ArtistVo selectArtistAll(int artist_id);  // 작가 전체 가져오기
 	
 	Map<String, Object> selectArtistList(int page);  // 작가별 작가와 page 불러오기
 
@@ -57,7 +57,10 @@ public interface ShopService {
 	Order_MemberVo selectOrderMemberOne_result(int order_member_id);
 
 	// 회원 마이페이지 주문조회 클릭시
-	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id);
+	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id, String fr_date, String to_date);
+	
+	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
+	int selectOrder_member_count(int member_id, String fr_date, String to_date);
 
 	Order_Detail_inquire_viewVo selectOptionOneInquiryView(int order_member_id_int);
 
@@ -77,6 +80,8 @@ public interface ShopService {
 
 	// 장바구니에서 작품 주문 후 장바구니에 담긴 것들 삭제
 	void deleteCart_member(int member_id, List<Integer> optionIdList);
+
+
 
 
 

@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/home/img/favicon.ico" />
     <title>주문목록/배송조회</title>
+	<link type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -21,9 +22,6 @@
     <link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
-    <!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
     <script>
         // 자바스크립트에서 사용하는 전역변수 선언
         var g5_url = "https://bxgs.co.kr";
@@ -101,30 +99,56 @@
                 });
             </script>
             <script>
-                function set_date(today) {
-                    if (today == "오늘") {
-                        document.getElementById("sdate").value = "2023-03-31";
-                        document.getElementById("edate").value = "2023-03-31";
-                    } else if (today == "1개월") {
-                        document.getElementById("sdate").value = "2023-02-28";
-                        document.getElementById("edate").value = "2023-03-31";
-                    } else if (today == "3개월") {
-                        document.getElementById("sdate").value = "2022-12-31";
-                        document.getElementById("edate").value = "2023-03-31";
-                    } else if (today == "6개월") {
-                        document.getElementById("sdate").value = "2022-09-30";
-                        document.getElementById("edate").value = "2023-03-31";
-                    } else if (today == "9개월") {
-                        document.getElementById("sdate").value = "2022-06-30";
-                        document.getElementById("edate").value = "2023-03-31";
-                    } else if (today == "1년") {
-                        document.getElementById("sdate").value = "2022-03-31";
-                        document.getElementById("edate").value = "2023-03-31";
-                    } else if (today == "전체") {
-                        document.getElementById("sdate").value = "";
-                        document.getElementById("edate").value = "";
-                    }
-                }
+            	// 자바스크립로 가져온 날짜를 '2023-04-05' 형식으로 바꿔주는 함수
+	            function formatDate(date) {
+				    var year = date.getFullYear();
+				    var month = ("0" + (date.getMonth() + 1)).slice(-2);
+				    var day = ("0" + date.getDate()).slice(-2);
+				    return year + "-" + month + "-" + day;
+				}
+	            
+	            var todayDate = new Date();
+	            var formattedTodayDate = formatDate(todayDate);
+	            
+				function set_date(today) {
+				    if (today == "오늘") {
+				        document.getElementById("sdate").value = formattedTodayDate;
+				        document.getElementById("edate").value = formattedTodayDate;
+				    } else if (today == "1개월") {
+				        var monthAgo = new Date();
+				        monthAgo.setMonth(monthAgo.getMonth() - 1);
+				        var formattedMonthAgo = formatDate(monthAgo);
+				        document.getElementById("sdate").value = formattedMonthAgo;
+				        document.getElementById("edate").value = formattedTodayDate;
+				    } else if (today == "3개월") {
+				        var threeMonthsAgo = new Date();
+				        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+				        var formattedThreeMonthsAgo = formatDate(threeMonthsAgo);
+				        document.getElementById("sdate").value = formattedThreeMonthsAgo;
+				        document.getElementById("edate").value = formattedTodayDate;
+				    } else if (today == "6개월") {
+				        var sixMonthsAgo = new Date();
+				        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+				        var formattedSixMonthsAgo = formatDate(sixMonthsAgo);
+				        document.getElementById("sdate").value = formattedSixMonthsAgo;
+				        document.getElementById("edate").value = formattedTodayDate;
+				    } else if (today == "9개월") {
+				        var nineMonthsAgo = new Date();
+				        nineMonthsAgo.setMonth(nineMonthsAgo.getMonth() - 9);
+				        var formattedNineMonthsAgo = formatDate(nineMonthsAgo);
+				        document.getElementById("sdate").value = formattedNineMonthsAgo;
+				        document.getElementById("edate").value = formattedTodayDate;
+				    } else if (today == "1년") {
+				        var oneYearAgo = new Date();
+				        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+				        var formattedOneYearAgo = formatDate(oneYearAgo);
+				        document.getElementById("sdate").value = formattedOneYearAgo;
+				        document.getElementById("edate").value = formattedTodayDate;
+				    } else if (today == "전체") {
+				        document.getElementById("sdate").value = "";
+				        document.getElementById("edate").value = "";
+				    }
+				}
             </script>
             <section class="mypage">
                 <div class="maxinner">
@@ -145,7 +169,7 @@
                                 <h3>주문목록/배송조회</h3>
                             </div>
                             <div class="order-search-wrap">
-                                <form name="fm" action="/shop/orderinquiry.php" method="get">
+                                <form name="fm" action="/myshop/orderinquiry" method="get">
                                     <div class="order-search">
                                         <div class="order-duration">
                                             <h4>조회기간</h4>
@@ -161,21 +185,21 @@
                                             <div class="order-date-box">
                                                 <div class="datebox date-first">
                                                     <label for="sdate" class="hide">시작일</label>
-                                                    <input type="text" name="fr_date" id="sdate" value="" class="inp-date" size="10" maxlength="10">
+                                                    <input type="text" name="fr_date" id="sdate" value="${param.fr_date}" class="inp-date" size="10" maxlength="10">
                                                 </div>
                                                 <div class="bar">∼</div>
                                                 <div class="datebox date-end">
                                                     <label for="edate" class="hide">종료일</label>
-                                                    <input type="text" name="to_date" id="edate" value="" class="inp-date" size="10" maxlength="10">
+                                                    <input type="text" name="to_date" id="edate" value="${param.to_date}" class="inp-date" size="10" maxlength="10">
                                                 </div>
                                             </div>
-                                            <input type="submit" class="btnset btn-submit" value="조회">
+                                            <input type="button" class="btnset btn-submit" value="조회" onclick="dateCheck()">
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="grid-list-opt">
-                                <div class="grid-opt-left">총 <strong class="f-color">1</strong>건</div>
+                                <div class="grid-opt-left">총 <strong class="f-color">${order_member_count}</strong>건</div>
                             </div>
 
 
@@ -233,7 +257,7 @@
 		                                            <!--<td class="td-numbig">146,700원</td>-->
 		                                            <td data-title="주문상태" class="td-state">
 													    <c:choose>
-													        <c:when test="${order_detail_inquireVo.order_status == 0}">입금${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}확인중</c:when>
+													        <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
 													        <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
 													        <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
 													        <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
@@ -254,6 +278,21 @@
                 </div>
             </section>
             <script>
+            
+            	// 날짜 정상적으로 입력했는지 여부 체크
+            	var today = new Date();
+            	function dateCheck(){
+            		if(new Date($("#sdate").val()) > new Date(today.setDate(today.getDate() + 1))){
+            			alert("검색 시작 날짜를 현재 날짜 이후로 선택하실 수 없습니다.");
+            			return false;
+            		}
+            		if(new Date($("#edate").val()) < new Date($("#sdate").val())){
+            			alert("검색 종료 날짜가 시작 날짜보다 작을 수 없습니다.");
+            			return false;
+            		}
+            		fm.submit();
+            	}
+            
                 // 기간조회 버튼 클릭시 on 클래스 추가
                 $(".order-duration button").on('click', function() {
                     $(".order-duration li").removeClass("on");

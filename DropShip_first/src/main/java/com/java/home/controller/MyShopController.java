@@ -180,15 +180,20 @@ public class MyShopController {
 	}
 
 	@GetMapping("orderinquiry") // 주문조회, 주문목록/배송조회
-	public String orderinquiry(Model model) {
+	public String orderinquiry(@RequestParam(name = "fr_date", required = false) String fr_date,
+			@RequestParam(name = "to_date", required = false) String to_date, Model model) {
+		
+		// 변수 초기화
 		int member_id = 0;
+		
 		if (session.getAttribute("sessionMember_id") != null) { // 로그인 돼있을 때만 일단 구현
 			member_id = (int) session.getAttribute("sessionMember_id");
-			List<Order_Detail_inquireVo> order_detail_list = shopservice.selectOrderDetailByMemberId(member_id);
-			model.addAttribute("order_detail_list", order_detail_list);
+			
+			List<Order_Detail_inquireVo> order_detail_list = shopservice.selectOrderDetailByMemberId(member_id, fr_date, to_date);
+			model.addAttribute("order_detail_list", order_detail_list);	// 회원상세주문 객체들이 담긴 리스트 넘김
 
-			// ------ 회원 주문번호(order_member_id)와 & 회원 주문번호가 동일한 order_Detail_inquireVo들의
-			// '개수'가 담긴 map을 만듦 ------//
+			// ------↓ 회원 주문번호(order_member_id)와 & 회원 주문번호가 동일한 order_Detail_inquireVo들의
+			// '개수'가 담긴 map을 만듦 ---↓--//
 			// ------ 예) map의 key:2 value:3 -> 뜻 : order_member_id가 2인
 			// order_Detail_inquireVo의 개수가 5개. ------//
 			Map<Integer, Integer> orderMemberIdCountMap = new HashMap<>();
@@ -203,6 +208,11 @@ public class MyShopController {
 
 			model.addAttribute("orderMemberIdCountMap", orderMemberIdCountMap);
 
+			// 회원 주문 총 개수(회원 주문고유번호의 개수) 가져오기
+			int order_member_count = shopservice.selectOrder_member_count(member_id, fr_date, to_date);
+			model.addAttribute("order_member_count", order_member_count);
+			
+			
 		}
 		return "home/myshop/orderinquiry";
 	}
@@ -264,6 +274,7 @@ public class MyShopController {
 //		return "home/myshop/orderinquiry_view_joinUse";		// join을 5번 한 방식으로 한 경우 -> order_Detail_inquire_viewVo객체에 모든 5개 테이블의 정보가 한꺼번에 담겨서 model에도 한번만 담아서 프론트에 넘김
 	}
 
+	
 	@RequestMapping("order_form") // 작품 상세페이지 or 장바구니 페이지에서 -> 작품 주문 페이지로 이동. DB에 저장하는 건 없음. DB저장은 실제로 주문할 때만.
 	public String order_form(@RequestParam(name = "work_id", required = false) String work_id,
 			@RequestParam(name = "opt1", required = false) String option_media,
@@ -271,22 +282,13 @@ public class MyShopController {
 			@RequestParam(name = "opt3", required = false) String option_matt,
 			@RequestParam(name = "opt4", required = false) String option_size,
 			@RequestParam(name = "opt5", required = false) String option_mattier,
-			@RequestParam(name = "ct_qty[1654133092][]", required = false) String option_quantity, // 여기까진 작품 상세페이지에서
-																									// 주문페이지로 이동할 때 넘겨받는
-																									// 인자들.
+			@RequestParam(name = "ct_qty[1654133092][]", required = false) String option_quantity, 
+			// 여기까진 작품 상세페이지에서 주문페이지로 이동할 때 넘겨받는 인자들.
 
 			@RequestParam(name = "selectedWorksId", required = false) List<Integer> work_id_list_from_cart,
 			@RequestParam(name = "selectedOptionsId", required = false) List<Integer> option_id_list_from_cart,
-			@RequestParam(name = "option_quantity[]", required = false) String option_quantity_list, Model model) { // 여기까진
-																													// 장바구니
-																													// 페이지에서
-																													// 주문페이지로
-																													// 이동할
-																													// 때
-																													// 넘겨받는
-																													// 인자들.
-																													// 다
-																													// required=false여야.
+			@RequestParam(name = "option_quantity[]", required = false) String option_quantity_list, Model model) { 
+			// 여기까진 장바구니 페이지에서 주문페이지로 이동할 때 넘겨받는 인자들. 다 required=false여야.
 
 		// 변수들 초기화
 		List<Integer> workIdList = new ArrayList<>();
@@ -307,12 +309,9 @@ public class MyShopController {
 		if (work_id_list_from_cart != null) { // 1. 장바구니 페이지에서 넘어왔을 때
 
 			workIdList = work_id_list_from_cart;
-			Map<String, List<? extends Object>> workArtistVoMap = shopservice.selectMemberWorkList(workIdList); // workArtistVoMap에
-																												// workVoList와
-																												// artistVoList가
-																												// 담겨있음
-			workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList"); // 여러개 주문 할 수 있으니까 List로 보내서 front페이지에서
-																			// forEach사용해야.
+			Map<String, List<? extends Object>> workArtistVoMap = shopservice.selectMemberWorkList(workIdList); 
+			// workArtistVoMap에 workVoList와 artistVoList가 담겨있음
+			workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList"); // 여러개 주문 할 수 있으니까 List로 보내서 front페이지에서 forEach사용해야.
 
 			optionIdList = option_id_list_from_cart;
 			optionVoList = shopservice.selectOptionList(optionIdList);
@@ -423,17 +422,11 @@ public class MyShopController {
 
 		// 회원 주문 테이블의 정보 가져오기(order_result에 뿌려야 함. 회원주문id, 주문일시만 필요. 그러나 어디서 또 쓰일지 몰라서
 		// 일단 다 가져올 것.)
-		Order_MemberVo order_memberVo = shopservice.selectOrderMemberOne_result(order_member_id); // 함수명 이렇게 한 이유 : 회원
-																									// 주문 객체 1명을 가져오는 일은
-																									// admin에서도 필요하기 때문에
-																									// 함수명 같으면 안돼서 다르게
-																									// 하려고 뒤에 언더바랑 언제
-																									// 사용되는지(result-주문결과)를
-																									// 적은 것.
+		Order_MemberVo order_memberVo = shopservice.selectOrderMemberOne_result(order_member_id); 
+		// 함수명 이렇게 한 이유 : 회원주문 객체 1명을 가져오는 일은 admin에서도 필요하기 때문에 함수명 같으면 안돼서 다르게 하려고 뒤에 언더바랑 언제 사용되는지(result-주문결과)를 적은 것.
 
 		// 해당 주문건의 회원 주문 상세 테이블 가져오기
-		Map<String, List<Integer>> orderDetail = shopservice.selectOrderDetail(order_member_id); // optionIdList와
-																									// workIdList가 담겨있음.
+		Map<String, List<Integer>> orderDetail = shopservice.selectOrderDetail(order_member_id); // optionIdList와 workIdList가 담겨있음.
 		System.out.println("회원 주문 상세 입력 완료1!!!!!");
 
 		// 옵션 객체들 DB에서 가져오기

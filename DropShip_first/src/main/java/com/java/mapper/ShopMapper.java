@@ -32,12 +32,12 @@ public interface ShopMapper {
 
 	WorkVo selectWorkBuy(int work_id);  // 작품(구매창) 1개 가져오기
 	
-	List<WorkVo> selectWorkArtistAll(String artist_id);  // 작가의 작품들 가져오기
+	List<WorkVo> selectWorkArtistAll(int artist_id);  // 작가의 작품들 가져오기
 	
 	
 	//////////////////↓  Artist(작가) 관련 ↓      /////////////////////////
 		
-	ArtistVo selectArtistAll(String artist_id);  // 작가 전체 가져오기
+	ArtistVo selectArtistAll(int artist_id);  // 작가 전체 가져오기
 	
 	int selectArtistCount();  // 작가 list page 카운트하는 구문
 	
@@ -79,7 +79,10 @@ public interface ShopMapper {
 
 	Order_MemberVo selectOrderMemberOne_result(int order_member_id);
 
-	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id);
+	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id, String fr_date, String to_date);
+	
+	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
+	int selectOrder_member_count(int member_id, String fr_date, String to_date);
 
 	//////////////// 마이페이지 회원 주문조회 상세페이지 보여줄 때 join 5번 하는 대신 DB 1번 왕복하는 방식 /////////////  
 	Order_Detail_inquire_viewVo selectOptionOneInquiryView(int id);
@@ -102,6 +105,8 @@ public interface ShopMapper {
 
 	// 장바구니에서 작품 주문 후 장바구니에 담긴 것들 삭제
 	void deleteCart_member(int member_id, List<Integer> optionIdList);
+
+
 
 
 	

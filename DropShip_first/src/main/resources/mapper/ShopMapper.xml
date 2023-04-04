@@ -193,7 +193,7 @@
 	
 	
 	
-	<!-- 회원 마이페이지주문조회  -->
+	  <!-- 회원 마이페이지주문조회 (날짜 검색도) -->
 	  <select id="selectOrderDetailByMemberId" resultType="com.java.vo.Order_Detail_inquireVo">
 	    SELECT om.order_date, od.order_member_id, w.work_img_url, w.work_name, a.artist_korean_name, 
 	    	   wo.option_quantity, wo.option_selected_price, om.order_status
@@ -203,7 +203,44 @@
 			JOIN artist a ON w.artist_id = a.id
 			JOIN work_option wo ON od.option_id = wo.id
 		WHERE member_id = #{member_id}
+		<if test="(fr_date != null and fr_date != '') and (to_date != null and to_date != '')">	<!-- 검색 시작일 종료일 둘 다 있으면 -->
+			<![CDATA[
+			AND om.order_date >= TO_DATE(#{fr_date}) AND om.order_date <= TO_DATE(#{to_date})
+			]]>
+		</if>
+		<if test="(fr_date != '' and fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 있고 & 종료일이 없으면 --><!-- 종료일을 오늘로 함 -->
+			<![CDATA[									
+			AND om.order_date >= TO_DATE(#{fr_date}) AND om.order_date <= sysdate	
+			]]>
+		</if>
+		<if test="(fr_date == '' or fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 & 종료일 둘 다 없으면 --><!-- 전체. 그냥 넘어가 -->
+		</if>
+		<if test="fr_date == '' and to_date != ''">	<!-- 시작일이 없고 & 종료일 있으면 -->
+			AND om.order_date <![CDATA[<=]]> TO_DATE(#{to_date})	<!-- 종료일 이전까지 -->
+		</if>
 		ORDER BY om.order_date DESC
+	  </select>
+	  
+	  
+	  <!-- 회원 마이페이지주문조회시 회원 주문 개수 가져오기  -->
+	  <select id="selectOrder_member_count" resultType="int">
+	    SELECT COUNT(*) FROM order_member om
+		WHERE member_id = #{member_id}
+		<if test="(fr_date != null and fr_date != '') and (to_date != null and to_date != '')">	<!-- 검색 시작일 종료일 둘 다 있으면 -->
+			<![CDATA[
+			AND om.order_date >= TO_DATE(#{fr_date}) AND om.order_date <= TO_DATE(#{to_date})
+			]]>
+		</if>
+		<if test="(fr_date != '' and fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 있고 & 종료일이 없으면 --><!-- 종료일을 오늘로 함 -->
+			<![CDATA[									
+			AND om.order_date >= TO_DATE(#{fr_date}) AND om.order_date <= sysdate	
+			]]>
+		</if>
+		<if test="(fr_date == '' or fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 & 종료일 둘 다 없으면 --><!-- 전체 -->
+		</if>
+		<if test="fr_date == '' and to_date != ''">	<!-- 종료일은 있는데 시작일이 없으면 -->
+			AND om.order_date <![CDATA[<=]]> TO_DATE(#{to_date})	<!-- 종료일 이전까지 -->
+		</if>
 	  </select>
 	  
 	  

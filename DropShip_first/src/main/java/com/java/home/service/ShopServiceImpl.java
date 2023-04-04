@@ -116,7 +116,7 @@ public class ShopServiceImpl implements ShopService {
 
 	// 작가의 작품들 가져오기
 	@Override
-	public List<WorkVo> selectWorkArtistAll(String artist_id) {
+	public List<WorkVo> selectWorkArtistAll(int artist_id) {
 		List<WorkVo> list = new ArrayList<WorkVo>();
 		list = shopMapper.selectWorkArtistAll(artist_id);
 		return list;
@@ -126,7 +126,7 @@ public class ShopServiceImpl implements ShopService {
 
 	// 작가 전체 가져오기
 	@Override
-	public ArtistVo selectArtistAll(String artist_id) {
+	public ArtistVo selectArtistAll(int artist_id) {
 		artistVo = shopMapper.selectArtistAll(artist_id);
 		return artistVo;
 	}
@@ -247,9 +247,16 @@ public class ShopServiceImpl implements ShopService {
 
 	// 회원 마이페이지 주문조회 클릭시
 	@Override
-	public List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id) {
-		List<Order_Detail_inquireVo> order_detail_list = shopMapper.selectOrderDetailByMemberId(member_id);
+	public List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id, String fr_date, String to_date) {
+		List<Order_Detail_inquireVo> order_detail_list = shopMapper.selectOrderDetailByMemberId(member_id, fr_date, to_date);
 		return order_detail_list;
+	}
+	
+	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
+	@Override
+	public int selectOrder_member_count(int member_id, String fr_date, String to_date) {
+		int order_member_count = shopMapper.selectOrder_member_count(member_id, fr_date, to_date);
+		return order_member_count;
 	}
 
 	@Override
@@ -349,6 +356,8 @@ public class ShopServiceImpl implements ShopService {
 		shopMapper.deleteCart_member(member_id, optionIdList);
 		
 	}
+
+	
 
 	
 
