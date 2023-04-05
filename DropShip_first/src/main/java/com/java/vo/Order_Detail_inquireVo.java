@@ -36,6 +36,6 @@ public class Order_Detail_inquireVo {
     private String artist_korean_name;	// Artist 테이블의 컬럼
     private int option_quantity;		// Work_Option 테이블의 컬럼
     private int option_selected_price;	// Work_Option 테이블의 컬럼	
-    private String order_status;		// Order_Member 테이블의 컬럼
+    private int order_status;		// Order_Member 테이블의 컬럼	// 0405 수) String에서 int로 바꿈
 	
 }

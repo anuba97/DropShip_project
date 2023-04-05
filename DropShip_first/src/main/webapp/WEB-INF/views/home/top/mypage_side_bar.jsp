@@ -7,7 +7,7 @@
 	        <ul>
 	            <li><a href="../myshop/orderinquiry">주문목록/배송조회</a></li>
 	            <li><a href="../myshop/cart">장바구니</a></li>
-	            <li><a href="../myshop/my_wishlist">찜리스트</a></li>
+	            <li><a href="../myshop/my_wishlist?member_id=${sessionMember_id}">찜리스트</a></li>
 	        </ul>
 	    </div>
 	    <div class="mypage-nav-depth">

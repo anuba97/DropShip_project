@@ -237,7 +237,14 @@
                                                         <div class="cart-layer"></div>
                                                         <div class="sct_op_btn">
                                                             <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
-                                                            <button type="button" class="btnset btn-like btn_wish" data-it_id="1654135291"><span class="hide">찜하기</span></button>
+                                                            
+                                                            <c:if test="${sessionMember_login_id == null }">
+	                                                            <button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+                                                            </c:if>
+                                                            <c:if test="${sessionMember_login_id != null }">
+	                                                            <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+                                                            </c:if>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -322,10 +329,38 @@
                     </div>
                 </div>
             </section>
-
+			<script>
+				var member_id;
+				var work_id;
+				// button에서 onclick="heartBtn(${workVo.id}) 들고왔다 function hearBtn()안에 넣을때는 (머가들어가든 괜찮다 ex) aa이런식으로 )
+				function heartBtn(member_id, work_id){  
+					$.ajax({
+						url: "../myshop/workWishlist_ajax",
+						type: "post",
+						data:{"member_id":member_id, "work_id":work_id},
+						success: function(list){
+							if(list == 0){
+								alert("상품을 찜리스트에 담았습니다.");
+							} else {
+								alert("이미 있습니다.");
+								
+							}
+						},
+						error : function(){
+							alert("시스템 오류입니다");
+						}
+						
+					})//ajax
+				}//function
+				
+				function NoheartBtn(){
+					alert("회원 전용 서비스 입니다.");
+				}	
+			</script>
+		
 
         </main>
-
+		
         <!-- header 부분 시작 -->
         <%@ include file ="../top/footer.jsp" %>
         <!-- header 부분 끝 -->
@@ -334,7 +369,8 @@
             <a href="javascript:;"><span class="hide">맨위로가기</span></a>
         </div>
     </div>
-
+	
+	
 
     <script src="../home/js/sns.js"></script>
     <script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
@@ -358,7 +394,7 @@
 	</script>
 	<![endif]-->
 
-
+	
 </body>
 
 <!-- Mirrored from bxgs.co.kr/shop/painting_list.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:12 GMT -->

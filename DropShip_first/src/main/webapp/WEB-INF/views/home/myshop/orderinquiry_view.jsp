@@ -273,25 +273,25 @@
                                 <tbody>
                                     <tr>
                                         <th>받으시는 분</th>
-                                        <td colspan="5">${order_Detail_inquire_viewVo.delivery_name}</td>
+                                        <td colspan="5">${order_memberVo.delivery_name}</td>
                                     </tr>
                                     <tr>
                                         <th>핸드폰번호</th>
-                                        <td colspan="5">${order_Detail_inquire_viewVo.delivery_phone}</td>
+                                        <td colspan="5">${order_memberVo.delivery_phone}</td>
 <!--                                         <th>전화번호</th> -->
 <!--                                         <td>028394015</td> -->
                                     </tr>
                                     <tr>
                                         <th>우편번호</th>
-                                        <td>${order_Detail_inquire_viewVo.delivery_zip}</td>	<!-- 나중에 비회원일 때 고려해서 if문 해야할 듯  -->
+                                        <td>${order_memberVo.delivery_zip}</td>	<!-- 나중에 비회원일 때 고려해서 if문 해야할 듯  -->
                                         <th>도로명주소</th>
-                                        <td>${order_Detail_inquire_viewVo.delivery_road}</td>
+                                        <td>${order_memberVo.delivery_road}</td>
                                         <th>상세주소</th>
-                                        <td>${order_Detail_inquire_viewVo.delivery_address}</td>
+                                        <td>${order_memberVo.delivery_address}</td>
                                     </tr>
                                     <tr>
                                         <th>전하실 말씀</th>
-                                        <td colspan="5">${order_Detail_inquire_viewVo.delivery_request}</td>
+                                        <td colspan="5">${order_memberVo.delivery_request}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -314,23 +314,23 @@
                                 <tbody>
                                      <tr>
                                         <th>이름</th>
-                                        <td colspan="5">${order_Detail_inquire_viewVo.member_name}</td>
+                                        <td colspan="5">${memberVo.member_name}</td>
                                     </tr>
                                     <tr>
                                         <th>핸드폰번호</th>
-                                        <td colspan="5">${order_Detail_inquire_viewVo.member_phone}</td>
+                                        <td colspan="5">${memberVo.member_phone}</td>
                                     </tr>
                                     <tr>
                                         <th>우편번호</th>
-                                        <td>${order_Detail_inquire_viewVo.member_zip}</td>	<!-- 나중에 비회원일 때 고려해서 if문 해야할 듯  -->
+                                        <td>${memberVo.member_zip}</td>	<!-- 나중에 비회원일 때 고려해서 if문 해야할 듯  -->
                                         <th>도로명주소</th>
-                                        <td>${order_Detail_inquire_viewVo.member_road}</td>
+                                        <td>${memberVo.member_road}</td>
                                         <th>상세주소</th>
-                                        <td>${order_Detail_inquire_viewVo.member_addr}</td>
+                                        <td>${memberVo.member_addr}</td>
                                     </tr>
                                     <tr>
                                         <th>이메일</th>
-                                        <td colspan="5">${order_Detail_inquire_viewVo.member_email}</td>
+                                        <td colspan="5">${memberVo.member_email}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -349,12 +349,12 @@
                                 <tbody>
                                     <tr>
                                         <th>주문번호</th>
-                                        <td>${order_Detail_inquire_viewVo.id}</td>
+                                        <td>${order_memberVo.id}</td>
                                     </tr>
                                     <tr>
                                         <th>주문일시</th>
                                         <td>
-                                        	<fmt:formatDate value="${order_Detail_inquire_viewVo.order_date}" pattern="yyyy-MM-dd (E)  HH시 mm분"/>
+                                        	<fmt:formatDate value="${order_memberVo.order_date}" pattern="yyyy-MM-dd (E)  HH시 mm분"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -367,7 +367,7 @@
                                     </tr>
                                     <tr>
                                         <th>입금자명</th>
-                                        <td>${order_Detail_inquire_viewVo.member_name}</td>
+                                        <td>${memberVo.member_name}</td>
                                     </tr>
                                     <tr>
                                         <th>입금계좌</th>

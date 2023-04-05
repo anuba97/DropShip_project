@@ -54,41 +54,25 @@ public interface ShopMapper {
 			String delivery_zip, String delivery_road, String delivery_address, String delivery_request);
 //	void insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo);
 
-	int insertDelivery();
-	int insertDelivery2();
-
-	int selectDeliverySeq();
-
-	int insertOrder_Member2(int member_id, int delivery_id, Order_MemberVo order_memberVo);
 	
-	int selectOrderMemberSeq();
+
+	
+//	int selectOrderMemberSeq();  ????????????????????????
 
 	// Work_Option 테이블 (작품 옵션 테이블) 에 optionVo 저장후 바로 option고유번호(id)반환받기
 	int insertOption(OptionVo optionVo);
 	
-	void insertOrder_Detail(int order_member_id, int work_id, int option_id, int total_price);
 //	void insertOrder_Details2(Map<String, Object> paramMap);
 	
 
-	// 작품상세페이지 or 장바구니에서 주문할 때 주문상세 DB에 저장
-	void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
-			int total_price_int);
 
 	
 	int selectOptionSeq();
 
-	Order_MemberVo selectOrderMemberOne_result(int order_member_id);
-
-	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id, String fr_date, String to_date);
-	
-	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
-	int selectOrder_member_count(int member_id, String fr_date, String to_date);
 
 	//////////////// 마이페이지 회원 주문조회 상세페이지 보여줄 때 join 5번 하는 대신 DB 1번 왕복하는 방식 /////////////  
 	Order_Detail_inquire_viewVo selectOptionOneInquiryView(int id);
 
-	//////////////// 마이페이지 회원 주문조회 상세페이지 보여줄 때 join하지 않는 대신 DB 5번 왕복하는 방식 /////////////  
-	List<Order_DetailVo> selectOrderDetail(int order_member_id);
 
 	List<OptionVo> selectOptionList(List<Integer> optionIdList);
 
@@ -98,13 +82,6 @@ public interface ShopMapper {
 
 	List<ArtistVo> selectArtistOrderList(List<Integer> artistIdList);
 
-	// 회원 장바구니(Cart_Member)에 작품 insert
-	void insertCart_Member(int member_id, int work_id, int option_id);
-
-	List<Cart_MemberVo> selectCart_MemberList(int member_id);
-
-	// 장바구니에서 작품 주문 후 장바구니에 담긴 것들 삭제
-	void deleteCart_member(int member_id, List<Integer> optionIdList);
 
 
 

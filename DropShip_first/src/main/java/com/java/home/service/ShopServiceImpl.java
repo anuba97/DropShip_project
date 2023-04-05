@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.java.mapper.ShopMapper;
 import com.java.vo.ArtistVo;
 import com.java.vo.Cart_MemberVo;
-import com.java.vo.DeliveryVo;
 import com.java.vo.OptionVo;
 import com.java.vo.Order_DetailVo;
 import com.java.vo.Order_Detail_inquireVo;
@@ -178,53 +177,18 @@ public class ShopServiceImpl implements ShopService {
 	
 	////////////////////////↓ order(주문) 관련 ↓ ///////////////////////////////
 	
-	// 회원 주문 시 회원 주문 테이블에 주문 정보 저장
-	@Override
-	public int insertOrder_Member(int member_id, int delivery_id, Order_MemberVo order_memberVo) {
-		int successOrFail = shopMapper.insertOrder_Member2(member_id, delivery_id, order_memberVo);	// 왜 order_memberVo객체 자체론 안되지? 안돼서 getter로 일일이 할 수밖에..
-		System.out.println("insertOrder_Member selectKey 성공여부 :  " + successOrFail); // selectKey의 결과로는 0(실패)또는 1(성공)만 나옴
-		return order_memberVo.getId();	// selectKey 실행되면 원하는 결과물은 Vo의 인스턴스 변수에 set됨. 따라서 애초에 Vo를 반드시 전달해줘야.
-	}
 
-	@Override
-	public int insertDelivery() {
-		int delivery_id = shopMapper.insertDelivery();
-		return delivery_id;
-	}
-
-	@Override
-	public int insertDelivery2() {
-		int delivery_id2 = shopMapper.insertDelivery2();
-		return delivery_id2;
-	}
 	
-	@Override
-	public int selectDeliverySeq() {
-		int delivery_id = shopMapper.selectDeliverySeq();
-		return delivery_id;
-	}
 
-	@Override
-	public int selectOrderMemberSeq() {
-		int order_member_id = shopMapper.selectOrderMemberSeq();
-		return order_member_id;
-	}
-
-	@Override
-	public void insertOrder_Detail(int order_member_id, int work_id_int, int option_id, int total_price_int) {
-		shopMapper.insertOrder_Detail(order_member_id, work_id_int, option_id, total_price_int);
-	}
-
-	// 작품상세페이지 or 장바구니에서 주문할 때 주문상세 DB에 저장
-	@Override
-	public void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
-			int total_price_int) {
-		shopMapper.insertOrder_Details(order_member_id, workIdList, optionIdList, total_price_int);
-	}
 //	@Override
-//	public void insertOrder_Details2(Map<String, Object> paramMap) {
-//		shopMapper.insertOrder_Details2(paramMap);
+//	public int selectOrderMemberSeq() {    //?????????????????????????
+//		int order_member_id = shopMapper.selectOrderMemberSeq();
+//		return order_member_id;
 //	}
+
+	
+
+	
 	
 	@Override
 	public int insertOption(OptionVo optionVo) {
@@ -239,57 +203,15 @@ public class ShopServiceImpl implements ShopService {
 		return option_id;
 	}
 
-	@Override
-	public Order_MemberVo selectOrderMemberOne_result(int order_member_id) {
-		order_memberVo = shopMapper.selectOrderMemberOne_result(order_member_id);
-		return order_memberVo;
-	}
-
-	// 회원 마이페이지 주문조회 클릭시
-	@Override
-	public List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id, String fr_date, String to_date) {
-		List<Order_Detail_inquireVo> order_detail_list = shopMapper.selectOrderDetailByMemberId(member_id, fr_date, to_date);
-		return order_detail_list;
-	}
 	
-	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
-	@Override
-	public int selectOrder_member_count(int member_id, String fr_date, String to_date) {
-		int order_member_count = shopMapper.selectOrder_member_count(member_id, fr_date, to_date);
-		return order_member_count;
-	}
-
+	
 	@Override
 	public Order_Detail_inquire_viewVo selectOptionOneInquiryView(int order_member_id_int) {
 		order_Detail_inquire_viewVo = shopMapper.selectOptionOneInquiryView(order_member_id_int);
 		return order_Detail_inquire_viewVo;
 	}
 
-	// 구매상세 내역 조회시 work_id들이 담긴 리스트와 option_id들이 담긴 리스트를 저장한 map을 리턴받는 메소드. ->
-	// workVo와 optionVo들이 필요하기 때문.
-	@Override
-	public Map<String, List<Integer>> selectOrderDetail(int order_member_id) {
-		// 회원 주문 상세 객체 리스트를 받아옴. 회원 주문 고유번호 하나에 여러 주문 상세 값이 있을 수 있으니까 list로 받아와야.
-		// 회원 주문 상세에선 딱히 사용할 게 없음. 다만 나중에 workVo와 optionVo들이 결국 필요하기 때문에
-		// 그 둘을 가져올 수 있는 work_id와 option_id만 order_DetailVo리스트에 담기게 됨..
-		List<Order_DetailVo> Order_DetailVoList = shopMapper.selectOrderDetail(order_member_id); // 얘는 결과물이 아니고 중간에 사용할
-																									// 용도
-
-		List<Integer> workIdList = new ArrayList();
-		List<Integer> optionIdList = new ArrayList();
-
-		Map<String, List<Integer>> map = new HashMap<>();
-
-		for (Order_DetailVo order_DetailVo : Order_DetailVoList) {
-			workIdList.add(order_DetailVo.getWork_id()); // workID를 담는 리스트에다가 아까 받아온 order_DetailVo(회원주문객체)에 담긴 work_id를
-															// 담음.
-			optionIdList.add(order_DetailVo.getOption_id()); // optionId를 담는 리스트에다가 artist_id들을 담음
-		}
-
-		map.put("workIdList", workIdList);
-		map.put("optionIdList", optionIdList);
-		return map;
-	}
+	
 
 	// 회원 주문 상세용 option객체들 가져오기
 	@Override
@@ -325,37 +247,21 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public void insertCart_Member(int member_id, int work_id_int, int option_id) {
-		shopMapper.insertCart_Member(member_id, work_id_int, option_id);
+	public int selectOrderMemberSeq() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
+			int total_price_int) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
-	@Override
-	public Map<String, List<Integer>> selectCart_MemberList(int member_id) {
-		List<Cart_MemberVo> cart_MemberVoList = shopMapper.selectCart_MemberList(member_id);
-		System.out.println("장바구니 객체 개수 : " + cart_MemberVoList.size());
-		
-		List<Integer> workIdList = new ArrayList<>();
-		List<Integer> optionIdList = new ArrayList<>();
-		Map<String, List<Integer>> map = new HashMap<>();
-		
-		System.out.println("optionIdList 비어있나 확인용 : " + optionIdList);
-		
-		for(Cart_MemberVo cart_MemberVo : cart_MemberVoList) {
-			workIdList.add(cart_MemberVo.getWork_id());
-			optionIdList.add(cart_MemberVo.getOption_id());
-		}
-		map.put("workIdList" , workIdList);
-		map.put("optionIdList" , optionIdList);
-		
-		return map;
-	}
 
-	@Override
-	public void deleteCart_member(int member_id, List<Integer> optionIdList) {
-		shopMapper.deleteCart_member(member_id, optionIdList);
-		
-	}
+	
 
 	
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/home/img/favicon.ico" />
     <title>주문목록/배송조회</title>
-	<link type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -99,56 +99,56 @@
                 });
             </script>
             <script>
-            	// 자바스크립로 가져온 날짜를 '2023-04-05' 형식으로 바꿔주는 함수
-	            function formatDate(date) {
-				    var year = date.getFullYear();
-				    var month = ("0" + (date.getMonth() + 1)).slice(-2);
-				    var day = ("0" + date.getDate()).slice(-2);
-				    return year + "-" + month + "-" + day;
-				}
-	            
-	            var todayDate = new Date();
-	            var formattedTodayDate = formatDate(todayDate);
-	            
-				function set_date(today) {
-				    if (today == "오늘") {
-				        document.getElementById("sdate").value = formattedTodayDate;
-				        document.getElementById("edate").value = formattedTodayDate;
-				    } else if (today == "1개월") {
-				        var monthAgo = new Date();
-				        monthAgo.setMonth(monthAgo.getMonth() - 1);
-				        var formattedMonthAgo = formatDate(monthAgo);
-				        document.getElementById("sdate").value = formattedMonthAgo;
-				        document.getElementById("edate").value = formattedTodayDate;
-				    } else if (today == "3개월") {
-				        var threeMonthsAgo = new Date();
-				        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-				        var formattedThreeMonthsAgo = formatDate(threeMonthsAgo);
-				        document.getElementById("sdate").value = formattedThreeMonthsAgo;
-				        document.getElementById("edate").value = formattedTodayDate;
-				    } else if (today == "6개월") {
-				        var sixMonthsAgo = new Date();
-				        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-				        var formattedSixMonthsAgo = formatDate(sixMonthsAgo);
-				        document.getElementById("sdate").value = formattedSixMonthsAgo;
-				        document.getElementById("edate").value = formattedTodayDate;
-				    } else if (today == "9개월") {
-				        var nineMonthsAgo = new Date();
-				        nineMonthsAgo.setMonth(nineMonthsAgo.getMonth() - 9);
-				        var formattedNineMonthsAgo = formatDate(nineMonthsAgo);
-				        document.getElementById("sdate").value = formattedNineMonthsAgo;
-				        document.getElementById("edate").value = formattedTodayDate;
-				    } else if (today == "1년") {
-				        var oneYearAgo = new Date();
-				        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-				        var formattedOneYearAgo = formatDate(oneYearAgo);
-				        document.getElementById("sdate").value = formattedOneYearAgo;
-				        document.getElementById("edate").value = formattedTodayDate;
-				    } else if (today == "전체") {
-				        document.getElementById("sdate").value = "";
-				        document.getElementById("edate").value = "";
-				    }
-				}
+                // 자바스크립로 가져온 날짜를 '2023-04-05' 형식으로 바꿔주는 함수
+                function formatDate(date) {
+                    var year = date.getFullYear();
+                    var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                    var day = ("0" + date.getDate()).slice(-2);
+                    return year + "-" + month + "-" + day;
+                }
+
+                var todayDate = new Date();
+                var formattedTodayDate = formatDate(todayDate);
+
+                function set_date(today) {
+                    if (today == "오늘") {
+                        document.getElementById("sdate").value = formattedTodayDate;
+                        document.getElementById("edate").value = formattedTodayDate;
+                    } else if (today == "1개월") {
+                        var monthAgo = new Date();
+                        monthAgo.setMonth(monthAgo.getMonth() - 1);
+                        var formattedMonthAgo = formatDate(monthAgo);
+                        document.getElementById("sdate").value = formattedMonthAgo;
+                        document.getElementById("edate").value = formattedTodayDate;
+                    } else if (today == "3개월") {
+                        var threeMonthsAgo = new Date();
+                        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+                        var formattedThreeMonthsAgo = formatDate(threeMonthsAgo);
+                        document.getElementById("sdate").value = formattedThreeMonthsAgo;
+                        document.getElementById("edate").value = formattedTodayDate;
+                    } else if (today == "6개월") {
+                        var sixMonthsAgo = new Date();
+                        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+                        var formattedSixMonthsAgo = formatDate(sixMonthsAgo);
+                        document.getElementById("sdate").value = formattedSixMonthsAgo;
+                        document.getElementById("edate").value = formattedTodayDate;
+                    } else if (today == "9개월") {
+                        var nineMonthsAgo = new Date();
+                        nineMonthsAgo.setMonth(nineMonthsAgo.getMonth() - 9);
+                        var formattedNineMonthsAgo = formatDate(nineMonthsAgo);
+                        document.getElementById("sdate").value = formattedNineMonthsAgo;
+                        document.getElementById("edate").value = formattedTodayDate;
+                    } else if (today == "1년") {
+                        var oneYearAgo = new Date();
+                        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+                        var formattedOneYearAgo = formatDate(oneYearAgo);
+                        document.getElementById("sdate").value = formattedOneYearAgo;
+                        document.getElementById("edate").value = formattedTodayDate;
+                    } else if (today == "전체") {
+                        document.getElementById("sdate").value = "";
+                        document.getElementById("edate").value = "";
+                    }
+                }
             </script>
             <section class="mypage">
                 <div class="maxinner">
@@ -225,50 +225,53 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:if test="${fn:length(order_detail_list) == 0}">
-                                    		<tr>
-                                    			<td colspan="5">주문 목록이 없습니다.</td>
-	                                        </tr>
-                                    	</c:if>
-                                    	<c:if test="${fn:length(order_detail_list) != 0}">
-	                                    	<c:forEach items="${order_detail_list}" var="order_detail_inquireVo" varStatus="loop">
-		                                        <tr>
-		                                            <c:if test="${loop.first || order_detail_inquireVo.order_member_id ne prevOrderMemberId}">	<!-- 이거 왜 이렇게하는지 1도 모르겠음. GPT쩐다 ㅋㅋㅋ -->
-											            <td data-title="주문번호" class="td-num" rowspan="${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}">
-											                <div><fmt:formatDate value="${order_detail_inquireVo.order_date}" pattern="yyyy-MM-dd (E)  HH시 mm분"/></div>
-											                <a href="orderinquiry_view?order_member_id=${order_detail_inquireVo.order_member_id}">${order_detail_inquireVo.order_member_id}</a>
-											            </td>
-											        </c:if>
-		                                            <td data-title="상품정보" class="td-product">
-		                                                <div class="product-box">
-		                                                    <div class="product-img">
-		                                                        <div style="background-image:url(/admin/img/work/${order_detail_inquireVo.work_img_url})"></div>
-		                                                    </div>
-		                                                    <div class="product-name">
-		                                                        <strong>${order_detail_inquireVo.work_name}<span>${order_detail_inquireVo.artist_korean_name}</span></strong>
-<!-- 		                                                        <p>외 1건</p> -->
-		                                                        <!-- <p>캔버스 / 캔버스판넬 / 마띠에르 리터치 선택 / 매트없음 / 90.0cm X 71.4cm</p> -->
-		                                                    </div>
-		                                                </div>
-		                                            </td>
-		                                            <td data-title="상품수량" class="td-numbig">${order_detail_inquireVo.option_quantity}</td>
-		                                            <td data-title="주문금액" class="td-numbig td-total">${order_detail_inquireVo.option_selected_price * order_detail_inquireVo.option_quantity+2000} 원</td>
-		                                            <!--<td class="td-numbig">0원</td>-->
-		                                            <!--<td class="td-numbig">146,700원</td>-->
-		                                            <td data-title="주문상태" class="td-state">
-													    <c:choose>
-													        <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
-													        <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
-													        <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
-													        <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
-													        <c:when test="${order_detail_inquireVo.order_status == 4}">배송완료</c:when>
-													        <c:when test="${order_detail_inquireVo.order_status == 5}">주문취소</c:when>
-													    </c:choose>
-													</td>
-		                                        </tr>
-		                                        <c:set var="prevOrderMemberId" value="${order_detail_inquireVo.order_member_id}"/>
-	                                        </c:forEach>
-                                    	</c:if>
+                                        <c:if test="${fn:length(order_detail_list) == 0}">
+                                            <tr>
+                                                <td colspan="5">주문 목록이 없습니다.</td>
+                                            </tr>
+                                        </c:if>
+                                        <c:if test="${fn:length(order_detail_list) != 0}">
+                                            <c:forEach items="${order_detail_list}" var="order_detail_inquireVo" varStatus="loop">
+                                                <tr>
+                                                    <c:if test="${loop.first || order_detail_inquireVo.order_member_id ne prevOrderMemberId}">
+                                                        <!-- 이거 왜 이렇게하는지 1도 모르겠음. GPT쩐다 ㅋㅋㅋ -->
+                                                        <td data-title="주문번호" class="td-num" rowspan="${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}">
+                                                            <div>
+                                                                <fmt:formatDate value="${order_detail_inquireVo.order_date}" pattern="yyyy-MM-dd (E)  HH시 mm분" />
+                                                            </div>
+                                                            <a href="orderinquiry_view?order_member_id=${order_detail_inquireVo.order_member_id}">${order_detail_inquireVo.order_member_id}</a>
+                                                        </td>
+                                                    </c:if>
+                                                    <td data-title="상품정보" class="td-product">
+                                                        <div class="product-box">
+                                                            <div class="product-img">
+                                                                <div style="background-image:url(/admin/img/work/${order_detail_inquireVo.work_img_url})"></div>
+                                                            </div>
+                                                            <div class="product-name">
+                                                                <strong>${order_detail_inquireVo.work_name}<span>${order_detail_inquireVo.artist_korean_name}</span></strong>
+                                                                <!-- 		                                                        <p>외 1건</p> -->
+                                                                <!-- <p>캔버스 / 캔버스판넬 / 마띠에르 리터치 선택 / 매트없음 / 90.0cm X 71.4cm</p> -->
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="상품수량" class="td-numbig">${order_detail_inquireVo.option_quantity}</td>
+                                                    <td data-title="주문금액" class="td-numbig td-total">${order_detail_inquireVo.option_selected_price * order_detail_inquireVo.option_quantity+2000} 원</td>
+                                                    <!--<td class="td-numbig">0원</td>-->
+                                                    <!--<td class="td-numbig">146,700원</td>-->
+                                                    <td data-title="주문상태" class="td-state">
+                                                        <c:choose>
+                                                            <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
+                                                            <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
+                                                            <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
+                                                            <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
+                                                            <c:when test="${order_detail_inquireVo.order_status == 4}">배송완료</c:when>
+                                                            <c:when test="${order_detail_inquireVo.order_status == 5}">주문취소</c:when>
+                                                        </c:choose>
+                                                    </td>
+                                                </tr>
+                                                <c:set var="prevOrderMemberId" value="${order_detail_inquireVo.order_member_id}" />
+                                            </c:forEach>
+                                        </c:if>
                                     </tbody>
                                 </table>
                             </div>
@@ -278,21 +281,21 @@
                 </div>
             </section>
             <script>
-            
-            	// 날짜 정상적으로 입력했는지 여부 체크
-            	var today = new Date();
-            	function dateCheck(){
-            		if(new Date($("#sdate").val()) > new Date(today.setDate(today.getDate() + 1))){
-            			alert("검색 시작 날짜를 현재 날짜 이후로 선택하실 수 없습니다.");
-            			return false;
-            		}
-            		if(new Date($("#edate").val()) < new Date($("#sdate").val())){
-            			alert("검색 종료 날짜가 시작 날짜보다 작을 수 없습니다.");
-            			return false;
-            		}
-            		fm.submit();
-            	}
-            
+                // 날짜 정상적으로 입력했는지 여부 체크
+                var today = new Date();
+
+                function dateCheck() {
+                    if (new Date($("#sdate").val()) > new Date(today.setDate(today.getDate() + 1))) {
+                        alert("검색 시작 날짜를 현재 날짜 이후로 선택하실 수 없습니다.");
+                        return false;
+                    }
+                    if (new Date($("#edate").val()) < new Date($("#sdate").val())) {
+                        alert("검색 종료 날짜가 시작 날짜보다 작을 수 없습니다.");
+                        return false;
+                    }
+                    fm.submit();
+                }
+
                 // 기간조회 버튼 클릭시 on 클래스 추가
                 $(".order-duration button").on('click', function() {
                     $(".order-duration li").removeClass("on");

@@ -110,9 +110,17 @@
                                             return flase;
                                         }
                                         loginFrm.submit();
-
+										
 
                                     } //loginBtn
+                                    
+                                    $(document).ready(function() {  // 아이디, 비밀번호 입력하고 엔터키 누르면 로그인 버튼실행
+                                        $("#login_id, #login_pw").on("keypress", function(event) {
+                                          if (event.keyCode === 13) {
+                                            loginBtn();
+                                          }
+                                        });
+                                      });
                                 </script>
 
                                 <div class="login-con">

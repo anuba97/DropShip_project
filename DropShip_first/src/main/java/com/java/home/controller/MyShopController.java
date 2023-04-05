@@ -1,7 +1,9 @@
 package com.java.home.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.home.service.MemberService;
+import com.java.home.service.MyShopService;
 import com.java.home.service.ShopService;
 import com.java.vo.ArtistVo;
 import com.java.vo.DeliveryVo;
@@ -25,6 +28,7 @@ import com.java.vo.MemberVo;
 import com.java.vo.OptionVo;
 import com.java.vo.Order_Detail_inquireVo;
 import com.java.vo.Order_MemberVo;
+import com.java.vo.WishListVo;
 import com.java.vo.WorkVo;
 
 @Controller
@@ -39,7 +43,10 @@ public class MyShopController {
 
 	@Autowired
 	HttpSession session;
-
+	
+	@Autowired
+	MyShopService myShopService;
+	
 	@Autowired
 	WorkVo workVo;
 
@@ -81,7 +88,7 @@ public class MyShopController {
 			work_id_int = Integer.parseInt(work_id);
 
 			// 회원 장바구니 테이블(Cart_Member)에 데이터 insert
-			shopservice.insertCart_Member(member_id, work_id_int, option_id);
+			myShopService.insertCart_Member(member_id, work_id_int, option_id);
 		}
 		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
 		return "redirect:cart";
@@ -98,7 +105,7 @@ public class MyShopController {
 			member_id = (int) session.getAttribute("sessionMember_id");
 
 			// cart_MemberMap엔 workIdList(int)와 optionIdList(int)를 리턴받음.
-			Map<String, List<Integer>> cart_MemberMap = shopservice.selectCart_MemberList(member_id);
+			Map<String, List<Integer>> cart_MemberMap = myShopService.selectCart_MemberList(member_id);
 
 			if (cart_MemberMap.get("workIdList").size() != 0) { // 장바구니에 작품이 존재할 때
 				// 리턴받았던 work와 option 각각의 id들을 토대로 optionVo들과 workVo들과 artistVo들이 담긴 List를 가져옴
@@ -131,16 +138,9 @@ public class MyShopController {
 
 	@RequestMapping("deleteCart") // 장바구니 작품 삭제
 	@ResponseBody
-	public String deleteCart(String work_id_array, String option_id_array) {
+	public String deleteCart(String option_id_array) {
 
-		// 체크된 작품들의 work_id와 option_id들을 ajax로 받아와서 workIdList, optionIdList 리스트로 만들어줌
-//		work_id_array = work_id_array.replaceAll("\\[|\\]|\"", ""); // Remove brackets and quotes
-//		List<Integer> workIdList = new ArrayList<>();
-//		for (String string_work_id : work_id_array.split(",")) {
-//			workIdList.add(Integer.parseInt(string_work_id.trim()));	// string을 int로 바꿈
-//		}
-		
-		option_id_array = option_id_array.replaceAll("\\[|\\]|\"", ""); // Remove brackets and quotes
+		option_id_array = option_id_array.replaceAll("\\[|\\]|\"", ""); // 대괄호랑 따옴표 없애기
 		List<Integer> optionIdList = new ArrayList<>();
 		for (String string_option_id : option_id_array.split(",")) {
 			optionIdList.add(Integer.parseInt(string_option_id.trim()));
@@ -150,7 +150,7 @@ public class MyShopController {
 		
 		// 장바구니에서 주문한거면 주문끝났으니 장바구니 테이블에서 work_id, option_id 삭제
 		int member_id = (int) session.getAttribute("sessionMember_id");
-		shopservice.deleteCart_member(member_id, optionIdList);
+		myShopService.deleteCart_member(member_id, optionIdList);
 		System.out.println("장바구니 삭제 완료~~!!");
 		
 		String result = "삭제 완료됐습니다";
@@ -169,8 +169,61 @@ public class MyShopController {
 		return "home/myshop/personalpayform";
 	}
 
-	@GetMapping("mypage") // 마이페이지 ( 로그인이 되었을때만 [회원가입 -> 마이페이지로] 변경해서 보이게함)
-	public String mypage(Model model) {
+	@GetMapping("mypage") // 마이페이지 ( 로그인이 되었을때만 [회원가입 -> 마이페이지로] 변경해서 보이게함)(
+	public String mypage(int member_id, Model model) {
+		
+		// 최근 주문 정보이기 때문에 오늘로부터 30일 전부터의 주문만 가져와야 함 (기준 바꾸려면 daysAgo변수만 바꾸면 됨)
+		int daysAgo = 30; 
+	    LocalDate now = LocalDate.now();
+	    LocalDate daysAgoDate = now.minus(daysAgo, ChronoUnit.DAYS);
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    String formattedDate = daysAgoDate.format(formatter);
+	    
+		String fr_date = formattedDate; String to_date = "";	// 검색 종료일은 빈칸""으로 하면 알아서 오늘까지로 검색되는 걸로 mapper.xml에서 해놓음
+		
+		if (session.getAttribute("sessionMember_id") != null) { // 로그인 돼있을 때만 일단 구현
+			member_id = (int) session.getAttribute("sessionMember_id");
+			
+			List<Order_Detail_inquireVo> order_detail_list = myShopService.selectOrderDetailByMemberId(member_id, fr_date, to_date);
+			model.addAttribute("order_detail_list", order_detail_list);	// 회원상세주문 객체들이 담긴 리스트 넘김
+
+			// ------↓ 회원 주문번호(order_member_id)와 & 회원 주문번호가 동일한 order_Detail_inquireVo들의
+			// '개수'가 담긴 map을 만듦 ---↓--//
+			// ------ 예) map의 key:2 value:3 -> 뜻 : order_member_id가 2인
+			// order_Detail_inquireVo의 개수가 5개. ------//
+			Map<Integer, Integer> orderMemberIdCountMap = new HashMap<>();
+			for (Order_Detail_inquireVo order_Detail_inquireVo : order_detail_list) {
+				int order_member_id = order_Detail_inquireVo.getOrder_member_id();
+				if (orderMemberIdCountMap.containsKey(order_member_id)) {
+					orderMemberIdCountMap.put(order_member_id, orderMemberIdCountMap.get(order_member_id) + 1);
+				} else {
+					orderMemberIdCountMap.put(order_member_id, 1);
+				}
+			}
+			model.addAttribute("orderMemberIdCountMap", orderMemberIdCountMap);
+
+			// '진행 중인 주문' 에서 주문상태들(order_status) 각각 몇개씩인지 map에 저장(order_status : 0 , 개수 : 4개 | order_status : 1 , 개수 : 3개....|..)
+			Map<String, Integer> orderStatusCountMap = new HashMap<>(); 
+			for (Order_Detail_inquireVo order_detail_inquireVo : order_detail_list) {
+				int order_status = order_detail_inquireVo.getOrder_status();
+				if(orderStatusCountMap.containsKey(order_status + "")) {	// 이미 있으면 (int를 +""함으로써 String으로 변환시켜서 key에 저장
+					orderStatusCountMap.put(order_status + "", orderStatusCountMap.get(order_status+"") + 1);
+				} else {
+					orderStatusCountMap.put(order_status + "", 1);
+				}
+			}
+			System.out.println("orderStatusCountMap의 정보 : " + orderStatusCountMap.get("0"));
+			
+			model.addAttribute("orderStatusCountMap", orderStatusCountMap);
+			
+			int wishListCount = myShopService.selectWishlistCount(member_id);  // 찜리스트에 member_id가 저장한 작품이 있는지 확인
+			List<WishListVo> wishListPageList = myShopService.selectMypageView(member_id);  // wishlist페이지에 보여주는 작품 가져오기
+			model.addAttribute("wishListCount",wishListCount);
+			model.addAttribute("wishListPageList",wishListPageList);
+			
+		}// 회원인지 확인 if
+		
+		
 		return "home/myshop/mypage";
 	}
 
@@ -181,7 +234,7 @@ public class MyShopController {
 
 	@GetMapping("orderinquiry") // 주문조회, 주문목록/배송조회
 	public String orderinquiry(@RequestParam(name = "fr_date", required = false) String fr_date,
-			@RequestParam(name = "to_date", required = false) String to_date, Model model) {
+			@RequestParam(name = "to_date", required = false) String to_date, @RequestParam(defaultValue = "1") int page, Model model) {
 		
 		// 변수 초기화
 		int member_id = 0;
@@ -189,7 +242,11 @@ public class MyShopController {
 		if (session.getAttribute("sessionMember_id") != null) { // 로그인 돼있을 때만 일단 구현
 			member_id = (int) session.getAttribute("sessionMember_id");
 			
-			List<Order_Detail_inquireVo> order_detail_list = shopservice.selectOrderDetailByMemberId(member_id, fr_date, to_date);
+			// 회원 주문 총 개수(회원 주문고유번호의 개수) 가져오기(날짜 제한있음fr_date~to_date)
+			int order_member_count = myShopService.selectOrder_member_count(member_id, fr_date, to_date);
+			model.addAttribute("order_member_count", order_member_count);	
+			
+			List<Order_Detail_inquireVo> order_detail_list = myShopService.selectOrderDetailByMemberId(member_id, fr_date, to_date);
 			model.addAttribute("order_detail_list", order_detail_list);	// 회원상세주문 객체들이 담긴 리스트 넘김
 
 			// ------↓ 회원 주문번호(order_member_id)와 & 회원 주문번호가 동일한 order_Detail_inquireVo들의
@@ -208,11 +265,6 @@ public class MyShopController {
 
 			model.addAttribute("orderMemberIdCountMap", orderMemberIdCountMap);
 
-			// 회원 주문 총 개수(회원 주문고유번호의 개수) 가져오기
-			int order_member_count = shopservice.selectOrder_member_count(member_id, fr_date, to_date);
-			model.addAttribute("order_member_count", order_member_count);
-			
-			
 		}
 		return "home/myshop/orderinquiry";
 	}
@@ -227,21 +279,15 @@ public class MyShopController {
 			memberVo = memberservice.selectOne(member_id);
 		}
 
-		// 전달받았던 order_member_id_int(회원 주문 고유번호)를 사용해서 회원 주문 객체(order_memberVo)를 통째로
-		// 가져옴.
-		Order_MemberVo order_memberVo = shopservice.selectOrderMemberOne_result(order_member_id); // 회원 주문 객체. 회원 주문은
-																									// 1개. 1개 주문에 대한
-																									// view니까.
+		// 전달받았던 order_member_id_int(회원 주문 고유번호)를 사용해서 회원 주문 객체(order_memberVo)를 통째로 가져옴.
+		Order_MemberVo order_memberVo = myShopService.selectOrderMemberOne_result(order_member_id); // 회원 주문 객체. 회원 주문은
 
 		// work_id들이 담긴 리스트와 option_id들이 담긴 리스트를 저장한 map을 리턴받는 메소드. -> workVo와
 		// optionVo들이 필요하기 때문. 중간과정.
-		Map<String, List<Integer>> orderDetail = shopservice.selectOrderDetail(order_member_id); // orderDetail에
-																									// workIdList와
-																									// optionIdList가
+		Map<String, List<Integer>> orderDetail = myShopService.selectOrderDetail(order_member_id); // orderDetail에
 																									// 담겨있음
 		// 방금 받아온 optionIdList를 사용해서 OptionVo들이 담긴 리스트를 받아오기
 		List<OptionVo> optionVoList = shopservice.selectOptionList(orderDetail.get("optionIdList")); // 주문 상세에 대한
-																										// option객체
 
 		// 이번엔 workIdList를 사용해서 WorkVo들이 담긴 리스트(workVoList) 받아오기 + 작가이름을 가져오기 위해
 		// artistVo들이 담긴 리스트(artistVoList)도 맵으로 한번에 가져오기
@@ -388,15 +434,15 @@ public class MyShopController {
 
 		// 배송 테이블 값부터 먼저 insert(회원 주문 테이블에 배송고유번호가 외래키로 배송테이블을 참조하고 있어서 얘 먼저 해줘야 가능)후
 		// delivery_id 리턴 받음
-		shopservice.insertDelivery();
-		int delivery_id2 = shopservice.insertDelivery2();
+		myShopService.insertDelivery();
+		int delivery_id2 = myShopService.insertDelivery2();
 		System.out.println("송장번호 한꺼번에 : " + delivery_id2);
 
-		int delivery_id = shopservice.selectDeliverySeq();
+		int delivery_id = myShopService.selectDeliverySeq();
 //		System.out.println("만들어진 송장번호1111 : " + delivery_id);
 
 		// 회원 주문 테이블(Order_Member)DB에 주문 저장!! 직후 Order_Member_SEQ의 현재 번호(회원주문 고유번호) 리턴받음
-		int order_member_id = shopservice.insertOrder_Member(member_id, delivery_id, order_memberVo); // order_memberVo는
+		int order_member_id = myShopService.insertOrder_Member(member_id, delivery_id, order_memberVo); // order_memberVo는
 																										// 이전페이지에서 받아옴
 		System.out.println("주문 저장 완료           !!!! ");
 
@@ -411,7 +457,7 @@ public class MyShopController {
 		}
 
 		for (int i = 0; i < workIdList.size(); i++) {
-			shopservice.insertOrder_Detail(order_member_id, workIdList.get(i), optionIdList.get(i), total_price_int);
+			myShopService.insertOrder_Detail(order_member_id, workIdList.get(i), optionIdList.get(i), total_price_int);
 		}
 
 		return "redirect:order_result?order_member_id=" + order_member_id;
@@ -422,11 +468,11 @@ public class MyShopController {
 
 		// 회원 주문 테이블의 정보 가져오기(order_result에 뿌려야 함. 회원주문id, 주문일시만 필요. 그러나 어디서 또 쓰일지 몰라서
 		// 일단 다 가져올 것.)
-		Order_MemberVo order_memberVo = shopservice.selectOrderMemberOne_result(order_member_id); 
+		Order_MemberVo order_memberVo = myShopService.selectOrderMemberOne_result(order_member_id); 
 		// 함수명 이렇게 한 이유 : 회원주문 객체 1명을 가져오는 일은 admin에서도 필요하기 때문에 함수명 같으면 안돼서 다르게 하려고 뒤에 언더바랑 언제 사용되는지(result-주문결과)를 적은 것.
 
 		// 해당 주문건의 회원 주문 상세 테이블 가져오기
-		Map<String, List<Integer>> orderDetail = shopservice.selectOrderDetail(order_member_id); // optionIdList와 workIdList가 담겨있음.
+		Map<String, List<Integer>> orderDetail = myShopService.selectOrderDetail(order_member_id); // optionIdList와 workIdList가 담겨있음.
 		System.out.println("회원 주문 상세 입력 완료1!!!!!");
 
 		// 옵션 객체들 DB에서 가져오기
@@ -449,16 +495,62 @@ public class MyShopController {
 
 		// 장바구니에서 주문한거면 주문끝났으니 장바구니 테이블에서 주문했던 작품들의 work_id, option_id 삭제
 		int member_id = memberVo.getId();
-		shopservice.deleteCart_member(member_id, orderDetail.get("optionIdList"));
+		myShopService.deleteCart_member(member_id, orderDetail.get("optionIdList"));
 
 		return "home/myshop/order_result";
 	}
 
-	@GetMapping("my_wishlist") // 찜 리스트
-	public String my_wishlist(Model model) {
+	//-------------------  찜 리스트 목록 ---------------//
+	
+	@GetMapping("my_wishlist") // 찜 리스트 페이지 이동
+	public String my_wishlist(@RequestParam(defaultValue = "1") int page, int member_id, Model model) {
+		Map<String, Object> wishListPageMap = myShopService.selectWishlistPage(page, member_id);  // 찜리스트 페이징 처리
+		int wishListCount = myShopService.selectWishlistCount(member_id);  // 찜리스트에 member_id가 저장한 작품이 있는지 확인
+		model.addAttribute("wishListPageMap",wishListPageMap);
+		model.addAttribute("wishListCount",wishListCount);
+		//System.out.println("DB에서 받아온 map : "+wishListPageMap);
 		return "home/myshop/my_wishlist";
 	}
-
+	
+	@PostMapping("workWishlist_ajax")  // 찜 리스트 ajax
+	@ResponseBody
+	public int workWishlist_ajax(String member_id, int work_id) {
+		int list = myShopService.selectWorkWishListCheck(member_id, work_id); // 찜리스트에 작품이 있는지 확인
+		//System.out.println("list의 값 : "+list);
+		if(list==0) {  // 찜리스트에 저장이 안되어있으면 list=0이됨
+			myShopService.insertWorkWishList(member_id, work_id);  // 찜리스트에 저장
+		}
+		return list;
+	}
+	
+	@PostMapping("WishlistDelete_ajax")  // 찜 리스트 삭제
+	@ResponseBody
+	public void WishlistDelete_ajax(int id) {
+		myShopService.deleteWorkWishList(id);
+		//System.out.println("DB에서 가져온 삭제 id : "+id);
+	}
+	
+	@PostMapping("delete_items")  // 찜 리스트(체크박스) 삭제
+	@ResponseBody
+	public void delete_items(String selectedItemsArray) {  // @RequestParam("selectedItems[]") RequestParam은 front에서 넘어온 name이 매개변수와 이름이 같으면 생략 가능
+		//System.out.println("받아온 id들 : " + selectedItemsArray);
+		selectedItemsArray = selectedItemsArray.replaceAll("\\[|\\]|\"", ""); // 얘잘 이해안됨
+		List<Integer> selectedItemsList = new ArrayList<>();
+		for (String selectedItem : selectedItemsArray.split(",")) {
+			selectedItemsList.add(Integer.parseInt(selectedItem.trim()));  // 양옆의 빈 공백을 지우겠다 trim
+		}
+		myShopService.deleteCheckBox(selectedItemsList);
+		//String [] student_number = new String[10]; // array.length() list.size()
+	}
+	
+	@PostMapping("deleteAll_items")  // 찜 리스트(전체) 삭제
+	@ResponseBody
+	public void deleteAll_items(int member_id) {
+		myShopService.deleteAll_items(member_id);
+	}
+	
+	//-------------------  찜 리스트 목록 끝 ---------------//
+	
 	@GetMapping("my_coupon") // 나의 쿠폰
 	public String my_coupon(Model model) {
 		return "home/myshop/my_coupon";

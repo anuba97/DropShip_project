@@ -34,7 +34,7 @@
                             <a href="../bbs/board8497?bo_table=notice">Community</a>
                             <ul class="depth">
                                 <li><a href="../bbs/notice">공지사항</a></li>
-                                <li><a href="../event/all_event?bo_table=event">이벤트</a></li>
+                                <li><a href="../event/all_event">이벤트</a></li>
                                 <li><a href="../bbs/board">자유게시판</a></li>
                             </ul>
                         </li>
@@ -60,7 +60,7 @@
 	                        <li><a href="../bbs/register_intro">회원가입</a></li>	<!-- 이거 안됨 해결해야ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ -->
 						</c:if>
 						<c:if test="${sessionMember_login_id != null }">
-                        	<li><a href="../myshop/mypage">마이페이지</a></li>
+                        	<li><a href="../myshop/mypage?member_id=${sessionMember_id}">마이페이지</a></li>
 						</c:if>
 						
                         <li><a href="../myshop/personalpay">개인결제창(일단냅두기)</a></li>
@@ -96,9 +96,14 @@
                 <li><a href="../member/register_intro">회원가입</a></li>
             </c:if>
             <c:if test="${sessionMember_login_id != null }">
-                <li><a href="../myshop/mypage">마이페이지</a></li>
+                <li><a href="../myshop/mypage?member_id=${sessionMember_id}">마이페이지</a></li>
             </c:if>
-            <li><a href="../myshop/orderinquiry">주문조회</a></li>
+            <c:if test="${sessionMember_login_id == null}">
+	            <li><a href="../member/login">주문조회</a></li>
+            </c:if>
+            <c:if test="${sessionMember_login_id != null}">
+	            <li><a href="../myshop/orderinquiry">주문조회</a></li>
+            </c:if>
             <li><a href="../myshop/cart">장바구니<span class="basket-num">0</span></a></li>
             <li><a href="../bbs/board">자유게시판</a></li>
         </ul>

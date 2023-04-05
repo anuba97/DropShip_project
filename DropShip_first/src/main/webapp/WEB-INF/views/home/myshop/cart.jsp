@@ -332,63 +332,44 @@
                     return true;
                 }
 
+                var selectedWorksId = [];
+                var selectedOptionsId = [];
                 function form_check(act) {
+                	selectedWorksId = [];
+                	selectedOptionsId = [];
                     var f = document.frmcartlist;
                     var cnt = f.records.value;
-                    var selectedWorksId = [];
-                    var selectedOptionsId = [];
-
+                    
                     if (act == "buy") {
                         if ($("input[name^=ct_chk]:checked").length < 1) {
                             alert("주문하실 상품을 하나이상 선택해 주십시오.");
                             return false;
                         }
-
                         f.act.value = act;
-                        /* 체크된 작품의 id만 넘기게 */
-                	    $('input[name="ct_chk[]"]').each(function() {
-                	        if ($(this).is(':checked')) {
-               	        	   selectedWorksId.push($(this).val());	/* 체크된 작품의 workId들을 배열에 집어넣기 */
-               	        	   
-               	        	   var optionId= $(this).closest('tr').find('input[name="optionIdList[]"]').val(); 
-               	        	   selectedOptionsId.push(optionId); /* 체크된 작품의 optionId들을 배열에 집어넣기 */
-                	        }
-                     	 });
-                	    $('input[name="selectedWorksId"]').val(selectedWorksId);
-                	    $('input[name="selectedOptionsId"]').val(selectedOptionsId);
+                        selectedWorkAndOptionId();
                         f.action = "../myshop/order_form";
                         f.submit();
+                    } else if (act == "alldelete" || act == "seldelete") {	// '선택삭제' 누르든 '장바구니 비우기' 누르든
+                    	if(act == "seldelete"){	// 만약 '선택삭제' 누른 거면
+	                        if ($("input[name^=ct_chk]:checked").length < 1) {	// 선택 하나라도 돼있는지 체크
+	                            alert("삭제하실 상품을 하나이상 선택해 주십시오.");
+	                            return false;	
+	                        }
+                    	} else {	//	만약 '장바구니 비우기' 누른 거면
+                    		$("input[name^=ct_chk]").each(function(){	// 모든 작품 선택
+	                    		$(this).prop("checked", true);
+                    		});
+                    	}
+                        f.act.value = act;
+                        selectedWorkAndOptionId();
                         
-                    } else if (act == "alldelete") {
-                        f.act.value = act;
-//                         f.action = "../myshop/mypage_drone";
-//                         f.submit();
-                    } else if (act == "seldelete") {
-                        if ($("input[name^=ct_chk]:checked").length < 1) {
-                            alert("삭제하실 상품을 하나이상 선택해 주십시오.");
-                            return false;
-                        }
-
-                        f.act.value = act;
-//                         f.action = "../shop/best_list";
-//                         f.submit();
-
-						/* 체크된 작품의 id만 삭제하게. 구매와 동일 */
-                	    $('input[name="ct_chk[]"]').each(function() {
-                	        if ($(this).is(':checked')) {
-               	        	   selectedWorksId.push($(this).val());	/* 체크된 작품의 workId들을 배열에 집어넣기 */
-               	        	   
-               	        	   var optionId= $(this).closest('tr').find('input[name="optionIdList[]"]').val(); 
-               	        	   selectedOptionsId.push(optionId); /* 체크된 작품의 optionId들을 배열에 집어넣기 */
-                	        }
-                     	 });
-                	    $('input[name="selectedWorksId"]').val(selectedWorksId);
-                	    $('input[name="selectedOptionsId"]').val(selectedOptionsId);
-                	    
-						$.ajax({
+//                         alert("선택된 작품의 option_id : " + selectedOptionsId);
+//                         alert("선택된 작품의 work_id : " + selectedWorksId);
+                        
+                     	// ajax 통해서 서버로 option_id리스트를 보냄. 삭제할 때 work_id는 필요없음. 주문은 필요함
+						$.ajax({	
 							url : "../myshop/deleteCart",
-							data : { "work_id_array" : JSON.stringify(selectedWorksId), 
-								"option_id_array" : JSON.stringify(selectedOptionsId)},
+							data : {"option_id_array" : JSON.stringify(selectedOptionsId)},
 							type : "POST",
 							success : function(result){
 								alert(result);
@@ -398,11 +379,23 @@
 								alert("ajax실패");
 							}
 						}); // ajax
-
                     } // act 관련 if
-
                     return true;
-                }
+                } // form_check()
+                
+                // 체크된 작품들의 work_id리스트와 option_id리스트를 각각 만들어서 input에 value로 넣기
+                function selectedWorkAndOptionId(){	
+            	    $('input[name="ct_chk[]"]').each(function() {	// 체크박스 다 돌아
+            	        if ($(this).is(':checked')) {
+           	        	   selectedWorksId.push($(this).val());	/* 체크된 작품의 workId들을 배열에 집어넣기 */
+           	        	   
+           	        	   var optionId= $(this).closest('tr').find('input[name="optionIdList[]"]').val(); 
+           	        	   selectedOptionsId.push(optionId); /* 체크된 작품의 optionId들을 배열에 집어넣기 */
+            	        }
+                 	 });
+            	    $('input[name="selectedWorksId"]').val(selectedWorksId);
+            	    $('input[name="selectedOptionsId"]').val(selectedOptionsId);
+                } // selectedWorkAndOptionId
             </script>
             <!-- } 장바구니 끝 -->
 
