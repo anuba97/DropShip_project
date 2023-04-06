@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="ko">
 
@@ -12,6 +14,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="../home/img/favicon.ico" />
 <title>진행중 event</title>
+<link href="../admin/css/styles_page.css" rel="stylesheet" />
+<link href="../admin/css/styles.css" rel="stylesheet" />
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -113,42 +117,66 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 			<!-- 전체보기 이벤트 리스트 4개 -->
             <div class="grid-event-list">
               <ul id="gall_ul">
-               <li>
-                 <a href="event_view">
-                   <div class="event-thumb">
-				     <div class="imgbox" style="background-image:url(../home/data/file/event/3696002221_dbEs51LA_aa67d3242cefd5a5ea0a29872d7bc92d25b9fae2.jpg)"><span class="hide">썸네일</span></div>
-                   </div>
-                   <div class="event-info"><h3>회원가입 시 쿠폰팩발급</h3><p>지금 가입하신 신규 회원님께 쿠폰팩을 증정합니다.</p>
-                     <span class="date">2022-05-10 ~ 2022-05-10</span>
-                   </div>
-				 </a>
-			   </li>
-			   
-			   <li>
-			     <a href="event_view">
-				   <div class="event-thumb">
-				     <div class="imgbox" style="background-image:url(../home/data/file/event/3696002221_pmGWMw1Y_5a9438f5a94470d257a3db75e33cdadbdad4c0b6.png)"><span class="hide">썸네일</span></div>
-				   </div>
-				   <div class="event-info"><h3>트리플 봄 특가</h3><p>지금 가입하신 신규 회원님께 쿠폰팩을 증정합니다.</p>
-				     <span class="date">2022-05-10 ~ 2022-05-30</span>
-				   </div>
-				 </a>
-			   </li>
-			   
-			   <li>
-			     <a href="event_view">
-				   <div class="event-thumb">
-				     <div class="imgbox" style="background-image:url(../home/data/file/event/3696002221_X6LQ7rlC_a507306a71ec2c04b9d26a53e76df944a6e5bfa2.png)"><span class="hide">썸네일</span></div>
-				   </div>
-				   <div class="event-info"><h3>11월 블랙프라이데이 이벤트</h3><p>블프 기간 한정! 전품목 최대 67% 할인!</p>
-				     <span class="date">2022-05-10 ~ 2022-06-01</span>
-				   </div>
-				 </a>
-			   </li>
+               <c:forEach items="${map.list}" var="eb">	
+	                <c:if test="${eb.eventboard_status == 1}">
+		               <li>
+		                 <a href="event_view?id=${eb.id}&page=${map.page}">
+		                   <div class="event-thumb">
+						     <c:if test="${eb.eventboard_file_name != null}">
+						     	<div class="imgbox" style="background-image:url(../admin/img/Event/${eb.eventboard_file_name})"><span class="hide">썸네일</span></div>
+						     </c:if>
+	                   		 <c:if test="${eb.eventboard_file_name == null}">
+						     	<div class="imgbox" style="background-image:url(../admin/img/Event/Event_deafaultLogo.png)"><span class="hide">썸네일</span></div>
+						     </c:if>
+		                   </div>
+		                   <div class="event-info"><h3>${eb.eventboard_title}</h3><p>${eb.eventboard_content}</p>
+		                     <span class="date"><fmt:formatDate value="${eb.eventboard_start}" pattern="yyyy-MM-dd(E) HH:mm"/> ~ 
+		                     <fmt:formatDate value="${eb.eventboard_end}" pattern="yyyy-MM-dd(E) HH:mm"/></span>
+		                   </div>
+						 </a>
+					   </li>
+				    </c:if>
+	           </c:forEach>
 			 </ul>
            </div>
 		 </form>
-
+		 
+		<div class="pg_wrap" style="margin-top: 30px;">
+			<ul class="page-numul" style="list-style:none;">
+				<c:if test="${map.page == 1}"><li><span class="pg_page pg_start"></span></li></c:if>
+				<c:if test="${map.page != 1}">
+				<a href="pro_event?page=1"><li><span  class="pg_page pg_start"></span></li></a>
+				</c:if>
+				
+				<c:if test="${map.page == 1}"><li><span class="pg_page pg_prev"></span></li></c:if>
+				<c:if test="${map.page != 1}">
+				<a href="pro_event?page=${map.page - 1}"><li><span class="pg_page pg_prev"></span></li></a>
+				</c:if>
+				
+				<c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number">
+					<c:if test="${map.page == number}">
+					<li>
+						<div class="pg_current">${number}</div>
+					</li>
+					</c:if>
+					<c:if test="${map.page != number}">
+					<li>
+						<a href="pro_event?page=${number}"><div class="pg_page">${number}</div></a>
+					</li>
+					</c:if>
+				</c:forEach>
+				
+				<c:if test="${map.page == map.maxPage}"><li><span class="pg_page pg_next"></span></li></c:if>
+				<c:if test="${map.page != map.maxPage}">
+				<a href="pro_event?page=${map.page + 1}"><li><span class="pg_page pg_next"></span></li></a>
+				</c:if>
+				
+				<c:if test="${map.page == map.maxPage}"><li><span class="pg_page pg_end"></span></li></c:if>
+				<c:if test="${map.page != map.maxPage}">
+				<a href="pro_event?page=${map.maxPage}"><li><span class="pg_page pg_end"></span></li></a>
+				</c:if>
+			</ul>
+		</div>
 		
 		<!-- 페이지 -->
 	</div>
@@ -166,31 +194,12 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 </div>
 </div>
 
-
 <script src="../home/js/sns.js"></script>
 <script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
 <link rel="stylesheet" href="../home/theme/buzinga/css/animate.css">
 <script src="../home/theme/buzinga/js/base.js"></script><script src="../home/theme/buzinga/js/sub.js"></script>
 
-<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-<!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
-
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
-
-
 </body>
-
 <!-- Mirrored from bxgs.co.kr/bbs/board.php?bo_table=event&sca=%EC%A7%84%ED%96%89%EC%A4%91+%EC%9D%B4%EB%B2%A4%ED%8A%B8 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:05:16 GMT -->
 </html>
 

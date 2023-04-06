@@ -82,8 +82,8 @@ public class BoardServiceimpl implements BoardService{
 	      
 	      return map;
 	   }
-	
-	@Override //게시글 삭세
+	 
+    @Override //게시글 삭세
 	public void deleteBoard(int id) {
 		boardMapper.deleteBoard(id);
 	}
@@ -91,5 +91,17 @@ public class BoardServiceimpl implements BoardService{
 	@Override //게시글 수정 
 	public void updateBoard(BoardVo boardVo) {
 		boardMapper.updateBoard(boardVo);
+	}   
+	
+    @Override //admin 전용 게시글 불러들이기(이전글 다음글 포함x )
+	public BoardVo selectOneforAdmin(int id) {
+		BoardVo boardVo = boardMapper.selectOneforAdmin(id);
+		return boardVo;
 	}
+	
+	@Override //게시글 수정 
+	public void adminupdateBoard(BoardVo boardVo) {
+		boardMapper.adminupdateBoard(boardVo);
+	}
+	
 }

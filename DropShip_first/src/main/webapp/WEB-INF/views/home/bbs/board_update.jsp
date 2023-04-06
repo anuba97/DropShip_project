@@ -95,22 +95,34 @@
                         <input type="hidden" name="page" value="">
                         <input type="hidden" name="token" value="a65199a8af1a23701cf798a89157a1f1">
                         <input type="hidden" name="qa_html" value="0">
-						<input type="hidden" name="id" value="${boardVo.id}">	<!-- bdate빼고 다 전달해주게 -->
-						<input type="hidden" name="freeBoard_file_name" value="${boardVo.freeBoard_file_name}">
+						<input type="hidden" name="id" value="${map.boardVo.id}">	<!-- bdate빼고 다 전달해주게 -->
+						<input type="hidden" name="freeBoard_file_name" value="${map.boardVo.freeBoard_file_name}">
 						<input type="hidden" name="page" value="${page}">
+<%-- 						<input type="hidden" name="freeBoard_head" value="${map.boardVo.freeBoard_head}"> --%>
 						<%-- <input type="hidden" name="searchTitle" value="${searchTitle}">
 						<input type="hidden" name="searchWord" value="${searchWord}"> --%>
                         <div class="form-box-wrap">
 
                             <div class="form-box">
                                 <div class="left-con">
-                                    <label for="qa_subject"><span class="f-color">*</span>제목</label>
+                                    <label for="qa_subject"><span class="f-color">*</span>제목${map.boardVo.freeBoard_head}${map.boardVo.freeBoard_head}${map.boardVo.freeBoard_head}</label>
                                 </div>
                                 <div class="right-con">
-                                    <input type="text" name="freeBoard_title" id="freeBoard_title" value="${boardVo.freeBoard_title}" id="qa_subject" required class="inp-type01 required" maxlength="255" placeholder="제목">
+                                    <input type="text" name="freeBoard_title" id="freeBoard_title" value="${map.boardVo.freeBoard_title}" id="qa_subject" required class="inp-type01 required" maxlength="255" placeholder="제목">
                                 </div>
                             </div>
-
+							<div class="form-box">
+                                <div class="left-con">
+                                    <label for="qa_subject"><span class="f-color">*</span>글머리</label>
+                                </div>
+                                <div class="right-con">
+                                    <select name="freeBoard_head" id="freeBoard_head" class="deco-select">
+                                         <option value="0" name="freeBoard_head" id="freeBoard_head" <c:if test="${map.boardVo.freeBoard_head == '0'}">selected</c:if>>자유</option>
+                                         <option value="1" name="freeBoard_head" id="freeBoard_head" <c:if test="${map.boardVo.freeBoard_head == '1'}">selected</c:if>>후기</option>
+                                         <option value="2" name="freeBoard_head" id="freeBoard_head" <c:if test="${map.boardVo.freeBoard_head == '2'}">selected</c:if>>질답</option>
+                                     </select>
+                                </div>
+                            </div>
                             <div class="form-box">
                                 <div class="left-con">
                                     <label for="qa_content"><span class="f-color">*</span>내용</label>
@@ -118,7 +130,7 @@
                                 <div class="right-con">
                                     <div class="wr_content">
                                         <span class="sound_only">웹에디터 시작</span>
-                                        <textarea id="qa_content" id="freeBoard_content" name="freeBoard_content" class="textarea-type01" maxlength="65536" style="width:100%;height:300px" placeholder="내용을 입력해주세요.">${boardVo.freeBoard_content}</textarea>
+                                        <textarea id="qa_content" id="freeBoard_content" name="freeBoard_content" class="textarea-type01" maxlength="65536" style="width:100%;height:300px" placeholder="내용을 입력해주세요.">${map.boardVo.freeBoard_content}</textarea>
                                         <span class="sound_only">웹 에디터 끝</span> </div>
                                 </div>
                             </div>

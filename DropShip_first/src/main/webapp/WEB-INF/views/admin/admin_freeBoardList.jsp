@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,28 +15,12 @@
     <link rel="shortcut icon" href="admin/img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	<link href="admin/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body class="sb-nav-fixed">
-    <%-- 	<c:if test="${result == 0}"> --%>
-    <!-- 		<script> -->
-    // alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요.");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${result == 1}"> --%>
-    <!-- 		<script> -->
-    // alert("로그인되었습니다");
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${sessionAdminLoginId==null}"> --%>
-    <!-- 		<script> -->
-    // alert("관리자만 접근할 수 있습니다!");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
     <!-- navBar 부분 시작 -->
     <%@ include file ="include/navBar.jsp" %>
     <!-- navBar 부분 끝 -->
@@ -61,29 +46,89 @@
                             <col width="30%">
                             <col width="15%">
                             <col width="15%">
-                            <col width="5%">
-                            <col width="15%">
+                            <col width="10%">
+                            <col width="10%">
                         </colgroup>
                         <tr>
-                            <th>게시물 No.</th>
                             <th>게시글 종류</th>
+                            <th>게시물 No.</th>
                             <th>게시글 제목</th>
                             <th>작성자</th>
-                            <th>게시일</th>
                             <th>조회수</th>
-                            <th>답변 여부</th>
+                            <th>게시일</th>
+                            <th>게시글 상태</th>
                         </tr>
-                        <tr onClick="location.href='admin_freeBoardView'" style="cursor:pointer;">
-                            <td>id</td>
-                            <td>free_board_head</td>
-                            <td>free_board_title</td>
-                            <td>member_id</td>
-                            <td>free_board_date</td>
-                            <td>free_board_hit</td>
-                            <td>free_board_isAnswer</td>
-                        </tr>
+                        <c:forEach items="${map.list}" var="bvo">
+                        
+                        	<tr onClick="location.href='admin_freeBoardView?id=${bvo.id}'" style="cursor:pointer;">
+								<c:if test="${bvo.freeBoard_head == 0}">
+									<td class="td-num">자유</td>
+								</c:if>
+								<c:if test="${bvo.freeBoard_head == 1}">
+									<td class="td-num">후기</td>
+								</c:if>
+								<c:if test="${bvo.freeBoard_head == 2}">
+									<td class="td-num">질답</td>
+								</c:if>
+								<td class="td-num">${bvo.id}</td>
+								<td class="td-subject" >
+										${bvo.freeBoard_title}</td>
+								<c:if test="${bvo.member_id==null}">
+									<td class="td-name td-mb-hide">${bvo.admin_id}</td>
+								</c:if>
+								<c:if test="${bvo.member_id!=null}">
+									<td class="td-name td-mb-hide">${bvo.member_name}</td>
+								</c:if>
+								<td class="td-name td-mb-hide">${bvo.freeBoard_hit}</td>
+								<td class="td-date td-mb-hide"><fmt:formatDate
+									value="${bvo.freeBoard_date}" pattern="yyyy.MM.dd" />
+								</td>
+								<c:if test="${bvo.freeBoard_ban == 0}">
+									<td>게시중</td>
+								</c:if>
+								<c:if test="${bvo.freeBoard_ban == 1}">
+									<td style="color:red;">가려짐</td>
+								</c:if>
+                        	</tr>
+						</c:forEach>
                     </table>
-                </div>
+                   <!-- 하단 넘버링 부분!!! -->
+							<div class="bottom-paging">
+					<ul class="page-numul" style="list-style:none;">
+						<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></c:if>
+						<c:if test="${map.page != 1}">
+						<a href="admin_freeBoardList?page=1"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></a>
+						</c:if>
+						
+						<c:if test="${map.page==1}"><li><span class="material-symbols-outlined">chevron_left</span></li></c:if>
+						<c:if test="${map.page > 1}">
+						<a href="admin_freeBoardList?page=${map.page - 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></a>
+						</c:if>
+						
+						<c:forEach begin="${map.startpage}" end="${map.endpage}" step="1" var="number">
+							<c:if test="${map.page == num}">
+							<li class="page-num" id="page-on">
+								<div id="page-number">${number}</div>
+							</li>
+							</c:if>
+							<c:if test="${map.page != num}">
+							<li class="page-num">
+								<a href="admin_freeBoardList?page=${number}"><div id="page-number">${number}</div></a>
+							</li>
+							</c:if>
+						</c:forEach>
+						
+						<c:if test="${map.page == map.maxpage}"><li><span class="material-symbols-outlined">chevron_right</span></li></c:if>
+						<c:if test="${map.page < map.maxpage}">
+						<a href="admin_freeBoardList?page=${map.page + 1}"><li><span class="material-symbols-outlined">chevron_right</span></li></a>
+						</c:if>
+						
+						<c:if test="${map.page == map.maxpage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></c:if>
+						<c:if test="${map.page != map.maxpage}">
+						<a href="admin_freeBoardList?page=${map.maxpage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></a>
+						</c:if>
+					</ul>
+				</div>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

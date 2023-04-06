@@ -33,4 +33,9 @@ public class FController {
 		return "index";
 	}
 	
-}
+	@GetMapping("/search")
+	public String search(Model model) {
+		return "home/bxabout/search";
+	}
+	
+}//FController

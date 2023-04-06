@@ -19,42 +19,19 @@
 </head>
 <script>
     function eventAddBtn() {
-        if ($("#eventTitle").val() == "") {
+        if ($("#eventboard_title").val() == "") {
             alert("이벤트 제목을 반드시 입력해야합니다!");
-            $("#eventTitle").focus();
+            $("#eventboard_title").focus();
             return;
         }
 
-        if ($("#eventContent").val() == "") {
-            alert("이벤트 내용을 반드시 입력해야합니다!");
-            $("#eventContent").focus();
-            return;
-        }
-
-        if (confirm("해당 ADMIN을 추가하시겠습니까?")) {
-            eventBoardAdd.submit();
+        if (confirm("해당 이벤트를 추가하시겠습니까?")) {
+        	eventBoardAddFrm.submit();
         }
     }
 </script>
 
 <body class="sb-nav-fixed">
-    <%-- 	<c:if test="${result == 0}"> --%>
-    <!-- 		<script> -->
-    // alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요.");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${result == 1}"> --%>
-    <!-- 		<script> -->
-    // alert("로그인되었습니다");
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${sessionAdminLoginId==null}"> --%>
-    <!-- 		<script> -->
-    // alert("관리자만 접근할 수 있습니다!");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
     <!-- navBar 부분 시작 -->
     <%@ include file ="include/navBar.jsp" %>
     <!-- navBar 부분 끝 -->
@@ -67,56 +44,67 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">이벤트 관리</h1>
+                    <h1 class="mt-4">이벤트 등록하기</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 이벤트 게시판을 관리하는 메뉴입니다. 이벤트를 등록 관리할 수 있습니다.</div>
+                        <div class="card-body">DropShip 이벤트 게시판을 관리하는 메뉴입니다. 이벤트를 등록할 수 있습니다.</div>
                     </div>
                 </div>
                 <div>
                     <table class="admin_eventBoardAdd">
-                        <form action="eventBoardAdd" method="post" enctype="multipart/form-data">
+                        <form action="eventBoardAdd" name="eventBoardAddFrm" method="post" enctype="multipart/form-data">
                             <colgroup>
                                 <col width="25%">
                                 <col width="75%">
                             </colgroup>
                             <tr>
-                                <th><label for="eventTitle">이벤트 제목</label></th>
-                                <td><input type="text" id="eventTitle" name="eventTitle" style="width:100%;" required><br></td>
+                                <th><label for="eventboard_title">이벤트 제목</label></th>
+                                <td><input type="text" id="eventboard_title" name="eventboard_title" style="width:100%;" required><br></td>
                             </tr>
                             <tr>
-                                <th><label for="eventStartPeriod">이벤트 시작</label></th>
+                            	<th>상단 등록</th>
+	                            <td>
+	                            	<input type="radio" id="true" name="eventboard_istop" value="1">
+	                                <label for="true">등록</label>
+	                                <input type="radio" id="false" name="eventboard_istop" value="0" checked>
+	                                <label for="false">해제</label>
+	                            </td>
+                       		</tr>
+                            <tr>
+                            	<th>이벤트 상태</th>
+	                            <td>
+	                            	<input type="radio" id="true" name="eventboard_status" value="1" checked>
+	                                <label for="true">진행</label>
+	                                <input type="radio" id="false" name="eventboard_status" value="0">
+	                                <label for="false">종료</label>
+	                            </td>
+                       		</tr>
+                            <tr>
+                                <th><label for="eventboard_start">이벤트 시작</label></th>
                                 <td>
-                                    <input type="date" id="eventStartPeriod" name="eventStartPeriod" style="width:49%;">
-                                    <input type="time" id="eventStartTime" name="eventStartTime" style="width:49%;">
+                                    <input type="datetime-local" id="eventboard_start" name="eventboard_start" style="width:50%;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><label for="eventEndPeriod">이벤트 종료</label></th>
+                                <th><label for="eventboard_end">이벤트 종료</label></th>
                                 <td>
-                                    <input type="date" id="eventStartPeriod" name="eventStartPeriod" style="width:49%;">
-                                    <input type="time" id="eventEndTime" name="eventEndTime" style="width:49%;">
+                                    <input type="datetime-local" id="eventboard_end" name="eventboard_end" style="width:50%;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><label for="eventContent">이벤트 내용</label></th>
+                                <th><label for="eventboard_content">이벤트 내용</label></th>
                                 <td>
-                                    <textarea id="eventContent" name="eventContent" cols="50" rows="10" style="width:100%;" required></textarea>
+                                    <textarea id="eventboard_content" name="eventboard_content" cols="50" rows="10" style="width:100%;"></textarea>
                                 </td>
-
                             </tr>
                             <tr>
-                                <th><label for="eventFile">첨부 파일(이미지)</label></th>
-                                <td><input type="file" id="eventFile" name="eventFile" style="width:100%;"></td>
-                            </tr>
-                            <tr>
-                                <th><label for="eventLink">첨부 링크</label></th>
-                                <td><input type="text" id="eventLink" name="eventLink" style="width:100%;"></td>
+                                <th><label for="eventboard_file_name">첨부 파일(이미지)</label></th>
+                                <td><input type="file" id="eventboard_file_name" name="file" style="width:100%;"></td>
                             </tr>
                         </form>
                     </table><br>
                     <div classs="admin_eventBoardAdd_div">
-                        <button type="button" class="admin_eventBoardAdd_button" onClick="eventAddBtn()" style="margin: 0 0 0 500px;">이벤트 추가</button>
-                        <button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_eventBoardList'" style="margin: 0 auto;">이벤트 리스트</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onClick="eventAddBtn()" style="margin: 0 0 0 500px; color:red; border-radius:5px;">이벤트 추가</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_eventBoardList'" style="margin: 0 auto; border-radius:5px;">이벤트 리스트</button>
                     </div>
                 </div>
             </main>

@@ -196,6 +196,23 @@
         ) ORDER BY id DESC
 	  </select>
 	  
+	  
+	  <!-- 비교할 작품id들이 담긴 List<Integer>를 받아와서 해당되는 workVo 2개를 List<WorkVo>로 리턴해주기 -->
+	  <!-- 비교할 작품id들이 담긴 List<Integer>를 받아와서 해당되는 workVo 2개를 List<WorkVo>로 리턴해주기 -->
+	  <select id="selectWorkCompare" resultType="com.java.vo.WorkVo">
+	  	SELECT w.*, a.id, a.artist_korean_name FROM work w
+        JOIN Artist a ON w.artist_id = a.id
+        WHERE w.id IN (
+            <foreach collection="compare_work_id_list" item="compare_work_id" separator=",">
+                #{compare_work_id}
+            </foreach>
+        ) 
+        ORDER BY w.id DESC
+	  </select>
+	  <!-- 작품비교를 위해 아이디 값을 원하는 work.id 가져오기 -->
+	  <!-- 작품비교를 위해 아이디 값을 원하는 work.id 가져오기 -->
+	  
+	  
 	  <!-- 회원 주문 상세용 Artist객체들 가져오기 -->
 	  <select id="selectArtistOrderList" resultType="com.java.vo.ArtistVo">
 	  	SELECT artist_korean_name FROM artist WHERE id IN (

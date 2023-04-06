@@ -67,7 +67,9 @@ public interface ShopService {
 
 	Map<String, List<? extends Object>> selectMemberWorkList(List<Integer> workIdList);
 
-
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	List<WorkVo> selectWorkCompare(List<Integer> compare_work_id_list); // 작품 비교
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
 			int total_price_int);

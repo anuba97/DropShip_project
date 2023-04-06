@@ -48,5 +48,7 @@ public class BoardVo {
     private String freeBoard_file_name;    // 게시글 첨부파일 이름 파일 첨부 안할수도 있으니까 null가능
 
     private int freeBoard_hit;    // 게시글 조회수 
+    
+    private int freeBoard_ban;    //게시글 노출 수정
 
 }

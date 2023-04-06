@@ -75,29 +75,52 @@
 <script type="text/javascript">
     $(function() {
         $("#checkIdBtn").click(function() {
-            let admin_login_id = $("#admin_login_id").val();
-            $.ajax({
-                type: 'POST', //post 형식으로 controller 에 보내기위함!!
-                url: "adminMemberCheckId", // 컨트롤러로 가는 mapping 입력
-                data: {
-                    "admin_login_id": admin_login_id
-                }, // 원하는 값을 중복확인하기위해서  JSON 형태로 DATA 전송
-                success: function(flag) {
-                    if (flag == 0) { // 만약 성공할시
-                        result = "사용 가능한 아이디입니다.";
-                        $("#result_checkId").html(result).css("color", "blue");
-                        $("#admin_pw").trigger("focus");
-                    } else { // 만약 실패할시
-                        result = "이미 사용중인 아이디입니다.";
-                        $("#result_checkId").html(result).css("color", "red");
-                        $("#admin_login_id").val("").trigger("focus");
-                    }
-                },
-                error: function(error) {
-                    alert(error);
-                }
-            }); //ajax
+        	dup = 1; // 중복확인 버튼 클릭-> dup을 0에서 1로 바꾸기. span 글자 보이게 할려고 사용
+        	let admin_login_id = $("#admin_login_id").val();
+        	var idPattern = /^[a-zA-Z0-9]{3,12}$/; // id
+        	if(admin_login_id == ""){
+        		alert("아이디를 입력하세요.");
+        		$("#admin_login_id").focus();
+        		dup = 0;
+        		return false;
+        	}
+        	if(!idPattern.test(admin_login_id)){
+        		alert("아이디는 3자리이상 11자리이하 영문,숫자만 입력 가능합니다.");
+        		$("#admin_login_id").focus();
+        		dup = 0;
+        		return false;
+        	}
+
+        	$.ajax({
+        		url: "adminMemberCheckId", 
+        		type: 'post',		
+        		data: {"admin_login_id":admin_login_id}, 
+        		success: function(flag){
+        			
+        			if(flag == 0){ // 만약 성공할시
+        				result = "사용 가능한 아이디입니다.";
+        				$("#result_checkId").html(result).css("color","blue").show();
+        				$("#admin_pw").trigger("focus");
+        				dup = 1;
+        				
+        			}else{ // 만약 실패할시
+        				result = "이미 사용중인 아이디입니다.";
+        					$("#result_checkId").html(result).css("color","red").show();
+        					$("#admin_login_id").val("").trigger("focus");
+        					dup = 0;
+        			}
+        		},	
+        		error : function(){alert("시스템오류입니다.");}		 			
+        	})//ajax
         }); //checkIdBtn
+     
+        // 아이디 입력 필드의 값이 변경될 때마다 중복확인 상태 초기화
+	 	$("#admin_login_id").on("change", function(){
+	 	    dup = 0;
+	 	    $("#result_checkId").hide();
+	 	    $("#result_checkId").text("* ID 중복 확인을 진행해주세요.").css("color","red").show();
+	 	  });//reg_mb_id
+	 	  
     }); //function
 </script>
 

@@ -125,9 +125,9 @@
                                 </div>
                                 <div class="right-con">
                                     <select name="freeBoard_head" id="freeBoard_head" class="deco-select">
-                                         <option value="0" >자유</option>
-                                         <option value="1">후기</option>
-                                         <option value="2">질답</option>
+                                         <option name="freeBoard_head" id="freeBoard_head" value="0" >자유</option>
+                                         <option name="freeBoard_head" id="freeBoard_head" value="1">후기</option>
+                                         <option name="freeBoard_head" id="freeBoard_head" value="2">질답</option>
                                      </select>
                                 </div>
                             </div>
