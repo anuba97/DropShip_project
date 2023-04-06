@@ -13,7 +13,7 @@ public interface DropshipMemberMapper {
 
 	public int selectCount(); //맴버 list page 카운트
 
-	public DropshipMemberVo dropship_memberselectOne(String member_login_id);
+	public DropshipMemberVo dropship_memberselectOne(int id);
 
 	
 	

@@ -81,7 +81,7 @@ public interface ShopMapper {
 
 	List<String> selectArtistName(List<Integer> workIdList);
 
-	List<WorkVo> selectMemberWorkList(List<Integer> workIdList);
+	WorkVo selectMemberWorkList(int work_id);
 
 	List<ArtistVo> selectArtistOrderList(List<Integer> artistIdList);
 

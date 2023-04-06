@@ -187,13 +187,17 @@
 		    </if>
 	  </select>
 	  
-	  <!-- 회원 주문 상세용 work객체들 가져오기 -->
+	  <!-- 회원 주문 상세용 work객체들 가져오기 (여기서 반복문 쓰면 중복되는 id는 제거되고 하나만 가져와서 다 못가져옴)-->
+<!-- 	  <select id="selectMemberWorkList" resultType="com.java.vo.WorkVo"> -->
+<!-- 	  	SELECT * FROM work WHERE id IN ( -->
+<!--             <foreach collection="workIdList" item="workId" separator="," open="(" close=")"> -->
+<!--                 #{workId} -->
+<!--             </foreach> -->
+<!--         ) ORDER BY id DESC -->
+<!-- 	  </select> -->
+
 	  <select id="selectMemberWorkList" resultType="com.java.vo.WorkVo">
-	  	SELECT * FROM work WHERE id IN (
-            <foreach collection="workIdList" item="workId" separator=",">
-                #{workId}
-            </foreach>
-        ) ORDER BY id DESC
+	  	SELECT * FROM work WHERE id = #{work_id} ORDER BY id DESC
 	  </select>
 	  
 	  

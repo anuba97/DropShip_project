@@ -20,6 +20,12 @@ public class DropshipMemberVo {
 	private int id, member_phone, member_zip, admin_ban;
 	private Date member_reg_date;
 	
+	private int member_id; //고객 관리에서 주문 고객 불러오기용
+	private String delivery_name; //고객 관리에서 주문 고객 불러오기용
+	private Date order_date; //고객 관리에서 주문 고객 불러오기용
+	private int order_status; //고객 관리에서 주문 고객 불러오기용
+	private String delivery_road;//고객 관리에서 주문 고객 불러오기용
+	
 }
 
   

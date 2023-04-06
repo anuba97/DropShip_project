@@ -59,7 +59,7 @@
 							<th>회원 가입일</th>
 						</tr>
 						<c:forEach items="${map.list}" var="dvo">
-							<tr onClick="location.href='dropship_memberDetail?member_login_id=${dvo.member_login_id}&page=${page}'" style="cursor:pointer;">
+							<tr onClick="location.href='dropship_memberDetail?id=${dvo.id}&page=${page}'" style="cursor:pointer;">
 								<td>${dvo.id}</td>
 								<td>${dvo.member_login_id}</td>
 								<td>${dvo.member_name}</td>

@@ -10,6 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <title>회원가입2 (form 페이지)</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -229,6 +230,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                            </div>
 	                        </div>
 	                    </div>
+	                    
 						<script>
 							// 다음주소찾기
 							function addressBtn(){
@@ -293,53 +295,120 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	
 	
 		<script>
-	
 		  // 사이트 열리자마자 dup을 0으로 설정(중복확인 안누른 상태가 0). 눌렀으면 1
 		  var dup = 0;
 		  var dup2 = 0;
-		  $(function(){
-			  
-			  var now = new Date();
-			  var year = now.getFullYear(); // 년
-			  var month = (now.getMonth()+1); // 월
-			  var date = now.getDate(); // 일
-			  
-			  // 년도 넣기
-			  var htmlData="";
-			  htmlData += "<option selected>선택</option>";
-			  for(var i=1900;i<=year;i++){
-				  htmlData +="<option value='"+i+"'>"+i+"</option>";
-			  }
-			  $("#mb_1").html(htmlData);
-			  
-			  // 월 넣기
-			  htmlData="";
-			  htmlData += "<option selected>선택</option>"; 
-			  for(var i=1;i<=12;i++){
-				  if(i<10){
-				  	  htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-				  }else if(i>9){
-				  	  htmlData +="<option value='"+i+"'>"+i+"</option>";
-				  }
-			  }
-			  $("#mb_2").html(htmlData);
-			  
-			  // 일 넣기
-			  htmlData="";
-			  htmlData += "<option selected>선택</option>";
-			  for(var i=1;i<=31;i++){
-				  if(i<10){
-					  htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-				  }else if(i>9){
-					  htmlData +="<option value='"+i+"'>"+i+"</option>";
-				  }
-			  }
-			  $("#mb_3").html(htmlData);
-			  
-			  
-		  });//jquery
-		
 		  
+		  $(function(){
+	           
+	           var now = new Date();
+	           var year = now.getFullYear(); // 년
+	           var month = (now.getMonth()+1); // 월
+	           var date = now.getDate(); // 일
+	           
+	           // 년도 넣기
+	           var htmlData="";
+	           htmlData += "<option selected>선택</option>";
+	           for(var i=1900;i<=year;i++){
+	              htmlData +="<option value='"+i+"'>"+i+"</option>";
+	           }
+	           $("#mb_1").html(htmlData);
+	           
+	           // 월 넣기
+	           htmlData="";
+	           htmlData += "<option selected>선택</option>"; 
+	           for(var i=1;i<=12;i++){
+	              if(i<10){
+	                   htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+	              }else if(i>9){
+	                   htmlData +="<option value='"+i+"'>"+i+"</option>";
+	              }
+	           }
+	           $("#mb_2").html(htmlData);
+	           
+	           // 일 넣기
+	           htmlData="";
+	           htmlData += "<option selected>선택</option>";
+	           for(var i=1;i<=31;i++){
+	              if(i<10){
+	                 htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+	              }else if(i>9){
+	                 htmlData +="<option value='"+i+"'>"+i+"</option>";
+	              }
+	           }
+	           $("#mb_3").html(htmlData);
+	           
+	           
+	        });//jquery
+		  
+		  
+		  
+		  
+		  
+		  
+		  // 윤달 생년월일 안돼서 일단 주석처리해놈
+// 		   $(function(){   
+			  
+// 			  var now = new Date();
+// 			  var year = now.getFullYear(); // 년
+			  
+// 			  // 년도
+// 			  var yearData="";
+// 			  yearData += "<option selected>선택</option>";
+// 			  for(var i=1900;i<=year;i++){
+// 				  yearData +="<option value='"+i+"'>"+i+"</option>";
+// 			  }
+// 			  $("#mb_1").html(yearData);
+			  
+// 			  // 월
+// 			  var monthData="";
+// 			  monthData += "<option selected>선택</option>"; 
+// 			  for(var i=1;i<=12;i++){
+// 			      if(i<10){
+// 			    	  monthData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+// 			      }else if(i>9){
+// 			    	  monthData +="<option value='"+i+"'>"+i+"</option>";
+// 			      }
+// 			  }
+// 			  $("#mb_2").html(monthData);
+			  
+			  
+// 			  $("#mb_3").html("<option selected>선택</option>");
+			  
+// 			// 월이 변경될 때 나오는 일
+// 				$('#mb_2').on('change', function() {
+// 				  var year = $("#mb_1").val();
+// 				  var month = $("#mb_2").val();
+// 				  var day = 0;
+// 				  var dayData ="";
+// 				  dayData = "<option selected>선택</option>"
+				  
+// 				  if ( month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) { day = 31; }
+// 				  else if ( month == 4 || month == 6 || month == 9 || month == 11 ) { day = 30; }
+// 				  else if ( month == 2 ) {
+// 				      if ( year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ) { day = 29; }
+// 				      else { day = 28; }
+// 				  }
+				  
+				  
+// 				  for ( var i = 1; i<= day; i++ ) {
+// 				      if(i<10){
+// 				          dayData += "<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+// 				      }else if(i>9){
+// 				          dayData += "<option value='"+i+"'>"+i+"</option>";
+// 				      }
+// 				  }
+				  
+// 				  alert($("#mb_3").val());
+// 				  alert(dayData);
+// 				  $("#mb_3").html(dayData);
+// 				});//function
+			  
+// 			});//제이쿼리 
+		  
+			
+ 		  
+ 		  
 		  //(회원가입)확인버튼
 		  function joinBtn(){
 			  // 정규표현식
@@ -475,6 +544,10 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 			  registerform.submit();
 		  }//joinBtn()
 			
+		  
+		  	 
+		  
+		  
 			 // ID중복확인 버튼
 		 	 $(function(){
 		 		// ID중복확인 버튼을 눌렀을 때
@@ -591,9 +664,9 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	</div>
 	
 	
-	<script src="https://bxgs.co.kr/js/sns.js"></script>
-	<script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
-	<script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
+	<script src="../home/js/sns.js"></script>
+	<script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
+	<script src="../home/theme/buzinga/js/base.js"></script><script src="../home/theme/buzinga/js/sub.js"></script>
 	
 	<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 	<!--[if lte IE 7]>

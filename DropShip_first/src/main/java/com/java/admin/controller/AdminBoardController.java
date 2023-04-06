@@ -52,126 +52,126 @@ public class AdminBoardController {
 	
 		
 	//이벤트 추가하기 페이지로 이동
-		@GetMapping("admin_eventBoardAdd")
-		public String admin_eventBoardAdd(Model model) {
-			return "admin/admin_eventBoardAdd";
-		}
+	@GetMapping("admin_eventBoardAdd")
+	public String admin_eventBoardAdd(Model model) {
+		return "admin/admin_eventBoardAdd";
+	}
+	
+	//이벤트 게시글 작성
+	@PostMapping("eventBoardAdd")
+	public String eventBoardAdd(BoardEventVo boardEventVo, @RequestPart MultipartFile file, Model model,
+			@RequestParam("eventboard_start") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_start,
+            @RequestParam("eventboard_end") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_end) { 
+		boardEventVo.setEventboard_start(eventboard_start);
+	    boardEventVo.setEventboard_end(eventboard_end);
+		if ( file.isEmpty() ) {
+			boardEventVo.setEventboard_file_name(""); //업로드파일이 없는 경우
+		}else if(!file.isEmpty()) {
+			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
+			long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
+			String uploadFileName = String.format("%d_%s", time, originFileName);
+			String fileSaveUrl = "C:\\GIT\\DropShip_Spring_20230405\\DropShip_Spring\\DropShip_first_0405\\src\\main\\resources\\static\\admin\\img\\Event\\";
+			
+			File f = new File(fileSaveUrl + uploadFileName);  
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 변경된 파일이름을 boardEventVo 객체에 저장
+			boardEventVo.setEventboard_file_name(uploadFileName);
+			// 파일이 첨부 안됐으면 안넣어
+		} // if. 
 		
-		//이벤트 게시글 작성
-		@PostMapping("eventBoardAdd")
-		public String eventBoardAdd(BoardEventVo boardEventVo, @RequestPart MultipartFile file, Model model,
-				@RequestParam("eventboard_start") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_start,
-	            @RequestParam("eventboard_end") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_end) { 
+		int insertEventAddResult = 0;
+		boardEventService.insertEventAdd(boardEventVo);
+		if(boardEventVo != null) {
+			insertEventAddResult = 1;
+			model.addAttribute("insertEventAddResult", insertEventAddResult);
+		}else {
+			insertEventAddResult = 0;
+			model.addAttribute("insertEventAddResult", insertEventAddResult);
+		}
+		return "admin/doAdmin";
+	}//eventBoardAdd
+	
+	
+	//이벤트 게시글 1개 보기 이동
+	@GetMapping("admin_eventBoardView") 
+	public String admin_eventBoardView(@RequestParam(defaultValue = "1") int page, @RequestParam int id, Model model) {
+		Map<String, Object> map = boardEventService.adminSelectEventOne(id);
+		model.addAttribute("map", map); //map.boardVo
+		model.addAttribute("page", page);
+		model.addAttribute("id", id);
+		return "admin/admin_eventBoardView";
+	}
+	
+	//이벤트 1개 삭제하기
+	@GetMapping("admin_eventBoardDelete")
+	public String admin_eventBoardDelete(String id, Model model) {
+		int eventDeleteResult = 0;
+		boardEventService.deleteEventOne(Integer.parseInt(id));
+		model.addAttribute("boardEventVo", boardEventVo);
+		if(boardEventVo != null) {
+			eventDeleteResult = 1;
+			model.addAttribute("eventDeleteResult", eventDeleteResult);
+		}else {
+			eventDeleteResult = 0;
+			model.addAttribute("eventDeleteResult", eventDeleteResult);
+		}
+		return "admin/doAdmin";
+	}
+	
+	//이벤트 수정 페이지로 이동하기
+	@GetMapping("admin_eventBoardUpdate") 
+	public String admin_eventBoardUpdate(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "1") int id, Model model) {
+		Map<String, Object> map = boardEventService.adminSelectEventOne(id);
+		model.addAttribute("map", map); //map.boardVo
+		model.addAttribute("page", page);
+		model.addAttribute("id", id);
+		return "admin/admin_eventBoardUpdate";
+	}
+	
+	//이벤트 게시글 수정
+	@RequestMapping("eventBoardUpdate")
+	public String eventBoardUpdate(BoardEventVo boardEventVo, @RequestPart MultipartFile file, String original_file, Model model,
+			@RequestParam("eventboard_start") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_start,
+            @RequestParam("eventboard_end") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_end) { 
+			
 			boardEventVo.setEventboard_start(eventboard_start);
-		    boardEventVo.setEventboard_end(eventboard_end);
-			if ( file.isEmpty() ) {
-				boardEventVo.setEventboard_file_name(""); //업로드파일이 없는 경우
-			}else if(!file.isEmpty()) {
-				String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
-				long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
-				String uploadFileName = String.format("%d_%s", time, originFileName);
-				String fileSaveUrl = "C:\\GIT\\DropShip_Spring_20230405\\DropShip_Spring\\DropShip_first_0405\\src\\main\\resources\\static\\admin\\img\\Event\\";
-				
-				File f = new File(fileSaveUrl + uploadFileName);  
-				try {
-					file.transferTo(f);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				// 변경된 파일이름을 boardEventVo 객체에 저장
-				boardEventVo.setEventboard_file_name(uploadFileName);
-				// 파일이 첨부 안됐으면 안넣어
-			} // if. 
+			boardEventVo.setEventboard_end(eventboard_end);
+	    
+			boardEventVo.setEventboard_file_name(original_file);
 			
-			int insertEventAddResult = 0;
-			boardEventService.insertEventAdd(boardEventVo);
-			if(boardEventVo != null) {
-				insertEventAddResult = 1;
-				model.addAttribute("insertEventAddResult", insertEventAddResult);
-			}else {
-				insertEventAddResult = 0;
-				model.addAttribute("insertEventAddResult", insertEventAddResult);
-			}
-			return "admin/doAdmin";
-		}//eventBoardAdd
-		
-		
-		//이벤트 게시글 1개 보기 이동
-		@GetMapping("admin_eventBoardView") 
-		public String admin_eventBoardView(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "1") int id, Model model) {
-			Map<String, Object> map = boardEventService.adminSelectEventOne(id);
-			model.addAttribute("map", map); //map.boardVo
-			model.addAttribute("page", page);
-			model.addAttribute("id", id);
-			return "admin/admin_eventBoardView";
-		}
-		
-		//이벤트 1개 삭제하기
-		@GetMapping("admin_eventBoardDelete")
-		public String admin_eventBoardDelete(String id, Model model) {
-			int eventDeleteResult = 0;
-			boardEventService.deleteEventOne(Integer.parseInt(id));
-			model.addAttribute("boardEventVo", boardEventVo);
-			if(boardEventVo != null) {
-				eventDeleteResult = 1;
-				model.addAttribute("eventDeleteResult", eventDeleteResult);
-			}else {
-				eventDeleteResult = 0;
-				model.addAttribute("eventDeleteResult", eventDeleteResult);
-			}
-			return "admin/doAdmin";
-		}
-		
-		//이벤트 수정 페이지로 이동하기
-		@GetMapping("admin_eventBoardUpdate") 
-		public String admin_eventBoardUpdate(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "1") int id, Model model) {
-			Map<String, Object> map = boardEventService.adminSelectEventOne(id);
-			model.addAttribute("map", map); //map.boardVo
-			model.addAttribute("page", page);
-			model.addAttribute("id", id);
-			return "admin/admin_eventBoardUpdate";
-		}
-		
-		//이벤트 게시글 수정
-		@RequestMapping("eventBoardUpdate")
-		public String eventBoardUpdate(BoardEventVo boardEventVo, @RequestPart MultipartFile file, String original_file, Model model,
-				@RequestParam("eventboard_start") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_start,
-	            @RequestParam("eventboard_end") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date eventboard_end) { 
-				
-				boardEventVo.setEventboard_start(eventboard_start);
-				boardEventVo.setEventboard_end(eventboard_end);
-		    
-				boardEventVo.setEventboard_file_name(original_file);
-				
-			if (!file.isEmpty()) {
-				String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
-				long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
-				String uploadFileName = String.format("%d_%s", time, originFileName);
-				String fileSaveUrl = "C:\\GIT\\DropShip_Spring_20230405\\DropShip_Spring\\DropShip_first_0405\\src\\main\\resources\\static\\admin\\img\\Event\\";
-				
-				File f = new File(fileSaveUrl + uploadFileName);  
-				try {
-					file.transferTo(f);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				// 변경된 파일이름을 boardEventVo 객체에 저장
-				boardEventVo.setEventboard_file_name(uploadFileName);
-				// 파일이 첨부 안됐으면 안넣어
-			} // if. 
+		if (!file.isEmpty()) {
+			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
+			long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
+			String uploadFileName = String.format("%d_%s", time, originFileName);
+			String fileSaveUrl = "C:\\GIT\\DropShip_Spring_20230405\\DropShip_Spring\\DropShip_first_0405\\src\\main\\resources\\static\\admin\\img\\Event\\";
 			
-			int updateEventResult = 0;
-			boardEventService.updateEventBoard(boardEventVo);
-			model.addAttribute("boardEventVo", boardEventVo);
-			if(boardEventVo != null) {
-				updateEventResult = 1;
-				model.addAttribute("updateEventResult", updateEventResult);
-			}else {
-				updateEventResult = 0;
-				model.addAttribute("updateEventResult", updateEventResult);
+			File f = new File(fileSaveUrl + uploadFileName);  
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			return "admin/doAdmin";
-		}//eventBoardAdd
+			// 변경된 파일이름을 boardEventVo 객체에 저장
+			boardEventVo.setEventboard_file_name(uploadFileName);
+			// 파일이 첨부 안됐으면 안넣어
+		} // if. 
+		
+		int updateEventResult = 0;
+		boardEventService.updateEventBoard(boardEventVo);
+		model.addAttribute("boardEventVo", boardEventVo);
+		if(boardEventVo != null) {
+			updateEventResult = 1;
+			model.addAttribute("updateEventResult", updateEventResult);
+		}else {
+			updateEventResult = 0;
+			model.addAttribute("updateEventResult", updateEventResult);
+		}
+		return "admin/doAdmin";
+	}//eventBoardAdd
 		
 	///////////////////////////////////////////////////////공지 관련 부분//////////////////////////////////////////////////////////////////
 	

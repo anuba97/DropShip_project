@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,23 +112,51 @@
                         </td>
                     </tr>
                 </table><br>
-
+				<span style="color:red; margin-left:24px;">※ 하단 주문 내역을 눌러 처리 상태를 변경할 수 있습니다.</span>
                 <table class="memberInOrder">
                     <tr>
                         <th colspan="4">최근 주문 내역</th>
                     </tr>
                     <tr class="memberInOrder_td">
-                        <td>회원 고유 번호</td>
+                        <td>받는 사람</td>
                         <td>주문 날짜</td>
-                        <td>배송 고유번호(송장)</td>
+                        <td>주문 금액</td>
                         <td>처리 상태</td>
                     </tr>
-                    <tr onClick="location.href='?='" style="cursor:pointer;">
-                        <td>member_id</td>
-                        <td>order_date</td>
-                        <td>delivery_id</td>
-                        <td>order_status</td>
-                    </tr>
+                    	<c:if test="${order_DetailVo == null}">
+			                <tr>
+		                        <td colspan="4">주문 내역이 없습니다.</td>
+		                    </tr>
+                    	</c:if>
+                    	<c:if test="${order_DetailVo != null}">
+	                    	<tr onClick="location.href='admin_orderView?id=' + ${order_DetailVo.id}" style="cursor:pointer;">
+<%-- 	                    		<input type="hidden" id="id" name="id" value="${order_DetailVo.id}"> --%>
+		                        <td>${order_DetailVo.delivery_name}</td>
+		                        <td><fmt:formatDate value="${order_DetailVo.order_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+		                        <td>${order_DetailVo.final_price}</td>
+		                       <c:if test="${order_DetailVo.order_status == '0'}">
+	                            	<td>0. 입금 확인 중</td>
+	                            </c:if>
+	                            <c:if test="${order_DetailVo.order_status == '1'}">
+	                            	<td>1. 입금 완료</td>
+	                            </c:if>
+	                            <c:if test="${order_DetailVo.order_status == '2'}">
+	                            	<td>2. 상품 준비 중</td>
+	                            </c:if>
+	                            <c:if test="${order_DetailVo.order_status == '3'}">
+	                            	<td>3. 배송 중</td>
+	                            </c:if>
+	                            <c:if test="${order_DetailVo.order_status == '4'}">
+	                            	<td>4. 배송 완료</td>
+	                            </c:if>
+	                            <c:if test="${order_DetailVo.order_status == '5'}">
+	                            	<td>5. 주문 취소</td>
+	                            </c:if>
+	                            <c:if test="${order_DetailVo.order_status == '6'}">
+	                            	<td>6. 환불 완료</td>
+	                            </c:if>
+		                    </tr>
+	                    </c:if>
                 </table>
                 <div class="button-wrapper">
                     <a href="dropship_memberList?page=${page}"><button type="button" style="border-radius:5px;">고객 리스트</button></a>
