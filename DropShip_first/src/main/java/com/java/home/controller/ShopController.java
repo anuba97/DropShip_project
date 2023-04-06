@@ -1,5 +1,6 @@
 package com.java.home.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -60,7 +62,32 @@ public class ShopController {
 		return "home/shop/painting_item";
 	}
 	
-	
+	@PostMapping("compare2")  //상품비교
+	public String compare2(@RequestParam("work_id_list") String workIds, WorkVo workVo, Model model) {
+		System.out.println("넘어온 작품id 리스트 : " + workIds);
+	    
+		String[] workIdsArr = workIds.split(",");
+	    int work_id_first = Integer.parseInt(workIdsArr[0]);
+	    int work_id_second = Integer.parseInt(workIdsArr[1]);
+	    
+	    System.out.println("work_id_first : "+ work_id_first);
+	    System.out.println("work_id_second : "+ work_id_second);
+	    
+	    List<Integer> compare_work_id_list = new ArrayList<>();
+	    compare_work_id_list.add(work_id_first);
+	    compare_work_id_list.add(work_id_second);
+
+		List<WorkVo> compareWorkVoList = shopservice.selectWorkCompare(compare_work_id_list);
+		
+		for (WorkVo compareWorkVo : compareWorkVoList) {
+			System.out.println(" 아이디값으로 불러온거: "+ compareWorkVo.getId());
+		}
+		
+		
+		model.addAttribute("compareWorkVoList", compareWorkVoList);
+		
+		return "home/shop/compare2";
+	}
 	//////////////////↓  Artist(작가) 관련 ↓         /////////////////////////
 	
 	@GetMapping("artist_list")	  // 작가별 페이지로 이동

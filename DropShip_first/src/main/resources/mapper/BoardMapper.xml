@@ -9,7 +9,7 @@
       FROM (
       SELECT n.id AS id, n.freeBoard_isTop, n.member_id AS member_id, a.member_login_Id, a.member_name,
       n.freeBoard_title, n.freeBoard_content, n.freeBoard_date, n.freeBoard_update_date,
-      n.freeBoard_file_name, n.freeBoard_hit
+      n.freeBoard_file_name, n.freeBoard_hit, n.freeBoard_head, n.freeBoard_ban
       FROM freeboard n
       JOIN member a ON n.member_id = a.id
       ORDER BY n.freeBoard_isTop DESC, n.freeBoard_date DESC, n.id ASC
@@ -17,10 +17,6 @@
       ) WHERE rnum BETWEEN #{startRow} AND #{endRow} 
 	</select>
 	
-	
-	
-	
-	 
 	<select id="boardSelectSearch" resultType="com.java.vo.BoardVo">
 		select * from freeboard where
 		<if test="category == 'all'">
@@ -36,6 +32,9 @@
 		select * from freeboard where id=#{id}
 	</select>
 	
+	<select id="selectOneforAdmin" resultType="com.java.vo.BoardVo">
+		select * from freeboard where id=#{id}
+	</select>
 	
    <select id="preSelectOne" resultType="com.java.vo.BoardVo">
       select * from
@@ -47,7 +46,6 @@
       where id=#{id}
       )-1
    </select>
-   
  
    <select id="nextSelectOne" resultType="com.java.vo.BoardVo">
       select * from
@@ -70,9 +68,9 @@
 	</update>
 
 	<insert id="insertBoard">  <!-- 게시글 작성 -->
-		insert into freeboard values(freeboard_seq.nextval,0,0,0,0,
+		insert into freeboard values(freeboard_seq.nextval,#{freeBoard_head},0,0,0,
 		#{member_id},#{admin_id},#{freeBoard_title},#{freeBoard_content},
-		sysdate,sysdate,#{freeBoard_file_name},0)
+		sysdate,sysdate,#{freeBoard_file_name},0,0)
 	</insert>
 	
   	<delete id="deleteBoard">
@@ -81,7 +79,11 @@
 	
 	<update id="updateBoard">
 		update freeboard set freeBoard_title = #{freeBoard_title}, freeBoard_content = #{freeBoard_content}, freeBoard_update_date = sysdate,
-		freeBoard_file_name = #{freeBoard_file_name} where id = #{id} 
+		freeBoard_file_name = #{freeBoard_file_name}, freeBoard_head = #{freeBoard_head}, freeBoard_ban = #{freeBoard_ban} where id = #{id} 
+  	</update>
+  	
+	<update id="adminupdateBoard">
+		update freeboard set freeBoard_ban = #{freeBoard_ban} where id = #{id} 
   	</update>
   
 </mapper>

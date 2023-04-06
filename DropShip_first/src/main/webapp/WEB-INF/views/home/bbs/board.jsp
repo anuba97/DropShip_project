@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
-<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css?ver=210618">
+<link rel="stylesheet" href="../home/theme/buzinga/css/aos3816.css">
 <link rel="stylesheet" href="../home/theme/buzinga/css/nice-select3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/mobile/skin/qa/basic/style3816.css?ver=210618">
@@ -139,31 +139,36 @@
 											<td>날짜</td>
 										</tr>
 										<c:forEach items="${map.list}" var="bvo">
-											<tr>
-												<c:if test="${bvo.freeBoard_head == 0}">
-													<td class="td-num">자유</td>
-												</c:if>
-												<c:if test="${bvo.freeBoard_head == 1}">
-													<td class="td-num">후기</td>
-												</c:if>
-												<c:if test="${bvo.freeBoard_head == 2}">
-													<td class="td-num">질답</td>
-												</c:if>
-												<td class="td-num">${bvo.id}</td>
-												<td class="td-subject"><a
-													href="board_view?id=${bvo.id}&page=${map.page}">
-														${bvo.freeBoard_title} </a></td>
-												<c:if test="${bvo.member_id==null}">
-													<td class="td-name td-mb-hide">${bvo.admin_id}</td>
-												</c:if>
-												<c:if test="${bvo.member_id!=null}">
-													<td class="td-name td-mb-hide">${bvo.member_name}</td>
-												</c:if>
-												<td class="td-name td-mb-hide">${bvo.freeBoard_hit}</td>
-												<td class="td-date td-mb-hide"><fmt:formatDate
-														value="${bvo.freeBoard_date}" pattern="yyyy.MM.dd" />
-												</td>
-											</tr>
+											<c:if test="${bvo.freeBoard_ban==0}">
+												<tr>
+													<c:if test="${bvo.freeBoard_head == 0}">
+														<td class="td-num">자유</td>
+													</c:if>
+													<c:if test="${bvo.freeBoard_head == 1}">
+														<td class="td-num">후기</td>
+													</c:if>
+													<c:if test="${bvo.freeBoard_head == 2}">
+														<td class="td-num">질답</td>
+													</c:if>
+													<td class="td-num">${bvo.id}</td>
+													<td class="td-subject"><a
+														href="board_view?id=${bvo.id}&page=${map.page}">
+															${bvo.freeBoard_title} </a></td>
+													<c:if test="${bvo.member_id==null}">
+														<td class="td-name td-mb-hide">${bvo.admin_id}</td>
+													</c:if>
+													<c:if test="${bvo.member_id!=null}">
+														<td class="td-name td-mb-hide">${bvo.member_name}</td>
+													</c:if>
+													<td class="td-name td-mb-hide">${bvo.freeBoard_hit}</td>
+													<td class="td-date td-mb-hide"><fmt:formatDate
+															value="${bvo.freeBoard_date}" pattern="yyyy.MM.dd" />
+													</td>
+												</tr>
+											</c:if>
+											<c:if test="${bvo.freeBoard_ban==1}">
+												<td class="td-subject" colspan="6" style="text-align:center; color:red;">관리자에 의해 게시글을 볼 수 없습니다</td>
+											</c:if>
 										</c:forEach>
 										<c:if test="${map.result == 'fail' or map.list.size()==0}">
 											<tr>
@@ -175,42 +180,45 @@
 							</div>
 							<!-- 페이지 -->
 							<!-- 하단 넘버링 부분!!! -->
-							 <div class="pg_wrap" style="margin-top: 30px;">
-								<ul class="page-numul" style="list-style:none;">
-									<c:if test="${map.page == 1}"><li><span class="pg_page pg_start"></span></li></c:if>
-									<c:if test="${map.page != 1}">
-									<a href="board?page=1"><li><span  class="pg_page pg_start"></span></li></a>
+							<nav class="pg_wrap">
+								<!-- 첫 페이지로 이동  -->
+								<c:if test="${map.page == 1}"><span  class=" pg_page pg_start"></span></c:if>
+								<c:if test="${map.page != 1}">
+									<a href="board?page=1"><span  class=" pg_page pg_start"></span></a>
+								</c:if>
+								<!-- 이전 페이지로 이동  -->
+								<c:if test="${map.page > 1}">
+									<a href="board?page=${map.page-1}"><span class="pg_page pg_prev"></span></a>
+								</c:if>
+								<c:if test="${map.page==1}">
+									<span class="pg_page pg_prev"></span>
+								</c:if>
+								<!-- 하단 넘버링 반복문 -->
+								<c:forEach begin="${map.startpage}" end="${map.endpage}" step="1" var="num">
+									<c:if test="${map.page == num}">
+										<span class="pg_current">${num}</span>
 									</c:if>
-									
-									<c:if test="${map.page == 1}"><li><span class="pg_page pg_prev"></span></li></c:if>
-									<c:if test="${map.page != 1}">
-									<a href="board?page=${map.page - 1}"><li><span class="pg_page pg_prev"></span></li></a>
+									<c:if test="${map.page != num}">
+										<a href="board?page=${num}">
+											<span class="pg_page">${num}</span>
+										</a>
 									</c:if>
-									
-									<c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number">
-										<c:if test="${map.page == number}">
-										<li>
-											<div class="pg_current">${number}</div>
-										</li>
-										</c:if>
-										<c:if test="${map.page != number}">
-										<li>
-											<a href="board?page=${number}"><div class="pg_page">${number}</div></a>
-										</li>
-										</c:if>
-									</c:forEach>
-									
-									<c:if test="${map.page == map.maxPage}"><li><span class="pg_page pg_next"></span></li></c:if>
-									<c:if test="${map.page != map.maxPage}">
-									<a href="board?page=${map.page + 1}"><li><span class="pg_page pg_next"></span></li></a>
-									</c:if>
-									
-									<c:if test="${map.page == map.maxPage}"><li><span class="pg_page pg_end"></span></li></c:if>
-									<c:if test="${map.page != map.maxPage}">
-									<a href="board?page=${map.maxPage}"><li><span class="pg_page pg_end"></span></li></a>
-									</c:if>
-								</ul>
-							</div>
+								</c:forEach>
+								<!-- 다음 페이지로 이동 -->
+								<c:if test="${map.page == map.maxpage}"><span class="pg_page pg_next"></span></c:if>
+								<c:if test="${map.page < map.maxpage}">
+									<a href="board?page=${map.page+1}">
+										<span class="pg_page pg_next"></span>
+									</a>
+								</c:if>
+								<!-- 끝 페이지로 이동 -->
+								<c:if test="${map.page != map.maxpage}">
+									<a href="board?page=${map.maxpage}">
+										<span class="pg_page pg_end"></span>
+									</a>
+								</c:if>
+								<c:if test="${map.page == map.maxpage}"><span class="pg_page pg_end"></span></c:if>
+							</nav>
 							<div class="board-btnwrap">
 								<ul>
 									<c:if test="${sessionMember_id != null }">

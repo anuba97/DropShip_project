@@ -16,6 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../img/favicon.ico" />
     <title>작품 페이지</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -41,7 +42,12 @@
         var g5_cookie_domain = "";
         var g5_theme_shop_url = "https://bxgs.co.kr:443/theme/buzinga/shop/";
         var g5_shop_url = "https://bxgs.co.kr:443/shop/";
+        
+        
+        
+        
     </script>
+   
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
     <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
@@ -76,7 +82,7 @@
     <div id="skip_to_container">
         <a href="#contents">본문 바로가기</a>
     </div>
-
+	
 
 
 
@@ -94,7 +100,9 @@
                     <h2 class="sub-tit">PAINTING</h2>
                 </div>
             </section>
-
+<div>
+      <a href="javascript:showPopUp()">링크</a>
+  	</div>
 
 
             <section class="normal-list">
@@ -177,6 +185,51 @@
                     </div>
                 </div>
 
+				<script>
+					function docompareBtn(){
+						
+					  var work_id_list = [];
+					  if($(".compare:checked").length < 2) {
+						 alert("비교버튼 두개 누르셔야 합니다");
+						 return false;
+					  }
+						
+					  $(".compare").each(function() {
+					    if($(this).prop('checked')){
+					      work_id_list.push($(this).val());
+					    } 
+					  });
+					  alert("Checked ids: " + work_id_list);
+					  alert("조인된 list  : " + work_id_list.join())
+					  
+					  
+					  $('#compareWorkId').append('<input type="hidden" name="work_id_list" value="' + work_id_list.join() + '">');
+					  docompareFrm.submit();
+					  
+					}//docompareBtn()
+				</script>
+				<script type="text/javascript">
+					function showPopUp() {
+						
+						//창 크기 지정
+						var width = 500;
+						var height = 500;
+						
+						//pc화면기준 가운데 정렬
+						var left = (window.screen.width / 2) - (width/2);
+						var top = (window.screen.height / 4);
+						
+					    	//윈도우 속성 지정
+						var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+						
+					    	//연결하고싶은url
+					    	const url = "https://seeminglyjs.tistory.com/";
+					
+						//등록된 url 및 window 속성 기준으로 팝업창을 연다.
+						window.open(url, "hello popup", windowStatus);
+					}
+				</script>
+
                 <!-----  PAINTING ITEM LIST ----->
                 <div id="item-list-wrap">
                     <div class="maxinner">
@@ -186,6 +239,8 @@
                         <div class="grid-list-opt">
                             <div class="grid-opt-left">총 <strong class="f-color">${map.listCount}</strong>개의 상품이 있습니다.</div>
                             <div class="grid-opt-right">
+	                                <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기">
+	           						<layer for="docompareBtn">비교하기</layer>
                                 <div class="grid-sort-list">
                                     <a href="javascript:;" class="grid-sort-current btn-sort-open">
                                         인기순 </a>
@@ -213,55 +268,57 @@
                             <div class="sct_wrap">
 
                                 <script src="../js/jquery.fancylist.js"></script>
-
-
-                                <!-- 그림작품 부분 시작 -->
-                                <ul class="sct sct_20">
-                                    <c:forEach items="${map.list}" var="workVo">
-                                        <!-- list가아니라 map.list라고해야 페이지가 나눠지면서 하단 넘버링이 생긴다 -->
-                                        <li class="sct_li">
-                                            <div class="li_wr">
-                                                <div class="sct_img_wrap">
-                                                    <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url}">
-                                                        <span class="hide">작품이름</span>
-                                                    </div>
-                                                    <div class="sct_opt_wrap">
-                                                        <div class="sct_btn list-10-btn">
-                                                            <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654135291">
-                                                                <svg height="45" width="160">
-                                                                    <rect height="45" width="160"></rect>
-                                                                </svg>
-                                                                <span>ADD TO CART</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="cart-layer"></div>
-                                                        <div class="sct_op_btn">
-                                                            <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
-                                                            
-                                                            <c:if test="${sessionMember_login_id == null }">
-	                                                            <button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
-                                                            </c:if>
-                                                            <c:if test="${sessionMember_login_id != null }">
-	                                                            <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
-                                                            </c:if>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="sct_txt"><a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="sct_a">${workVo.work_name}</a></div>
-                                                <div class="sct_desc"><span>${workVo.artist_name}</span>
-                                                    <p>20.0cm x 35.7cm</p>
-                                                </div>
-                                                <div class="sct_cost"><span class="price_cost">
-                                                        <strong>
-                                                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
-                                                        </strong></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </c:forEach>
-
-                                </ul><!-- 그림작품 부분 끝 -->
+								<form action="compare2" name="docompareFrm" id="docompare" method="post">
+s	                                <!-- 그림작품 부분 시작 -->
+	                                <ul class="sct sct_20">
+	                                    <c:forEach items="${map.list}" var="workVo" >
+	                                        <!-- list가아니라 map.list라고해야 페이지가 나눠지면서 하단 넘버링이 생긴다 -->
+	                                        <li class="sct_li">
+	                                            <div class="li_wr">
+	                                                <div class="sct_img_wrap">
+	                                                    <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url}">
+	                                                        <span class="hide">작품이름</span>
+	                                                    </div>
+	                                                    <div class="sct_opt_wrap">
+	                                                        <div class="sct_btn list-10-btn">
+	                                                            <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654135291">
+	                                                                <svg height="45" width="160">
+	                                                                    <rect height="45" width="160"></rect>
+	                                                                </svg>
+	                                                                <span>ADD TO CART</span>
+	                                                            </button>
+	                                                        </div>
+	                                                        <div class="cart-layer"></div>
+	                                                        <div class="sct_op_btn">
+	                                                            <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
+	                                                            <c:if test="${sessionMember_login_id == null }">
+	                                                            	<button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+	                                                            </c:if>
+	                                                             <c:if test="${sessionMember_login_id != null }">
+	                                                             	<button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+	                                                             </c:if>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="sct_txt"><a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="sct_a">${workVo.work_name}</a></div>
+	                                                <div class="sct_desc"><span>${workVo.artist_name}</span>
+	                                                    <p>20.0cm x 35.7cm</p>
+	                                                </div>
+	                                                <div class="sct_cost"><span class="price_cost">
+	                                                        <strong>
+	                                                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
+	                                                            <!-- 비교 체크박스 -->
+	                                                            <input type="checkbox" class="compare" name="compare"  value="${workVo.id}">
+																<LAYER FOR="compare"> 비교선택</LAYER>
+	                                                            <!-- 비교 체크박스 -->
+	                                                            <div id="compareWorkId"></div>
+	                                                        </strong></span>
+	                                                </div>
+	                                            </div>
+	                                        </li>
+	                                    </c:forEach>
+	                                </ul><!-- 그림작품 부분 끝 -->
+								</form>
 
                                 <!-- 하단 넘버링 부분 시작! -->
                                 <nav class="pg_wrap">
@@ -357,10 +414,9 @@
 					alert("회원 전용 서비스 입니다.");
 				}	
 			</script>
-		
 
         </main>
-		
+
         <!-- header 부분 시작 -->
         <%@ include file ="../top/footer.jsp" %>
         <!-- header 부분 끝 -->
@@ -369,8 +425,7 @@
             <a href="javascript:;"><span class="hide">맨위로가기</span></a>
         </div>
     </div>
-	
-	
+
 
     <script src="../home/js/sns.js"></script>
     <script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
@@ -394,7 +449,7 @@
 	</script>
 	<![endif]-->
 
-	
+
 </body>
 
 <!-- Mirrored from bxgs.co.kr/shop/painting_list.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:12 GMT -->

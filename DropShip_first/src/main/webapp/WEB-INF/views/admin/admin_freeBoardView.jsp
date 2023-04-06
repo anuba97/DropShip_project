@@ -16,6 +16,11 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script>
+	    function admin_boardChkBtn(){
+				if(confirm("해당 게시글 노출을 변경하시겠습니까?")) admincheckFrm.submit();
+		}//fboardBtn()
+    </script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -39,6 +44,7 @@
     <!-- navBar 부분 시작 -->
     <%@ include file ="include/navBar.jsp" %>
     <!-- navBar 부분 끝 -->
+    
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <!-- sideMenu 부분 시작 -->
@@ -55,54 +61,57 @@
                 </div>
                 <div>
                     <table class="admin_noticeBoardAdd">
-                        <form action="admin_noticeBoardAdd" method="post" enctype="multipart/form-data">
+                        <form name="admincheckFrm" id="modify" action="admin_freeBoardModify"  method="post" enctype="multipart/form-data">
+                        	<input type="hidden" name="id" value="${boardVo.id}">
                             <colgroup>
                                 <col width="25%">
                                 <col width="75%">
                             </colgroup>
                             <tr>
                                 <th><label for="free_board_title">게시글 제목</label></th>
-                                <td><input type="text" id="free_board_title" name="free_board_title" style="width:100%;" readonly><br></td>
+                                <td>${boardVo.freeBoard_title}</td>
                             </tr>
                             <tr>
                                 <th><label for="free_board_title">게시글 타입</label></th>
-                                <td><input type="text" id="free_board_head" name="free_board_head" style="width:100%;" readonly><br></td>
+                                <c:if test="${boardVo.freeBoard_head=='0'}">
+	                            	<td>자유</td>
+	                        	</c:if>
+	                       		 <c:if test="${boardVo.freeBoard_head=='1'}">
+	                            	<td>후기</td>
+	                        	</c:if>
+	                        	<c:if test="${boardVo.freeBoard_head=='2'}">
+	                            	<td>질답</td>
+	                        	</c:if>
                             </tr>
                             <tr>
                                 <th><label for="free_board_content">게시글 내용</label></th>
                                 <td>
-                                    <textarea id="free_board_content" name="free_board_content" cols="50" rows="10" style="width:100%;" readonly></textarea>
+                                    ${boardVo.freeBoard_content}
                                 </td>
 
                             </tr>
                             <tr>
                                 <th><label for="eventFile">첨부 파일(이미지)</label></th>
-                                <td><input type="file" id="eventFile" name="eventFile" style="width:100%;" readonly></td>
+                                <td>${boardVo.freeBoard_file_name}</td>
                             </tr>
-                            <tr>
-                                <th><label for="eventLink">첨부 링크</label></th>
-                                <td><input type="text" id="eventLink" name="eventLink" style="width:100%;" readonly></td>
-                            </tr>
+<!--                             <tr> -->
+<!--                                 <th><label for="eventLink">첨부 링크</label></th> -->
+<%--                                 <td> ${boardVo.freeBoard_title}"</td> --%>
+<!--                             </tr> -->
                             <tr>
                                 <th>게시글 노출 수정</th>
                                 <td>
-                                    <input type="radio" id="true" name="" value="true">
-                                    <label for="true">사용</label>
-                                    <input type="radio" id="false" name="" value="false">
-                                    <label for="false">정지</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><label for="free_board_content">답변 내용</label></th>
-                                <td>
-                                    <textarea id="free_board_content" name="free_board_content" cols="50" rows="10" style="width:100%;" readonly></textarea>
+                                    <input type="radio" id="true" name="freeBoard_ban" value="0" <c:if test="${boardVo.freeBoard_ban==0}">checked</c:if>>
+                                    <label for="0">사용</label>
+                                    <input type="radio" id="false" name="freeBoard_ban" value="1" <c:if test="${boardVo.freeBoard_ban==1}">checked</c:if>>
+                                    <label for="1">정지</label>
                                 </td>
                             </tr>
                         </form>
                     </table><br>
                     <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onClick="location.href=''" style="margin: 0 0 0 500px; color:red;">수정 완료</button>
-                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_noticeBoardList'" style="margin: 0 auto;">공지 리스트</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="admin_boardChkBtn()" style="margin: 0 0 0 500px; color:red;">수정 완료</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_freeBoardList'" style="margin: 0 auto;">공지 리스트</button>
                     </div>
                 </div>
             </main>

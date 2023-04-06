@@ -120,6 +120,16 @@ public class ShopServiceImpl implements ShopService {
 		list = shopMapper.selectWorkArtistAll(artist_id);
 		return list;
 	}
+	
+	/////////////////////////////////////////////////////////////////////////////
+	//작품 비교
+	@Override
+	public List<WorkVo> selectWorkCompare(List<Integer> compare_work_id_list) {
+	List<WorkVo> compareWorkVoList = new ArrayList<WorkVo>();
+	compareWorkVoList = shopMapper.selectWorkCompare(compare_work_id_list);
+	return compareWorkVoList;
+	}
+	/////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////↓ Aritist(작가) 관련 ↓ ///////////////////////////////
 

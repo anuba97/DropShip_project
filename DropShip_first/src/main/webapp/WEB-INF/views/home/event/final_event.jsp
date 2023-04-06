@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="ko">
 
@@ -12,6 +14,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="../home/img/favicon.ico" />
 <title>종료된 event</title>
+<link href="../admin/css/styles_page.css" rel="stylesheet" />
+<link href="../admin/css/styles.css" rel="stylesheet" />
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -113,21 +117,66 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 			<!-- 전체보기 이벤트 리스트 4개 -->
             <div class="grid-event-list">
               <ul id="gall_ul">
-                <li>
-			    <a href="javascript:;" class="event-end">
-			      <div class="event-thumb">
-				    <div class="imgbox" style="background-image:url(../home/data/file/event/3696002221_5Ex9kDw0_51f7a3986befb00cad1caf54b33ea5459e8bd50b.png)"><span class="hide">썸네일</span></div>
-					<div class="event-end-box">종료된 이벤트입니다.</div>                                  
-				  </div>
-				  <div class="event-info"><h3>1월 COUPON PACK!</h3><p>1월 COUPON PACK!</p>
-				    <span class="date">2022-05-10 ~ 2022-05-10</span>
-				  </div>
-			    </a>
-			  </li>
+				<c:forEach items="${map.list}" var="eb">		              
+				   <c:if test="${eb.eventboard_status == 0}">
+					  <li>
+					    <a href="event_view?id=${eb.id}&page=${map.page}" class="event-end">
+					      <div class="event-thumb">
+						    <c:if test="${eb.eventboard_file_name != null}">
+						     	<div class="imgbox" style="background-image:url(../admin/img/Event/${eb.eventboard_file_name})"><span class="hide">썸네일</span></div>
+						     </c:if>
+	                   		 <c:if test="${eb.eventboard_file_name == null}">
+						     	<div class="imgbox" style="background-image:url(../admin/img/Event/Event_deafaultLogo.png)"><span class="hide">썸네일</span></div>
+						     </c:if>
+							<div class="event-end-box">종료된 이벤트입니다.</div>                                  
+						  </div>
+						  <div class="event-info"><h3>${eb.eventboard_title}</h3><p>${eb.eventboard_content}</p>
+						    <span class="date"><fmt:formatDate value="${eb.eventboard_start}" pattern="yyyy-MM-dd(E) HH:mm"/> ~ 
+		                     <fmt:formatDate value="${eb.eventboard_end}" pattern="yyyy-MM-dd(E) HH:mm"/></span>
+						  </div>
+					    </a>
+					  </li>
+				  </c:if>
+	           </c:forEach>
 		     </ul>
            </div>
 		</form>
-		
+		<div class="pg_wrap" style="margin-top: 30px;">
+			<ul class="page-numul" style="list-style:none;">
+				<c:if test="${map.page == 1}"><li><span class="pg_page pg_start"></span></li></c:if>
+				<c:if test="${map.page != 1}">
+				<a href="final_event?page=1"><li><span  class="pg_page pg_start"></span></li></a>
+				</c:if>
+				
+				<c:if test="${map.page == 1}"><li><span class="pg_page pg_prev"></span></li></c:if>
+				<c:if test="${map.page != 1}">
+				<a href="final_event?page=${map.page - 1}"><li><span class="pg_page pg_prev"></span></li></a>
+				</c:if>
+				
+				<c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number">
+					<c:if test="${map.page == number}">
+					<li>
+						<div class="pg_current">${number}</div>
+					</li>
+					</c:if>
+					<c:if test="${map.page != number}">
+					<li>
+						<a href="final_event?page=${number}"><div class="pg_page">${number}</div></a>
+					</li>
+					</c:if>
+				</c:forEach>
+				
+				<c:if test="${map.page == map.maxPage}"><li><span class="pg_page pg_next"></span></li></c:if>
+				<c:if test="${map.page != map.maxPage}">
+				<a href="final_event?page=${map.page + 1}"><li><span class="pg_page pg_next"></span></li></a>
+				</c:if>
+				
+				<c:if test="${map.page == map.maxPage}"><li><span class="pg_page pg_end"></span></li></c:if>
+				<c:if test="${map.page != map.maxPage}">
+				<a href="final_event?page=${map.maxPage}"><li><span class="pg_page pg_end"></span></li></a>
+				</c:if>
+			</ul>
+		</div>
 		<!-- 페이지 -->
 			</div>
 </section>

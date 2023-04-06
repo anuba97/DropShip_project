@@ -44,8 +44,7 @@
 }
 
 #page-number { 
-  padding-top: 5px;
-  padding-left: 5px;
+
   display: flex;
   align-items: center;
   justify-content: center;

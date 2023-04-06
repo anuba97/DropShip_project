@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,43 +19,26 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <script>
-    function eventModifyBtn() {
-        if ($("#eventTitle").val() == "") {
+    function updateBtn() {
+        if ($("#eventboard_title").val() == "") {
             alert("이벤트 제목을 반드시 입력해야합니다!");
-            $("#eventTitle").focus();
+            $("#eventboard_title").focus();
             return;
         }
 
-        if ($("#eventContent").val() == "") {
-            alert("이벤트 내용을 반드시 입력해야합니다!");
-            $("#eventContent").focus();
-            return;
-        }
-
-        if (confirm("해당 ADMIN을 추가하시겠습니까?")) {
-            eventBoardModify.submit();
+        if (confirm("해당 이벤트를 수정하시겠습니까?")) {
+        	eventBoardUpdateFrm.submit();
         }
     }
+    
+    function deleteBtn() {
+	    if (confirm("해당 이벤트를 삭제 하시겠습니까?")) {
+	    	location.href="admin_eventBoardDelete?id=${map.boardEventVo.getId()}";
+	    }
+	}//deleteBtn
 </script>
 
 <body class="sb-nav-fixed">
-    <%-- 	<c:if test="${result == 0}"> --%>
-    <!-- 		<script> -->
-    // alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요.");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${result == 1}"> --%>
-    <!-- 		<script> -->
-    // alert("로그인되었습니다");
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${sessionAdminLoginId==null}"> --%>
-    <!-- 		<script> -->
-    // alert("관리자만 접근할 수 있습니다!");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
     <!-- navBar 부분 시작 -->
     <%@ include file ="include/navBar.jsp" %>
     <!-- navBar 부분 끝 -->
@@ -74,49 +58,82 @@
                 </div>
                 <div>
                     <table class="admin_eventBoardAdd">
-                        <form action="eventBoardModify" method="post" enctype="multipart/form-data">
+                        <form action="eventBoardUpdate" name="eventBoardUpdateFrm" method="post" enctype="multipart/form-data">
                             <colgroup>
                                 <col width="25%">
                                 <col width="75%">
                             </colgroup>
+                            <input type="hidden" id="id" name="id" value=${map.boardEventVo.getId()}>
+	                        <input type="hidden" name="original_file" value="${map.boardEventVo.getEventboard_file_name()}">
                             <tr>
-                                <th><label for="eventTitle">이벤트 제목</label></th>
-                                <td><input type="text" id="eventTitle" name="eventTitle" style="width:100%;" required><br></td>
+                                <th><label for="eventboard_title">이벤트 제목</label></th>
+                                <td><input type="text" id="eventboard_title" name="eventboard_title" style="width:100%; text-align:center;" value="${map.boardEventVo.getEventboard_title()}"><br></td>
                             </tr>
                             <tr>
-                                <th><label for="eventStartPeriod">이벤트 시작</label></th>
+                            	<th>상단 등록</th>
+	                            <td>
+	                            	<input type="radio" id="true" name="eventboard_istop" value="1" <c:if test="${map.boardEventVo.getEventboard_istop() == '1'}">checked</c:if>>
+	                                <label for="true">등록</label>
+	                                <input type="radio" id="false" name="eventboard_istop" value="0" <c:if test="${map.boardEventVo.getEventboard_istop() == '0'}">checked</c:if>>
+	                                <label for="false">해제</label>
+	                            </td>
+                       		</tr>
+                            <tr>
+                            	<th>이벤트 상태</th>
+	                            <td>
+	                            	<input type="radio" id="true" name="eventboard_status" value="1" <c:if test="${map.boardEventVo.getEventboard_status() == '1'}">checked</c:if>>
+	                                <label for="true">진행</label>
+	                                <input type="radio" id="false" name="eventboard_status" value="0" <c:if test="${map.boardEventVo.getEventboard_status() == '0'}">checked</c:if>>
+	                                <label for="false">종료</label>
+	                            </td>
+                       		</tr>
+                            <tr>
+                                <th><label for="eventboard_start">이벤트 시작</label></th>
                                 <td>
-                                    <input type="date" id="eventStartPeriod" name="eventStartPeriod" style="width:49%;">
-                                    <input type="time" id="eventStartTime" name="eventStartTime" style="width:49%;">
+	                                <input type="datetime-local" id="eventboard_start" name="eventboard_start" style="width:50%;" 
+	                                value="<fmt:formatDate value='${map.boardEventVo.getEventboard_start()}' pattern="yyyy-MM-dd\'T\'HH:mm" />">
                                 </td>
                             </tr>
                             <tr>
-                                <th><label for="eventEndPeriod">이벤트 종료</label></th>
+                                <th><label for="eventboard_end">이벤트 종료</label></th>
                                 <td>
-                                    <input type="date" id="eventStartPeriod" name="eventStartPeriod" style="width:49%;">
-                                    <input type="time" id="eventEndTime" name="eventEndTime" style="width:49%;">
+	                                <input type="datetime-local" id="eventboard_end" name="eventboard_end" style="width:50%;"
+	                                value="<fmt:formatDate value='${map.boardEventVo.eventboard_end}' pattern='yyyy-MM-dd\'T\'HH:mm' />">
                                 </td>
                             </tr>
                             <tr>
-                                <th><label for="eventContent">이벤트 내용</label></th>
+                                <th><label for="eventboard_date">등록일</label></th>
+                                <td><fmt:formatDate value="${map.boardEventVo.getEventboard_date()}" pattern="yyyy-MM-dd HH:mm"/></td>
+                            </tr>
+                            <tr>
+                            	<th><label for="eventboard_update_date">최종 수정일</label></th>
+                                <td><fmt:formatDate value="${map.boardEventVo.getEventboard_update_date()}" pattern="yyyy-MM-dd HH:mm"/></td>
+                            </tr>
+                            <tr>
+                                <th><label for="eventboard_content">이벤트 내용</label></th>
                                 <td>
-                                    <textarea id="eventContent" name="eventContent" cols="50" rows="10" style="width:100%;" required></textarea>
+                                    <textarea id="eventboard_content" name="eventboard_content" cols="50" rows="10" style="width:100%;">${map.boardEventVo.getEventboard_content()}</textarea>
                                 </td>
-
                             </tr>
                             <tr>
-                                <th><label for="eventFile">첨부 파일(이미지)</label></th>
-                                <td><input type="file" id="eventFile" name="eventFile" style="width:100%;"></td>
+                                <th><label>첨부 파일명</label></th>
+                                <c:if test="${map.boardEventVo.getEventboard_file_name() != null }">
+	                            	<td>${map.boardEventVo.getEventboard_file_name()}</td>
+	                            </c:if>	
+	                            <c:if test="${map.boardEventVo.getEventboard_file_name() == null}">
+	                            	<td>첨부 파일이 없습니다.</td>
+	                            </c:if>	
                             </tr>
                             <tr>
-                                <th><label for="eventLink">첨부 링크</label></th>
-                                <td><input type="text" id="eventLink" name="eventLink" style="width:100%;"></td>
+                                <th><label for="eventboard_file_name">첨부 파일(이미지)</label></th>
+                                <td><input type="file" id="eventboard_file_name" name="file" style="width:100%;"></td>
                             </tr>
                         </form>
                     </table><br>
                     <div classs="admin_eventBoardAdd_div">
-                        <button type="button" class="admin_eventBoardAdd_button" onClick="eventModifyBtn()" style="margin: 0 0 0 500px;">이벤트 수정</button>
-                        <button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_eventBoardList'" style="margin: 0 auto;">이벤트 리스트</button>
+                    	<button type="button" class="admin_noticeBoard_button" onclick="updateBtn()" style="margin: 0 0 0 400px; color:blue; border-radius:5px;">이벤트 수정</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_eventBoardList'" style="margin: 0 auto; border-radius:5px;">이벤트 리스트</button>
+                        <button type="button" class="admin_eventBoardAdd_button" onclick="deleteBtn()" style="margin: 0 auto; color:red; border-radius:5px;">이벤트 삭제</button>
                     </div>
                 </div>
             </main>

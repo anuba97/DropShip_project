@@ -11562,7 +11562,7 @@ body {
 }
 .dropship_memberListTable{
 	margin: 0 0 0 24px;
-	width: 1000px;
+	width: 1200px;
 }
 .dropship_memberListTable th{
 	background-color: #212529;
@@ -11594,6 +11594,11 @@ body {
 .admin_orderListTable{
 	margin: 0 0 0 24px;
 	width: 1158px;
+}
+.admin_orderListTable th{
+	width: 200px;
+	background-color: #212529;
+	color: #fff;
 }
 
 .admin_memberAddTableDiv{
@@ -11868,10 +11873,24 @@ tr,th,td{
 
 .bottom-paging{
 	margin-top: 15px;
-	width: 1000px;
+	width: 1200px;
 }
 
 .page-numul{
+	display: flex;
+  	justify-content: center;
+}
+
+ul.page-numul {
+	margin-top: 15px;
+  	width: 1250px;
+	display: flex;
+  	justify-content: center;
+}
+
+ul.page-numul-eventBoardList {
+	margin-top: 15px;
+  	width: 1250px;
 	display: flex;
   	justify-content: center;
 }

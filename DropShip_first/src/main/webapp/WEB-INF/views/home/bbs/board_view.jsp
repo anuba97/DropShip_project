@@ -65,28 +65,17 @@
 <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
 <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
-
 <body>
-
-
 	<div class="cursor-ball">
 		<div class="ball"></div>
 	</div>
-
-
 	<div id="skip_to_container">
 		<a href="#contents">본문 바로가기</a>
 	</div>
-
-
-
-
 	<div id="wrap" class="sub">
-
 		<!-- header 부분 시작 -->
 		<%@ include file="../top/header.jsp"%>
 		<!-- header 부분 끝 -->
-
 		<main id="contents">
 
 
@@ -97,7 +86,19 @@
 				<div class="maxinner">
 					<div class="board-con-tit">
 						<span>자유게시판</span>
-						<h2>${map.boardVo.freeBoard_title}</h2>
+						<BR>
+						
+						<h2>[
+							<c:if test="${map.boardVo.freeBoard_head=='0'}">
+	                            <td class="deco-select">자유</td>
+	                        </c:if>
+	                        <c:if test="${map.boardVo.freeBoard_head=='1'}">
+	                            <td class="deco-select">후기</td>
+	                        </c:if>
+	                        <c:if test="${map.boardVo.freeBoard_head=='2'}">
+	                            <td class="deco-select">질답</td>
+	                        </c:if>]
+						 &nbsp;&nbsp; ${map.boardVo.freeBoard_title}</h2>
 						<tr>
 							<td class="td-date td-mb-hide"><fmt:formatDate value="${map.boardVo.freeBoard_date}" pattern="yyyy.MM.dd"/></td>
 						</tr>
@@ -181,23 +182,23 @@
 				    });
 				}); */
 				 function deleteBtn(){
-					if(${sessionMember_id != boardVo.member_id}){
+					if(${sessionMember_id != map.boardVo.member_id}){
 			            alert("타인의 계정은 접근할 수 없습니다!");
 			            location.href = "board";
 			            return false;
 					}
 					if(confirm("게시글을 삭제하시겠습니까?")) 
-						location.href="board_delete?id=${boardVo.id}&page=${page}";
+						location.href="board_delete?id=${map.boardVo.id}&page=${page}";
 				} // deleteBtn()
 				
 				function updateBtn(){
-					if(${sessionMember_id != boardVo.member_id}){
+					if(${sessionMember_id != map.boardVo.member_id}){
 			            alert("타인의 계정은 접근할 수 없습니다!");
 			            location.href = "board";
 			            return false;
 					}
 					if(confirm("게시글을 수정하시겠습니까?")) 
-						location.href="board_update?id=${boardVo.id}&page=${page}";
+						location.href="board_update?id=${map.boardVo.id}&page=${page}";
 				}//update Btn()
 			</script>
 		</main>

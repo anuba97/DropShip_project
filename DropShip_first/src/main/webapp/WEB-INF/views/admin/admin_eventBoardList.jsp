@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +12,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>DropShip Admin - 이벤트</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="shortcut icon" href="admin/img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -19,23 +21,6 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <%-- 	<c:if test="${result == 0}"> --%>
-    <!-- 		<script> -->
-    // alert("ID 또는 PW가 일치하지 않습니다. 다시 로그인해주세요.");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${result == 1}"> --%>
-    <!-- 		<script> -->
-    // alert("로그인되었습니다");
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
-    <%-- 	<c:if test="${sessionAdminLoginId==null}"> --%>
-    <!-- 		<script> -->
-    // alert("관리자만 접근할 수 있습니다!");
-    // location.href="admin_login";
-    <!-- 			</script> -->
-    <%-- 	</c:if> --%>
     <!-- navBar 부분 시작 -->
     <%@ include file ="include/navBar.jsp" %>
     <!-- navBar 부분 끝 -->
@@ -57,11 +42,11 @@
                     <table class="dropship_memberListTable">
                         <colgroup>
                             <col width="10%">
-                            <col width="30%">
+                            <col width="35%">
                             <col width="15%">
                             <col width="15%">
                             <col width="15%">
-                            <col width="15%">
+                            <col width="10%">
                         </colgroup>
                         <tr>
                             <th>게시물 No.</th>
@@ -71,17 +56,67 @@
                             <th>게시일</th>
                             <th>조회수</th>
                         </tr>
-                        <tr onClick="location.href='admin_eventBoardView'" style="cursor:pointer;">
-                            <td>board_Num</td>
-                            <td>board_isTop</td>
-                            <td>board_title</td>
-                            <td>admin_id</td>
-                            <td>board_date</td>
-                            <td>board_hit</td>
-                        </tr>
+                        <c:forEach items="${map.list}" var="eb">
+	                        <tr onClick="location.href='admin_eventBoardView?id=${eb.id}&page=${map.page}'" style="cursor:pointer;">
+	                            <td>${eb.id}</td>
+	                             <c:if test="${eb.eventboard_file_name != null }">
+	                            	<td>${eb.eventboard_title} 💾</td>
+	                            </c:if>	
+	                            <c:if test="${eb.eventboard_file_name == null}">
+	                            	<td>${eb.eventboard_title}</td>
+	                            </c:if>
+	                            <c:if test="${eb.eventboard_status == '1'}">
+	                            	<td style="color:blue; font-weight:bold;">진행</td>
+	                            </c:if>
+	                            <c:if test="${eb.eventboard_status == '0'}">
+	                            	<td>종료</td>
+	                            </c:if>
+	                            <td>${eb.admin_name}</td>
+	                            <td><fmt:formatDate value="${eb.eventboard_date}" pattern="yyyy-MM-dd HH:mm"/></td>
+	                            <td>${eb.eventboard_hit}</td>
+	                        </tr>
+                        </c:forEach>
                     </table>
+                    <!-- 			PAGE 처리 부분		 -->
+					<div class="bottom-paging">
+						<ul class="page-numul" style="list-style:none;">
+							<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></c:if>
+							<c:if test="${map.page != 1}">
+							<a href="admin_eventBoardList?page=1"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></a>
+							</c:if>
+							
+							<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></c:if>
+							<c:if test="${map.page != 1}">
+							<a href="admin_eventBoardList?page=${map.page - 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></a>
+							</c:if>
+							
+							<c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number">
+								<c:if test="${map.page == number}">
+								<li class="page-num" id="page-on">
+									<div id="page-number">${number}</div>
+								</li>
+								</c:if>
+								<c:if test="${map.page != number}">
+								<li class="page-num">
+									<a href="admin_eventBoardList?page=${number}"><div id="page-number">${number}</div></a>
+								</li>
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">chevron_right</span></li></c:if>
+							<c:if test="${map.page != map.maxPage}">
+							<a href="admin_eventBoardList?page=${map.page + 1}"><li><span class="material-symbols-outlined">chevron_right</span></li></a>
+							</c:if>
+							
+							<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></c:if>
+							<c:if test="${map.page != map.maxPage}">
+							<a href="admin_eventBoardList?page=${map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></a>
+							</c:if>
+						</ul>
+					</div>
+					<!-- 			PAGE 처리 부분		 -->
                     <div class="button-wrapper">
-                        <button type="button" onclick="location.href='admin_eventBoardAdd'" style="color:red;">이벤트 추가</button>
+                        <button type="button" onclick="location.href='admin_eventBoardAdd'" style="color:red; border-radius:5px;">이벤트 추가</button>
                     </div>
                 </div>
             </main>

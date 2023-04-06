@@ -95,7 +95,7 @@ public class BbsController {
 		return "home/bbs/doBoard";
 	}
 
-	@GetMapping("doBoard") // 저장
+	@GetMapping("doBoard") //결과값 페이지 돌리기
 	public String doBoard() {
 		return "home/bbs/doBoard";
 	}
@@ -104,8 +104,8 @@ public class BbsController {
 	public String fboardUpdate(@RequestParam int id, 
 			@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		Map<String, Object> boardVo = boardService.selectOne(id);
-		model.addAttribute("boardVo", boardVo);
+		Map<String, Object> map = boardService.selectOne(id);
+		model.addAttribute("map", map);
 		model.addAttribute("page", page);
 		return "home/bbs/board_update"; 
 	}
@@ -117,8 +117,8 @@ public class BbsController {
 			long time = System.currentTimeMillis(); // 시간 밀리초 단위로
 			// a.jpg -> 123524123232_a.jpg 로 저장
 			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\Users\\KVC002\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\home\\upload";
-//			String fileSaveUrl = "/upload";
+			//String fileSaveUrl = "C:\\Users\\KVC002\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\home\\upload";
+			String fileSaveUrl = "/upload";
 			File f = new File(fileSaveUrl + uploadFileName); // /upload/23213213_a.jpg 로 저장됨
 			try {
 				file.transferTo(f);
@@ -133,7 +133,7 @@ public class BbsController {
 		} // if.
 		
 		boardService.updateBoard(boardVo);
-		return "redirect:/bbs/board_view?id="+boardVo.getId();	// fboardList로 리다이렉트
+		return "redirect:/bbs/board_view?id="+boardVo.getId();	// board_view로 리다이렉트
 	}// 글쓴 거 저장 (파일저장도)
 	
 	

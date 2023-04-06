@@ -120,6 +120,45 @@
 				</script>
 			</c:when>
 			
+			<c:when test="${insertEventAddResult == 0}">
+				<script>
+					alert("이벤트 등록이 실패했습니다.");
+					location.href="admin_eventBoardList";
+				</script>
+			</c:when>
+			<c:when test="${insertEventAddResult == 1}">
+				<script>
+					alert("이벤트가 등록 되었습니다.");
+					location.href="admin_eventBoardList";
+				</script>
+			</c:when>
+			
+			<c:when test="${updateEventResult == 0}">
+				<script>
+					alert("이벤트 수정이 실패했습니다.");
+					location.href="admin_eventBoardList";
+				</script>
+			</c:when>
+			<c:when test="${updateEventResult == 1}">
+				<script>
+					alert("이벤트가 수정 되었습니다.");
+					location.href="admin_eventBoardList";
+				</script>
+			</c:when>
+			
+			<c:when test="${eventDeleteResult == 0}">
+				<script>
+					alert("이벤트 삭제가 실패했습니다.");
+					location.href="admin_eventBoardList";
+				</script>
+			</c:when>
+			<c:when test="${eventDeleteResult == 1}">
+				<script>
+					alert("이벤트가 삭제 되었습니다.");
+					location.href="admin_eventBoardList";
+				</script>
+			</c:when>
+			
 			
 		</c:choose>
 	</body>
