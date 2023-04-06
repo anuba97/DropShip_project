@@ -83,6 +83,12 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	  return success;
 	}
 
+	@Override
+	public Order_DetailVo adminMemberSelectOrderOne(int id) {
+		order_DetailVo = adminOrderMapper.adminMemberSelectOrderOne(id);
+		return order_DetailVo;
+	}
+
 	
 	
 

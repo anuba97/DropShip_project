@@ -4,19 +4,21 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java.mapper.DropshipMemberMapper"> 
 
-	<!-- dropship 맴버 리스트 정렬 -->
+	<!-- admin에서 dropship 맴버 리스트 정렬 -->
 	<select id="selectMemberList" resultType="com.java.vo.DropshipMemberVo">
 		SELECT * FROM ( SELECT rownum rnum, a. * FROM
     	( SELECT * FROM member ORDER BY id ) a )
     	WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
-	<!-- dropship 맴버 개수 확인 -->
+	
+	<!-- admin에서 dropship 맴버 개수 확인 -->
 	<select id="selectCount" resultType="int">
 		SELECT COUNT(*) count FROM member
 	</select>
-	<!-- dropship 맴버 1개 정보 가져오기 -->
+	
+	<!-- admin에서 dropship 맴버 1개 정보 가져오기 -->
 	<select id="dropship_memberselectOne" resultType="com.java.vo.DropshipMemberVo">
-		SELECT * FROM member WHERE member_login_id = #{member_login_id}
+		SELECT * FROM member WHERE id = #{id}
 	</select>
 	
 </mapper>

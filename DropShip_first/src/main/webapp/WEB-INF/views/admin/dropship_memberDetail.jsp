@@ -117,17 +117,19 @@
                         <th colspan="4">최근 주문 내역</th>
                     </tr>
                     <tr class="memberInOrder_td">
-                        <td>회원 고유 번호</td>
+                        <td>받는 사람</td>
                         <td>주문 날짜</td>
-                        <td>배송 고유번호(송장)</td>
+                        <td>주문 금액</td>
                         <td>처리 상태</td>
                     </tr>
-                    <tr onClick="location.href='?='" style="cursor:pointer;">
-                        <td>member_id</td>
-                        <td>order_date</td>
-                        <td>delivery_id</td>
-                        <td>order_status</td>
-                    </tr>
+	                    <tr onClick="location.href='?='" style="cursor:pointer;">
+                   		 <c:forEach items="order_DetailVo" var="od">
+	                        <td>${od.delivery_name}</td>
+	                        <td>${od.order_date}</td>
+	                        <td>${od.final_price}</td>
+	                        <td>${od.order_status}</td>
+                    	</c:forEach>
+	                    </tr>
                 </table>
                 <div class="button-wrapper">
                     <a href="dropship_memberList?page=${page}"><button type="button" style="border-radius:5px;">고객 리스트</button></a>
