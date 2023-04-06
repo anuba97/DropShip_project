@@ -21,6 +21,7 @@ public interface ShopMapper {
 	
 	
 	//////////////////↓  Work(작품) 관련 ↓         /////////////////////////
+	List<WorkVo> search(String searchWord); //search 관련
 	
 	int selectWorkCount();  // 작품 list page 카운트하는 구문
 
