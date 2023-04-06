@@ -31,6 +31,7 @@ public interface ShopService {
 
 	WorkVo selectWorkOneOrder(int work_id);
 	
+	List<WorkVo> search( String searchWord); //search 
 	
 	//////////////////↓  Artist(아티스트) 관련 ↓         /////////////////////////
 		

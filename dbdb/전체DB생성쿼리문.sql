@@ -21,6 +21,9 @@ INCREMENT BY 1;
 
 -- DROP SEQUENCE Admin_SEQ; 
 
+-- 관리자 id 1인 관리자 1명 생성해야
+INSERT INTO admin VALUES (ADMIN_SEQ.NEXTVAL, '관리자씨', 'admin', 1111, 1, '01022223333', sysdate, 0);
+
 ---------↓--------↓ 작가 테이블 (Artist) / 
 -------↓----작가 시퀀스(Artist_seq) 생성  ↓--------↓--------
 CREATE TABLE Artist
@@ -458,7 +461,7 @@ ALTER TABLE Order_Detail_NonMember
 
 -- Foreign Key 설정 SQL - Order_Detail_NonMember(nonMember_order_id) -> Order_NonMember(id)
 ALTER TABLE Order_Detail_NonMember
-    ADD CONSTRAINT FK_Order_Detail_NonMember_nonMember_order_id_Order_NonMember_id FOREIGN KEY (nonMember_order_id)
+    ADD CONSTRAINT FK_Order_Detail_NonMember_order_NonMember_id_Order_NonMember_id FOREIGN KEY (order_NonMember_id)
         REFERENCES Order_NonMember (id) ;
 
 
@@ -665,7 +668,7 @@ INCREMENT BY 1;
 
 -- Foreign Key 설정 SQL - Order_Detail(member_order_id) -> Order_Member(id)
 ALTER TABLE Order_Detail
-    ADD CONSTRAINT FK_Order_Detail_member_order_id_Order_Member_id FOREIGN KEY (member_order_id)
+    ADD CONSTRAINT FK_Order_Detail_order_member_id_Order_Member_id FOREIGN KEY (order_member_id)
         REFERENCES Order_Member (id) ;
 
 -- Foreign Key 설정 SQL - Order_Detail(work_id) -> Work(id)
@@ -677,3 +680,15 @@ ALTER TABLE Order_Detail
 ALTER TABLE Order_Detail
     ADD CONSTRAINT FK_Order_Detail_option_id_Work_Option_id FOREIGN KEY (option_id)
         REFERENCES Work_Option (id) ;
+        
+        
+------------------------- 0406 수정	--------------------
+-- 이벤트게시판 이벤트시작, 종료, 상태 컬럼 추가
+ALTER TABLE EventBoard
+ADD (eventBoard_start DATE NOT NULL,
+eventBoard_end DATE NOT NULL,
+eventBoard_status NUMBER(1) DEFAULT 0 NOT NULL);
+
+-- 자유게시판 노출여부 컬럼 추가
+ALTER TABLE freeBoard
+ADD freeBoard_ban NUMBER(1) DEFAULT 0 NULL;
