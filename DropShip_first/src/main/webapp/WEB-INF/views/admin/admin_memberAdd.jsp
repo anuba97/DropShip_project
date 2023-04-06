@@ -188,9 +188,9 @@
                         <tr>
                             <th>관리자 상태</th>
                             <td>
-                                <input type="radio" id="true" name="admin_ban" value="1" checked>
+                                <input type="radio" id="true" name="admin_ban" value="0" checked>
                                 <label for="true">사용</label>
-                                <input type="radio" id="false" name="admin_ban" value="0">
+                                <input type="radio" id="false" name="admin_ban" value="1">
                                 <label for="false">정지</label>
                             </td>
                         </tr>

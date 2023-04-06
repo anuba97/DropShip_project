@@ -76,10 +76,6 @@
   }
 }
 
-#datatablesSimple th{
-	
-} 
-
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -11797,7 +11793,7 @@ tr,th,td{
 
 .dataTable-table > thead > tr > th {
   vertical-align: bottom;
-  text-align: left;
+  text-align: center;
   border-bottom: none;
 }
 
@@ -11930,4 +11926,8 @@ ul.page-numul-eventBoardList {
   display: inline-block;
   padding-right: 5px;
   font-size: 13px;
+}
+
+#indextable tr{
+	width: 100%;
 }

@@ -110,7 +110,7 @@
                         <tr>
                             <th>주문 날짜</th>
                             <td>
-                                ${order_DetailVo.order_date}
+                               <fmt:formatDate value="${order_DetailVo.order_date}" pattern="yyyy-MM-dd HH:mm:ss"/> 
                             </td>
                         </tr>
                         <tr>

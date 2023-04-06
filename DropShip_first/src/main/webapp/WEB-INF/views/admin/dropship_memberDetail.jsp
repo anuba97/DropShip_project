@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,7 +132,7 @@
 	                    	<tr onClick="location.href='admin_orderView?id=' + ${order_DetailVo.id}" style="cursor:pointer;">
 <%-- 	                    		<input type="hidden" id="id" name="id" value="${order_DetailVo.id}"> --%>
 		                        <td>${order_DetailVo.delivery_name}</td>
-		                        <td>${order_DetailVo.order_date}</td>
+		                        <td><fmt:formatDate value="${order_DetailVo.order_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		                        <td>${order_DetailVo.final_price}</td>
 		                       <c:if test="${order_DetailVo.order_status == '0'}">
 	                            	<td>0. 입금 확인 중</td>
