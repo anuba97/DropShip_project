@@ -135,8 +135,6 @@ public class MyShopServiceImpl implements MyShopService{
 		List<Integer> optionIdList = new ArrayList<>();
 		Map<String, List<Integer>> map = new HashMap<>();
 		
-		System.out.println("optionIdList 비어있나 확인용 : " + optionIdList);
-		
 		for(Cart_MemberVo cart_MemberVo : cart_MemberVoList) {
 			workIdList.add(cart_MemberVo.getWork_id());
 			optionIdList.add(cart_MemberVo.getOption_id());

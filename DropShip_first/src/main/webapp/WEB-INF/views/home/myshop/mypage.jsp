@@ -12,7 +12,7 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="shortcut icon" href="/home/img/favicon.ico" />
     <title>마이페이지</title>
     <!-- !!!!!!!!!!!!!!!!!!!!!!!   제이쿼리 최신   !!!!!!!!!!!!!!!!!!!! -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -27,34 +27,34 @@
     <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "https://bxgs.co.kr";
-        var g5_bbs_url = "https://bxgs.co.kr/bbs";
-        var g5_is_member = "1";
-        var g5_is_admin = "";
-        var g5_is_mobile = "1";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-        var g5_theme_shop_url = "https://bxgs.co.kr/theme/buzinga/shop";
-        var g5_shop_url = "https://bxgs.co.kr/shop";
-    </script>
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url = "https://bxgs.co.kr";
+var g5_bbs_url = "https://bxgs.co.kr/bbs";
+var g5_is_member = "1";
+var g5_is_admin = "";
+var g5_is_mobile = "1";
+var g5_bo_table = "";
+var g5_sca = "";
+var g5_editor = "";
+var g5_cookie_domain = "";
+var g5_theme_shop_url = "https://bxgs.co.kr/theme/buzinga/shop";
+var g5_shop_url = "https://bxgs.co.kr/shop";
+</script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
-    <script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
-    <script src="../js/common3816.js?ver=210618"></script>
-    <script src="../js/wrest3816.js?ver=210618"></script>
-    <script src="../js/placeholders.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
-    <script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+    <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+    <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+    <script src="../home/js/common3816.js?ver=210618"></script>
+    <script src="../home/js/wrest3816.js?ver=210618"></script>
+    <script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+    <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 
 <body>
