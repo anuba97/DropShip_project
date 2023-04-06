@@ -65,7 +65,20 @@
 		ORDER BY work_hit DESC
 	</select>  
 	
-	
+
+
+<!-- 전체 검색 -->
+	<!-- 전체 검색 -->
+	<select id="search" resultType="com.java.vo.WorkVo">
+		SELECT w.*, a.id, a.artist_korean_name FROM work w
+        JOIN Artist a ON w.artist_id = a.id WHERE 
+	 	w.work_name LIKE '%'||#{searchWord}||'%' OR a.artist_korean_name LIKE '%'||#{searchWord}||'%'
+	</select>
+	<!-- 전체 검색 -->
+	<!-- 전체 검색 -->
+
+
+
 	<!--//////////////////       ↓  Artist(작가)관련 ↓         /////////////////////////  -->
 	
 	<!-- 작가 전체 가져오기 -->
