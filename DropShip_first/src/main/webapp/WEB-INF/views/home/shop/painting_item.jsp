@@ -803,7 +803,14 @@
 		                                                    <div class="cart-layer"></div>
 		                                                    <div class="sct_op_btn">
 		                                                        <a href="painting_item?work_id=${artistWorkVo.id}&artist_id=${artistWorkVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
-		                                                        <button type="button" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+		                                                        
+		                                                    <c:if test="${sessionMember_login_id == null }">
+	                                                            <button type="button" onclick="NoheartBtn()" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+                                                            </c:if>
+                                                            <c:if test="${sessionMember_login_id != null }">
+	                                                            <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+                                                            </c:if>
+                                                            
 		                                                    </div>
 		                                                </div>
 		                                            </div>
@@ -1145,6 +1152,8 @@
                                             return false;
                                         });
                                     });
+                    				
+                                    
                                 </script>
                                 <!-- } 상품 사용후기 끝 -->
                             </div>
@@ -1184,7 +1193,6 @@
                                         <p>상품문의가 없습니다.</p>
                                     </div>
                                 </div>
-
 
 
                                  <script>
@@ -1769,6 +1777,34 @@
                         } //end if check function
                     });
                 </script> 
+                
+                <script>
+                
+	             // 찜리스트
+	                function heartBtn(member_id, work_id){
+						$.ajax({
+							url : "../myshop/workWishlist_ajax",
+							type : "post",
+							data : {"member_id":member_id, "work_id":work_id},
+							success: function(list){
+								if(list == 0){
+									alert("상품을 찜리스트에 담았습니다.");
+								}else{
+									alert("이미 있습니다");
+								}
+							},
+							error : function(){
+								alert("시스템 오류입니다.");
+							}
+						});//ajax
+					}//function
+					
+					
+					function NoheartBtn(){
+						alert("회원 전용 서비스 입니다.");
+					}
+                
+                </script>
             </div>
         </main>
 
