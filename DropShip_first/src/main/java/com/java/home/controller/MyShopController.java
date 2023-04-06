@@ -60,7 +60,7 @@ public class MyShopController {
 	DeliveryVo deliveryVo;
 
 	@PostMapping("cart") // 장바구니 DB에 저장 (주문과 비슷)
-	public String cartPost(String work_id, String opt1, String opt2, String opt3, String opt4, String opt5,
+	public String cartPost(int work_id, String opt1, String opt2, String opt3, String opt4, String opt5,
 			@RequestParam("ct_qty[1654133092][]") String option_quantity, Model model) {
 
 		// 변수 초기화
@@ -85,10 +85,8 @@ public class MyShopController {
 
 			option_id = shopservice.insertOption(optionVo); // optionVo의 안의 값들을 DB work_option 테이블에 저장 후 시퀀스로 생성된 ID를
 															// 반환받음
-			work_id_int = Integer.parseInt(work_id);
-
 			// 회원 장바구니 테이블(Cart_Member)에 데이터 insert
-			myShopService.insertCart_Member(member_id, work_id_int, option_id);
+			myShopService.insertCart_Member(member_id, work_id, option_id);
 		}
 		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
 		return "redirect:cart";
@@ -97,13 +95,12 @@ public class MyShopController {
 	// 장바구니 페이지 보여줄 때
 	@GetMapping("cart")
 	public String cartGet(Model model) {
-
-		//////// ------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
-		int member_id = 1;
+		
+		//////// ------------- DB에서 정보들을 꺼내오는 과정 ----------------------//////////
 		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
-
-			member_id = (int) session.getAttribute("sessionMember_id");
-
+			
+			int member_id = (int) session.getAttribute("sessionMember_id");
+			
 			// cart_MemberMap엔 workIdList(int)와 optionIdList(int)를 리턴받음.
 			Map<String, List<Integer>> cart_MemberMap = myShopService.selectCart_MemberList(member_id);
 
@@ -123,6 +120,10 @@ public class MyShopController {
 					cart_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
 				}
 
+				System.out.println("workVoList : " + workVoList);
+				System.out.println("optionVoList : " + optionVoList);
+				System.out.println("artistVoList : " + artistVoList);
+				
 				model.addAttribute("cart_total_price", cart_total_price);
 				model.addAttribute("workVoList", workVoList);
 				model.addAttribute("artistVoList", artistVoList);
