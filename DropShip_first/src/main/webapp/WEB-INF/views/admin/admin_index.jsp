@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,17 +57,17 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DropShip 가입자
+                            DropShip 가입자 - 최근 가입자를 우선적으로 보여주며, 클릭시 해당 회원 상세정보 페이지로 이동합니다.
                         </div>
                         <div class="card-body">
 	                       	<table style="width:100%" id="dropship_indexTable">
 	                       		<colgroup>
-		                            <col width="10%">
-		                            <col width="10%">
-		                            <col width="15%">
+		                            <col width="12%">
+		                            <col width="12%">
+		                            <col width="12%">
 		                            <col width="20%">
-		                            <col width="35%">
-		                            <col width="10%">
+		                            <col width="30%">
+		                            <col width="15%">
 		                        </colgroup>
 							  <thead>
 							    <tr style="background-color: #212529; color: #fff;">
@@ -79,14 +80,16 @@
 							    </tr>
 							  </thead>
 							  <tbody>
-							    <tr>
-							      <td>member_login_id</td>
-							      <td>member_name</td>
-							      <td>member_nName</td>
-							      <td>member_email</td>
-							      <td>member_road</td>
-							      <td>member_reg_date</td>
+							  <c:forEach items="${map.list}" var="iml">
+							    <tr onClick="location.href='dropship_memberDetail?id=${iml.id}&page=${page}'" style="cursor:pointer;">
+							      <td>${iml.member_login_id}</td>
+							      <td>${iml.member_name}</td>
+							      <td>${iml.member_nname}</td>
+							      <td>${iml.member_email}</td>
+							      <td>${iml.member_road}</td>
+							      <td><fmt:formatDate value="${iml.member_reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 							    </tr>
+							  </c:forEach>
 							  </tbody>
 							</table>
                         </div>

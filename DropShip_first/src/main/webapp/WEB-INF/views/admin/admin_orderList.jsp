@@ -48,7 +48,7 @@
                             <col width="15%">
                             <col width="10%">
                         </colgroup>
-                        <tr id="admin_orderListTableTr">
+                        <tr id="admin_orderListTableTr" style="background-color: #212529; color: #fff;">
                             <th>주문 고유번호</th>
                             <th>주문자명</th>
                             <th>주문 상품</th>

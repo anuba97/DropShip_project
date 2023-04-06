@@ -57,11 +57,11 @@
                                 <col width="75%">
                             </colgroup>
                             <tr>
-                                <th><label for="noticeboard_title">공지 제목</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="noticeboard_title">공지 제목</label></th>
                                 <td>${boardNoticeVo.getNoticeboard_title()}</td>
                             </tr>
                             <tr>
-                                <th><label for="noticeboard_istop">상단 등록</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="noticeboard_istop">상단 등록</label></th>
                                 <td>
                                 	<input type="radio" id="true" name="noticeboard_istop" value="1" <c:if test="${boardNoticeVo.getNoticeboard_istop() == '1'}">checked</c:if>>
 	                                <label for="true">등록</label>
@@ -70,13 +70,13 @@
 								</td>
                             </tr>
                             <tr>
-                                <th><label for="noticeboard_content">공지 내용</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="noticeboard_content">공지 내용</label></th>
                                 <td>
                                     ${boardNoticeVo.getNoticeboard_content()}
                                 </td>
                             </tr>
                              <tr>
-                                <th><label>첨부 파일명</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label>첨부 파일명</label></th>
                                 <td>${boardNoticeVo.getNoticeboard_file_name()}</td>
                             </tr>
 <!--                             <tr> -->
@@ -84,15 +84,15 @@
 <%--                                 <td><input type="file" id="noticeboard_file_name" name="noticeboard_file_name" style="width:100%;" readonly>${boardNoticeVo.getNoticeboard_file_name()}</td> --%>
 <!--                             </tr> -->
                             <tr>
-                                <th><label for="noticeboard_hit">등록일</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="noticeboard_hit">등록일</label></th>
                                 <td><fmt:formatDate value="${boardNoticeVo.getNoticeboard_date()}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             </tr>
                             <tr>
-                                <th><label for="noticeboard_hit">수정일</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="noticeboard_hit">수정일</label></th>
                                 <td><fmt:formatDate value="${boardNoticeVo.getNoticeboard_update_date()}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             </tr>
                             <tr>
-                                <th><label for="noticeboard_hit">조회수</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="noticeboard_hit">조회수</label></th>
                                 <td>${boardNoticeVo.getNoticeboard_hit()}</td>
                             </tr>
                         </form>
