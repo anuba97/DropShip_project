@@ -29,7 +29,7 @@ public class FController {
 		List<WorkVo> newList = shopservice.selectWorkNew(); // new작품 가져오기
 		model.addAttribute("BestList",list);
 		model.addAttribute("newList",newList);
-		System.out.println("DB에서 받아온 newList : "+newList);
+		System.out.println("DB에서 받아온 BestList : "+list);
 		return "index";
 	}
 	

@@ -300,130 +300,113 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 		  var dup2 = 0;
 		  
 		  $(function(){
-			  
-			  var now = new Date();
-			  var year = now.getFullYear(); // 년
-			  
-			  // 년도
-			  var yearData="";
-			  yearData += "<option selected>선택</option>";
-			  for(var i=1900;i<=year;i++){
-				  yearData +="<option value='"+i+"'>"+i+"</option>";
-			  }
-			  $("#mb_1").html(yearData);
-			  
-			  // 월
-			  var monthData="";
-			  monthData += "<option selected>선택</option>"; 
-			  for(var i=1;i<=12;i++){
-			      if(i<10){
-			    	  monthData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-			      }else if(i>9){
-			    	  monthData +="<option value='"+i+"'>"+i+"</option>";
-			      }
-			  }
-			  $("#mb_2").html(monthData);
-			  
-				// 월이 변경될 때 나오는 일
-				$("#mb_2").change(function(){
-				  var year = $("#mb_1").val();
-				  var month = $("#mb_2").val();
-				  alert(year);
-				  alert(month);
-				  var day = 0;
-				  var dayData = "<option selected>선택</option>"
-				  
-				  if ( month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) { day = 31; }
-				  else if ( month == 4 || month == 6 || month == 9 || month == 11 ) { day = 30; }
-				  else if ( month == 2 ) {
-				      if ( year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ) { day = 29; }
-				      else { day = 28; }
-				  }
-				  
-				  alert(day);
-				  
-				  for ( var i = 1; i<= day; i++ ) {
-				      if(i<10){
-				          dayData += "<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-				      }else if(i>9){
-				          dayData += "<option value='"+i+"'>"+i+"</option>";
-				      }
-				  }
-				  $("#mb_3").val();
-				  alert(dayData);
-				  $("#mb_3").html('<option selected>선택</option>');
-				  alert(dayData);
-				});//function
-			});//제이쿼리
+	           
+	           var now = new Date();
+	           var year = now.getFullYear(); // 년
+	           var month = (now.getMonth()+1); // 월
+	           var date = now.getDate(); // 일
+	           
+	           // 년도 넣기
+	           var htmlData="";
+	           htmlData += "<option selected>선택</option>";
+	           for(var i=1900;i<=year;i++){
+	              htmlData +="<option value='"+i+"'>"+i+"</option>";
+	           }
+	           $("#mb_1").html(htmlData);
+	           
+	           // 월 넣기
+	           htmlData="";
+	           htmlData += "<option selected>선택</option>"; 
+	           for(var i=1;i<=12;i++){
+	              if(i<10){
+	                   htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+	              }else if(i>9){
+	                   htmlData +="<option value='"+i+"'>"+i+"</option>";
+	              }
+	           }
+	           $("#mb_2").html(htmlData);
+	           
+	           // 일 넣기
+	           htmlData="";
+	           htmlData += "<option selected>선택</option>";
+	           for(var i=1;i<=31;i++){
+	              if(i<10){
+	                 htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+	              }else if(i>9){
+	                 htmlData +="<option value='"+i+"'>"+i+"</option>";
+	              }
+	           }
+	           $("#mb_3").html(htmlData);
+	           
+	           
+	        });//jquery
 		  
 		  
-// 		  $(function(){
+		  
+		  
+		  
+		  
+		  // 윤달 생년월일 안돼서 일단 주석처리해놈
+// 		   $(function(){   
 			  
 // 			  var now = new Date();
 // 			  var year = now.getFullYear(); // 년
 			  
-// 			  // 년도 넣기
-// 			  var htmlData="";
-// 			  htmlData += "<option selected>선택</option>";
+// 			  // 년도
+// 			  var yearData="";
+// 			  yearData += "<option selected>선택</option>";
 // 			  for(var i=1900;i<=year;i++){
-// 				  htmlData +="<option value='"+i+"'>"+i+"</option>";
+// 				  yearData +="<option value='"+i+"'>"+i+"</option>";
 // 			  }
-// 			  $("#mb_1").html(htmlData);
+// 			  $("#mb_1").html(yearData);
 			  
-// 			  // 월 넣기
-// 			  htmlData="";
-// 			  htmlData += "<option selected>선택</option>"; 
+// 			  // 월
+// 			  var monthData="";
+// 			  monthData += "<option selected>선택</option>"; 
 // 			  for(var i=1;i<=12;i++){
-// 				  if(i<10){
-// 				  	  htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-// 				  }else if(i>9){
-// 				  	  htmlData +="<option value='"+i+"'>"+i+"</option>";
-// 				  }
-// 			  }
-// 			  $("#mb_2").html(htmlData);
-			  
-// 			  // 일 넣기
-// 			  var htmlData="";
-// 			  htmlData += "<option selected>선택</option>";
-// 			  for(var i=1;i<=31;i++){
 // 			      if(i<10){
-// 			          htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+// 			    	  monthData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
 // 			      }else if(i>9){
-// 			          htmlData +="<option value='"+i+"'>"+i+"</option>";
+// 			    	  monthData +="<option value='"+i+"'>"+i+"</option>";
 // 			      }
 // 			  }
-// 			  $("#mb_3").html(htmlData);
+// 			  $("#mb_2").html(monthData);
 			  
 			  
-//  		  });//jquery
-		
-//  		 // 윤달
-// 		  $("#mb_2").change(function(){
-// 			 var year = $("#mb_1").val();
-// 			 var month = $("#mb_2").val();
-// 			 var day = 0;
-// 			 var dayData = "<option selected>선택</option>"
-			 
-// 			 if ( month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) { day = 31; }
-// 			 else if ( month == 4 || month == 6 || month == 9 || month == 11 ) { day = 30; }
-// 			 else if ( month == 2 ) {
-// 			 	  if ( year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ) { day = 29; }
-// 			 	  else { day = 28; }
-// 			 }
-			 
-// 			 for ( var i = 1; i<= day; i++ ) {
-// 				 	if(i<10){
-// 						dayData += "<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-// 						//dayData += '<option value="'+( "0"+i )+'">' + i + '</option>';
-// 				 	}else if(i>9){
-// 						dayData += "<option value='"+i+"'>"+i+"</option>";
-// 				 	}
-// 				}
-// 			 	$("#mb_3").html("");
-// 				$("#mb_3").html(dayData);
-			 
-// 		  });
- 		  
+// 			  $("#mb_3").html("<option selected>선택</option>");
+			  
+// 			// 월이 변경될 때 나오는 일
+// 				$('#mb_2').on('change', function() {
+// 				  var year = $("#mb_1").val();
+// 				  var month = $("#mb_2").val();
+// 				  var day = 0;
+// 				  var dayData ="";
+// 				  dayData = "<option selected>선택</option>"
+				  
+// 				  if ( month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) { day = 31; }
+// 				  else if ( month == 4 || month == 6 || month == 9 || month == 11 ) { day = 30; }
+// 				  else if ( month == 2 ) {
+// 				      if ( year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ) { day = 29; }
+// 				      else { day = 28; }
+// 				  }
+				  
+				  
+// 				  for ( var i = 1; i<= day; i++ ) {
+// 				      if(i<10){
+// 				          dayData += "<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+// 				      }else if(i>9){
+// 				          dayData += "<option value='"+i+"'>"+i+"</option>";
+// 				      }
+// 				  }
+				  
+// 				  alert($("#mb_3").val());
+// 				  alert(dayData);
+// 				  $("#mb_3").html(dayData);
+// 				});//function
+			  
+// 			});//제이쿼리 
+		  
+			
  		  
  		  
 		  //(회원가입)확인버튼
