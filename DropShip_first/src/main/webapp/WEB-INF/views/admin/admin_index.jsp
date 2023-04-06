@@ -59,30 +59,33 @@
                             DropShip 가입자
                         </div>
                         <div class="card-body">
-	                       	<table style="width:100%">
+	                       	<table style="width:100%" id="dropship_indexTable">
+	                       		<colgroup>
+		                            <col width="10%">
+		                            <col width="10%">
+		                            <col width="15%">
+		                            <col width="20%">
+		                            <col width="35%">
+		                            <col width="10%">
+		                        </colgroup>
 							  <thead>
-							    <tr>
-							      <th>ID</th>
-							      <th>Name</th>
-							      <th>Email</th>
-							      <th>Phone</th>
-							      <th>Address</th>
+							    <tr style="background-color: #212529; color: #fff;">
+							      <th>회원 로그인 ID</th>
+							      <th>회원 이름</th>
+							      <th>회원 닉네임</th>
+							      <th>회원 이메일</th>
+							      <th>회원 도로명 주소</th>
+							      <th>회원 가입일</th>
 							    </tr>
 							  </thead>
 							  <tbody>
 							    <tr>
-							      <td>1</td>
-							      <td>John Doe</td>
-							      <td>john.doe@example.com</td>
-							      <td>555-1234</td>
-							      <td>123 Main St</td>
-							    </tr>
-							    <tr>
-							      <td>2</td>
-							      <td>Jane Smith</td>
-							      <td>jane.smith@example.com</td>
-							      <td>555-5678</td>
-							      <td>456 Elm St</td>
+							      <td>member_login_id</td>
+							      <td>member_name</td>
+							      <td>member_nName</td>
+							      <td>member_email</td>
+							      <td>member_road</td>
+							      <td>member_reg_date</td>
 							    </tr>
 							  </tbody>
 							</table>

@@ -68,11 +68,11 @@
                                 <col width="75%">
                             </colgroup>
                             <tr>
-                                <th><label for="free_board_title">게시글 제목</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="free_board_title">게시글 제목</label></th>
                                 <td>${boardVo.freeBoard_title}</td>
                             </tr>
                             <tr>
-                                <th><label for="free_board_title">게시글 타입</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="free_board_title">게시글 타입</label></th>
                                 <c:if test="${boardVo.freeBoard_head=='0'}">
 	                            	<td>자유</td>
 	                        	</c:if>
@@ -84,14 +84,14 @@
 	                        	</c:if>
                             </tr>
                             <tr>
-                                <th><label for="free_board_content">게시글 내용</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="free_board_content">게시글 내용</label></th>
                                 <td>
                                     ${boardVo.freeBoard_content}
                                 </td>
 
                             </tr>
                             <tr>
-                                <th><label for="eventFile">첨부 파일(이미지)</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="eventFile">첨부 파일(이미지)</label></th>
                                 <td>${boardVo.freeBoard_file_name}</td>
                             </tr>
 <!--                             <tr> -->
@@ -99,7 +99,7 @@
 <%--                                 <td> ${boardVo.freeBoard_title}"</td> --%>
 <!--                             </tr> -->
                             <tr>
-                                <th>게시글 노출 수정</th>
+                                <th style="background-color: #212529; color: #fff;">게시글 노출 수정</th>
                                 <td>
                                     <input type="radio" id="true" name="freeBoard_ban" value="0" <c:if test="${boardVo.freeBoard_ban==0}">checked</c:if>>
                                     <label for="0">사용</label>
@@ -110,8 +110,8 @@
                         </form>
                     </table><br>
                     <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onClick="admin_boardChkBtn()" style="margin: 0 0 0 500px; color:red;">수정 완료</button>
-                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_freeBoardList'" style="margin: 0 auto;">공지 리스트</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="admin_boardChkBtn()" style="margin: 0 0 0 500px; color:red; border-radius:5px;">수정 완료</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_freeBoardList'" style="margin: 0 auto; border-radius:5px;">게시판 리스트</button>
                     </div>
                 </div>
             </main>

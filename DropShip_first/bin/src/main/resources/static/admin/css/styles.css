@@ -108,6 +108,11 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   line-height: 1.2;
 }
 
+#dropship_indexTable{
+	background-color: #212529;
+	color: #fff;
+}
+
 .login-alret{
 	color:red; 
 	font-size:20px; 
@@ -4609,6 +4614,10 @@ width: 400px;
 .card-body {
   flex: 1 1 auto;
   padding: 1rem 1rem;
+}
+.card-body > table > thead > tr > th{
+  background-color: #212529;
+  color: #fff;
 }
 
 .card-title {
