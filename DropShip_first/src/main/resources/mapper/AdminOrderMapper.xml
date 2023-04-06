@@ -25,7 +25,7 @@
 	
 	<!-- admin Order 1개 상세 가져오기 -->
   	<select id="adminSelectOrderOne" resultType="com.java.vo.Order_DetailVo">
-  		SELECT od.id AS id, od.order_member_id, od.work_id, od.option_id, od.total_price, od.event_work_sale, od.event_period_sale, od.final_price,
+  		SELECT od.id AS id, od.order_member_id, od.final_price,
   		m.member_name, om.order_date, om.order_status, om.member_id, om.delivery_name, om.delivery_road, om.delivery_address, om.delivery_phone, w.work_name
 		FROM Order_Detail od
 		JOIN Order_Member om ON od.order_member_id = om.id
@@ -33,6 +33,15 @@
 		JOIN Member m ON om.member_id = m.id
 		JOIN Delivery d ON om.delivery_id = d.id
 		WHERE od.id = #{id}
+	</select>
+	
+	<!-- admin 고객 관리에서 Order 1개 상세 가져오기 -->
+  	<select id="adminMemberSelectOrderOne" resultType="com.java.vo.Order_DetailVo">
+  		SELECT om.id, om.member_id, om.order_date, om.order_status, om.delivery_name, om.delivery_road, 
+		od.id AS order_detail_id, od.work_id, od.option_id, od.total_price, od.event_work_sale, od.event_period_sale, od.final_price
+		FROM Order_Member om
+		JOIN Order_Detail od ON om.id = od.order_member_id
+		where member_id = ${id}
 	</select>
 	
 	

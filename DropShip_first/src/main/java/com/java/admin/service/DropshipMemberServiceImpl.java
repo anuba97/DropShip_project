@@ -40,7 +40,7 @@ public class DropshipMemberServiceImpl implements DropshipMemberService {
 		HashMap<String, Object> map = new HashMap<>();
 		
 		int listCount = dropshipMemberMapper.selectCount();
-		int rowPerPage = 1; //한 페이지당 게시물 갯수
+		int rowPerPage = 10; //한 페이지당 게시물 갯수
 		int pageList = 5; //페이지 넘버 표시할 갯수 1-2-3-4-5 또는 1-2-3 또는 1-2-3-4-5-6-7-8-9-10 이런 식
 		int maxPage = (int)( Math.ceil ( ( double ) listCount / rowPerPage ) );
 		int startPage = ( ( page - 1 ) / pageList ) * pageList + 1; //pageList가 5번까지면 1~5를 1로 빼서 5로 나누면 0이고 0에 5를 곱하면 0, 거기에 1을 더하면 1페이지에 다 표시됨
@@ -62,8 +62,8 @@ public class DropshipMemberServiceImpl implements DropshipMemberService {
 
 
 	@Override
-	public DropshipMemberVo dropship_memberselectOne(String member_login_id) {
-		DropshipMemberVo dropshipMemberVo = dropshipMemberMapper.dropship_memberselectOne(member_login_id);
+	public DropshipMemberVo dropship_memberselectOne(int id) {//고객 정보 1개 가져오기
+		DropshipMemberVo dropshipMemberVo = dropshipMemberMapper.dropship_memberselectOne(id);
 		return dropshipMemberVo;
 	}
 

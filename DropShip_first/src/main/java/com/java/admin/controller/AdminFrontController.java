@@ -45,6 +45,7 @@ public class AdminFrontController {
 	
 	@RequestMapping("admin_index")
 	public String admin_index() {
+		
 		return "admin/admin_index";
 	}
 	

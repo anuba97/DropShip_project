@@ -12,9 +12,10 @@
     <meta name="author" content="" />
     <title>DropShip - ADMIN</title>
     <link rel="shortcut icon" href="admin/img/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<!--     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
+    <link href="../admin/css/indexstyles.css" rel="stylesheet" />
+    <link href="../admin/css/styles.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link href="admin/css/styles.css?after" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
@@ -58,68 +59,33 @@
                             DropShip 가입자
                         </div>
                         <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <tr>
-                                        <th>회원 ID</th>
-                                        <th>회원 이름</th>
-                                        <th>회원 E-mail</th>
-                                        <th>가입일</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>회원 ID</th>
-                                        <th>회원 이름</th>
-                                        <th>회원 E-mail</th>
-                                        <th>가입일</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td>abcd</td>
-                                        <td>홍길동</td>
-                                        <td>abcd@abcd.com</td>
-                                        <td>2023.03.15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>abcd</td>
-                                        <td>홍길동</td>
-                                        <td>abcd@abcd.com</td>
-                                        <td>2023.03.15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>abcd</td>
-                                        <td>홍길동</td>
-                                        <td>abcd@abcd.com</td>
-                                        <td>2023.03.15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>abcd</td>
-                                        <td>홍길동</td>
-                                        <td>abcd@abcd.com</td>
-                                        <td>2023.03.15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>abcd</td>
-                                        <td>홍길동</td>
-                                        <td>abcd@abcd.com</td>
-                                        <td>2023.03.15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>abcd</td>
-                                        <td>홍길동</td>
-                                        <td>abcd@abcd.com</td>
-                                        <td>2023.03.15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>abcd</td>
-                                        <td>홍길동</td>
-                                        <td>abcd@abcd.com</td>
-                                        <td>2023.03.15</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+	                       	<table style="width:100%">
+							  <thead>
+							    <tr>
+							      <th>ID</th>
+							      <th>Name</th>
+							      <th>Email</th>
+							      <th>Phone</th>
+							      <th>Address</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td>1</td>
+							      <td>John Doe</td>
+							      <td>john.doe@example.com</td>
+							      <td>555-1234</td>
+							      <td>123 Main St</td>
+							    </tr>
+							    <tr>
+							      <td>2</td>
+							      <td>Jane Smith</td>
+							      <td>jane.smith@example.com</td>
+							      <td>555-5678</td>
+							      <td>456 Elm St</td>
+							    </tr>
+							  </tbody>
+							</table>
                         </div>
                     </div>
                 </div>
