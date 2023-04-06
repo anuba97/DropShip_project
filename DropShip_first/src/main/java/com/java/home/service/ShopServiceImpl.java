@@ -131,6 +131,13 @@ public class ShopServiceImpl implements ShopService {
 	}
 	/////////////////////////////////////////////////////////////////////////////
 
+	@Override //search 관련
+	public List<WorkVo> search(String searchWord) {
+		List<WorkVo> list = shopMapper.search(searchWord);
+		return list;
+	}
+	
+	
 	////////////////////////↓ Aritist(작가) 관련 ↓ ///////////////////////////////
 
 	// 작가 전체 가져오기

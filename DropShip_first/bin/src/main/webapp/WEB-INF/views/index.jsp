@@ -15,6 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="home/img/favicon.ico" />
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>DropShip</title>
     <link rel="stylesheet" href="home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
@@ -188,7 +189,14 @@
 	                                                <a href="shop/painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight">
 	                                                	<span class="hide">자세히보기</span>
 	                                                </a>
-	                                                <button type="button" class="btnset btn-like btn_wish" data-it_id="1654133549"><span class="hide">찜하기</span></button>
+	                                                	<c:if test="${sessionMember_login_id == null }">
+			                                                <button type="button" onclick="NoheartBtn()" class="btnset btn-like btn_wish" data-it_id="1654133549"><span class="hide">찜하기</span></button>
+	                                                	</c:if>
+	                                                	<c:if test="${sessionMember_login_id != null }">
+			                                                <button type="button" onclick="heartBtn('${sessionMember_id}', ${workVo.id})" class="btnset btn-like btn_wish" data-it_id="1654133549"><span class="hide">찜하기</span></button>
+	                                                	</c:if>
+		                                                
+		                                                
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -217,7 +225,35 @@
                 </div>
             </section>
 			<!-- BEST ART 슬라이드 끝 -->	
-			
+			<script>
+				var member_id;
+				var work_id;
+				// button에서 onclick="heartBtn(${workVo.id}) 들고왔다 function hearBtn()안에 넣을때는 (머가들어가든 괜찮다 ex) aa이런식으로 )
+				function heartBtn(member_id, work_id){  
+					$.ajax({
+						url: "myshop/workWishlist_ajax",
+						type: "post",
+						data:{"member_id":member_id, "work_id":work_id},
+						success: function(list){
+							if(list == 0){
+								alert("상품을 찜리스트에 담았습니다.");
+							} else {
+								alert("이미 있습니다.");
+								
+								
+							}
+						},
+						error : function(){
+							alert("시스템 오류입니다");
+						}
+						
+					})//ajax
+				}//function
+				
+				function NoheartBtn(){
+					alert("회원 전용 서비스 입니다.");
+				}
+			</script>
 				
             <!----- MD PICK 슬라이드 그림작품2개 (DB에서 가져온게아니라 직접 적어야함) ----->
             <section class="pick">
