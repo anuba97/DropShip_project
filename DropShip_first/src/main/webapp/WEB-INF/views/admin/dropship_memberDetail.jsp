@@ -134,7 +134,7 @@
 		                        <td>${ol.delivery_name}</td>
 		                        <td><fmt:formatDate value="${ol.order_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		                        <td>${ol.final_price}</td>
-		                       <c:if test="${ol.order_status == '0'}">
+		                        <c:if test="${ol.order_status == '0'}">
 	                            	<td>0. 입금 확인 중</td>
 	                            </c:if>
 	                            <c:if test="${ol.order_status == '1'}">

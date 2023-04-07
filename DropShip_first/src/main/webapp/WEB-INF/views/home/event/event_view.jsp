@@ -118,13 +118,13 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 							<p style="text-align: center;" align="center">
 							 <c:if test="${map.boardEventVo.eventboard_file_name != null}">
 								<img
-									src="../admin/img/Event/${map.boardEventVo.eventboard_file_name}"
+									src="../admin/upload/${map.boardEventVo.eventboard_file_name}"
 									title="${map.boardEventVo.eventboard_file_name}" style="width:600px;"><br
 									style="clear: both;">&nbsp;<br>
 							</c:if>		
 							 <c:if test="${map.boardEventVo.eventboard_file_name == null}">
 								<img
-									src="../admin/img/Event/Event_deafaultLogo.png"
+									src="../admin/upload/Event_deafaultLogo.png"
 									title="Event_deafaultLogo.png" style="width:600px;"><br
 									style="clear: both;">&nbsp;<br>
 							</c:if>		
