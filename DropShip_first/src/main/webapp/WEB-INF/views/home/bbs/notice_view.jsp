@@ -127,7 +127,7 @@
 							  <li class="prev">
 							      <a href="notice_view?id=${map.preBoardNoticeVo.getId()}" class="link-none">
 							          <span style="cursor:pointer;">PREV</span>
-							          <p>${map.preBoardNoticeVo.getNoticeboard_title()}</p>
+							          <p style="cursor:pointer;">${map.preBoardNoticeVo.getNoticeboard_title()}</p>
 							      </a>
 							  </li>
 							</c:if>
@@ -144,9 +144,9 @@
                             
                             <c:if test="${map.nextBoardNoticeVo.getId() != null}">
 							  <li class="next">
-							      <a href="notice_view?id=${map.nextBoardNoticeVo.getId()}" class="link-none">
+							      <a href="notice_view?id=${map.nextBoardNoticeVo.getId()}" class="link-none" >
 							          <span style="cursor:pointer;">NEXT</span>
-							          <p>${map.nextBoardNoticeVo.getNoticeboard_title()}</p>
+							          <p style="cursor:pointer;">${map.nextBoardNoticeVo.getNoticeboard_title()}</p>
 							      </a>
 							  </li>
 							</c:if>

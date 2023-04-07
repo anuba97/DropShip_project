@@ -138,7 +138,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 						      <a href="event_view?id=${map.preBoardEventVo.getId()}" class="link-none">
 								  <li class="prev">
 								          <span style="cursor:pointer;">PREV</span>
-								          <p>${map.preBoardEventVo.getEventboard_title()}</p>
+								          <p style="cursor:pointer;">${map.preBoardEventVo.getEventboard_title()}</p>
 								  </li>
 						      </a>
 							</c:if>
@@ -151,17 +151,13 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 							  </li>
 							</c:if> 
 							
-<!-- 							<li class="prev"><a href="" class="link-none"><span>PREV</span><p>이전글이 없습니다.</p></a></li> -->
-							
 							<li class="mid"><a href="all_event?page=${page}"><span class="hide">목록으로</span></a></li>
-							
-<!-- 							<li class="next"><a href=""><span>NEXT</span><p>트리플 봄 특가</p></a></li> -->
 							
 							<c:if test="${map.nextBoardEventVo.getId() != null}">
 						      <a href="event_view?id=${map.nextBoardEventVo.getId()}" class="link-none">
 								  <li class="next">
 								          <span style="cursor:pointer;">NEXT</span>
-								          <p>${map.nextBoardEventVo.getEventboard_title()}</p>
+								          <p style="cursor:pointer;">${map.nextBoardEventVo.getEventboard_title()}</p>
 								  </li>
 						      </a>
 							</c:if>

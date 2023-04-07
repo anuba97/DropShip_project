@@ -122,7 +122,7 @@
                        <li class="prev">
                            <a href="board_view?id=${map.preBoardVo.getId()}" class="link-none">
                                <span style="cursor:pointer;">PREV</span>
-                               <p>${map.preBoardVo.getFreeBoard_title()}</p>
+                               <p style="cursor:pointer;">${map.preBoardVo.getFreeBoard_title()}</p>
                            </a>
                        </li>
                      </c:if>
@@ -135,13 +135,13 @@
                        </li>
                      </c:if>  
                             
-                            <li class="mid" ><a href="board?id=${map.preBoardVo.getId()}"><span class="hide">목록으로</span></a></li>
+                            <li class="mid" ><a href="board??page=${page}"><span class="hide">목록으로</span></a></li>
                             
                             <c:if test="${map.nextBoardVo.getId() != null}">
                        <li class="next">
-                           <a href="board_view?id=${map.preBoardVo.getId()}" class="link-none">
+                           <a href="board_view?id=${map.nextBoardVo.getId()}" class="link-none">
                                <span style="cursor:pointer;">NEXT</span>
-                               <p>${map.nextBoardVo.getFreeBoard_title()}</p>
+                               <p style="cursor:pointer;">${map.nextBoardVo.getFreeBoard_title()}</p>
                            </a>
                        </li>
                      </c:if>
