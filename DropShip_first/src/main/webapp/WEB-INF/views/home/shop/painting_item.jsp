@@ -56,9 +56,9 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
     <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
-    <script src="../home/js/jquery.bxslider3816.js?ver=210618"></script>
-    <script src="../home/js/shop.list.action3816.js?ver=210618"></script>
-    <script src="../home/js/viewimageresize3816.js?ver=210618"></script>
+    <!-- <script src="../home/js/jquery.bxslider3816.js?ver=210618"></script> -->
+    <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
+    <script src="../home/js/viewimageresize3816.js?ver=210618"></script> -
 </head>
 
 <body>
@@ -793,7 +793,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 		                                                </div>
 		                                                <div class="sct_opt_wrap">
 		                                                    <div class="sct_btn">
-		                                                        <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654135291">
+		                                                        <button type="button" onclick="AddToCartBtn(${artistWorkVo.id},${artistWorkVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
 		                                                            <svg height="45" width="160">
 		                                                                <rect height="45" width="160"></rect>
 		                                                            </svg>
@@ -1804,6 +1804,14 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 						alert("회원 전용 서비스 입니다.");
 					}
                 
+					
+					// ADD To CART 구문
+					function AddToCartBtn(work_id, artist_id){
+						var url = "/shop/painting_item?work_id=" + work_id + "&artist_id=" + artist_id;
+						location.href = url;
+					}
+					
+					
                 </script>
             </div>
         </main>
