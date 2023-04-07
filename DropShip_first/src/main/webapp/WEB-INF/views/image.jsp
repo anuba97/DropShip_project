@@ -10,7 +10,7 @@
 <body>
 	<main role="main" class="container">
 		<div class="starter-template">
-			<h1>DALL-E API at<br/>달리</h1>
+			<h1>DALL-E API at<br/>한글한글</h1>
 			<h2>Describe image</h2>
 			<form action="<c:url value='/image' />" method="post">
 			    <fieldset>
