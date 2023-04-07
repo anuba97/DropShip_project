@@ -39,38 +39,22 @@ public interface ShopService {
 	
 	Map<String, Object> selectArtistList(int page);  // 작가별 작가와 page 불러오기
 
-	
-
-	
-	
-
-	
-
 	int selectOrderMemberSeq();	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ?????????????????????
 
-	
-
-	
-
 	int selectOptionSeq();
-
 	
 	int insertOption(OptionVo optionVo);	
 	
-	
-	
-
 	Order_Detail_inquire_viewVo selectOptionOneInquiryView(int order_member_id_int);
-
-	
 
 	List<OptionVo> selectOptionList(List<Integer> optionIdList);
 
 	Map<String, List<? extends Object>> selectMemberWorkList(List<Integer> workIdList);
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////↓  작품비교 관련 ↓         /////////////////////////
 	List<WorkVo> selectWorkCompare(List<Integer> compare_work_id_list); // 작품 비교
-	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
 
 	void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
 			int total_price_int);

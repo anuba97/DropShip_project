@@ -1,8 +1,11 @@
 package com.java.home.controller;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +43,21 @@ public class ShopController {
 		return "home/shop/painting_list";
 	}
 	
+//	@GetMapping("painting_item")				///////////// session을 이용해서 그림작품 뜨게하기 ////////////
+//	public String painting_item(@RequestParam int work_id, HttpSession session, Model model) {
+//	    // get the workVo object from the service
+//	    WorkVo workVo = shopservice.selectWork(work_id);
+//
+//	    // set the work_id in the session
+//	    session.setAttribute("work_id", work_id);
+//
+//	    // add the workVo object to the model
+//	    model.addAttribute("workVo", workVo);
+//
+//	    return "home/shop/painting_item";
+//	}
+	
+	
 	@GetMapping("best_list")	// 베스트	작품 페이지로 이동
 	public String best_list(WorkVo workVo, Model model) {
 		List<WorkVo> list = shopservice.selectWorkBest();
@@ -67,23 +85,14 @@ public class ShopController {
 		//System.out.println("넘어온 작품id 리스트 : " + workIds);
 	    
 		String[] workIdsArr = workIds.split(",");
-	    int work_id_first = Integer.parseInt(workIdsArr[0]);
-	    int work_id_second = Integer.parseInt(workIdsArr[1]);
-	    
-	    //System.out.println("work_id_first : "+ work_id_first);
-	    //System.out.println("work_id_second : "+ work_id_second);
-	    
-	    List<Integer> compare_work_id_list = new ArrayList<>();
-	    compare_work_id_list.add(work_id_first);
-	    compare_work_id_list.add(work_id_second);
+		List<Integer> compare_work_id_list = new ArrayList<>();
+		
+		for (int i = 0; i < workIdsArr.length && i < 10; i++) { // for문으로 2~10개까지 비교가능, &&는 단락연산자이므로 첫 번째 피연산자가 거짓(배열이 비어있으면) 두번째 피 연산자는 평가되지 않으며 조건은 거짓으로 간주된다.
+		    int work_id = Integer.parseInt(workIdsArr[i]);
+		    compare_work_id_list.add(work_id);
+		}
 
 		List<WorkVo> compareWorkVoList = shopservice.selectWorkCompare(compare_work_id_list);
-		
-		for (WorkVo compareWorkVo : compareWorkVoList) {
-			//System.out.println(" 아이디값으로 불러온거: "+ compareWorkVo.getId());
-		}
-		
-		
 		model.addAttribute("compareWorkVoList", compareWorkVoList);
 		
 		return "home/shop/compare2";

@@ -26,10 +26,8 @@
     <link rel="stylesheet" href="../home/theme/buzinga/mobile/skin/shop/basic/style.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
-    <!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
-    <script>
+    <link rel="stylesheet" href="../home/theme/buzinga/css/dropship.css"> <!-- dropship전용 css -->
+    <!-- <script>
         // 자바스크립트에서 사용하는 전역변수 선언
         var g5_url = "../index.html";
         var g5_bbs_url = "https://bxgs.co.kr:443/bbs/";
@@ -42,11 +40,7 @@
         var g5_cookie_domain = "";
         var g5_theme_shop_url = "https://bxgs.co.kr:443/theme/buzinga/shop/";
         var g5_shop_url = "https://bxgs.co.kr:443/shop/";
-        
-        
-        
-        
-    </script>
+    </script> -->
    
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
@@ -62,7 +56,7 @@
     <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
-    <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
+    <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> --> 
 </head>
 <style>
     .page-numul {
@@ -100,9 +94,9 @@
                     <h2 class="sub-tit">PAINTING</h2>
                 </div>
             </section>
-<div>
-      <a href="javascript:showPopUp()">링크</a>
-  	</div>
+			<!--  <div>
+		      <a href="javascript:showPopUp()">링크</a>
+		  	</div>  -->
 
 
             <section class="normal-list">
@@ -192,13 +186,14 @@
                             <h3 class="sub-con-tit" data-aos="fade-right" data-aos-delay="100">Painting Art</h3>
                         </div>
                         <div class="grid-list-opt">
-                            <div class="grid-opt-left">총 <strong class="f-color">${map.listCount}</strong>개의 상품이 있습니다.</div>
+                            <div class="grid-opt-left">총<strong class="f-color">${map.listCount}</strong>개의 상품이 있습니다.</div>
                             <div class="grid-opt-right">
-	                                <input type="button"  onclick="docompareBtn()" name="docompare" value="비교하기">
-	           						<layer for="docompareBtn">비교하기</layer>
+                            
+	                                <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기" class="input-compare">
+	                                
+	           						<!-- <label for="docompareBtn">비교하기</label> -->
                                 <div class="grid-sort-list">
-                                    <a href="javascript:;" class="grid-sort-current btn-sort-open">
-                                        인기순 </a>
+                                    <a href="javascript:;" class="grid-sort-current btn-sort-open">인기순</a>
                                     <ul>
                                         <li><a href="painting_listb11a.html?&amp;sort=it_sum_qty&amp;sortodr=desc&amp;re_items=&amp;page=1#item-list-wrap">인기순</a></li>
                                         <li><a href="painting_list1775.html?&amp;sort=it_use_cnt&amp;sortodr=desc&amp;re_items=&amp;page=1#item-list-wrap">후기순</a></li>
@@ -208,23 +203,25 @@
                                         <li><a href="painting_list28e0.html?&amp;sort=it_price&amp;sortodr=asc&amp;re_items=&amp;page=1#item-list-wrap">낮은가격순</a></li>
                                     </ul>
                                 </div>
-                                <div class="grid-sort-list">
+                                
+                                 <div class="grid-sort-list">
                                     <a href="javascript:;" class="grid-sort-current btn-sort-open">
-                                        9개씩 보기
+                                        6개씩 보기
                                     </a>
                                     <ul>
-                                        <li><a href="painting_list97e6.html?&amp;re_items=9&amp;sort=&amp;sortodr=&amp;page=1#item-list-wrap">9개씩 보기</a></li>
-                                        <li><a href="painting_list556e.html?&amp;re_items=12&amp;sort=&amp;sortodr=&amp;page=1#item-list-wrap">12개씩 보기</a></li>
+                                        <li><a href="painting_list">6개씩 보기</a></li>
+                                        <li><a href="painting_list556e.html?&amp;re_items=12&amp;sort=&amp;sortodr=&amp;page=1#item-list-wrap">전체보기</a></li>
                                     </ul>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                         <div class="grid-list">
                             <div class="sct_wrap">
 
-                                <script src="../js/jquery.fancylist.js"></script>
+                                <!-- <script src="../js/jquery.fancylist.js"></script> -->
 								<form action="compare2" name="docompareFrm" id="docompare" method="post">
-s	                                <!-- 그림작품 부분 시작 -->
+								<!-- <input type="hidden" name="work_id" value="${sessionScope.work_id}" /> --!>
+	                                <!-- 그림작품 부분 시작 -->
 	                                <ul class="sct sct_20">
 	                                    <c:forEach items="${map.list}" var="workVo" >
 	                                        <!-- list가아니라 map.list라고해야 페이지가 나눠지면서 하단 넘버링이 생긴다 -->
@@ -259,15 +256,18 @@ s	                                <!-- 그림작품 부분 시작 -->
 	                                                <div class="sct_desc"><span>${workVo.artist_name}</span>
 	                                                    <p>20.0cm x 35.7cm</p>
 	                                                </div>
-	                                                <div class="sct_cost"><span class="price_cost">
+	                                                <div class="sct_cost">
+	                                                	<span class="price_cost">
 	                                                        <strong>
 	                                                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
 	                                                            <!-- 비교 체크박스 -->
-	                                                            <input type="checkbox" id="compare" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.5);">
-																<span class="sct_desc" style="color: #c9ab81; font-size: 20px; ">비교선택</span>
+	                                                            &nbsp;&nbsp;
+	                                                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.3);">
+																<label for="compare${workVo.id}" class="sct_desc" style="color: #c9ab81; font-size: 16px; cursor: pointer;">비교선택</label>
 	                                                            <!-- 비교 체크박스 -->
 	                                                            <div id="compareWorkId"></div>
-	                                                        </strong></span>
+	                                                        </strong>
+	                                                    </span>
 	                                                </div>
 	                                            </div>
 	                                        </li>
@@ -345,6 +345,7 @@ s	                                <!-- 그림작품 부분 시작 -->
 				var member_id;
 				var work_id;
 				// button에서 onclick="heartBtn(${workVo.id}) 들고왔다 function hearBtn()안에 넣을때는 (머가들어가든 괜찮다 ex) aa이런식으로 )
+				// 회원일 때 찜하기 버튼
 				function heartBtn(member_id, work_id){  
 					$.ajax({
 						url: "../myshop/workWishlist_ajax",
@@ -355,16 +356,15 @@ s	                                <!-- 그림작품 부분 시작 -->
 								alert("상품을 찜리스트에 담았습니다.");
 							} else {
 								alert("이미 있습니다.");
-								
 							}
 						},
 						error : function(){
 							alert("시스템 오류입니다");
 						}
-						
 					})//ajax
 				}//function
 				
+				// 회원이 아닐 때 찜하기 버튼
 				function NoheartBtn(){
 					alert("회원 전용 서비스 입니다.");
 				}	
@@ -375,18 +375,15 @@ s	                                <!-- 그림작품 부분 시작 -->
 					location.href = url;
 				}
 				
-				
-			</script>
-			
-			<script>
+				// 작품 비교하기
 				function docompareBtn(){
-					
+				  	
 				  var work_id_list = [];
 				  if($(".compare:checked").length < 2) {
-					 alert("비교버튼 두개 누르셔야 합니다");
+					 alert("2개이상 작품을 클릭하셔야 비교하기가 가능합니다.");
 					 return false;
 				  }
-					
+				  	
 				  $(".compare").each(function() {
 				    if($(this).prop('checked')){
 				      work_id_list.push($(this).val());
@@ -395,18 +392,30 @@ s	                                <!-- 그림작품 부분 시작 -->
 				  alert("Checked ids: " + work_id_list);
 				  alert("조인된 list  : " + work_id_list.join())
 				  
-				  
 				  $('#compareWorkId').append('<input type="hidden" name="work_id_list" value="' + work_id_list.join() + '">');
 				  docompareFrm.submit();
 				  
+				  
+				  // 팝업창에서 뒤로가기 클릭했을 때 초기화시켜줌
+			      window.onunload = function() {  // window.onunload는 사용자가 페이지에서 벗어나거나 창을 닫을 때 트리거 되는 JavaScript이벤트다.
+				  // 체크박스 초기화
+				  $('.compare').prop('checked', false);
+				  // 숨겨진 input 필드 제거
+				  $('#compareWorkId').empty();
+				  } 
+				  
+				  
 				}//docompareBtn()
-				</script>
+			</script>
+			
+			<!-- cookit 설정(input 작품들을 체크한상태로 다음페이지로 넘어가도 체크되게 저장 -->
+			
 				
 				
-				<script type="text/javascript">
+				<!-- <script type="text/javascript">
 					function showPopUp() {
-						
 						//창 크기 지정
+						
 						var width = 500;
 						var height = 500;
 						
@@ -423,13 +432,12 @@ s	                                <!-- 그림작품 부분 시작 -->
 						//등록된 url 및 window 속성 기준으로 팝업창을 연다.
 						window.open(url, "hello popup", windowStatus);
 					}
-				</script>
-			
+				</script> -->
 			
 			
 
         </main>
-
+		
         <!-- header 부분 시작 -->
         <%@ include file ="../top/footer.jsp" %>
         <!-- header 부분 끝 -->
@@ -468,4 +476,3 @@ s	                                <!-- 그림작품 부분 시작 -->
 <!-- Mirrored from bxgs.co.kr/shop/painting_list.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:12 GMT -->
 
 </html>
-w
