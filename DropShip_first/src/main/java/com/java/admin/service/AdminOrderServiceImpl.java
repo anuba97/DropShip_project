@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.mapper.AdminOrderMapper;
 import com.java.mapper.BoardEventMapper;
+import com.java.vo.ArtistVo;
 import com.java.vo.BoardEventVo;
 import com.java.vo.BoardNoticeVo;
 import com.java.vo.Order_DetailVo;
@@ -84,9 +85,9 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	}
 
 	@Override
-	public Order_DetailVo adminMemberSelectOrderOne(int id) {
-		order_DetailVo = adminOrderMapper.adminMemberSelectOrderOne(id);
-		return order_DetailVo;
+	public List<Order_DetailVo> adminMemberSelectOrder(int id) {
+		List<Order_DetailVo> order_list = adminOrderMapper.adminMemberSelectOrder(id);
+		return order_list;
 	}
 
 	

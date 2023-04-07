@@ -1,6 +1,7 @@
 package com.java.admin.controller;
 
 import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -39,18 +40,19 @@ public class DropshipMemberController {
 		model.addAttribute("map", map);
 		model.addAttribute("page", page);
 		return "admin/dropship_memberList";
-	}
+	}//dropship_memberList
 	
 	@RequestMapping("dropship_memberDetail")//맴버 1명 정보보기
 	public String dropship_memberselectOne(@RequestParam String id, @RequestParam int page, Model model) {
 		DropshipMemberVo dropshipMemberVo = dropshipMemberService.dropship_memberselectOne(Integer.parseInt(id));
-		Order_DetailVo order_DetailVo = adminOrderService.adminMemberSelectOrderOne(Integer.parseInt(id));
+		List<Order_DetailVo> order_list = adminOrderService.adminMemberSelectOrder(Integer.parseInt(id));
 		model.addAttribute("dropshipMemberVo", dropshipMemberVo);
-		model.addAttribute("order_DetailVo", order_DetailVo);
-		System.out.println("order_DetailVo22222222222222222222222222222222222222: "+order_DetailVo);
+		model.addAttribute("order_list", order_list);
 		model.addAttribute("page", page);
+		System.out.println("dropshipMemberVodropshipMemberVodropshipMemberVodropshipMemberVo"+dropshipMemberVo);
+		System.out.println("map sizemap sizemap sizemap sizemap sizemap sizemap sizemap size"+order_list.size());
 		return "admin/dropship_memberDetail";
-	}//admin_memberModify
+	}//dropship_memberDetail
 	
 	
 }//AdminBoardController

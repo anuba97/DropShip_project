@@ -16,6 +16,7 @@
 <!--     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
     <link href="../admin/css/indexstyles.css" rel="stylesheet" />
     <link href="../admin/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -57,7 +58,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DropShip 가입자 - 최근 가입자를 우선적으로 보여주며, 클릭시 해당 회원 상세정보 페이지로 이동합니다.
+                            <strong>DropShip 가입자</strong> - <span style="color:red; font-weight:bold;">최근 가입자 중 10명을 우선</span>으로 보여주며, <span style="color:red; font-weight:bold;">리스트 클릭시 해당 회원 상세정보 페이지로 이동</span>합니다.
                         </div>
                         <div class="card-body">
 	                       	<table style="width:100%" id="dropship_indexTable">
@@ -71,27 +72,65 @@
 		                        </colgroup>
 							  <thead>
 							    <tr style="background-color: #212529; color: #fff;">
-							      <th>회원 로그인 ID</th>
-							      <th>회원 이름</th>
-							      <th>회원 닉네임</th>
-							      <th>회원 이메일</th>
-							      <th>회원 도로명 주소</th>
-							      <th>회원 가입일</th>
+							      <th>로그인 ID</th>
+							      <th>이름</th>
+							      <th>닉네임</th>
+							      <th>이메일</th>
+							      <th>주소</th>
+							      <th>가입일</th>
 							    </tr>
 							  </thead>
 							  <tbody>
-							  <c:forEach items="${map.list}" var="iml">
-							    <tr onClick="location.href='dropship_memberDetail?id=${iml.id}&page=${page}'" style="cursor:pointer;">
-							      <td>${iml.member_login_id}</td>
-							      <td>${iml.member_name}</td>
-							      <td>${iml.member_nname}</td>
-							      <td>${iml.member_email}</td>
-							      <td>${iml.member_road}</td>
-							      <td><fmt:formatDate value="${iml.member_reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-							    </tr>
-							  </c:forEach>
+								  <c:forEach items="${map.list}" var="iml">
+								    <tr onClick="location.href='dropship_memberDetail?id=${iml.id}&page=${page}'" style="cursor:pointer;">
+								      <td>${iml.member_login_id}</td>
+								      <td>${iml.member_name}</td>
+								      <td>${iml.member_nname}</td>
+								      <td>${iml.member_email}</td>
+								      <td>${iml.member_road}</td>
+								      <td><fmt:formatDate value="${iml.member_reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+								    </tr>
+								  </c:forEach>
 							  </tbody>
 							</table>
+							<!--	PAGE 처리 부분		 -->
+<!-- 							<div class="bottom-paging"> -->
+<!-- 								<ul class="page-numul" style="list-style:none; display: flex; justify-content: center;" > -->
+<%-- 									<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></c:if> --%>
+<%-- 									<c:if test="${map.page != 1}"> --%>
+<!-- 									<a href="dropship_memberList?page=1"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></a> -->
+<%-- 									</c:if> --%>
+									
+<%-- 									<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></c:if> --%>
+<%-- 									<c:if test="${map.page != 1}"> --%>
+<%-- 									<a href="dropship_memberList?page=${map.page - 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></a> --%>
+<%-- 									</c:if> --%>
+									
+<%-- 									<c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number"> --%>
+<%-- 										<c:if test="${map.page == number}"> --%>
+<!-- 										<li class="page-num" id="page-on"> -->
+<%-- 											<div id="page-number">${number}</div> --%>
+<!-- 										</li> -->
+<%-- 										</c:if> --%>
+<%-- 										<c:if test="${map.page != number}"> --%>
+<!-- 										<li class="page-num"> -->
+<%-- 											<a href="dropship_memberList?page=${number}"><div id="page-number">${number}</div></a> --%>
+<!-- 										</li> -->
+<%-- 										</c:if> --%>
+<%-- 									</c:forEach> --%>
+									
+<%-- 									<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">chevron_right</span></li></c:if> --%>
+<%-- 									<c:if test="${map.page != map.maxPage}"> --%>
+<%-- 									<a href="dropship_memberList?page=${map.page + 1}"><li><span class="material-symbols-outlined">chevron_right</span></li></a> --%>
+<%-- 									</c:if> --%>
+									
+<%-- 									<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></c:if> --%>
+<%-- 									<c:if test="${map.page != map.maxPage}"> --%>
+<%-- 									<a href="dropship_memberList?page=${map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></a> --%>
+<%-- 									</c:if> --%>
+<!-- 								</ul> -->
+<!-- 							</div> -->
+							<!-- 	PAGE 처리 부분		 -->
                         </div>
                     </div>
                 </div>
