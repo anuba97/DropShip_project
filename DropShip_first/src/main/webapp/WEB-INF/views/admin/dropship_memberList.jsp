@@ -69,7 +69,7 @@
 							</tr>
 						</c:forEach>	
 					</table>
-			<!-- 			PAGE 처리 부분		 -->
+			<!--	PAGE 처리 부분		 -->
 			<div class="bottom-paging">
 				<ul class="page-numul" style="list-style:none;">
 					<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></c:if>
@@ -106,7 +106,7 @@
 					</c:if>
 				</ul>
 			</div>
-			<!-- 			PAGE 처리 부분		 -->
+			<!-- 	PAGE 처리 부분		 -->
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">

@@ -1,5 +1,6 @@
 package com.java.admin.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.java.vo.BoardEventVo;
@@ -13,7 +14,7 @@ public interface AdminOrderService {
 
 	int updateOrderStatus(int id, int orderStatus);
 
-	Order_DetailVo adminMemberSelectOrderOne(int id);
+	List<Order_DetailVo> adminMemberSelectOrder(int id);
 
 	
 	

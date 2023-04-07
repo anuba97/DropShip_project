@@ -35,8 +35,8 @@
 		WHERE od.id = #{id}
 	</select>
 	
-	<!-- admin 고객 관리에서 Order 1개 상세 가져오기 -->
-  	<select id="adminMemberSelectOrderOne" resultType="com.java.vo.Order_DetailVo">
+	<!-- admin 고객 관리에서 Order 가져오기 -->
+  	<select id="adminMemberSelectOrder" resultType="com.java.vo.Order_DetailVo">
   		SELECT om.id, om.member_id, om.order_date, om.order_status, om.delivery_name, om.delivery_road, 
 		od.id AS order_detail_id, od.work_id, od.option_id, od.total_price, od.event_work_sale, od.event_period_sale, od.final_price
 		FROM Order_Member om

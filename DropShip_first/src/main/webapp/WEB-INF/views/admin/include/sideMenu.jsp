@@ -21,7 +21,29 @@
 			</a>
 			<div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="admin_orderList">주문 현황</a>
+                <c:set var="statusSet" value="false"/>
+				<c:set var="allStatusGreater" value="true"/>
+				<c:forEach items="${order.list}" var="order">
+				    <c:if test="${order.order_status le 0}">
+				        <c:set var="statusSet" value="true"/>
+				        <c:set var="allStatusGreater" value="false"/>
+				    </c:if>
+				</c:forEach>
+				<c:if test="${statusSet}">
+				    <a class="nav-link" href="admin_orderList">주문 현황 🛒</a>
+				</c:if>
+				<c:if test="${allStatusGreater}">
+				    <a class="nav-link" href="admin_orderList">주문 현황</a>
+				</c:if>
+				                
+<%--                 <c:forEach items="${order.list}" var="order"> --%>
+<%--                 	<c:if test="${order.order_status eq '0'}"> --%>
+<!--                     	<a class="nav-link" href="admin_orderList">주문 현황 🛒</a> -->
+<%--                     </c:if> --%>
+<%--                 	<c:if test="${order.order_status gt '0'}"> --%>
+<!--                     	<a class="nav-link" href="admin_orderList">주문 현황</a> -->
+<%--                     </c:if> --%>
+<%--                 </c:forEach>     --%>
                     <a class="nav-link" href="admin_printingList">인화주문 관리</a>
                 </nav>
             </div>
