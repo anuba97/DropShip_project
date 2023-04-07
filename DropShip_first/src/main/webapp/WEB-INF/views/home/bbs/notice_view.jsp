@@ -133,7 +133,7 @@
 							</c:if>
 							<c:if test="${map.preBoardNoticeVo.getId() == null}">   
 							  <li class="prev">
-							      <a href="" class="link-none">
+							      <a class="link-none">
 							          <span style="color:#A0A0A0;">PREV</span>
 							          <p style="color:#A0A0A0;">이전글이 없습니다.</p>
 							      </a>
@@ -152,7 +152,7 @@
 							</c:if>
 							<c:if test="${map.nextBoardNoticeVo.getId() == null}">   
 							  <li class="next">
-							      <a href="" class="link-none">
+							      <a class="link-none">
 							          <span style="color:#A0A0A0;">NEXT</span>
 							          <p style="color:#A0A0A0;">다음글이 없습니다.</p>
 							      </a>
