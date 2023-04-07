@@ -66,11 +66,11 @@
                             <input type="hidden" id="id" name="id" value=${map.boardEventVo.getId()}>
 	                        <input type="hidden" name="original_file" value="${map.boardEventVo.getEventboard_file_name()}">
                             <tr>
-                                <th><label for="eventboard_title">이벤트 제목</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="eventboard_title">이벤트 제목</label></th>
                                 <td><input type="text" id="eventboard_title" name="eventboard_title" style="width:100%; text-align:center;" value="${map.boardEventVo.getEventboard_title()}"><br></td>
                             </tr>
                             <tr>
-                            	<th>상단 등록</th>
+                            	<th style="background-color: #212529; color: #fff;">상단 등록</th>
 	                            <td>
 	                            	<input type="radio" id="true" name="eventboard_istop" value="1" <c:if test="${map.boardEventVo.getEventboard_istop() == '1'}">checked</c:if>>
 	                                <label for="true">등록</label>
@@ -79,7 +79,7 @@
 	                            </td>
                        		</tr>
                             <tr>
-                            	<th>이벤트 상태</th>
+                            	<th style="background-color: #212529; color: #fff;">이벤트 상태</th>
 	                            <td>
 	                            	<input type="radio" id="true" name="eventboard_status" value="1" <c:if test="${map.boardEventVo.getEventboard_status() == '1'}">checked</c:if>>
 	                                <label for="true">진행</label>
@@ -88,35 +88,35 @@
 	                            </td>
                        		</tr>
                             <tr>
-                                <th><label for="eventboard_start">이벤트 시작</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="eventboard_start">이벤트 시작</label></th>
                                 <td>
 	                                <input type="datetime-local" id="eventboard_start" name="eventboard_start" style="width:50%;" 
 	                                value="<fmt:formatDate value='${map.boardEventVo.getEventboard_start()}' pattern="yyyy-MM-dd\'T\'HH:mm" />">
                                 </td>
                             </tr>
                             <tr>
-                                <th><label for="eventboard_end">이벤트 종료</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="eventboard_end">이벤트 종료</label></th>
                                 <td>
 	                                <input type="datetime-local" id="eventboard_end" name="eventboard_end" style="width:50%;"
 	                                value="<fmt:formatDate value='${map.boardEventVo.eventboard_end}' pattern='yyyy-MM-dd\'T\'HH:mm' />">
                                 </td>
                             </tr>
                             <tr>
-                                <th><label for="eventboard_date">등록일</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="eventboard_date">등록일</label></th>
                                 <td><fmt:formatDate value="${map.boardEventVo.getEventboard_date()}" pattern="yyyy-MM-dd HH:mm"/></td>
                             </tr>
                             <tr>
-                            	<th><label for="eventboard_update_date">최종 수정일</label></th>
+                            	<th style="background-color: #212529; color: #fff;"><label for="eventboard_update_date">최종 수정일</label></th>
                                 <td><fmt:formatDate value="${map.boardEventVo.getEventboard_update_date()}" pattern="yyyy-MM-dd HH:mm"/></td>
                             </tr>
                             <tr>
-                                <th><label for="eventboard_content">이벤트 내용</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="eventboard_content">이벤트 내용</label></th>
                                 <td>
                                     <textarea id="eventboard_content" name="eventboard_content" cols="50" rows="10" style="width:100%;">${map.boardEventVo.getEventboard_content()}</textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <th><label>첨부 파일명</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label>첨부 파일명</label></th>
                                 <c:if test="${map.boardEventVo.getEventboard_file_name() != null }">
 	                            	<td>${map.boardEventVo.getEventboard_file_name()}</td>
 	                            </c:if>	
@@ -125,7 +125,7 @@
 	                            </c:if>	
                             </tr>
                             <tr>
-                                <th><label for="eventboard_file_name">첨부 파일(이미지)</label></th>
+                                <th style="background-color: #212529; color: #fff;"><label for="eventboard_file_name">첨부 파일(이미지)</label></th>
                                 <td><input type="file" id="eventboard_file_name" name="file" style="width:100%;"></td>
                             </tr>
                         </form>

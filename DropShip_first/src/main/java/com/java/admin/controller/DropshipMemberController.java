@@ -33,7 +33,7 @@ public class DropshipMemberController {
 	HttpSession session;
 
 	
-	@GetMapping("dropship_memberList")
+	@GetMapping("dropship_memberList")//전체 맴버 불러오기
 	public String dropship_memberList(@RequestParam(defaultValue = "1") int page, Model model) {
 		Map<String, Object> map = dropshipMemberService.selectMemberList(page);
 		model.addAttribute("map", map);

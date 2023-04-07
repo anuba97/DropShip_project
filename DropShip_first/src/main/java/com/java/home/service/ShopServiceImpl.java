@@ -241,25 +241,9 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public Map<String, List<? extends Object>> selectMemberWorkList(List<Integer> workIdList) {
 
-		List<WorkVo> workVoList = new ArrayList<>();
 		
-		System.out.println("workIdList : " + workIdList);
-		
-//		for (int i = 0; i < workIdList.size(); i++) {
-//			System.out.println("work_id들!!!" + workIdList.get(i));
-//			workVoList.add(shopMapper.selectMemberWorkList(workIdList.get(i))); 
-//		}
-		
-		for (Integer work_id : workIdList) {
-	        System.out.println("work_id : " + work_id);
-	        workVoList.add(shopMapper.selectMemberWorkList(work_id));
-	    }
-		
-		
-//		List<WorkVo> workVoList = shopMapper.selectMemberWorkList(workIdList);
+		List<WorkVo> workVoList = shopMapper.selectMemberWorkList(workIdList);
 
-		System.out.println("workVolist : " + workVoList);
-		System.out.println("workVolist 사이즈 : " + workVoList.size());
 		
 		// 작가 한글이름도 order_inquiry_view.jsp에 필요. 근데 작가는 작품(work)이랑만 연결되어있음.
 		// 따라서 work를 통해 artist를 조회할 수 밖에 없고,
