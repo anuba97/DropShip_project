@@ -206,7 +206,7 @@
                                 
                                  <div class="grid-sort-list">
                                     <a href="javascript:;" class="grid-sort-current btn-sort-open">
-                                        6개씩 보기
+                                        6개씩 보기ㅇㅇ
                                     </a>
                                     <ul>
                                         <li><a href="painting_list">6개씩 보기</a></li>
