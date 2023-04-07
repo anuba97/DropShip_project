@@ -155,7 +155,7 @@ public class MyShopServiceImpl implements MyShopService{
 	
 	
 	
-	///////////----------↓--------↓------ 찜리스트 관련 -------------↓--------↓---------//////////
+	///////////----------↓--------↓------ 찜리스트 관련ㅋㅋ -------------↓--------↓---------//////////
 	// 찜리스트 page 가져오기
 	@Override
 	public Map<String, Object> selectWishlistPage(int page, int member_id) {

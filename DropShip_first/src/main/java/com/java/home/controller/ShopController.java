@@ -64,14 +64,14 @@ public class ShopController {
 	
 	@PostMapping("compare2")  //상품비교
 	public String compare2(@RequestParam("work_id_list") String workIds, WorkVo workVo, Model model) {
-		System.out.println("넘어온 작품id 리스트 : " + workIds);
+		//System.out.println("넘어온 작품id 리스트 : " + workIds);
 	    
 		String[] workIdsArr = workIds.split(",");
 	    int work_id_first = Integer.parseInt(workIdsArr[0]);
 	    int work_id_second = Integer.parseInt(workIdsArr[1]);
 	    
-	    System.out.println("work_id_first : "+ work_id_first);
-	    System.out.println("work_id_second : "+ work_id_second);
+	    //System.out.println("work_id_first : "+ work_id_first);
+	    //System.out.println("work_id_second : "+ work_id_second);
 	    
 	    List<Integer> compare_work_id_list = new ArrayList<>();
 	    compare_work_id_list.add(work_id_first);
@@ -80,7 +80,7 @@ public class ShopController {
 		List<WorkVo> compareWorkVoList = shopservice.selectWorkCompare(compare_work_id_list);
 		
 		for (WorkVo compareWorkVo : compareWorkVoList) {
-			System.out.println(" 아이디값으로 불러온거: "+ compareWorkVo.getId());
+			//System.out.println(" 아이디값으로 불러온거: "+ compareWorkVo.getId());
 		}
 		
 		

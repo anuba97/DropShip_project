@@ -245,7 +245,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
                                                         <div class="sct_opt_wrap">
                                                             <div class="sct_btn list-10-btn">
-                                                                <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
+                                                                <button type="button" onclick="AddToCartBtn(${wishlistVo.id},${wishlistVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
                                                                     <svg height="45" width="160">
                                                                         <rect height="45" width="160"></rect>
                                                                     </svg>
@@ -304,6 +304,14 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
                         }
                     }); //ajax
                 } //function
+                
+                
+             	// ADD To CART 구문
+        		function AddToCartBtn(work_id, artist_id){
+        			var url = "/shop/painting_item?work_id=" + work_id + "&artist_id=" + artist_id;
+        			location.href = url;
+        		}
+                
             </script>
 
         </main>
