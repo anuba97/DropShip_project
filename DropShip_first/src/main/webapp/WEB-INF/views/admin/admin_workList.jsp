@@ -84,10 +84,10 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">작품 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다..</div>
+                        <div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다.</div>
                     </div>
                 </div>
-                <div class="admin_customerListDiv">
+                <div class="admin_customerListDiv" style="margin-left:24px;">
                     <table class="admin_workListTable">
                         <colgroup>
 						  <col width="5%">
@@ -95,10 +95,10 @@
 						  <col width="15%">
 						  <col width="5%">
 						  <col width="10%">
-						  <col width="5%">
-						  <col width="5%">
+						  <col width="7%">
+						  <col width="7%">
 						  <col width="15%">
-						  <col width="15%">
+						  <col width="5%">
 						</colgroup>
                         <tr>
                             <th>작품 ID</th>
@@ -144,7 +144,7 @@
                         </c:forEach>
                     </table><br>
                     <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_workAdd'" style="margin: 0 0 0 500px; color:red;">작품 추가</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_workAdd'" style="margin-left: 550px; color:red; border-radius: 5px;">작품 추가</button>
                     </div>
                 </div>
             </main>

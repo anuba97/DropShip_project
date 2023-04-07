@@ -82,6 +82,10 @@
                 
                 <div class="admin_workViewTableDiv">
                     <table class="admin_workViewTable">
+                	<colgroup>
+                        <col width="25%">
+                        <col width="75%">
+                    </colgroup>
                         <tr>
                             <th>작품 고유번호</th>
                             <td>${workVo.getId()}</td>
@@ -164,10 +168,10 @@
                             </td>
                         </tr>
                     </table><br>
-                    <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_workAdd'" style="margin: 0 0 0 500px; color:red;">작품 추가</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="updateWorkBtn()" style="margin: 0 0 0 500px; color:blue;">작품 수정</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="deleteWorkBtn()" style="margin: 0 0 0 500px; color:black;">작품 삭제</button>
+                    <div class="admin_eventBoardAdd_div">
+                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_workAdd'" style="margin: 0 0 0 600px; color:red;">작품 추가</button>
+                        <button type="button" class="admin_noticeBoard_button" onclick="updateWorkBtn()" style="color:blue;">작품 수정</button>
+                        <button type="button" class="admin_noticeBoard_button" onclick="deleteWorkBtn()" style="color:black;">작품 삭제</button>
                     </div>
                 </div>
             </main>

@@ -58,7 +58,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            <strong>DropShip 가입자</strong> - <span style="color:red; font-weight:bold;">최근 가입자 중 10명을 우선</span>으로 보여주며, <span style="color:red; font-weight:bold;">리스트 클릭시 해당 회원 상세정보 페이지로 이동</span>합니다.
+                            <strong>DropShip 가입자</strong> - <span style="color:red; font-weight:bold;">최근 가입자 중 10명을 우선</span> 보여주며, <span style="color:red; font-weight:bold;">리스트 클릭시 해당 회원 상세정보 페이지로 이동</span>합니다.
                         </div>
                         <div class="card-body">
 	                       	<table style="width:100%" id="dropship_indexTable">
@@ -93,44 +93,6 @@
 								  </c:forEach>
 							  </tbody>
 							</table>
-							<!--	PAGE 처리 부분		 -->
-<!-- 							<div class="bottom-paging"> -->
-<!-- 								<ul class="page-numul" style="list-style:none; display: flex; justify-content: center;" > -->
-<%-- 									<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></c:if> --%>
-<%-- 									<c:if test="${map.page != 1}"> --%>
-<!-- 									<a href="dropship_memberList?page=1"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></a> -->
-<%-- 									</c:if> --%>
-									
-<%-- 									<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></c:if> --%>
-<%-- 									<c:if test="${map.page != 1}"> --%>
-<%-- 									<a href="dropship_memberList?page=${map.page - 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></a> --%>
-<%-- 									</c:if> --%>
-									
-<%-- 									<c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number"> --%>
-<%-- 										<c:if test="${map.page == number}"> --%>
-<!-- 										<li class="page-num" id="page-on"> -->
-<%-- 											<div id="page-number">${number}</div> --%>
-<!-- 										</li> -->
-<%-- 										</c:if> --%>
-<%-- 										<c:if test="${map.page != number}"> --%>
-<!-- 										<li class="page-num"> -->
-<%-- 											<a href="dropship_memberList?page=${number}"><div id="page-number">${number}</div></a> --%>
-<!-- 										</li> -->
-<%-- 										</c:if> --%>
-<%-- 									</c:forEach> --%>
-									
-<%-- 									<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">chevron_right</span></li></c:if> --%>
-<%-- 									<c:if test="${map.page != map.maxPage}"> --%>
-<%-- 									<a href="dropship_memberList?page=${map.page + 1}"><li><span class="material-symbols-outlined">chevron_right</span></li></a> --%>
-<%-- 									</c:if> --%>
-									
-<%-- 									<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></c:if> --%>
-<%-- 									<c:if test="${map.page != map.maxPage}"> --%>
-<%-- 									<a href="dropship_memberList?page=${map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></a> --%>
-<%-- 									</c:if> --%>
-<!-- 								</ul> -->
-<!-- 							</div> -->
-							<!-- 	PAGE 처리 부분		 -->
                         </div>
                     </div>
                 </div>

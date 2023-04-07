@@ -11580,6 +11580,7 @@ body {
 	margin: 0 0 0 24px;
 }
 .admin_noticeBoard_div{
+	width: 1300px;
 	margin: 0 0 0 24px;
 }
 .admin_eventBoardAdd_button{
@@ -11618,7 +11619,7 @@ body {
 	width: 300px;
 }
 .admin_customerTable{
-	width: 660px;
+	width: 70%;
 	border-collapse: collapse;
 	margin: 0 0 0 24px;
 }
@@ -11930,4 +11931,23 @@ ul.page-numul-eventBoardList {
   display: inline-block;
   padding-right: 5px;
   font-size: 13px;
+}
+
+.admin_workListTable{
+	width: 1300px;
+}
+
+.admin_workListTable th{
+  	background-color: #212529;
+    color: #fff;
+}
+
+.admin_workViewTable th{
+	background-color: #212529;
+    color: #fff;
+}
+
+.admin_workViewTableDiv{
+	margin-left:24px;
+	width: 80%;
 }

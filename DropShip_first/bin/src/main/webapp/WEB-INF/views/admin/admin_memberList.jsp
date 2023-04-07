@@ -88,7 +88,7 @@
                     </table>
                 </div>
                 <div class="button-wrapper">
-                    <a href="admin_memberAdd"><button type="button" style="color:red; border-radius: 10px;">ADMIN 추가</button></a>
+                    <a href="admin_memberAdd"><button type="button" style="color:red; border-radius: 5px;">ADMIN 추가</button></a>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

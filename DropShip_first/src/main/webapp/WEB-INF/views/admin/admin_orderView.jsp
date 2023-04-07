@@ -22,7 +22,6 @@
 	    $('#order_status').on('change', function() {
 	        var orderId = $('#order_id').text();
 	        var selectedValue = $(this).val();
-	        alert(selectedValue);
 	        $.ajax({
 	            type: 'POST',
 	            url: '/updateOrderStatus',
@@ -66,7 +65,7 @@
                     </div>
                 </div>
                 <form action="order_condition" name="order_condition" method="post">
-                    <table class="admin_customerTable">
+                    <table class="admin_customerTable" >
                         <colgroup>
                             <col width="30%">
                             <col width="70%">

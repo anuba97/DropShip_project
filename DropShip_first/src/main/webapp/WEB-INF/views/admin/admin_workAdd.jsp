@@ -166,7 +166,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">작품 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다..</div>
+                        <div class="card-body">DropShip <span style="color:red;">작품을 등록하는 메뉴</span>입니다. 각 항목에 맞게 데이터를 입력해 주세요.</div>
                     </div>
                 </div>
                 <form action="admin_workAdd" name="workAddFrm" method="post" enctype="multipart/form-data">
@@ -174,7 +174,7 @@
                     	<!-- 작품 등록하는 관리자의 고유번호를 hidden으로 보냄-->
                     	<input type="hidden" id="admin_id" name="admin_id" value=${sessionAdminId}>  
                         <tr>
-                            <th>작품 이름${sessionAdminId}</th>
+                            <th>작품 이름</th>
                             <td><input type="text" name="work_name" id="work_name" style="width: 100%;" required></td>
                         </tr>
                         <tr>
@@ -279,8 +279,8 @@
                     </table>
                     <br>
                     <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onclick="workAddBtn()" style="margin: 0 0 0 130px; color: red;">작품 등록</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_workList'" style="margin: 0 auto;">작품 리스트</button>
+                        <button type="button" class="admin_noticeBoard_button" onclick="workAddBtn()" style="margin: 0 0 0 130px; color: red; border-radius: 5px;">작품 등록</button>
+                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_workList'" style="margin: 0 auto; border-radius: 5px;">작품 리스트</button>
                     </div>
                 </form>
             </main>
