@@ -89,7 +89,7 @@ public class AiController {
 			    System.out.println("completionResponse의 data : " +completionResponse.getData());
 			    System.out.println("completionResponse의 firstImageUrl : " +completionResponse.firstImageUrl());
 			    System.out.println("completionResponse의 ImageUrl클래스의 url변수 : " +completionResponse.getData().get(0).getUrl());
-		    return completionResponse.firstImageUrl().orElseThrow(() -> new RuntimeException("API로부터 이미지를 받아오지 못했습니다.."));
+		    return completionResponse.firstImageUrl().orElseThrow(() -> new RuntimeException("API로부터 이미지를 받아오지 못했습니다..."));
 		}
 		
 		// 이미지 생성 페이지로 이동 
