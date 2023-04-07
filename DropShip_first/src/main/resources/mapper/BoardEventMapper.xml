@@ -119,26 +119,22 @@
 	
 	<!-- 이전글 -->
 	<select id="preSelectEventOne" resultType="com.java.vo.BoardEventVo">
-		select * from
-		(select rownum rnum, a.*from eventboard a order by id desc)
-		where rnum = 
-		(
-		select rnum from
-		(select rownum rnum, a.*from eventboard a order by id desc)
-		where id=#{id}
-		)-1
+		select * from eventboard 
+		where id = 
+		(select prev_id from
+		(select id,eventboard_title, lead(id,1,-1) over(order by id desc) as prev_id
+		from eventboard) 
+		where id = #{id})
 	</select>
 	
 	<!-- 다음글 -->
 	<select id="nextSelectEventOne" resultType="com.java.vo.BoardEventVo">
-		select * from
-		(select rownum rnum, a.*from eventboard a order by id desc)
-		where rnum = 
-		(
-		select rnum from
-		(select rownum rnum, a.*from eventboard a order by id desc)
-		where id=#{id}
-		)+1
+		select * from eventboard 
+		where id = 
+		(select next_id from
+		(select id,eventboard_title, lag(id,1,-1) over(order by id desc) as next_id
+		from eventboard) 
+		where id = #{id})
 	</select>
 	
 </mapper>
