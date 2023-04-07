@@ -20,7 +20,7 @@
                                 <li><a href="../shop/best_list">베스트 작품</a></li>
                                 <li><a href="../shop/painting_list">그림 작품</a></li>
                                 <li><a href="../shop/artist_list">작가별</a></li>
-                                <li><a href="../shop/genre_list">사진인화 신청</a></li>
+                                <li><a href="../image">사진인화 신청</a></li>
                             </ul>
                         </li>
                         <li>
@@ -78,7 +78,7 @@
             <li><a href="../shop/best_list">베스트 작품</a></li>
             <li><a href="../shop/painting_list">그림 작품</a></li>
             <li><a href="../shop/artist_list">작가별</a></li>
-            <li><a href="../shop/genre_list">사진인화 신청</a></li>
+            <li><a href="../ai/image_generate">AI 그림생성</a></li>
         </ul>
     </nav>
 
