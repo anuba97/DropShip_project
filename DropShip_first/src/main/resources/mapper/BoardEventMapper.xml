@@ -23,7 +23,7 @@
 		e.eventboard_file_name, e.eventboard_hit, e.eventboard_status, e.eventboard_start, e.eventboard_end
 		FROM eventboard e
 		JOIN admin a ON e.admin_id = a.id
-		ORDER BY e.eventboard_istop DESC, e.eventboard_date DESC, e.id ASC
+		ORDER BY e.eventboard_istop DESC, e.eventboard_date DESC, e.id ASC 
 		) a
 		) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
@@ -109,8 +109,7 @@
 	<!-- 이벤트 1개 수정하기 -->
 	<update id="updateEventBoard">
 		UPDATE eventboard SET eventboard_istop = #{eventboard_istop}, eventboard_status = #{eventboard_status}, eventboard_title = #{eventboard_title}, 
-		eventboard_content = #{eventboard_content}, eventboard_update_date = sysdate, eventboard_file_name = #{eventboard_file_name}, 
-		eventboard_start = #{eventboard_start}, eventboard_end = #{eventboard_end} WHERE id = #{id}
+		eventboard_content = #{eventboard_content}, eventboard_update_date = sysdate, eventboard_file_name = #{eventboard_file_name}, eventboard_start = #{eventboard_start}, eventboard_end = #{eventboard_end} WHERE id = #{id}
 	</update>
 	
 	<!-- 이벤트 1개 삭제하기 -->
