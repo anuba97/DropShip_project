@@ -185,52 +185,7 @@
                     </div>
                 </div>
 
-				<script>
-					function docompareBtn(){
-						
-					  var work_id_list = [];
-					  if($(".compare:checked").length < 2) {
-						 alert("비교버튼 두개 누르셔야 합니다");
-						 return false;
-					  }
-						
-					  $(".compare").each(function() {
-					    if($(this).prop('checked')){
-					      work_id_list.push($(this).val());
-					    } 
-					  });
-					  alert("Checked ids: " + work_id_list);
-					  alert("조인된 list  : " + work_id_list.join())
-					  
-					  
-					  $('#compareWorkId').append('<input type="hidden" name="work_id_list" value="' + work_id_list.join() + '">');
-					  docompareFrm.submit();
-					  
-					}//docompareBtn()
-				</script>
-				<script type="text/javascript">
-					function showPopUp() {
-						
-						//창 크기 지정
-						var width = 500;
-						var height = 500;
-						
-						//pc화면기준 가운데 정렬
-						var left = (window.screen.width / 2) - (width/2);
-						var top = (window.screen.height / 4);
-						
-					    	//윈도우 속성 지정
-						var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
-						
-					    	//연결하고싶은url
-					    	const url = "https://seeminglyjs.tistory.com/";
-					
-						//등록된 url 및 window 속성 기준으로 팝업창을 연다.
-						window.open(url, "hello popup", windowStatus);
-					}
-				</script>
-
-                <!-----  PAINTING ITEM LIST ----->
+                <!-----  Painting Art 부분 ----->
                 <div id="item-list-wrap">
                     <div class="maxinner">
                         <div class="sub-con-tit-wrap">
@@ -239,7 +194,7 @@
                         <div class="grid-list-opt">
                             <div class="grid-opt-left">총 <strong class="f-color">${map.listCount}</strong>개의 상품이 있습니다.</div>
                             <div class="grid-opt-right">
-	                                <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기">
+	                                <input type="button"  onclick="docompareBtn()" name="docompare" value="비교하기">
 	           						<layer for="docompareBtn">비교하기</layer>
                                 <div class="grid-sort-list">
                                     <a href="javascript:;" class="grid-sort-current btn-sort-open">
@@ -308,8 +263,8 @@ s	                                <!-- 그림작품 부분 시작 -->
 	                                                        <strong>
 	                                                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
 	                                                            <!-- 비교 체크박스 -->
-	                                                            <input type="checkbox" class="compare" name="compare"  value="${workVo.id}">
-																<LAYER FOR="compare"> 비교선택</LAYER>
+	                                                            <input type="checkbox" id="compare" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.5);">
+																<span class="sct_desc" style="color: #c9ab81; font-size: 20px; ">비교선택</span>
 	                                                            <!-- 비교 체크박스 -->
 	                                                            <div id="compareWorkId"></div>
 	                                                        </strong></span>
@@ -422,6 +377,56 @@ s	                                <!-- 그림작품 부분 시작 -->
 				
 				
 			</script>
+			
+			<script>
+				function docompareBtn(){
+					
+				  var work_id_list = [];
+				  if($(".compare:checked").length < 2) {
+					 alert("비교버튼 두개 누르셔야 합니다");
+					 return false;
+				  }
+					
+				  $(".compare").each(function() {
+				    if($(this).prop('checked')){
+				      work_id_list.push($(this).val());
+				    } 
+				  });
+				  alert("Checked ids: " + work_id_list);
+				  alert("조인된 list  : " + work_id_list.join())
+				  
+				  
+				  $('#compareWorkId').append('<input type="hidden" name="work_id_list" value="' + work_id_list.join() + '">');
+				  docompareFrm.submit();
+				  
+				}//docompareBtn()
+				</script>
+				
+				
+				<script type="text/javascript">
+					function showPopUp() {
+						
+						//창 크기 지정
+						var width = 500;
+						var height = 500;
+						
+						//pc화면기준 가운데 정렬
+						var left = (window.screen.width / 2) - (width/2);
+						var top = (window.screen.height / 4);
+						
+					    	//윈도우 속성 지정
+						var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+						
+					    	//연결하고싶은url
+					    	const url = "https://seeminglyjs.tistory.com/";
+					
+						//등록된 url 및 window 속성 기준으로 팝업창을 연다.
+						window.open(url, "hello popup", windowStatus);
+					}
+				</script>
+			
+			
+			
 
         </main>
 
