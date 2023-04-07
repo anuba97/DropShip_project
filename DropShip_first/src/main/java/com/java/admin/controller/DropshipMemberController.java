@@ -44,11 +44,12 @@ public class DropshipMemberController {
 	@RequestMapping("dropship_memberDetail")//맴버 1명 정보보기
 	public String dropship_memberselectOne(@RequestParam String id, @RequestParam int page, Model model) {
 		DropshipMemberVo dropshipMemberVo = dropshipMemberService.dropship_memberselectOne(Integer.parseInt(id));
-		Order_DetailVo order_DetailVo = adminOrderService.adminMemberSelectOrderOne(Integer.parseInt(id));
+		Map<String, Object> map = adminOrderService.adminMemberSelectOrder(Integer.parseInt(id));
 		model.addAttribute("dropshipMemberVo", dropshipMemberVo);
-		model.addAttribute("order_DetailVo", order_DetailVo);
-		System.out.println("order_DetailVo22222222222222222222222222222222222222: "+order_DetailVo);
+		model.addAttribute("map", map);
 		model.addAttribute("page", page);
+		System.out.println("dropshipMemberVodropshipMemberVodropshipMemberVodropshipMemberVo"+dropshipMemberVo);
+		System.out.println("map sizemap sizemap sizemap sizemap sizemap sizemap sizemap size"+map.size());
 		return "admin/dropship_memberDetail";
 	}//admin_memberModify
 	

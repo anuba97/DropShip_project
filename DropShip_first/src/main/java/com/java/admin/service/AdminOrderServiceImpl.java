@@ -84,9 +84,11 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	}
 
 	@Override
-	public Order_DetailVo adminMemberSelectOrderOne(int id) {
-		order_DetailVo = adminOrderMapper.adminMemberSelectOrderOne(id);
-		return order_DetailVo;
+	public Map<String, Object> adminMemberSelectOrder(int id) {
+		Map<String, Object> map = new HashMap<>();
+		List<Order_DetailVo> order_DetailVo = adminOrderMapper.adminMemberSelectOrder(id);
+		map.put("boardEventVo", order_DetailVo);
+		return map;
 	}
 
 	

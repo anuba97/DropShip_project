@@ -13,7 +13,7 @@ public interface AdminOrderService {
 
 	int updateOrderStatus(int id, int orderStatus);
 
-	Order_DetailVo adminMemberSelectOrderOne(int id);
+	Map<String, Object> adminMemberSelectOrder(int id);
 
 	
 	
