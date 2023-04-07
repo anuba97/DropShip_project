@@ -15,6 +15,8 @@ public interface DropshipMemberMapper {
 
 	public DropshipMemberVo dropship_memberselectOne(int id);
 
+	public List<DropshipMemberVo> indexMemberList(int startRow, int endRow);
+
 	
 	
 }//AdminMemberMapper

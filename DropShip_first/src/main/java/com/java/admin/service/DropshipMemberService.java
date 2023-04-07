@@ -10,4 +10,6 @@ public interface DropshipMemberService {
 
 	public DropshipMemberVo dropship_memberselectOne(int id);
 
+	public Map<String, Object> indexMemberList(int page);
+
 }//DropshipMemberService

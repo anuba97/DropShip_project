@@ -15,6 +15,7 @@ import com.java.admin.service.AdminOrderService;
 import com.java.admin.service.AdminService;
 import com.java.admin.service.BoardEventService;
 import com.java.admin.service.BoardNoticeService;
+import com.java.admin.service.DropshipMemberService;
 import com.java.home.service.BoardService;
 
 @Controller
@@ -36,6 +37,9 @@ public class AdminFrontController {
 	BoardService boardService;
 	
 	@Autowired
+	DropshipMemberService dropshipMemberService;
+	
+	@Autowired
 	HttpSession session;
 	
 	@GetMapping("admin_login")//로그인 페이지 열기
@@ -44,8 +48,10 @@ public class AdminFrontController {
 	}//admin_login
 	
 	@RequestMapping("admin_index")
-	public String admin_index() {
-		
+	public String admin_index(@RequestParam(defaultValue = "1") int page, Model model) {
+		Map<String, Object> map = dropshipMemberService.indexMemberList(page);
+		model.addAttribute("map", map);
+		model.addAttribute("page", page);
 		return "admin/admin_index";
 	}
 	
