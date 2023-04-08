@@ -19,7 +19,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/home/img/favicon.ico" />
     <title>AI 그림 생성</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -93,7 +92,6 @@
 		  font-size: 24px;
 		}
     </style>
-    
 </head>
 
 <body>
@@ -127,6 +125,7 @@
                 <div class="maxinner">
                     <!-- ai form태그 -->
                     <form action="<c:url value='/ai/image_generate' />" name="generateFrm" method="post">
+
                         <div class="form-box-wrap">
 
                             <div class="form-box">
@@ -134,8 +133,8 @@
                                     <label for="qa_subject"><span class="f-color">*</span>제목</label>
                                 </div>
                                 <div class="right-con">
-                                    <input type="text" name="generate_work_name" id="generate_work_name" id="qa_subject"  required autofocus
-                                    class="inp-type01 required" maxlength="255" placeholder="제목" value="">
+                                    <input type="text" name="generate_work_name" id="generate_work_name" id="qa_subject"  required 
+                                    class="inp-type01 required" maxlength="255" placeholder="제목" value="${generate_work_name}">
                                 </div>
                             </div>
                             
@@ -144,7 +143,7 @@
                                     <label for="qa_subject"><span class="f-color">*</span>프롬프트</label>
                                 </div>
                                 <div class="right-con">
-						            <input type="text" name="prompt" value="${request}" required id="qa_subject" required 
+						            <input type="text" name="prompt"  required autofocus id="qa_subject" value="${prompt}" required 
 						            class="inp-type01 required" maxlength="255" placeholder="제작할 이미지를 적어주세요"/><!-- name="prompt" 바꾸면 안됨 -->
 						        </div>
                             </div>
@@ -157,49 +156,88 @@
                                     <div class="wr_content">
                                         <span class="sound_only">웹에디터 시작</span>
                                         	<textarea id="qa_content" id="generate_work_content" name="generate_work_content" class="textarea-type01" 
-                                        	maxlength="65536" style="width:100%;height:300px" placeholder="제작할 이미지의 내용을 입력해주세요."></textarea>
+                                        	maxlength="65536" style="width:100%;height:300px" placeholder="제작할 이미지의 내용을 입력해주세요.">${generate_work_content}</textarea>
                                         <span class="sound_only">웹 에디터 끝</span> 
                                     </div>
                                 </div>
                             </div>
-                            <div class="btnwrap">
+                            <div id="btn_generate">
 						        <button type="button" id="generateBtn" class="btnset btn-type01"  accesskey="s">
 	                                <svg height="50" width="180">
 	                                    <rect height="50" width="180"></rect>
 	                                </svg>
 	                                <span>그림 생성하기</span>
 	                            </button>
+	                        </div>
+                        </div>
+					</form>
+						
+					<div id="generated_work_show">
+						<!-- 이미지가 존재하면  -->
+	                    <c:if test="${imageUri ne null}">
+						    <h1>제목 : ${generate_work_name} </h1>	<!-- input으로 입력했던 제목 넣기 -->
+						    <h2>작가 : ${member_nName} </h2>
+						    <h2>사용한 프롬프트 : ${prompt} </h2>
+						    <h2>작품 설명 : ${generate_work_content} </h2>
+						    <br>
+						    <img src="${imageUri}" alt="DALL-E가 그린 그림" />
+						    
+		                    <!-- 하단 버튼들 -->
+		                    <div class="btnwrap">
+		                        <button type="button" id="btn_submit" class="btnset btn-type01" onclick="buyBtn()" accesskey="s">
+		                            <svg height="50" width="180">
+		                                <rect height="50" width="180"></rect>
+		                            </svg>
+		                            <span>바로 구매하기</span>
+		                        </button>
+		                        <button type="button" id="btn_submit" class="btnset btn-type01" onclick="submitWorkBtn()" accesskey="s">
+		                            <svg height="50" width="180">
+		                                <rect height="50" width="180"></rect>
+		                            </svg>
+		                            <span>작품 등록하기</span>
+		                        </button>
 			                    <button type="button" id="btn_submit" class="btnset btn-type01" onclick="backBtn()" accesskey="s">
 			                        <svg height="50" width="180">
 			                            <rect height="50" width="180"></rect>
 			                        </svg>
 			                        <span>뒤로 가기</span>
 			                    </button>
-	                        </div>
-	                        
-	                        <div id="overlay">
-							  <div id="spinner"></div>
-							  <div id="spinner-text">AI가 그림을 생성중입니다...</div>
-							</div>
-	                        
-	                        
-	                        <script>
-								$(function(){
-									// 생성하기 버튼 클릭시
-									$("#generateBtn").click(function() {
-										$("#loading-spinner").css("display", "block");	// 스피너 보이게 함
-										$("#overlay").show();	// 회색 화면 보이게 함
-									    $("#spinner").show();	// 스피너 보이게 함
-									    $("#spinner-text").show();	// 'AI가 그림을 생성중입니다...' 보이게 함
-									    generateFrm.submit(); 	// form으로 데이터 전송 submit
-									});
-								});
-						    </script>
-	                        
-	                        
-                        </div>
-					</form>
-						
+		                    </div>
+						</c:if>
+                    <div>
+                    
+                    <div id="overlay">
+					  <div id="spinner"></div>
+					  <div id="spinner-text">AI가 그림을 생성중입니다...</div>
+					</div>
+                    
+                    <script>
+                   		$(function() {
+                   			
+                   			// 생성하기 버튼 클릭시
+							$("#generateBtn").click(function() {
+								$("#loading-spinner").css("display", "block");	// 스피너 보이게 함
+								$("#overlay").show();	// 회색 화면 보이게 함
+							    $("#spinner").show();	// 스피너 보이게 함
+							    $("#spinner-text").show();	// 'AI가 그림을 생성중입니다...' 보이게 함
+							    generateFrm.submit(); 	// form으로 데이터 전송 submit
+							});
+
+//                     	  buyBtn() {
+// 	                    		if()
+// 	                    	}// buyBtn()
+	                    	
+// 	                    	backBtn() {
+// 	                    		if()
+// 	                    	}// backBtn()
+	                    	
+// 	                    	submitWorkBtn() {
+// 	                    		if()
+// 	                    	}// submitWorkBtn()
+	                    	
+                    	});	//jQuery 시작
+                    </script>
+                    
                 </div>
    		 	</div>
    	   </section>

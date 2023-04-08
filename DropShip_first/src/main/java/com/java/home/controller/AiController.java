@@ -1,6 +1,9 @@
 package com.java.home.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.home.service.MemberService;
@@ -33,6 +37,67 @@ public class AiController {
 	
 	@Autowired
 	MemberVo memberVo;
+	
+	//--------------↓↓↓---------- ChatGPT DALL-E(그림그려주는) 관련 ----------↓↓↓-------------------//
+	public static final String IMAGE_PAGE = "image";
+	
+	private String drawImageWithDallE(String prompt) throws Exception {
+			System.out.println("drawImageWithDallE 메소드 안으로 들어옴! ");
+			System.out.println("내가 보낸 프롬프트 : " + prompt);
+    	GenerationRequest generation = GenerationRequest.defaultWith(prompt);
+    		System.out.println("generation 객체의 response_form : " + generation.getResponse_format());
+	    	System.out.println("generation ㅋㅋㅋ: " + generation);
+	    String postBodyJson = jsonMapper.writeValueAsString(generation);
+		    System.out.println("postBodyJson ㅋㅋㅋ: " + postBodyJson);
+	    String responseBody = client.postToOpenAiApi(postBodyJson, OpenAiService.DALL_E);
+		    System.out.println("responseBody ㅋㅋㅋ: " + responseBody);
+	    GenerationResponse completionResponse = jsonMapper.readValue(responseBody, GenerationResponse.class);
+		    System.out.println("completionResponse 객체!!: " +completionResponse);
+		    System.out.println("completionResponse의 data : " +completionResponse.getData());
+		    System.out.println("completionResponse의 firstImageUrl : " +completionResponse.firstImageUrl());
+		    System.out.println("completionResponse의 ImageUrl클래스의 url변수 : " +completionResponse.getData().get(0).getUrl());
+	    return completionResponse.firstImageUrl().orElseThrow(() -> new RuntimeException("API로부터 이미지를 받아오지 못했습니다..."));
+	}
+	
+	// 이미지 생성 페이지로 이동 
+	@GetMapping("/ai/image_generate")
+	public String paintImage(Model model) {
+		return "home/ai/image_generate";
+	}
+	
+	// 이미지 생성 실행
+	@PostMapping("/ai/image_generate")
+	public String drawImage(Model model, FormInputDTO dto, String member_id, String generate_work_name, 
+			String generate_work_content) throws Exception {
+		
+		String member_nName = (String) session.getAttribute("sessionMember_nName");
+		System.out.println("회원 닉네임 : "+ member_nName);
+
+		// 이미지 생성에 필요한 것들	(필수)
+		model.addAttribute("request", dto.getPrompt());
+		model.addAttribute("imageUri", drawImageWithDallE(dto.getPrompt()));
+		
+		// 로딩 스피너 보이게
+//		model.addAttribute("displaySpinner", "block");
+		session.setAttribute("imageGenerated", true);
+		
+		// 새로고침 할 때 그대로 보여지게
+		session.setAttribute("imageUri", drawImageWithDallE(dto.getPrompt()));
+	    session.setAttribute("prompt", dto.getPrompt());
+	    session.setAttribute("generate_work_name", generate_work_name);
+	    session.setAttribute("generate_work_content", generate_work_content);
+	    session.setAttribute("member_nName", member_nName);
+	    
+	    return "redirect:image_generate_result";
+	}
+
+	// 새로고침 할 때마다 그림 새로 생성방지하기 위해 똑같은 페이지를 결과용도로 하나 더 만듦
+	@GetMapping("/ai/image_generate_result")
+	public String showImage(Model model) {
+		System.out.println("결과물 페이지로 들어옴!");
+	    return "home/ai/image_generate_result";
+	}
+	
 	
 
 	//--------------↓↓↓---------- ChatGPT 채팅 관련 ----------↓↓↓-------------------//
@@ -71,69 +136,5 @@ public class AiController {
 			return MAIN_PAGE;
 		}
 
-		//--------------↓↓↓---------- ChatGPT DALL-E(그림그려주는) 관련 ----------↓↓↓-------------------//
-		public static final String IMAGE_PAGE = "image";
-		
-		private String drawImageWithDallE(String prompt) throws Exception {
-				System.out.println("drawImageWithDallE 메소드 안으로 들어옴! ");
-				System.out.println("내가 보낸 프롬프트 : " + prompt);
-	    	GenerationRequest generation = GenerationRequest.defaultWith(prompt);
-	    		System.out.println("generation 객체의 response_form : " + generation.getResponse_format());
-		    	System.out.println("generation ㅋㅋㅋ: " + generation);
-		    String postBodyJson = jsonMapper.writeValueAsString(generation);
-			    System.out.println("postBodyJson ㅋㅋㅋ: " + postBodyJson);
-		    String responseBody = client.postToOpenAiApi(postBodyJson, OpenAiService.DALL_E);
-			    System.out.println("responseBody ㅋㅋㅋ: " + responseBody);
-		    GenerationResponse completionResponse = jsonMapper.readValue(responseBody, GenerationResponse.class);
-			    System.out.println("completionResponse 객체!!: " +completionResponse);
-			    System.out.println("completionResponse의 data : " +completionResponse.getData());
-			    System.out.println("completionResponse의 firstImageUrl : " +completionResponse.firstImageUrl());
-			    System.out.println("completionResponse의 ImageUrl클래스의 url변수 : " +completionResponse.getData().get(0).getUrl());
-		    return completionResponse.firstImageUrl().orElseThrow(() -> new RuntimeException("API로부터 이미지를 받아오지 못했습니다..."));
-		}
-		
-		// 이미지 생성 페이지로 이동 
-		@GetMapping("/ai/image_generate")
-		public String paintImage(Model model) {
-			String imageUri = (String) session.getAttribute("imageUri");
-		    model.addAttribute("imageUri", imageUri);
-			return "home/ai/image_generate";
-		}
-		
-		// 이미지 생성 실행
-		@PostMapping("/ai/image_generate")
-		public String drawImage(Model model, FormInputDTO dto, String generate_work_name, 
-				String prompt, String generate_work_content) throws Exception {
-			
-			//회원 이름하나 알기위해 회원객체 가져옴
-			int member_id = (int) session.getAttribute("sessionMember_id");
-			memberVo = memberService.selectOne(member_id);
-			String member_name = memberVo.getMember_name();
-			
-				System.out.println("generate_work_name : " + generate_work_name );
-				System.out.println("generate_work_content : " + generate_work_content);
-				System.out.println("request : " +dto.getPrompt());
-				System.out.println("imageUri : " +drawImageWithDallE(dto.getPrompt()));
-				
-			// 이미지 생성에 필요한 것들	(필수)
-			model.addAttribute("request", dto.getPrompt());
-			model.addAttribute("imageUri", drawImageWithDallE(dto.getPrompt()));
-			
-			// 이미지 생성 후 제목, 사용한 프롬프트 보여줄 목적(필수는 아님)  
-			model.addAttribute("generate_work_name", generate_work_name);
-			model.addAttribute("prompt", dto.getPrompt());
-			model.addAttribute("generate_work_content", generate_work_content);
-			model.addAttribute("member_name", member_name);
-			
-			if(session.getAttribute("imageUri") == null) {	// 세션이 있으면, 즉 이미 한번 생성했으면 
-				session.setAttribute("imageUri", drawImageWithDallE(dto.getPrompt()));
-			}
-			
-			
-//			return "home/ai/image_generate";
-			return "redirect:image_generate";
-		}
-	
-	
 	
 }// AiController

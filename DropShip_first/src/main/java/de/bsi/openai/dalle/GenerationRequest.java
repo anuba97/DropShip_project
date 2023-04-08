@@ -15,7 +15,7 @@ public class GenerationRequest {
     }
 
     public static GenerationRequest defaultWith(String prompt) {
-        return new GenerationRequest(prompt, 1, "1024x1024", "url");
+        return new GenerationRequest(prompt, 1, "512x512", "url");
     }
 
     public String getPrompt() {
