@@ -72,7 +72,6 @@
 	  	#{artist_img_url}, #{artist_country}, #{artist_birth_death}, #{artist_main}, #{artist_content})
   	</insert>
 
-
 	<!-- 익명 작가 저장 -->	
 	<insert id="insertAnonymousArtist">  
 	  	INSERT INTO artist VALUES(artist_seq.nextval, #{artist_korean_name}, #{artist_english_name}, 

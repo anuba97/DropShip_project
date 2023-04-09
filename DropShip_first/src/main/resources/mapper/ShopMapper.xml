@@ -18,6 +18,14 @@
 		ORDER BY Artist_id ASC -->
 	</select>
 	
+	<!-- MD-Pick 슬라이드쇼 랜덤으로 보여질 수 있게 일단 모든 작품 다 가져옴 -->	
+	<select id="selectWorkAll" resultType="com.java.vo.WorkVo">
+		SELECT * FROM work w 
+		JOIN Artist a ON w.artist_id = a.id
+		WHERE work_available = 1
+	</select>
+	
+	
 	<!-- 작품 갯수 확인 -->
 	<select id="selectWorkCount" resultType="int">
 		SELECT COUNT(*) count FROM work
@@ -237,15 +245,5 @@
 	  
 	  
      
-<!--      장바구니에서 모든 작품을 주문 후 장바구니에 담긴 것들 싹 다 삭제. -->
-<!--      <delete id="deleteCart_member"> -->									<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
-<!--      	DELETE FROM cart_member WHERE member_id = #{member_id} -->
-<!--      </delete> -->
-     
-     
-     
-     
-			 
-			
 			
 </mapper>

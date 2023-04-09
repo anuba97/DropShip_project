@@ -64,18 +64,17 @@ public class OpenAiApiClient {
         DALL_E, GPT_3;
     }
     
-    // 1. 원본(application.properties에 api키 저장해놓은 걸 변수형식으로 가져오기)
+    // 1. 원본(application.properties에 api키 저장해놓은 걸 변수형식으로 가져오기(안됨))
 //    @Value("${openai.api_key}")
 //    private String openaiApiKey;
     
     // 2. 그냥 무식하게 바로 api키 여기다 집어넣음 (api키 깃허브에 올리면 키 사라짐. 다시 얼마든지 만들 순 있긴 한데 그래도 조심..)
-    private String openaiApiKey = "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";
+    private String openaiApiKey = "";
 
     private final HttpClient client = HttpClient.newHttpClient();
 
     public String postToOpenAiApi(String requestBodyAsJson, OpenAiService service)
             throws IOException, InterruptedException {
-    	System.out.println("!!!!!!!!!!!!  에이피아이 키 !!!!!!!!!! : "+ openaiApiKey);
         HttpRequest.Builder requestBuilder = HttpRequest.newBuilder().uri(selectUri(service))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + openaiApiKey)
@@ -92,8 +91,8 @@ public class OpenAiApiClient {
                 uriString = "https://api.openai.com/v1/images/generations";
                 break;
             case GPT_3:
-                uriString = "https://api.openai.com/v1/completions";
-                break;
+            	uriString = "https://api.openai.com/v1/chat/completions";
+            	break;
         }
         return URI.create(uriString);
     }

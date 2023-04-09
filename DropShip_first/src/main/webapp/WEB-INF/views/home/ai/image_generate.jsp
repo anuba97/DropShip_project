@@ -92,6 +92,8 @@
 		  color: white;
 		  font-size: 24px;
 		}
+		#translateBtn { margin-left: 200px; margin-top: 20px; display: flex; justify-content: center; align-items: center; width: 180px; height: 50px; }
+		#translateBtn span { display: inline-block; text-align: center; }
     </style>
     
 </head>
@@ -131,7 +133,7 @@
 
                             <div class="form-box">
                                 <div class="left-con">
-                                    <label for="qa_subject"><span class="f-color">*</span>제목</label>
+                                    <label for="generate_work_name"><span class="f-color">*</span>제목</label>
                                 </div>
                                 <div class="right-con">
                                     <input type="text" name="generate_work_name" id="generate_work_name" id="qa_subject"  required autofocus
@@ -145,9 +147,16 @@
                                 </div>
                                 <div class="right-con">
 						            <input type="text" name="prompt" value="${request}" required id="qa_subject" required 
-						            class="inp-type01 required" maxlength="255" placeholder="제작할 이미지를 적어주세요"/><!-- name="prompt" 바꾸면 안됨 -->
+						            class="inp-type01 required" maxlength="255" placeholder="제작할 이미지를 '영어'로 묘사해주세요. (한글로 입력 후 '한영 번역하기'버튼을 누르시면 자동으로 영어로 입력됩니다.)"/><!-- name="prompt" 바꾸면 안됨 -->
 						        </div>
                             </div>
+                            
+					        <button type="button" id="translateBtn" class="btnset btn-type01"  accesskey="s">
+                                <svg height="50" width="180">
+                                    <rect height="50" width="180"></rect>
+                                </svg>
+                                <span>한영 번역하기</span>
+                            </button>
 
                             <div class="form-box">
                                 <div class="left-con">
@@ -156,8 +165,8 @@
                                 <div class="right-con">
                                     <div class="wr_content">
                                         <span class="sound_only">웹에디터 시작</span>
-                                        	<textarea id="qa_content" id="generate_work_content" name="generate_work_content" class="textarea-type01" 
-                                        	maxlength="65536" style="width:100%;height:300px" placeholder="제작할 이미지의 내용을 입력해주세요."></textarea>
+                                        	<textarea id="qa_content" name="generate_work_content" class="textarea-type01" 
+                                        	maxlength="65536" style="width:100%;height:300px" placeholder="제작할 이미지가 어떤 의미를 갖고있는 작품인지 설명해주세요."></textarea>
                                         <span class="sound_only">웹 에디터 끝</span> 
                                     </div>
                                 </div>
@@ -169,7 +178,7 @@
 	                                </svg>
 	                                <span>그림 생성하기</span>
 	                            </button>
-			                    <button type="button" id="btn_submit" class="btnset btn-type01" onclick="backBtn()" accesskey="s">
+			                    <button type="button" id="backBtn" class="btnset btn-type01" accesskey="s">
 			                        <svg height="50" width="180">
 			                            <rect height="50" width="180"></rect>
 			                        </svg>
@@ -185,15 +194,65 @@
 	                        
 	                        <script>
 								$(function(){
-									// 생성하기 버튼 클릭시
+									// '생성하기 버튼' 클릭시
 									$("#generateBtn").click(function() {
+									    if ($("#generate_work_name").val() == "") {
+									        alert("제목을 입력해주세요.");
+									        return;
+									    }
+									    if ($("#qa_subject").val() == "") {
+									        alert("프롬프트를 입력해주세요.");
+									        return;
+									    }
+									    if (/^[a-zA-Z0-9\s,'.]+$/.test($("#qa_subject").val()) == false) {
+									    	alert("프롬프트에 한글 또는 특수문자(쉼표, 마침표, 작은따옴표 제외)를 넣으실 수 없습니다.");
+									        $("#qa_subject").focus();
+									        return;
+									    }
+										if ($("#qa_content").val() == "") {
+											alert("sdfdsf : " + $("#qa_content").val()); 
+									        alert("작품 설명을 입력해주세요.");
+									        return;
+									    }
 										$("#loading-spinner").css("display", "block");	// 스피너 보이게 함
 										$("#overlay").show();	// 회색 화면 보이게 함
 									    $("#spinner").show();	// 스피너 보이게 함
 									    $("#spinner-text").show();	// 'AI가 그림을 생성중입니다...' 보이게 함
 									    generateFrm.submit(); 	// form으로 데이터 전송 submit
+									});// '생성하기 버튼' 클릭시
+									
+									
+									// '한영 번역하기' 버튼 클릭시
+									$("#translateBtn").click(function(){
+									    if ($("#qa_subject").val() == "") {	// 프롬프트가 비어있을 때
+									        alert("번역할 데이터가 없습니다.");
+									        $("#qa_subject").focus();
+									        return;
+									    }
+									    if (/^[a-zA-Z0-9\s,'.]+$/.test($("#qa_subject").val()) == true) {	// 프롬프트가 이미 영어일 때
+ 									        alert("프롬프트가 이미 영어입니다.");
+									        return;
+									    }
+									    $.ajax({
+							                url: 'translate',
+							                type: "POST",
+							                data: {'koreanInput': $("#qa_subject").val()},
+							                success: function(englishOutput) {
+							                	$("#qa_subject").val(englishOutput);
+							                },
+							                error: function() {
+							                    alert("번역기 오류입니다. 다음에 이용해주세요");
+							                }
+							            }); //ajax
+									}); // 한영 번역하기 버튼 클릭시
+									
+									
+									// 뒤로가기 버튼 클릭
+									$('#backBtn').click(function() {
+									  window.history.back();
 									});
-								});
+									
+								});// 제이쿼리 시작
 						    </script>
 	                        
 	                        

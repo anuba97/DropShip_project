@@ -66,11 +66,20 @@
     	SELECT * FROM work WHERE artist_id = #{id}
 	</select>
 	
-	<!-- 	작가 Artist 저장  -->
-	<insert id="insertArtist">  
-	  	INSERT INTO artist VALUES(artist_seq.nextval, #{artist_korean_name}, #{artist_english_name}, 
+	<!-- 회원이 ai그림생성 시 이미 부여받은 artist_id가 있으면 그 id리턴하고 처음 하는거면 null 리턴 -->
+	<select id="selectArtistIdForAi" parameterType="java.lang.String" resultType="java.lang.Integer">
+	  SELECT id FROM artist WHERE artist_korean_name = #{member_nName}
+	</select>
+	
+	
+	<!-- ai작품 등록때문에 artist 저장 메소드 다시 만듦 -->
+  	<insert id="insertArtist">			
+	    <selectKey resultType="int" keyProperty="id" order="AFTER">
+	        SELECT ARTIST_SEQ.currval FROM dual
+	    </selectKey>
+	    INSERT INTO artist VALUES(artist_seq.nextval, #{artist_korean_name}, #{artist_english_name}, 
 	  	#{artist_img_url}, #{artist_country}, #{artist_birth_death}, #{artist_main}, #{artist_content})
-  	</insert>
+	</insert>
 
 
 	<!-- 익명 작가 저장 -->	
@@ -115,7 +124,7 @@
   	<!-- 작품 리스트 가져오기 -->
 	<select id="selectWorkAll" resultType="com.java.vo.WorkVo">
 		SELECT w.id AS id, w.work_name, a.artist_korean_name AS artist_name, w.artist_id,
-				w.work_price, w.work_available, w.work_isBest, w.work_reg_date
+				w.work_price, w.work_available, w.work_isBest, w.work_reg_date, w.work_is_ai
 		FROM Work w
 		JOIN Artist a ON w.artist_id = a.id
 		ORDER BY work_reg_date DESC
@@ -132,17 +141,31 @@
 	</select>
   	
 	<!-- 작품 Work 저장 -->
-	<insert id="insertWork">  
+<!-- 	<insert id="insertWork">   -->
+<!-- 		INSERT INTO work ( -->
+<!-- 			id, work_name, artist_id, work_genre, work_subject, work_img_url, -->
+<!-- 			work_content, work_isBest, work_reg_date, work_price, admin_id, work_available -->
+<!-- 		) -->
+<!-- 		VALUES ( -->
+<!-- 			work_seq.nextval, #{work_name}, #{artist_id},  -->
+<!-- 		  	#{work_genre}, #{work_subject}, #{work_img_url}, #{work_content}, #{work_isBest}, sysdate, -->
+<!-- 		  	#{work_price}, #{admin_id}, #{work_available} -->
+<!-- 	  	) -->
+<!--   	</insert> -->
+  	
+  	
+	<!-- 작품 Work 저장 (ai생성작품도 가능하도록 is_ai컬럼도 추가함)-->
+	<insert id="insertWork">
 		INSERT INTO work (
-			id, work_name, artist_id, work_genre, work_subject, work_img_url,
-			work_content, work_isBest, work_reg_date, work_price, admin_id, work_available
-		)
+			id, work_name, artist_id, work_genre, work_subject, work_img_url, work_content, 
+			work_isBest, work_reg_date, work_price, admin_id, work_available, work_is_ai
+			<if test="work_ai_prompt != ''">, work_ai_prompt</if> )
 		VALUES (
-			work_seq.nextval, #{work_name}, #{artist_id}, 
-		  	#{work_genre}, #{work_subject}, #{work_img_url}, #{work_content}, #{work_isBest}, sysdate,
-		  	#{work_price}, #{admin_id}, #{work_available}
-	  	)
-  	</insert>
+			work_seq.nextval, #{work_name}, #{artist_id},
+			#{work_genre}, #{work_subject}, #{work_img_url}, #{work_content}, #{work_isBest}, sysdate,
+			#{work_price}, #{admin_id}, #{work_available}, #{work_is_ai}
+			<if test="work_ai_prompt != ''">, #{work_ai_prompt}</if> )
+	</insert>
   	
   	<!-- 작품 삭제 -->
   	<delete id="deleteWork">
@@ -154,7 +177,7 @@
   		SELECT * FROM (
 	        SELECT w.id AS id, w.work_name, a.id AS artist_id, a.artist_korean_name AS artist_name,
 			       w.work_genre, w.work_subject, w.work_img_url, w.work_content, w.work_sale, w.work_isBest,
-			       w.work_reg_date, w.work_price, w.work_display_position, w.work_hit, w.admin_id, w.work_available
+			       w.work_reg_date, w.work_price, w.work_display_position, w.work_hit, w.admin_id, w.work_available, w.work_is_ai, w.work_ai_prompt
 	        FROM Work w
 	        JOIN Artist a ON w.artist_id = a.id
         ) 

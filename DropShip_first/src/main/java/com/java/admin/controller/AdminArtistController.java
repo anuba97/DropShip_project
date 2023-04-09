@@ -65,7 +65,6 @@ public class AdminArtistController {
 			// 파일이 첨부 안됐으면 안넣어
 		} // if. 
 		adminService.insertArtist(artistVo);
-		System.out.println("작가 입력완료!!");
 		return "redirect:admin_artistList";
 	}// 아티스트 db입력
 	

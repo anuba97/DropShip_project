@@ -39,7 +39,6 @@ public class ShopController {
 	public String painting_list(@RequestParam(defaultValue = "1") int page, Model model) {  // 이주소로 들어갔을 때 무조건 페이지가 1로뜨게 한다는것.
 		Map<String, Object> map = shopservice.selectWorkList(page);
 		model.addAttribute("map", map);
-		//System.out.println("컨트롤러 DB에서 가져온 map :" + map);
 		return "home/shop/painting_list";
 	}
 	

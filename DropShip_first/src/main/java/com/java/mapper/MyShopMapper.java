@@ -9,6 +9,7 @@ import com.java.vo.Order_DetailVo;
 import com.java.vo.Order_Detail_inquireVo;
 import com.java.vo.Order_MemberVo;
 import com.java.vo.WishListVo;
+import com.java.vo.WorkVo;
 
 @Mapper
 public interface MyShopMapper {
@@ -49,7 +50,7 @@ public interface MyShopMapper {
 	
 	
 	///////////----------↓--------↓------ 찜리스트 관련 -------------↓--------↓---------//////////
-	int selectWishListCount(int member_id);  // 찜 리스트 page 카운트하는 구문
+	int selectWishListCount(String tableName, String columnName, int member_id);  // 찜 리스트 page 카운트하는 구문	// 이거 재사용 하려고 인자 두개로 만들어놓음(승택)
 	
 	List<WishListVo> selectWishlistpage(int startRow, int endRow, int member_id); // 찜리스트 page 가져오기
 	
@@ -66,6 +67,17 @@ public interface MyShopMapper {
 	void deleteCheckBox(List<Integer> selectedItemsList);  // 찜 리스트(체크박스) 삭제
 
 	void deleteAll_items(int member_id); // 찜 리스트(전체) 삭제
+	
+	
+	///////////----------↓--------↓------ AI 관련 -------------↓--------↓---------//////////
+	List<WorkVo> selectMyAiWorkVoList(int startRow, int endRow, String member_nName); // 본인이 만든 ai작품들 들고오기(페이징포함) 
+
+	List<Integer> selectOrderDetail_OptionIds(Integer work_id);	// 작품 팔린 개수 알기위해 주문상세 테이블에서 option_id들 리스트로 가져오기
+
+	List<Integer> selectOptionQuantity(List<Integer> orderDetail_workId_OptionIdList);
+	
+
+	
 
 	
 

@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.mapper.AdminMapper;
 import com.java.mapper.MyShopMapper;
 import com.java.vo.Cart_MemberVo;
 import com.java.vo.Order_DetailVo;
@@ -21,6 +22,9 @@ public class MyShopServiceImpl implements MyShopService{
 
 	@Autowired
 	MyShopMapper myshopMapper;
+	
+	@Autowired
+	AdminMapper adminMapper;
 	
 	@Autowired
 	WorkVo workVo;
@@ -159,7 +163,9 @@ public class MyShopServiceImpl implements MyShopService{
 	// 찜리스트 page 가져오기
 	@Override
 	public Map<String, Object> selectWishlistPage(int page, int member_id) {
-		HashMap<String, Object> wishListPageMap = pageMethodWishList(page, member_id);
+		String tableName = "wishlist";
+		String columnName = "member_id";
+		HashMap<String, Object> wishListPageMap = pageMethodWishList(page, member_id, tableName, columnName);
 		
 		int startRow = (int) wishListPageMap.get("startRow");
 		int endRow = (int) wishListPageMap.get("endRow");
@@ -177,10 +183,9 @@ public class MyShopServiceImpl implements MyShopService{
 		return wishListPageMap;
 	}
 	
-	private HashMap<String, Object> pageMethodWishList(int page, int member_id) {  // 찜리스트 페이지 메소드
+	private HashMap<String, Object> pageMethodWishList(int page, int member_id, String tableName, String columnName) {  // 찜리스트 페이지 메소드
 		HashMap<String, Object> map = new HashMap<>();
-		
-		int listCount = myshopMapper.selectWishListCount(member_id); // 찜 리스트 총 갯수
+		int listCount = myshopMapper.selectWishListCount(tableName, columnName, member_id); // 찜 리스트 총 갯수	// * 페이징 때문에 총 개수 가져오는 거 자주쓰이는 거 같아서 재사용 해보려고 이렇게 고쳐봄 (승택)
 		int rowPerPage = 3; // 한페이지당 찜 리스트 갯수
 		int pageList = 5;  // 하단넘버링 갯수
 		int maxPage = (int)(Math.ceil((double) listCount / rowPerPage)); // 최대페이지(하단넘버링 마지막번호)
@@ -251,6 +256,72 @@ public class MyShopServiceImpl implements MyShopService{
 	public void deleteAll_items(int member_id) {
 		myshopMapper.deleteAll_items(member_id);
 		
+	}
+
+    ///////////----------↓--------↓------ AI 관련 -------------↓--------↓---------//////////
+
+	// 마이페이지 - '내가 생성한 그림' 리스트
+	@Override
+	public Map<String, Object> selectMyAiWorkVoList(int page, String member_nName) {
+		Integer artist_id = adminMapper.selectArtistIdForAi(member_nName);
+		String tableName = "work";
+		String columnName = "artist_id";
+		HashMap<String, Object> myAiWorkListPageMap = pageMethodWishList(page, artist_id, tableName, columnName);	// 찜하기에서 페이징 처리하는 메소드를 재사용한것
+		
+		int startRow = (int) myAiWorkListPageMap.get("startRow");
+		int endRow = (int) myAiWorkListPageMap.get("endRow");
+		
+		// 내가 만든 ai작품들 리스트로 가져오기
+		List<WorkVo> myAiWorkVoList = myshopMapper.selectMyAiWorkVoList(startRow, endRow, member_nName);
+		
+		//////////////////////    작품 판매개수 가져오기    ////////////////////////////
+		List<Integer> workIdList = new ArrayList<>();
+		for(WorkVo workVo : myAiWorkVoList) {
+			workIdList.add(workVo.getId());
+		}
+		System.out.println("workIdList 워크아이디들 : " + workIdList);
+		
+		// 1. 작품 팔린 개수 알기위해 주문상세 테이블에서 work_id마다 option_id들 리스트로 가져오기(work_id 하나에 option_id들이 여러개, 즉 work_id 하나에 optionIdList 1개 할당(map을 통해서)) 
+		Map<String, List<Integer>> orderDetail_workId_OptionIdMap = new HashMap<>();
+		for(Integer work_id : workIdList) { 	// workIdList안의 1개의 work_id마다 각각의 optionIdList가 따로 나오게 됨. 왜냐면 상세주문 테이블에서 예를들어 work_id가 43번인 애들의 option_id가 여러개일 수 있기 때문.	
+			orderDetail_workId_OptionIdMap.put(work_id+"", myshopMapper.selectOrderDetail_OptionIds(work_id)); 
+		}
+		System.out.println("orderDetail_workId_OptionIdMap : " + orderDetail_workId_OptionIdMap);
+		
+		// 2. work_id마다 있는 optionIdList가 담긴 map을 가지고 option테이블에서 option_quantity값들을 list로 가져와서 optionWorkId_QuantityMap에 저장 
+		Map<String, List<Integer>> optionWorkId_QuantityMap = new HashMap<>(); // 변수명 해석 : option -> 테이블명, WorkId_Quantity -> work_id에 따른 option들의 개수
+		for(Integer work_id : workIdList) { 	// orderDetail_workId_OptionIdMap.get(work_id+"") -> 얘가 1개의 work_id에 따른 option_id들이 담겨있는 List<Integer>임 
+			optionWorkId_QuantityMap.put(work_id+"", myshopMapper.selectOptionQuantity(orderDetail_workId_OptionIdMap.get(work_id+""))); 
+		}
+		System.out.println("optionWorkId_QuantityMap : " + optionWorkId_QuantityMap);
+		
+		// 3. work_id마다 있는 option_quantity들의 리스트가 담긴 map(optionWorkId_QuantityMap)을 가지고 option_quantity들의 합을 구해서 sumOfQuantityMap 맵에 저장
+		Map<String, Integer> sumOfQuantityMap = new HashMap<>(); // work_id에 따른 quantity들의 합, 즉 총 판매개수
+		for(Integer work_id : workIdList) { 	// optionWorkId_QuantityMap.get(work_id+"") -> 얘가 1개의 work_id에 따른 option_quantity들이 담겨있는 List<Integer>임	 
+			int sum = 0;
+			if(optionWorkId_QuantityMap.get(work_id+"").size() != 0) {	// work_id에 따른 quantity가 있을 때만
+				for(int i = 0; i < optionWorkId_QuantityMap.get(work_id+"").size(); i++) {	
+					sum += optionWorkId_QuantityMap.get(work_id+"").get(i);	// 판매개수를 누적해서 더함
+				}
+				sumOfQuantityMap.put(work_id+"", sum); 	// 누적해서 더한 최종 판매개수를 해당 work_id의 value로 지정
+			} else {	// work_id에 따른 quantity가 없을 때, 즉 판매된 적이 없으면
+				sumOfQuantityMap.put(work_id+"", 0); 	// 해당 work_id의 value로 0을 지정
+			}
+		}
+		System.out.println("sumOfQuantityMap : " + sumOfQuantityMap);
+		
+		// work_id마다 있는 총 합계들을 key는 없애고 숫자만 넣는 List에 담음. map안에 map태우기가 좀 그래서..
+		List<Integer> quantityList = new ArrayList<>();
+		for(Integer work_id : workIdList) {
+			quantityList.add(sumOfQuantityMap.get(work_id+"")); 
+		}
+		//////////////////////    작품 판매개수 가져오기 끝!!!!   ////////////////////////////
+		
+		myAiWorkListPageMap.put("myAiWorkVoList", myAiWorkVoList);
+		myAiWorkListPageMap.put("page", page);
+		myAiWorkListPageMap.put("quantityList", quantityList);
+		
+		return myAiWorkListPageMap;
 	}
 
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.java.vo.Order_Detail_inquireVo;
 import com.java.vo.Order_MemberVo;
 import com.java.vo.WishListVo;
+import com.java.vo.WorkVo;
 
 @Service
 public interface MyShopService {
@@ -70,6 +71,11 @@ public interface MyShopService {
 	void deleteCheckBox(List<Integer> selectedItemsList);  // 찜 리스트(체크박스) 삭제
 	
 	void deleteAll_items(int member_id);  // 찜 리스트(전체) 삭제
+
+
+	///////////----------↓--------↓------ AI 마이페이지 관련 -------------↓--------↓---------//////////
+	// 마이페이지 - '내가 생성한 그림' 리스트
+	Map<String, Object> selectMyAiWorkVoList(int page, String member_nName);
 	
 
 	

@@ -1,6 +1,8 @@
 package com.java.home.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.mapper.ShopMapper;
 import com.java.vo.ArtistVo;
-import com.java.vo.Cart_MemberVo;
 import com.java.vo.OptionVo;
-import com.java.vo.Order_DetailVo;
-import com.java.vo.Order_Detail_inquireVo;
 import com.java.vo.Order_Detail_inquire_viewVo;
 import com.java.vo.Order_MemberVo;
 import com.java.vo.WorkVo;
@@ -47,13 +46,12 @@ public class ShopServiceImpl implements ShopService {
 		int endRow = (int) map.get("endRow");
 
 		List<WorkVo> list = shopMapper.selectWorkList(startRow, endRow);
-		// System.out.println("ServiceImpl -- DB에서 받아온 list : "+list);
+		List<WorkVo> allWorkVoList = shopMapper.selectWorkAll();
+		Collections.shuffle(allWorkVoList);
+		List<WorkVo> randomWorkVoList = allWorkVoList.subList(0, 5);
 		map.put("list", list);
 		map.put("page", page);
-		map.put("listCount", map.get("listCount"));
-		map.put("maxPage", map.get("maxPage"));
-		map.put("startPage", map.get("startPage"));
-		map.put("endPage", map.get("endPage"));
+		map.put("randomWorkVoList", randomWorkVoList);
 
 		return map;
 	}

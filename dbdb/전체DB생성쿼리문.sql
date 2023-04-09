@@ -197,7 +197,7 @@ CREATE TABLE Work
     artist_id             NUMBER(4)         NOT NULL, 
     work_genre	          VARCHAR2(50)      DEFAULT '초상화' NOT NULL, 
     work_subject          VARCHAR2(50)      DEFAULT '봄' NOT NULL, 
-    work_img_url          VARCHAR2(300)     NOT NULL, 
+    work_img_url          VARCHAR2(2000)     NOT NULL, 
     work_content          VARCHAR2(4000)    NOT NULL, 
     work_sale             NUMBER(4,2)       DEFAULT 0.00 NOT NULL, 
     work_isBest           NUMBER(1)         DEFAULT 0 NOT NULL, 
@@ -207,7 +207,9 @@ CREATE TABLE Work
     work_hit              NUMBER(4)         DEFAULT 0 NOT NULL, 
     admin_id              NUMBER(3)         DEFAULT 1 NULL, 
     work_available        NUMBER(1)         DEFAULT 1 NOT NULL, 
-     PRIMARY KEY (id)
+--  work_is_ai            NUMBER(1)         DEFAULT 0 NULL,	    -- 맨 아래에서 add로 해놓음
+--  work_ai_prompt        VARCHAR2(500)     DEFAULT '' NULL, 	-- 맨 아래에서 add로 해놓음
+     PRIMARY KEY (id)	
 );
 
 CREATE SEQUENCE Work_SEQ
@@ -692,3 +694,14 @@ eventBoard_status NUMBER(1) DEFAULT 0 NOT NULL);
 -- 자유게시판 노출여부 컬럼 추가
 ALTER TABLE freeBoard
 ADD freeBoard_ban NUMBER(1) DEFAULT 0 NULL;
+
+-- 작품 테이블 ai작품인지 여부 컬럼 추가 (0-일반, 1-ai) 
+ALTER TABLE Work
+ADD (work_is_ai NUMBER(1) DEFAULT 0 NULL);
+
+-- 작품 테이블 ai작품일 때 사용된 프롬프트 뭐 썼는지 컬럼 추가 
+ALTER TABLE Work
+ADD (work_ai_prompt VARCHAR2(500) DEFAULT '' NULL);
+
+-- 작품 테이블 work_img_url 사이즈 늘림(ai로 이미지 만들면 url주소가 엄청 길어서)
+ALTER TABLE work MODIFY work_img_url VARCHAR2(2000);

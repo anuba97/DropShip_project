@@ -37,7 +37,9 @@ public interface AdminMapper {
 
 	public ArtistVo selectArtistOne(int id); // 아티스트 1명 가져오기
 
-	public void insertArtist(ArtistVo artistVo); // 아티스트 등록
+	public Integer selectArtistIdForAi(String member_nName);	// ai생성그림 등록 전에 해당 회원 이미 artist_id 부여받았는지 확인용. 받았으면 artist_id 리턴
+	
+	public int insertArtist(ArtistVo artistVo); // 아티스트 등록
 
 	public void updateArtistOne(ArtistVo artistVo); // 아티스트 수정
 
@@ -55,12 +57,14 @@ public interface AdminMapper {
 
 	public WorkVo selectWorkOne(int id); // 작품 1개 가져오기
 
-	public void insertWork(WorkVo workVo); // 작품 등록
+	public int insertWork(WorkVo workVo); // 작품 등록
 
 	public void updateWorkOne(WorkVo workVo); // 작품 수정
 
 	public void deleteWork(int id); // 작품 삭제
 
 	public List<WorkVo> selectWorksByArtist(int artistId); // 해당 아티스트의 작품들 전체 리스트 가져오기
+
+	
 
 }// AdminMemberMapper

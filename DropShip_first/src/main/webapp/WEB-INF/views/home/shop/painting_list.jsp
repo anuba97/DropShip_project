@@ -2,6 +2,7 @@
 <!doctype html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html lang="ko">
 
 <!-- Mirrored from bxgs.co.kr/shop/painting_list.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:08 GMT -->
@@ -10,13 +11,14 @@
 
 <head>
     <meta charset="utf-8">
+    <%@ include file ="../ai/chatbot.jsp" %>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../img/favicon.ico" />
     <title>작품 페이지</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!--     <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -27,23 +29,8 @@
     <link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/dropship.css"> <!-- dropship전용 css -->
-    <!-- <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "../index.html";
-        var g5_bbs_url = "https://bxgs.co.kr:443/bbs/";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "1";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-        var g5_theme_shop_url = "https://bxgs.co.kr:443/theme/buzinga/shop/";
-        var g5_shop_url = "https://bxgs.co.kr:443/shop/";
-    </script> -->
-   
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<!--     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
     <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
     <script src="../home/js/common3816.js?ver=210618"></script>
     <script src="../home/js/wrest3816.js?ver=210618"></script>
@@ -94,15 +81,11 @@
                     <h2 class="sub-tit">PAINTING</h2>
                 </div>
             </section>
-			<!--  <div>
-		      <a href="javascript:showPopUp()">링크</a>
-		  	</div>  -->
 
 
             <section class="normal-list">
 
                 <!-----  MD PICK 최대 5개 (일단 2개만 들어가있음) ----->
-
                 <div id="ranking-item">
                     <div class="sub-con-tit-wrap">
                         <h3 class="sub-con-tit" data-aos="fade-right" data-aos-delay="100">MD PICK</h3>
@@ -111,57 +94,39 @@
                         <div class="ranking-thumb-wrap">
                             <div class="ranking-thumb-slider">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="ranking-img-wrap">
-                                            <a href="painting_item?work_id=7&artist_id=8">
-                                                <div class="ranking-img" style="background-image:url(/admin/img/work/1679895865047_클로드_모네_양산을_든_여인-카미유와_장.jpg)">
-                                                    <span class="hide">배경이미지</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="ranking-img-wrap">
-                                            <a href="painting_item?work_id=15&artist_id=8">
-                                                <div class="ranking-img" style="background-image:url(/admin/img/work/1679901129291_아테제_호수.png)">
-                                                    <span class="hide">배경이미지</span></div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                	<c:forEach items="${map.randomWorkVoList}" var="workVo">
+	                                    <div class="swiper-slide">
+	                                        <div class="ranking-img-wrap">
+	                                            <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}">
+	                                                <div class="ranking-img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
+	                                                    <span class="hide">배경이미지</span>
+	                                                </div>
+	                                            </a>
+	                                        </div>
+	                                    </div>
+                                	</c:forEach>
                                 </div>
                             </div>
                         </div>
                         <div class="ranking-info-wrap">
                             <div class="ranking-info-slider">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="ranking-desc-wrap">
-                                            <h4 class="ranking-title">
-                                                <a href="painting_item?work_id=7&artist_id=8">양산을 든 여인-카미유와 장</a>
-                                            </h4>
-                                            <div class="ranking-desc">
-                                                <span>클레드 모네</span>
-                                                <p>20.0cm X 35.7cm</p>
-                                            </div>
-                                            <div class="ranking-price">
-                                                <span class="ranking-price-cost"><strong>38,200</strong>원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="ranking-desc-wrap">
-                                            <h4 class="ranking-title">
-                                                <a href="painting_item?work_id=15&artist_id=8">아테제 호수</a>
-                                            </h4>
-                                            <div class="ranking-desc">
-                                                <span>구스타프 클림트</span>
-                                                <p>20.0com X 35.7cm</p>
-                                            </div>
-                                            <div class="ranking-price">
-                                                <span class="ranking-price-cost"><strong>42,400</strong>원</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                	<c:forEach items="${map.randomWorkVoList}" var="workVo">
+	                                    <div class="swiper-slide">
+	                                        <div class="ranking-desc-wrap">
+	                                            <h4 class="ranking-title">
+	                                                <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}">${workVo.work_name}</a>
+	                                            </h4>
+	                                            <div class="ranking-desc">
+	                                                <span>${workVo.artist_korean_name}</span>
+	                                                <p>20.0cm X 35.7cm</p>
+	                                            </div>
+	                                            <div class="ranking-price">
+	                                                <span class="ranking-price-cost"><strong><fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###"/>원</strong></span>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+                                    </c:forEach>
                                 </div>
                             </div>
 
@@ -228,7 +193,7 @@
 	                                        <li class="sct_li">
 	                                            <div class="li_wr">
 	                                                <div class="sct_img_wrap">
-	                                                    <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url}">
+	                                                    <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
 	                                                        <span class="hide">작품이름</span>
 	                                                    </div>
 	                                                    <div class="sct_opt_wrap">

@@ -31,7 +31,8 @@ public class WorkVo {
     private int work_hit; //작품 조회수
     private int admin_id; //등록 관리자 고유번호
     private int work_available; //작품 노출상태
-    
+    private int work_is_ai; // ai생성 작품인지 여부  (0-일반작품 1-ai생성작품)
+    private String work_ai_prompt;  // ai생성할 때 사용됐던 프롬프트문.
     
     private String artist_name; // selectWorkAll(), selectWorkOne() 함수용. JOIN시 사용. 원래 Work테이블에 artist_name컬럼은 없음.
     private String artist_korean_name; // selectWorkAll(), selectWorkOne() 함수용. JOIN시 사용. 원래 Work테이블에 artist_name컬럼은 없음.

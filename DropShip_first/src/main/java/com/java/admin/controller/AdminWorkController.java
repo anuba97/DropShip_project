@@ -41,30 +41,9 @@ public class AdminWorkController {
 
 	// 작품을 db에 추가
 	@PostMapping("admin_workAdd")
-	public String admin_workAdd(WorkVo workVo, String artist_id, String admin_id, @RequestPart MultipartFile file,
-			Model model) {
-
-		if (!file.isEmpty()) {
-			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
-			long time = System.currentTimeMillis(); // 시간 밀리초 단위로
-			// a.jpg -> 123524123232_a.jpg 로 저장
-			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\Users\\KV006\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\admin\\img\\work\\";
-			File f = new File(fileSaveUrl + uploadFileName);
-			try {
-				file.transferTo(f);
-				System.out.println("파일 저장 장소 : " + f);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// workVo 객체에 파일url, admin_id, artist_id 저장
-			workVo.setWork_img_url(uploadFileName);
-			workVo.setAdmin_id(Integer.parseInt(admin_id));
-			workVo.setArtist_id(Integer.parseInt(artist_id));
-		} // if.
-
+	public String admin_workAdd(WorkVo workVo, String artist_id, String admin_id, @RequestPart MultipartFile file) {
+		workVo = adminService.settingWorkVo(workVo, admin_id, artist_id, file);
 		adminService.insertWork(workVo);
-		System.out.println("작품 입력완료!!");
 		return "redirect:admin_workList";
 	}// 작품 db입력
 	

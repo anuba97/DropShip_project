@@ -77,7 +77,6 @@
                     </div>
                 </div>
                 
-                <!-- 작품 이미지 (이미지 등록때부터 반드시 입력받게 할거라 if문 안씀 -->
                 <img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage">
                 
                 <div class="admin_workViewTableDiv">

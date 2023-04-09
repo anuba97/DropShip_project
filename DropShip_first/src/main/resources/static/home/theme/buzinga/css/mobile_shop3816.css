@@ -173,7 +173,7 @@ input[type=text],input[type=password], textarea {
 /* 게시판 공통 - 글쓰기부분 */
 #board-write .deco-select { padding:0 20px; height:60px; font-size:16px; color:#666; line-height:60px;}
 #board-write .inp-type01 { color:#666;}
-#board-write .form-box-wrap { padding:60px 40px; border-top:1px solid #333; border-bottom:1px solid #ddd;}
+#board-write .form-box-wrap { padding:60px 40px 20px; border-top:1px solid #333; border-bottom:1px solid #ddd;}
 #board-write .btnwrap { margin-top:80px; text-align:center;}
 #board-write .btnwrap .btn-type01 { width:180px; height:50px; font-size:18px; line-height:50px; font-family:'EB Garamond', 'Noto Serif KR', 'Noto Sans KR', 'Malgun Gothic', dotum, sans-serif; letter-spacing:-0.5px;}
 #board-write .textarea-type01 { padding:20px;}

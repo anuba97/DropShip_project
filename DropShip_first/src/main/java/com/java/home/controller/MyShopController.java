@@ -213,8 +213,6 @@ public class MyShopController {
 					orderStatusCountMap.put(order_status + "", 1);
 				}
 			}
-			System.out.println("orderStatusCountMap의 정보 : " + orderStatusCountMap.get("0"));
-			
 			model.addAttribute("orderStatusCountMap", orderStatusCountMap);
 			
 			int wishListCount = myShopService.selectWishlistCount(member_id);  // 찜리스트에 member_id가 저장한 작품이 있는지 확인
@@ -551,6 +549,27 @@ public class MyShopController {
 	}
 	
 	//-------------------  찜 리스트 목록 끝 ---------------//
+	
+	
+	
+	
+	//---------↓↓↓↓-------  AI 내가 생성한 그림 my_ai_work ------↓↓↓-------//
+	
+	
+	@GetMapping("my_ai_work") // 내가 생성한 그림 페이지 이동
+	public String my_ai_work(@RequestParam(defaultValue = "1") int page, Model model) {
+		String member_nName = (String) session.getAttribute("sessionMember_nName");
+		Map<String, Object> myAiWorkListPageMap = myShopService.selectMyAiWorkVoList(page, member_nName);
+		model.addAttribute("myAiWorkListPageMap", myAiWorkListPageMap);
+		model.addAttribute("myAiWorkVoList", myAiWorkListPageMap.get("myAiWorkVoList"));
+		model.addAttribute("quantityList", myAiWorkListPageMap.get("quantityList"));
+		return "home/myshop/my_ai_work";
+	}
+	
+	
+	
+	//-------------------  AI 내가 생성한 그림 my_ai_work 끝 ---------------//
+	
 	
 	@GetMapping("my_coupon") // 나의 쿠폰
 	public String my_coupon(Model model) {

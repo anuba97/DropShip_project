@@ -1,27 +1,39 @@
 package com.java.home.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.java.admin.service.AdminService;
 import com.java.home.service.MemberService;
+import com.java.vo.ArtistVo;
 import com.java.vo.MemberVo;
+import com.java.vo.WorkVo;
 
 import de.bsi.openai.FormInputDTO;
 import de.bsi.openai.OpenAiApiClient;
 import de.bsi.openai.OpenAiApiClient.OpenAiService;
-import de.bsi.openai.chatgpt.CompletionRequest;
-import de.bsi.openai.chatgpt.CompletionResponse;
+import de.bsi.openai.chatgpt.ChatCompletionRequest;
+import de.bsi.openai.chatgpt.ChatCompletionResponse;
+import de.bsi.openai.chatgpt.Message;
 import de.bsi.openai.dalle.GenerationRequest;
 import de.bsi.openai.dalle.GenerationResponse;
 
@@ -36,32 +48,29 @@ public class AiController {
 	MemberService memberService;
 	
 	@Autowired
+	AdminService adminService;
+	
+	@Autowired
 	MemberVo memberVo;
 	
-	//--------------↓↓↓---------- ChatGPT DALL-E(그림그려주는) 관련 ----------↓↓↓-------------------//
-	public static final String IMAGE_PAGE = "image";
+	@Autowired
+	ArtistVo artistVo;
 	
+	@Autowired
+	WorkVo workVo;
+	
+	//--------------↓↓↓---------- ChatGPT DALL-E(그림그려주는) 관련 ----------↓↓↓-------------------//
 	private String drawImageWithDallE(String prompt) throws Exception {
-			System.out.println("drawImageWithDallE 메소드 안으로 들어옴! ");
-			System.out.println("내가 보낸 프롬프트 : " + prompt);
     	GenerationRequest generation = GenerationRequest.defaultWith(prompt);
-    		System.out.println("generation 객체의 response_form : " + generation.getResponse_format());
-	    	System.out.println("generation ㅋㅋㅋ: " + generation);
 	    String postBodyJson = jsonMapper.writeValueAsString(generation);
-		    System.out.println("postBodyJson ㅋㅋㅋ: " + postBodyJson);
 	    String responseBody = client.postToOpenAiApi(postBodyJson, OpenAiService.DALL_E);
-		    System.out.println("responseBody ㅋㅋㅋ: " + responseBody);
 	    GenerationResponse completionResponse = jsonMapper.readValue(responseBody, GenerationResponse.class);
-		    System.out.println("completionResponse 객체!!: " +completionResponse);
-		    System.out.println("completionResponse의 data : " +completionResponse.getData());
-		    System.out.println("completionResponse의 firstImageUrl : " +completionResponse.firstImageUrl());
-		    System.out.println("completionResponse의 ImageUrl클래스의 url변수 : " +completionResponse.getData().get(0).getUrl());
 	    return completionResponse.firstImageUrl().orElseThrow(() -> new RuntimeException("API로부터 이미지를 받아오지 못했습니다..."));
 	}
 	
 	// 이미지 생성 페이지로 이동 
 	@GetMapping("/ai/image_generate")
-	public String paintImage(Model model) {
+	public String paintImage(Model model) throws ParseException {
 		return "home/ai/image_generate";
 	}
 	
@@ -71,15 +80,10 @@ public class AiController {
 			String generate_work_content) throws Exception {
 		
 		String member_nName = (String) session.getAttribute("sessionMember_nName");
-		System.out.println("회원 닉네임 : "+ member_nName);
 
 		// 이미지 생성에 필요한 것들	(필수)
 		model.addAttribute("request", dto.getPrompt());
 		model.addAttribute("imageUri", drawImageWithDallE(dto.getPrompt()));
-		
-		// 로딩 스피너 보이게
-//		model.addAttribute("displaySpinner", "block");
-		session.setAttribute("imageGenerated", true);
 		
 		// 새로고침 할 때 그대로 보여지게
 		session.setAttribute("imageUri", drawImageWithDallE(dto.getPrompt()));
@@ -88,53 +92,106 @@ public class AiController {
 	    session.setAttribute("generate_work_content", generate_work_content);
 	    session.setAttribute("member_nName", member_nName);
 	    
-	    return "redirect:image_generate_result";
+	    return "redirect:image_generate_result2";
 	}
 
 	// 새로고침 할 때마다 그림 새로 생성방지하기 위해 똑같은 페이지를 결과용도로 하나 더 만듦
-	@GetMapping("/ai/image_generate_result")
+	@GetMapping("/ai/image_generate_result2")
 	public String showImage(Model model) {
-		System.out.println("결과물 페이지로 들어옴!");
-	    return "home/ai/image_generate_result";
+	    return "home/ai/image_generate_result2";
 	}
 	
 	
+	// 생성된 이미지 작품으로 등록 ajax
+	@PostMapping("/ai/register_ai_work")
+	@ResponseBody
+	public int register_ai_work(String work_img_url, @RequestParam(name = "generate_work_name") String work_name, 
+			@RequestParam(name = "generate_work_content") String work_content, @RequestParam(name = "price") int work_price, 
+			@RequestParam(name = "genre") String work_genre, @RequestParam(name = "subject") String work_subject,
+			String member_nName) throws IOException {
+		int successOrFail = adminService.registerAiWork(work_img_url, work_name, work_content, work_price, work_genre, work_subject, member_nName, session);
+	    return successOrFail;
+	}
 
-	//--------------↓↓↓---------- ChatGPT 채팅 관련 ----------↓↓↓-------------------//
-		private static final String MAIN_PAGE = "chat_index";
+	
 
-		@Autowired
-		private ObjectMapper jsonMapper;
-		
-		OpenAiApiClient client = new OpenAiApiClient();
-		
+	//--------------↓↓↓---------- ChatGPT chat-completion 관련 ----------↓↓↓-------------------//
+//	private static final String MAIN_PAGE = "chat_index";
+
+	@Autowired
+	private ObjectMapper jsonMapper;
+	
+	OpenAiApiClient client = new OpenAiApiClient();
+	
 //		@Autowired
 //		private OpenAiApiClient client;
 
-		private String chatWithGpt3(String message) throws Exception {
-			CompletionRequest completion = CompletionRequest.defaultWith(message);
-			String postBodyJson = jsonMapper.writeValueAsString(completion);
-			String responseBody = client.postToOpenAiApi(postBodyJson, OpenAiService.GPT_3);
-			CompletionResponse completionResponse = jsonMapper.readValue(responseBody, CompletionResponse.class);
-			return completionResponse.firstAnswer()
-					.orElseThrow(() -> new Exception("Error in communication with OpenAI ChatGPT API."));
-		}
+	 private String chatWithGpt3(List<Message> messages) throws Exception {
+//		 List<Message> messages = List.of(new Message("user", message));
+		    ChatCompletionRequest chatCompletion = ChatCompletionRequest.defaultWith(messages);
+		    String postBodyJson = jsonMapper.writeValueAsString(chatCompletion);
+		    String responseBody = client.postToOpenAiApi(postBodyJson, OpenAiService.GPT_3);
+		    ChatCompletionResponse chatCompletionResponse = jsonMapper.readValue(responseBody, ChatCompletionResponse.class);
 
-		@GetMapping("chat_index")
-		public String chat_index() {
-			return MAIN_PAGE;
-		}
+		    Optional<Message> assistantMessageOpt = chatCompletionResponse.getAssistantMessage();
+		    if (assistantMessageOpt.isPresent()) {
+		        Message assistantMessage = assistantMessageOpt.get();
+		        String role = assistantMessage.getRole();
+		        String content = assistantMessage.getContent();
+//		        System.out.println("Role: " + role);
+//		        System.out.println("Content: " + content);
+		    } else {
+		        throw new Exception("Error in communication with OpenAI ChatGPT API.");
+		    }
+	        return chatCompletionResponse.firstAnswer()
+	                .orElseThrow(() -> new Exception("Error in communication with OpenAI ChatGPT API."));
+	    }
 
-		@PostMapping("chat_index")
-		public String chat_index(Model model, @ModelAttribute FormInputDTO dto) {
-			try {
-				model.addAttribute("request", dto.getPrompt());
-				model.addAttribute("response", chatWithGpt3(dto.getPrompt()));
-			} catch (Exception e) {
-				model.addAttribute("response", "ChatGpt와의 통신에서 오류가 발생했습니다..");
-			}
-			return MAIN_PAGE;
-		}
+	@GetMapping("/ai/chat_index")
+	public String chat_index() {
+		return "home/ai/chat_index";
+	}
 
+	
+	@PostMapping(value = "/ai/chat_index", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Map<String, String>> chat_index(@RequestBody FormInputDTO dto) {
+	    Map<String, String> responseMap = new HashMap<>();
+	    try {
+	        List<Message> messages = List.of(
+	            new Message("system", "You're the knowledgeable, friendly, proactive docent at an art exhibit who can come up with a novel question 90% of the time when asked."),
+	            new Message("user", dto.getPrompt())
+	        );
+
+	        String response = chatWithGpt3(messages);
+	        responseMap.put("response", response);
+	        return ResponseEntity.ok(responseMap);
+	    } catch (Exception e) {
+	        responseMap.put("response", "An error occurred communicating with ChatGpt...");
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseMap);
+	    }
+	}
+	
+	
+//	@PostMapping("/ai/chat_index")
+//	public String chat_index(Model model, @ModelAttribute FormInputDTO dto) {
+//		try {
+//			String userInput = dto.getPrompt();
+//			
+//			List<Message> messages = List.of(
+////	            new Message("system", "You're the knowledgeable, friendly, and proactive docent at an art exhibit who can ask a question and then often ask it again."),
+//					new Message("system", "You're the knowledgeable, friendly, proactive docent at an art exhibit who can come up with a novel question 90% of the time when asked."),
+//					new Message("user", userInput)
+//					);
+//			
+//			String response = chatWithGpt3(messages);
+//			
+//			model.addAttribute("request", userInput);
+//			model.addAttribute("response", response);
+//		} catch (Exception e) {
+//			model.addAttribute("response", "An error occurred communicating with ChatGpt...");
+//		}
+//		return "home/ai/chat_index";
+//	}
 	
 }// AiController

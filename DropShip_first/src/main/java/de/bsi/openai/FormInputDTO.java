@@ -1,13 +1,12 @@
 package de.bsi.openai;
 
-//public record FormInputDTO(String prompt) {}
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@Setter
 public class FormInputDTO {
-    private final String prompt;
-
-    public FormInputDTO(String prompt) {
-        this.prompt = prompt;
-    }
+    private String prompt;
 
     public String getPrompt() {
         return prompt;

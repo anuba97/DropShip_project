@@ -91,10 +91,11 @@
                     <table class="admin_workListTable">
                         <colgroup>
 						  <col width="5%">
-						  <col width="25%">
+						  <col width="20%">
 						  <col width="15%">
 						  <col width="5%">
-						  <col width="10%">
+						  <col width="8%">
+						  <col width="7%">
 						  <col width="7%">
 						  <col width="7%">
 						  <col width="15%">
@@ -106,6 +107,7 @@
                             <th>작가 이름</th>
                             <th>작가 ID</th>
                             <th>가격</th>
+                            <th>AI 생성여부</th>
                             <th>전시 여부</th>
                             <th>베스트 여부</th>
                             <th>등록일</th>
@@ -119,6 +121,14 @@
                                 <td>${workVo.getArtist_id()}</td>
                                 <td>
                                     <fmt:formatNumber value="${workVo.work_price}" type="number" pattern="#,##0 원" />
+                                </td>
+                                <td>
+		                            <c:if test="${workVo.work_is_ai == 0}">
+		                            	X
+		                           	</c:if>
+		                           	<c:if test="${workVo.work_is_ai == 1}">
+		                            	O
+		                           	</c:if>
                                 </td>
                                 <td>
 		                            <c:if test="${workVo.getWork_available() == 0}">

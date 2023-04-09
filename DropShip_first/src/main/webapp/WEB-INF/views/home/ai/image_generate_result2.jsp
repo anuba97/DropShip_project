@@ -49,7 +49,7 @@
 		    text-align: center;
 		}
 		#generated_work_show {
-		    margin: 0 auto;
+		    margin: 30px auto;
 		    text-align: center;
 		}
 		.btnwrap button {
@@ -128,6 +128,18 @@
                 <div class="maxinner">
                     <!-- ai form태그 -->
                     <form action="<c:url value='/ai/image_generate' />" name="generateFrm" method="post">
+                    	<input type="hidden" name="member_nName" value="${member_nName}"/>
+                    	<input type="hidden" name="work_img_url" value="${imageUri}"/>
+						<div id="generated_work_show">
+							<div id="description">
+							    <h1>제목 : ${generate_work_name} </h1>	<!-- input으로 입력했던 제목 넣기 -->
+							    <h2>작가 : ${member_nName} </h2>
+							    <h2>사용한 프롬프트 : ${prompt} </h2>
+							    <h2>작품 설명 : ${generate_work_content} </h2>
+							    <br>
+		                    </div>	
+						    <img src="${imageUri}" alt="DALL-E가 그린 그림" />
+						</div>
 
                         <div class="form-box-wrap">
 
@@ -177,8 +189,28 @@
                                     <label for="price"><span class="f-color">*</span>가격</label>
                                 </div>
                                 <div class="right-con">
-                                    <input type="text" name="generate_work_name" id="price"  required 
-                                    class="inp-type01 required" maxlength="255" placeholder="가격" >
+                                    <input type="text" name="price" id="price"  required 
+                                    class="inp-type01 required" maxlength="255" placeholder="가격(숫자만 입력해주세요)" >
+                                </div>
+                            </div>
+                            
+                            <div class="form-box">
+                                <div class="left-con">
+                                    <label for="genre"><span class="f-color">*</span>장르</label>
+                                </div>
+                                <div class="right-con">
+                                    <input type="text" name="genre" id="genre"  required 
+                                    class="inp-type01 required" maxlength="255" placeholder="장르" >
+                                </div>
+                            </div>
+                            
+                            <div class="form-box">
+                                <div class="left-con">
+                                    <label for="subject"><span class="f-color">*</span>주제</label>
+                                </div>
+                                <div class="right-con">
+                                    <input type="text" name="subject" id="subject"  required 
+                                    class="inp-type01 required" maxlength="255" placeholder="주제" >
                                 </div>
                             </div>
                             
@@ -196,24 +228,16 @@
 					<div id="generated_work_show">
 						<!-- 이미지가 존재하면  -->
 	                    <c:if test="${imageUri ne null}">
-		                    <div id="description">
-							    <h1>제목 : ${generate_work_name} </h1>	<!-- input으로 입력했던 제목 넣기 -->
-							    <h2>작가 : ${member_nName} </h2>
-							    <h2>사용한 프롬프트 : ${prompt} </h2>
-							    <h2>작품 설명 : ${generate_work_content} </h2>
-							    <br>
-		                    </div>	
-						    <img src="${imageUri}" alt="DALL-E가 그린 그림" />
 						    
 		                    <!-- 하단 버튼들 -->
 		                    <div class="btnwrap">
-		                        <button type="button" id="btn_submit" class="btnset btn-type01" onclick="buyBtn()" accesskey="s">
+		                        <button type="button" id="btn_submit" class="btnset btn-type01" accesskey="s">
 		                            <svg height="50" width="180">
 		                                <rect height="50" width="180"></rect>
 		                            </svg>
 		                            <span>바로 구매하기</span>
 		                        </button>
-		                        <button type="button" id="btn_submit" class="btnset btn-type01" onclick="submitWorkBtn()" accesskey="s">
+		                        <button type="button" id="submitWorkBtn" class="btnset btn-type01" accesskey="s">
 		                            <svg height="50" width="180">
 		                                <rect height="50" width="180"></rect>
 		                            </svg>
@@ -237,7 +261,7 @@
                     <script>
                    		$(function() {
                    			
-                   		// '생성하기 버튼' 클릭시
+                   			// '생성하기 버튼' 클릭시
 							$("#generateBtn").click(function() {
 							    if ($("#generate_work_name").val() == "") {
 							        alert("제목을 입력해주세요.");
@@ -247,8 +271,8 @@
 							        alert("프롬프트를 입력해주세요.");
 							        return;
 							    }
-							    if (/^[a-zA-Z0-9\s]+$/.test($("#qa_subject").val()) == false) {
-							    	alert("프롬프트에 한글 또는 특수문자를 넣으실 수 없습니다.");
+							    if (/^[a-zA-Z0-9\s,'.]+$/.test($("#qa_subject").val()) == false) {
+							    	alert("프롬프트에 한글 또는 특수문자(쉼표, 마침표, 작은따옴표 제외)를 넣으실 수 없습니다.");
 							        $("#qa_subject").focus();
 							        return;
 							    }
@@ -272,7 +296,7 @@
 							        $("#qa_subject").focus();
 							        return;
 							    }
-							    if (/^[a-zA-Z0-9\s]+$/.test($("#qa_subject").val()) == true) {	// 프롬프트가 이미 영어일 때
+							    if (/^[a-zA-Z0-9\s,'.]+$/.test($("#qa_subject").val()) == true) {	// 프롬프트가 이미 영어일 때
 								        alert("프롬프트가 이미 영어입니다.");
 							        return;
 							    }
@@ -290,22 +314,58 @@
 							}); // 한영 번역하기 버튼 클릭시
 							
 							
+							// 작품 등록 버튼 클릭 시
+							$('#submitWorkBtn').click(function() {
+								var formData = $('form[name="generateFrm"]').serialize();
+								
+								if ($("#generate_work_name").val() == "" || $("#qa_content").val() == "" || $("#price").val() == "" || $("#genre").val() == "" || $("#subject").val() == "") {
+							        alert("제목, 작품 설명, 가격, 장르, 주제 모두를 입력해주세요.");
+							        return;
+							    } else {
+									if(!$.isNumeric($("#price").val())) { // 가격은 숫자로만 입력받게
+								        alert("가격은 숫자로만 입력해주세요.");
+								        return;
+								    }
+									if(parseInt($("#price").val()) >= 10000000) { // 가격 10,000,000원 이상 입력받지 못하게
+								        alert("가격은 천만원 이상 넘기실 수 없습니다.");
+										return;
+									}
+									// 장르와 주제는 한글로만 입력받고 특수문자 입력 안되게
+								    if(!/^[가-힣\s]+$/.test($("#genre").val()) || !/^[가-힣\s]+$/.test($("#subject").val())) { 
+								        alert("장르와 주제는 한글 단어로만 입력해주세요.");
+								        return;
+								    }
+							    }
+								
+								if(confirm("생성하신 작품을 사이트에 등록하시겠습니까?")) {
+									$.ajax({
+						                url: 'register_ai_work',
+						                type: "POST",
+						                data: formData,
+						                success: function(successOrFail) {
+						                	if(successOrFail == 1) {
+						                		alert("작품 등록이 완료됐습니다!")
+						                		// 마이페이지에 '내가 생성한 그림' 페이지로 이동시키면 좋을 듯. 추후 구현예정
+						                	} else {
+						                		alert("서버 문제로 인하여 작품 등록이 완료되지 못했습니다..")
+						                	}
+						                },
+						                error: function() {
+						                    alert("ajax 작품 등록 실패");
+						                }
+						            }); //ajax
+								} else {
+									return;
+								}
+								
+							}); // submitWorkBtn()
+							
+							
 							// 뒤로가기 버튼 클릭
 							$('#backHomeBtn').click(function() {
 							  location.href="/"
 							});
 
-//                     	  buyBtn() {
-// 	                    		if()
-// 	                    	}// buyBtn()
-	                    	
-// 	                    	backBtn() {
-// 	                    		if()
-// 	                    	}// backBtn()
-	                    	
-// 	                    	submitWorkBtn() {
-// 	                    		if()
-// 	                    	}// submitWorkBtn()
 	                    	
                     	});	//jQuery 시작
                     </script>

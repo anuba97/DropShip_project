@@ -19,7 +19,85 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <style>
     	#workImage {width: 100px; height: 100px; text-align: center; 
-			display: block; margin: 0 auto;}
+		 margin: 0 auto;}
+			
+		/* 추가 */
+			.admin_memberListTable {
+    width: 80%;
+    margin-left: 25px;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.admin_memberListTable th,
+.admin_memberListTable td {
+    height: 40px;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.admin_memberListTable th {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+		.admin_memberListTable tr:hover {
+    background-color: #f5f5f5;
+}	
+			.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+		.admin_noticeBoard_div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.admin_noticeBoard_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}	
+.uploaded-works {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.uploaded-work {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.inner-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inner-table td {
+    padding: 5px;
+    text-align: center;
+    vertical-align: top;
+}
+		/* 추가 */
     </style>
     <script>
 			// <tr>태그 누르는 거랑 '삭제' 버튼 누를때 링크 다르게 하려고
@@ -104,13 +182,14 @@
                 <div class="admin_memberListTableDiv">
                     <table class="admin_memberListTable">
                         <colgroup>
-                            <col width="10%">
-                            <col width="30%">
-                            <col width="15%">
-                            <col width="15%">
-                            <col width="15%">
-                            <col width="15%">
-                        </colgroup>
+						    <col width="10%">
+						    <col width="20%">
+						    <col width="15%">
+						    <col width="15%">
+						    <col width="20%">
+						    <col width="10%">
+						    <col width="10%">
+						</colgroup>
                         <tr>
                             <th>작가 고유번호</th>
                             <th>작가 이름</th>
@@ -127,11 +206,17 @@
                                 <td>${artistVo.getArtist_country()}</td>
                                 <td>${artistVo.getArtist_birth_death()}</td>
                                 <td>${artistVo.getArtist_main()}</td>
-                                <td>
-								    <c:forEach items="${artistVo.getWorkList()}" var="workVo">
-								        <a href="admin_workView?id=${workVo.getId()}">${workVo.getWork_name()}</a><br>
-								        <img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage"><br>
-								    </c:forEach>
+                               <td>
+								    <table class="inner-table">
+								        <tr>
+								            <c:forEach items="${artistVo.getWorkList()}" var="workVo">
+								                <td class="uploaded-work">
+								                    <a href="admin_workView?id=${workVo.getId()}">${workVo.getWork_name()}</a><br>
+								                    <img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage">
+								                </td>
+								            </c:forEach>
+								        </tr>
+								    </table>
 								</td>
                                 <td><button class="delete-button" id="deleteArtist" onclick="deleteArtistBtn(${artistVo.getId()},'${artistVo.getArtist_korean_name()}')">삭제</button></td>
                             </tr>
