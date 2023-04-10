@@ -94,48 +94,48 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 	<section class="artist-list">
 		<div class="combine-list">
 			<!-----  SEARCH LIST ----->
-			<div class="combine-sort-wrap">
-				<h3>Artist List</h3>
-				<ul class="combine-sort-list">
-					<li class="all  on "><a href="artist_list.html"><span>All</span></a></li>
-					<li class="">
-						<a href="#"><span>ㄱ ~ ㄹ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_list4e11.html?ca_id=101010"><span>ㄱ, ㄲ</span></a></li>
-							<li class=""><a href="artist_list6974.html?ca_id=101020"><span>ㄴ</span></a></li>
-							<li class=""><a href="artist_listb3c8.html?ca_id=101030"><span>ㄷ, ㄸ</span></a></li>
-							<li class=""><a href="artist_list9f23.html?ca_id=101040"><span>ㄹ</span></a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="#"><span>ㅁ ~ ㅇ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_listc7f5.html?ca_id=102010"><span>ㅁ</span></a></li>
-							<li class=""><a href="artist_list646f.html?ca_id=102020"><span>ㅂ, ㅃ</span></a></li>
-							<li class=""><a href="artist_list2f4c.html?ca_id=102030"><span>ㅅ, ㅆ</span></a></li>
-							<li class=""><a href="artist_list1ac9.html?ca_id=102040"><span>ㅇ</span></a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="#"><span>ㅈ ~ ㅌ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_liste19f.html?ca_id=103010"><span>ㅈ, ㅉ</span></a></li>
-							<li class=""><a href="artist_list8259.html?ca_id=103020"><span>ㅊ</span></a></li>
-							<li class=""><a href="artist_listdef3.html?ca_id=103030"><span>ㅋ</span></a></li>
-							<li class=""><a href="artist_listc4d5.html?ca_id=103040"><span>ㅌ</span></a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="#"><span>ㅍ ~ ㅎ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_lista4a8.html?ca_id=104010"><span>ㅍ</span></a></li>
-							<li class=""><a href="artist_list5abc.html?ca_id=104020"><span>ㅎ</span></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+<!-- 			<div class="combine-sort-wrap"> -->
+<!-- 				<h3>Artist List</h3> -->
+<!-- 				<ul class="combine-sort-list"> -->
+<!-- 					<li class="all  on "><a href="artist_list.html"><span>All</span></a></li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㄱ ~ ㄹ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_list4e11.html?ca_id=101010"><span>ㄱ, ㄲ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list6974.html?ca_id=101020"><span>ㄴ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_listb3c8.html?ca_id=101030"><span>ㄷ, ㄸ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list9f23.html?ca_id=101040"><span>ㄹ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㅁ ~ ㅇ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_listc7f5.html?ca_id=102010"><span>ㅁ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list646f.html?ca_id=102020"><span>ㅂ, ㅃ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list2f4c.html?ca_id=102030"><span>ㅅ, ㅆ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list1ac9.html?ca_id=102040"><span>ㅇ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㅈ ~ ㅌ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_liste19f.html?ca_id=103010"><span>ㅈ, ㅉ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list8259.html?ca_id=103020"><span>ㅊ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_listdef3.html?ca_id=103030"><span>ㅋ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_listc4d5.html?ca_id=103040"><span>ㅌ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㅍ ~ ㅎ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_lista4a8.html?ca_id=104010"><span>ㅍ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list5abc.html?ca_id=104020"><span>ㅎ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<!-----  ARTIST LIST ----->
-			<div id="item-list-wrap">
+			<div id="item-list-wrap" style="margin: 0 auto;">
 				<div class="grid-list-opt">
 					<div class="grid-opt-left">총 <strong class="f-color">${map.listCount}</strong>명의 작가가 있습니다.</div>
 					<div class="grid-opt-right">

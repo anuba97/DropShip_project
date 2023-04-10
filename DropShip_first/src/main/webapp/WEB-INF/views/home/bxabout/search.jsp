@@ -11,7 +11,7 @@
 	<meta name="HandheldFriendly" content="true">
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<link rel="shortcut icon" href="../home/img/favicon.ico" />
 	<title>상품 검색 결과 | 백상 갤러리</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link rel="stylesheet"

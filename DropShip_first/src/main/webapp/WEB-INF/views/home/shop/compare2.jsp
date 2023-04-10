@@ -36,9 +36,9 @@
 	</div>
 	<div class="popup_window popup_compare_prod" id="danawa_pop_content">
 		<div class="popup_header">
-			<h1 class="popup_headline">작품비교</h1>
+			<h1 class="popup_headline">DropShip - 작품비교</h1>
 		</div>
-		<p style="font-size:15px; ">&nbsp;&nbsp;&nbsp;#이미지를 클릭시 해당 작품 페이지로 이동합니다#<p>
+		<p style="font-size:15px; padding-top:5px;">&nbsp;&nbsp;&nbsp;#이미지 클릭시 드랍쉴 갤러리의 <strong><span style="color:blue;">해당 작품 페이지로 이동</span></strong>합니다#<p>
 		
 		<div class="popup_body">
 			<div id="productCompareArea" class="compare_wrap fixed_table"
@@ -61,7 +61,7 @@
 									</tr>
 									<tr>
 										<th>
-											<div class="th_name">판매가격</div>
+											<div class="th_name">판매 가격</div>
 										</th>
 									</tr>
 								</tbody>
@@ -114,7 +114,7 @@
 									</tr>
 									<tr>
 										<th scope="row">
-											<div class="th_name">판매가격</div>
+											<div class="th_name">판매 가격</div>
 										</th>
 										<c:forEach items="${compareWorkVoList}" var="compareWorkVo">
 										<td class="compareProductItem_14989751">
@@ -166,11 +166,11 @@
 											<div class="th_name">작품 설명</div>
 										</th>
 									</tr>
-									<tr class="optionName" id="optionName_323332">
-										<th>
-											<div class="th_name">작품 등록일</div>
-										</th>
-									</tr>
+<!-- 									<tr class="optionName" id="optionName_323332"> -->
+<!-- 										<th> -->
+<!-- 											<div class="th_name">작품 등록일</div> -->
+<!-- 										</th> -->
+<!-- 									</tr> -->
 									<tr class="optionName" id="optionName_323368">
 										<th>
 											<div class="th_name">전시 위치</div>
@@ -178,7 +178,7 @@
 									</tr>
 									<tr class="optionName" id="optionName_323368">
 										<th>
-											<div class="th_name">상품보기</div>
+											<div class="th_name">상품 보기</div>
 										</th>
 									</tr>
 									
@@ -210,7 +210,7 @@
 										</th>
 										<c:forEach items="${compareWorkVoList}" var="compareWorkVo">
 										<td class="compareProductItem_14989751">
-											<div class="item_wrap"><a href="artist_view?artist_id=${compareWorkVo.artist_id}">${compareWorkVo.artist_korean_name}</a></div>
+											<div class="item_wrap"><a href="artist_view?artist_id=${compareWorkVo.artist_id}">${compareWorkVo.artist_korean_name}(링크)</a></div>
 										</td>
 										</c:forEach>
 									</tr>
@@ -244,23 +244,23 @@
 										</td>
 										</c:forEach>
 									</tr>
-									<tr class="optionValue optionValue_323332">
-										<th scope="row">
-											<div class="th_name">작품 등록일</div>
-										</th>
-										<c:forEach items="${compareWorkVoList}" var="compareWorkVo">
-										<td class="compareProductItem_14989751">
-											<div class="item_wrap">${compareWorkVo.work_reg_date}</div>
-										</td>
-										</c:forEach>
-									</tr>
+<!-- 									<tr class="optionValue optionValue_323332"> -->
+<!-- 										<th scope="row"> -->
+<!-- 											<div class="th_name">작품 등록일</div> -->
+<!-- 										</th> -->
+<%-- 										<c:forEach items="${compareWorkVoList}" var="compareWorkVo"> --%>
+<!-- 										<td class="compareProductItem_14989751"> -->
+<%-- 											<div class="item_wrap">${compareWorkVo.work_reg_date}</div> --%>
+<!-- 										</td> -->
+<%-- 										</c:forEach> --%>
+<!-- 									</tr> -->
 									<tr class="optionValue optionValue_323368">
 										<th scope="row">
 											<div class="th_name">전시 위치</div>
 										</th>
 										<c:forEach items="${compareWorkVoList}" var="compareWorkVo">
 										<td class="compareProductItem_14989751">
-											<div class="item_wrap"><a href="${compareWorkVo.work_display_position}">실사작품 위치확인</a></div>
+											<div class="item_wrap"><a href="${compareWorkVo.work_display_position}">실제 작품 위치확인(링크)</a></div>
 										</td>
 										</c:forEach>
 									</tr>

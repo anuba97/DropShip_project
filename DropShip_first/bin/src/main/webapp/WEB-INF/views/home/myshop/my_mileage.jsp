@@ -199,7 +199,7 @@ jQuery(function($){
 <script>
     $("#sdate, #edate").datepicker({
         showOn: "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
-        buttonImage: "../../img/ico/ico-date.png", // 버튼 이미지
+        buttonImage: "/home/img/ico/ico-date.png", // 버튼 이미지
         //buttonImageOnly: true, // 버튼에 있는 이미지만 표시한다.
         changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
         changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.

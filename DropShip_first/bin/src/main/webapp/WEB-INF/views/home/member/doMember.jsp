@@ -17,7 +17,7 @@
 			</c:when>
 			<c:when test="${loginResult == 1}">
 				<script>
-					alert("로그인 되었습니다!");
+					alert("드랍쉽에 정상적으로 로그인 되었습니다!");
 					location.href="../";
 				</script>
 			</c:when>

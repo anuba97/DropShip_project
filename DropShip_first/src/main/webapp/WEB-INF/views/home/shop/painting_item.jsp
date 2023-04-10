@@ -812,7 +812,10 @@
                                 <div id="sit_tot_price"></div>
 
 
-
+								 <c:if test="${sessionMember_login_id == null }">
+								 <span>구입은 <strong><a href="/member/login">로그인</a></strong> 후 진행해 주세요!</span>
+								 </c:if>
+								 <c:if test="${sessionMember_login_id != null }">
                                 <div id="sit_ov_btn">
                                     <div class="sit_ov_order_btn">
                                         <button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="btnset btn-type01 gray">
@@ -828,6 +831,7 @@
                                             <span>구매하기</span>
                                         </button>
                                     </div>
+                                  </c:if>
                                 </div>
 
                                 <div class="sns_share">

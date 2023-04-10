@@ -75,7 +75,7 @@
                                         <a href="javascript:;">회원로그인</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">비회원 주문조회</a>
+<!--                                         <a href="javascript:;">비회원 주문조회</a> -->
                                     </li>
                                 </ul>
                             </div>
@@ -125,17 +125,17 @@
 
                                 <div class="login-con">
                                     <div id="mb_login_od_wr">
-                                        <h3 class="hide">비회원 주문조회</h3>
-                                        <div id="mb_login_od">
-                                            <form name="forderinquiry" method="post" action="https://bxgs.co.kr/shop/orderinquiry.php" autocomplete="off">
-                                                <label for="od_id" class="od_id sound_only">주문번호<strong class="sound_only"> 필수</strong></label>
-                                                <input type="text" name="od_id" value="" id="od_id" placeholder="주문번호" required class="inp-type01 required" size="20">
-                                                <label for="id_pwd" class="od_pwd sound_only">비밀번호<strong class="sound_only"> 필수</strong></label>
-                                                <input type="password" name="od_pwd" size="20" id="od_pwd" placeholder="비밀번호" required class="inp-type01 required">
-                                                <p class="sm-txt-information">주문번호 분실 시 고객센터(02-123-4567)로 별도 문의 해주세요.</p>
-                                                <button type="submit" class="btnset btn-submit">주문조회하기</button>
-                                            </form>
-                                        </div>
+<!--                                         <h3 class="hide">비회원 주문조회</h3> -->
+<!--                                         <div id="mb_login_od"> -->
+<!--                                             <form name="forderinquiry" method="post" action="https://bxgs.co.kr/shop/orderinquiry.php" autocomplete="off"> -->
+<!--                                                 <label for="od_id" class="od_id sound_only">주문번호<strong class="sound_only"> 필수</strong></label> -->
+<!--                                                 <input type="text" name="od_id" value="" id="od_id" placeholder="주문번호" required class="inp-type01 required" size="20"> -->
+<!--                                                 <label for="id_pwd" class="od_pwd sound_only">비밀번호<strong class="sound_only"> 필수</strong></label> -->
+<!--                                                 <input type="password" name="od_pwd" size="20" id="od_pwd" placeholder="비밀번호" required class="inp-type01 required"> -->
+<!--                                                 <p class="sm-txt-information">주문번호 분실 시 고객센터(02-123-4567)로 별도 문의 해주세요.</p> -->
+<!--                                                 <button type="submit" class="btnset btn-submit">주문조회하기</button> -->
+<!--                                             </form> -->
+<!--                                         </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -146,11 +146,11 @@
                                 <p>DropShip쇼핑몰 회원가입 후 다양한 혜택과 소식을 만나보세요.</p>
                                 <a href="register_intro" class="btnset btn-type03 btn-line-brown">회원가입</a>
                             </div>
-                            <div class="login-etc">
-                                <h3>아이디/비밀번호 찾기</h3>
-                                <p>간단한 정보를 입력 후 정보를 찾을 수 있습니다.</p>
-                                <a href="javascript:;" class="btnset btn-type03 btn-pop-open" data-popnum="01">아이디/비밀번호 찾기</a>
-                            </div>
+<!--                             <div class="login-etc"> -->
+<!--                                 <h3>아이디/비밀번호 찾기</h3> -->
+<!--                                 <p>간단한 정보를 입력 후 정보를 찾을 수 있습니다.</p> -->
+<!--                                 <a href="javascript:;" class="btnset btn-type03 btn-pop-open" data-popnum="01">아이디/비밀번호 찾기</a> -->
+<!--                             </div> -->
                         </div>
                     </div>
                 </div>

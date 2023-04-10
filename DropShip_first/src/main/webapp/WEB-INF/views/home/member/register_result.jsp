@@ -9,7 +9,7 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="shortcut icon" href="/img/favicon.ico" />
+<link rel="shortcut icon" href="../home/img/favicon.ico" />
 <title>회원가입 완료</title>
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
@@ -95,7 +95,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
         </div>
         <div class="join-result">
             <img src="/home/img/common/logo2.png" alt="DropShip갤러리">
-            <h3>회원가입이 완료되었습니다.</h3>
+            <h3>DropShip 회원가입이 완료되었습니다.</h3>
 
                             <p>
                     Art &amp; Design DropShip입니다.<br>

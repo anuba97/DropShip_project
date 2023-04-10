@@ -8,8 +8,8 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="shortcut icon" href="/img/favicon.ico" />
-<title>회원가입2 (form 페이지)</title>
+<link rel="shortcut icon" href="../home/img/favicon.ico" />
+<title>회원가입2 (정보 입력)</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
@@ -125,9 +125,9 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        <div class="right-con">
 	                            <div class="box-id">
 	                                <input type="text" name="member_login_id"  id="reg_mb_id" class="inp-type01 half" minlength="5" maxlength="12"  placeholder="아이디">
-	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkIdBtn" value="중복확인">     
+	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkIdBtn" value="중복 확인">     
 	                            </div>
-	                            <span class="sm-notice-txt">5~12자의 영문 소문자,숫자만 사용가능합니다.</span>
+	                            <span class="sm-notice-txt">아이디는 5~12자의 영문 소문자,숫자만 사용가능합니다.</span>
 	                            <strong><span id="result_checkId" style="font-size:14px; color:red; display:none">※ ID 중복 확인을 진행해주세요.</span></strong>
 	                        </div>
 	                    </div>
@@ -139,7 +139,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        </div>
 	                        <div class="right-con">
 	                            <input type="password" name="member_pw" id="reg_mb_password" class="inp-type01 half " minlength="8" maxlength="16"   placeholder="비밀번호">
-	                            <span class="sm-notice-txt">8~16자 영문, 숫자, 특수문자를 포함하여 8자 이상으로 작성해주세요.</span>
+	                            <span class="sm-notice-txt">비밀번호는 8~16자 영문, 숫자, 특수문자를 포함하여 8자 이상으로 작성해주세요.</span>
 	                        </div>
 	                    </div>
 	
@@ -168,9 +168,9 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        <div class="right-con">
 	                            <div class="box-id">
 	                                <input type="text" name="member_nName"  id="reg_mb_nName" class="inp-type01 half" minlength="2" maxlength="8"  placeholder="닉네임">
-	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkNicBtn" value="중복확인">     
+	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkNicBtn" value="중복 확인">     
 	                            </div>
-	                            <span class="sm-notice-txt">한글, 영문만 2-8자</span>
+	                            <span class="sm-notice-txt">닉네임은 한글, 영문를 포함해서 2~8자 이상으로 작성해주세요.</span>
 	                            <strong><span id="result_checkNic" style="font-size:14px; color:red; display:none">※ 닉네임 중복 확인을 진행해주세요.</span></strong>
 	                        </div>
 	                    </div>
@@ -182,7 +182,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        <div class="right-con">
 	                            <input type="hidden" name="old_email" value="">
 	                            <input type="email" name="member_email" value="" id="reg_mb_email"  class="inp-type01 half email"  size="50" maxlength="100" placeholder="E-mail">
-	                            <span class="sm-notice-txt">이메일주소는 끝에 com, net, edu 로 끝나는 형식만 가능합니다.</span>
+	                            <span class="sm-notice-txt">이메일주소는 끝에 .com, .net, .edu 로 끝나는 형식만 가능합니다.</span>
 	                            
 	                        </div>
 	                    </div>
@@ -211,7 +211,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        </div>
 	                        <div class="right-con">
 	                            <input type="text" name="member_phone" id="reg_mb_hp"  class="inp-type01 half"  maxlength="11" placeholder="휴대폰번호">
-	                            <span class="sm-notice-txt">숫자로만 입력해주세요.</span>
+	                            <span class="sm-notice-txt">숫자만 입력해주세요.</span>
 	                        </div>
 	                    </div>
 	                    

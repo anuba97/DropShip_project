@@ -152,7 +152,7 @@
                             <h3 class="sub-con-tit" data-aos="fade-right" data-aos-delay="100">Painting Art</h3>
                         </div>
                         <div class="grid-list-opt">
-                            <div class="grid-opt-left">총<strong class="f-color">${map.listCount}</strong>개의 상품이 있습니다.</div>
+                            <div class="grid-opt-left">총 <strong class="f-color">${map.listCount}</strong>개의 상품이 있습니다.</div>
                             <div class="grid-opt-right">
                             
 	                                <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기" class="input-compare">
@@ -356,8 +356,8 @@
 				      work_id_list.push($(this).val());
 				    } 
 				  });
-				  alert("Checked ids: " + work_id_list);
-				  alert("조인된 list  : " + work_id_list.join())
+// 				  alert("Checked ids: " + work_id_list);
+// 				  alert("조인된 list  : " + work_id_list.join())
 				  
 				  $('#compareWorkId').append('<input type="hidden" name="work_id_list" value="' + work_id_list.join() + '">');
 				  docompareFrm.submit();

@@ -93,7 +93,7 @@
 
 			<section class="sub-tit-wrap" data-aos="fade-up">
 				<div class="maxinner">
-					<span class="sub-txt">DropShip 쇼핑몰에 궁금한 내용을 남겨주세요.</span>
+					<span class="sub-txt">DropShip에서 다양한 이야기를 나누는 공간입니다.</span>
 					<h2 class="sub-tit">자유게시판</h2>
 				</div>
 			</section>
@@ -140,7 +140,7 @@
 										</tr>
 										<c:forEach items="${map.list}" var="bvo">
 											<c:if test="${bvo.freeBoard_ban==0}">
-												<tr>
+												<tr onClick="location.href='board_view?id=${bvo.id}&page=${map.page}'" style="cursor:pointer;">
 													<c:if test="${bvo.freeBoard_head == 0}">
 														<td class="td-num">자유</td>
 													</c:if>
@@ -151,9 +151,8 @@
 														<td class="td-num">질답</td>
 													</c:if>
 													<td class="td-num">${bvo.id}</td>
-													<td class="td-subject"><a
-														href="board_view?id=${bvo.id}&page=${map.page}">
-															${bvo.freeBoard_title} </a></td>
+													<td class="td-subject">
+															${bvo.freeBoard_title}</td>
 													<c:if test="${bvo.member_id==null}">
 														<td class="td-name td-mb-hide">${bvo.admin_id}</td>
 													</c:if>
