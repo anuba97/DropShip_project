@@ -5,7 +5,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <style>
-    	
     	.chatbot-toggle-button {
 		  position: fixed;
 		  right: 20px;
@@ -19,6 +18,10 @@
 		  z-index: 1001;
 		}
 		
+		/* Hide the chatbot container initially */
+		.chatbot-container {
+		  display: none;
+		}
 		
 		/* Show the chatbot container when expanded */
 		.chatbot-expanded {
@@ -40,11 +43,6 @@
             z-index: 999;
         }
 
-		/* Hide the chatbot container initially */
- 		.chatbot-container { 
- 		  display: none; 
-		} 
-		
         .chatbot-header {
             padding: 10px;
             background-color: #f1f1f1;
@@ -99,9 +97,6 @@
     </style>
     <script>
         $(document).ready(function() {
-        	
-//         	$("#chatbot-container").hide();
-        	
             // Attach sendMessage function to the Send button's click event
             $("#send-btn").on("click", sendMessage);
 

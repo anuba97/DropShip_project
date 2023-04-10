@@ -11,7 +11,7 @@
 
 <head>
     <meta charset="utf-8">
-    <%@ include file ="../ai/chatbot.jsp" %>
+    
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
@@ -44,6 +44,7 @@
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
     <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> --> 
+    <%@ include file ="../ai/chatbot.jsp" %>
 </head>
 <style>
     .page-numul {
@@ -307,6 +308,7 @@
                 </div>
             </section>
 			<script>
+			
 				var member_id;
 				var work_id;
 				// button에서 onclick="heartBtn(${workVo.id}) 들고왔다 function hearBtn()안에 넣을때는 (머가들어가든 괜찮다 ex) aa이런식으로 )
@@ -419,25 +421,7 @@
     <script src="../home/theme/buzinga/js/base.js"></script>
     <script src="../home/theme/buzinga/js/sub.js"></script>
 
-    <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-    <!--[if lte IE 7]>
-	<script>
-	$(function() {
-	    var $sv_use = $(".sv_use");
-	    var count = $sv_use.length;
-	
-	    $sv_use.each(function() {
-	        $(this).css("z-index", count);
-	        $(this).css("position", "relative");
-	        count = count - 1;
-	    });
-	});
-	</script>
-	<![endif]-->
-
-
 </body>
 
-<!-- Mirrored from bxgs.co.kr/shop/painting_list.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:12 GMT -->
 
 </html>

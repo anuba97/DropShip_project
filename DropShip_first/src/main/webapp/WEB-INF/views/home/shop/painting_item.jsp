@@ -19,10 +19,12 @@
     <link rel="shortcut icon" href="../home/img/favicon.ico" />
     <title>그림작품 view페이지</title>
 
+	<!-- ai채팅창에 필요 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	<!-- ai채팅창에 필요 -->
 
 
 
@@ -35,9 +37,6 @@
     <link rel="stylesheet" href="../home/theme/buzinga/mobile/skin/shop/basic/style3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
-    <!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
     <script>
         // 자바스크립트에서 사용하는 전역변수 선언
         var g5_url = "../index.html";
@@ -53,7 +52,7 @@
         var g5_shop_url = "https://bxgs.co.kr:443/shop/";
     </script>
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!--     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
+    <!--     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> 이거 겹침 있음 안됨 -->
     <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
     <script src="../home/js/common3816.js?ver=210618"></script>
     <script src="../home/js/wrest3816.js?ver=210618"></script>
@@ -69,7 +68,7 @@
     <!-- <script src="../home/js/jquery.bxslider3816.js?ver=210618"></script> -->
     <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
     <script src="../home/js/viewimageresize3816.js?ver=210618"></script>
-    -
+    
     <style>
         .chatbot-container {
             position: fixed;

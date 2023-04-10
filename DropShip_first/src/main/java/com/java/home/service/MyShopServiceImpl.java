@@ -264,9 +264,15 @@ public class MyShopServiceImpl implements MyShopService{
 	@Override
 	public Map<String, Object> selectMyAiWorkVoList(int page, String member_nName) {
 		Integer artist_id = adminMapper.selectArtistIdForAi(member_nName);
+		
+		HashMap<String, Object> myAiWorkListPageMap = new HashMap<>();
+		if(artist_id == null) {	// 회원이 ai이미지를 생성한 적이 없다면
+			return myAiWorkListPageMap; // 빈 맵을 리턴
+		}
+		
 		String tableName = "work";
 		String columnName = "artist_id";
-		HashMap<String, Object> myAiWorkListPageMap = pageMethodWishList(page, artist_id, tableName, columnName);	// 찜하기에서 페이징 처리하는 메소드를 재사용한것
+		myAiWorkListPageMap = pageMethodWishList(page, artist_id, tableName, columnName);	// 찜하기에서 페이징 처리하는 메소드를 재사용한것
 		
 		int startRow = (int) myAiWorkListPageMap.get("startRow");
 		int endRow = (int) myAiWorkListPageMap.get("endRow");

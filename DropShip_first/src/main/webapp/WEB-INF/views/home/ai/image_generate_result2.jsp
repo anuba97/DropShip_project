@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="right-con">
                                     <input type="text" name="price" id="price"  required 
-                                    class="inp-type01 required" maxlength="255" placeholder="가격(숫자만 입력해주세요)" >
+                                    class="inp-type01 required" maxlength="255" placeholder="가격 (1천만원 미만의 숫자만 입력해주세요.)" >
                                 </div>
                             </div>
                             
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="right-con">
                                     <input type="text" name="genre" id="genre"  required 
-                                    class="inp-type01 required" maxlength="255" placeholder="장르" >
+                                    class="inp-type01 required" maxlength="255" placeholder="장르 (한글로 입력해주세요.)"  >
                                 </div>
                             </div>
                             
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="right-con">
                                     <input type="text" name="subject" id="subject"  required 
-                                    class="inp-type01 required" maxlength="255" placeholder="주제" >
+                                    class="inp-type01 required" maxlength="255" placeholder="주제 (한글로 입력해주세요.)" >
                                 </div>
                             </div>
                             
