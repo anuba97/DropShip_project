@@ -245,7 +245,7 @@
                                 </div>
                                 <div class="fin_total_btm">
                                     <div class="fin_total_cate">미결제액</div>
-                                    <div class="fin_total_price"><strong>${optionVo.option_selected_price * optionVo.option_quantity+2000}</strong> 원</div>
+                                    <div class="fin_total_price"><strong>${order_total_price+2000}</strong> 원</div>
                                 </div>
                                 <div class="fin_total_btm" id="alrdy">
                                     <div class="fin_total_cate">결제액</div>
@@ -371,7 +371,7 @@
                                     </tr>
                                     <tr>
                                         <th>입금계좌</th>
-                                        <td>국민은행 34322-6733-39012 홍정우</td>
+                                        <td>드랍쉽은행 00000-0000-00000 드랍쉽</td>
                                     </tr>
                                 </tbody>
                             </table>

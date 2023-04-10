@@ -371,7 +371,7 @@
                                                         <div class="order_choice_place">
                                                             <ul class="chk-list-type01 type-radio">
                                                                 <li><input type="radio" name="ad_sel_addr" value="same" id="ad_sel_addr_same"> <label for="ad_sel_addr_same">주문자와 동일</label></li>
-                                                                <li><input type="radio" name="ad_sel_addr" value="recent" id="ad_sel_addr_1"> <label for="ad_sel_addr_1">최근배송지(집)</label>
+<!--                                                                 <li><input type="radio" name="ad_sel_addr" value="recent" id="ad_sel_addr_1"> <label for="ad_sel_addr_1">최근배송지(집)</label> -->
                                                                 </li>
                                                                 <li><input type="radio" name="ad_sel_addr" value="new" id="od_sel_addr_new"> <label for="od_sel_addr_new">신규배송지</label> <a href="javascript:;" id="order_address" class="btn_frmline btnset btn-type03 btn-fill-brown btn-pop-open" data-popnum="01">배송지 목록</a></li>
                                                             </ul>

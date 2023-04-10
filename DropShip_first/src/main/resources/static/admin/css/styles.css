@@ -11564,7 +11564,15 @@ body {
 	margin: 0 0 0 24px;
 	width: 1200px;
 }
+.dropship_listTable{
+	margin: 0 0 0 24px;
+	width: 1200px;
+}
 .dropship_memberListTable th{
+	background-color: #212529;
+	color: #fff;
+}
+.dropship_listTable th{
 	background-color: #212529;
 	color: #fff;
 }
@@ -11619,7 +11627,7 @@ body {
 	width: 300px;
 }
 .admin_customerTable{
-	width: 70%;
+	width: 40%;
 	border-collapse: collapse;
 	margin: 0 0 0 24px;
 }
@@ -11635,7 +11643,7 @@ body {
 
 .memberInOrder{
 	margin: 0 0 0 24px;
-	width: 660px;
+	width: 680px;
 }
 .memberInOrder th{
 	background-color: #212529;

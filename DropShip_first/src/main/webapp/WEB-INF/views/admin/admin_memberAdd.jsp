@@ -139,7 +139,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">관리자 등록</h1>
                     <div class="card mb-4">
-                        <div class="card-body">Super Admin이 일반 관리자를 등록하는 메뉴입니다.</div>
+                        <div class="card-body">Super Admin이 일반 관리자를 <span style="color:red;">추가</span>하는 메뉴입니다.</div>
                     </div>
                 </div>
                 <form action="admin_memberAdd" name="admin_memberAddFrm" method="post">

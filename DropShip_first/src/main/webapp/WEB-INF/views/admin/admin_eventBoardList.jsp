@@ -35,11 +35,11 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">이벤트 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 이벤트 게시판을 관리하는 메뉴입니다. 이벤트를 등록 관리할 수 있습니다.</div>
+                        <div class="card-body">DropShip 이벤트 게시판을 관리하는 메뉴입니다. 이벤트를 추가, 수정, 삭제등을 할 수 있습니다.</div>
                     </div>
                 </div>
                 <div class="dropship_memberListDiv">
-                    <table class="dropship_memberListTable">
+                    <table class="dropship_listTable">
                         <colgroup>
                             <col width="10%">
                             <col width="35%">
@@ -115,7 +115,7 @@
 						</ul>
 					</div>
 					<!-- 			PAGE 처리 부분		 -->
-                    <div class="button-wrapper">
+                    <div class="admin_noticeBoard_div">
                         <button type="button" onclick="location.href='admin_eventBoardAdd'" style="color:red; border-radius:5px;">이벤트 추가</button>
                     </div>
                 </div>

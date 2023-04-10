@@ -46,7 +46,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">공지 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 공지를 확인하는 메뉴입니다. 공지를 수정 또는 삭제할 수 있습니다.</div>
+                        <div class="card-body">DropShip 공지를 확인하는 메뉴입니다. 공지를 <span style="color:red;">수정 또는 삭제</span>할 수 있습니다.</div>
                     </div>
                 </div>
                 <div>

@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="dropship_memberListDiv">
-                    <table class="dropship_memberListTable">
+                    <table class="dropship_listTable">
                         <colgroup>
                             <col width="10%">
                             <col width="35%">

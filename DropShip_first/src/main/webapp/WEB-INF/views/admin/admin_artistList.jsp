@@ -224,7 +224,7 @@
                     </table>
                 </div><br>
                 <div class="admin_noticeBoard_div">
-                    <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_artistAdd'" style="margin: 0 0 0 500px; color:red;">작가 추가</button>
+                    <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_artistAdd'" style="margin: 0 auto; color:red;">작가 추가</button>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

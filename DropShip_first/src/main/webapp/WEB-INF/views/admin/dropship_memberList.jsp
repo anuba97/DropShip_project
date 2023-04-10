@@ -37,7 +37,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">고객 관리</h1>
 					<div class="card mb-4">
-						<div class="card-body">DropShip 고객을 관리하는 메뉴입니다. 원하는 회원을 클릭해서 상세 정보를 확인하세요.</div>
+						<div class="card-body">DropShip 고객을 관리하는 메뉴입니다. 원하는 회원을 클릭해서 <span style="color:red;"> 상세 정보와 주문 현황을 확인</span>할 수 있습니다.</div>
 					</div>
 				</div>
 				<div>

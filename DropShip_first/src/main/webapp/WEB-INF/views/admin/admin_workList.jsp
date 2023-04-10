@@ -84,7 +84,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">작품 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다.</div>
+                        <div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다.&nbsp; <span style="color:red;">작품 리스트를 클릭하면 수정 페이지로 이동합니다.</span></div>
                     </div>
                 </div>
                 <div class="admin_customerListDiv" style="margin-left:24px;">
