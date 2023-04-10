@@ -62,9 +62,7 @@
 						<c:if test="${sessionMember_login_id != null }">
                         	<li><a href="../myshop/mypage?member_id=${sessionMember_id}">마이페이지</a></li>
 						</c:if>
-						
                         <li><a href="../myshop/personalpay">개인결제창(일단냅두기)</a></li>
-
                     </ul>
                 </nav>
                 <a href="javascript:;" class="btn-sitemap-close"><span class="hide">전체 사이트맵 닫기</span></a>
