@@ -209,12 +209,8 @@
 	  </select>
 	  
 	  <!-- 회원 주문 상세용 work객체들 가져오기 -->
-	  <select id="selectMemberWorkList" resultType="com.java.vo.WorkVo">
-	  	SELECT * FROM work WHERE id IN (
-            <foreach collection="workIdList" item="workId" separator=",">
-                #{workId}
-            </foreach>
-        ) ORDER BY id DESC
+	  <select id="selectShopWorkList" resultType="com.java.vo.WorkVo">
+	  	SELECT * FROM work WHERE id = #{workId}
 	  </select>
 	  
 	  

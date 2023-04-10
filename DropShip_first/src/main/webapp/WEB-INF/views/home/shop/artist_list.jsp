@@ -13,6 +13,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="../img/favicon.ico" />
 <title>작가별 페이지</title>
+<%@ include file ="../ai/chatbot.jsp" %>	<!-- ai챗봇 -->
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -21,9 +22,6 @@
 <link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
-<!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "../index.html";
@@ -37,11 +35,9 @@ var g5_editor    = "";
 var g5_cookie_domain = "";
 var g5_theme_shop_url = "https://bxgs.co.kr:443/theme/buzinga/shop/";
 var g5_shop_url = "https://bxgs.co.kr:443/shop/";
-
-
 </script>
 <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<!-- <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
 <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
 <script src="../home/js/common3816.js?ver=210618"></script>
 <script src="../home/js/wrest3816.js?ver=210618"></script>

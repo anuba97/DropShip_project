@@ -83,10 +83,16 @@ public interface ShopMapper {
 
 	List<WorkVo> selectMemberWorkList(List<Integer> workIdList);
 
+	// 장바구니 페이지 들어갈 때
+	WorkVo selectShopWorkList(int work_id);
+	
+	
 	List<ArtistVo> selectArtistOrderList(List<Integer> artistIdList);
 
 	// painting_list.jsp에 MD-Pick 슬라이드쇼 랜덤으로 보여질 수 있게 일단 모든 작품 다 가져옴(페이징 처리 안한)
 	List<WorkVo> selectWorkAll();
+
+	
 
 
 
