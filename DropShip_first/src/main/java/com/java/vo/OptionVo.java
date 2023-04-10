@@ -30,5 +30,5 @@ public class OptionVo {
 	 private int option_quantity;                     // 수량 
 	 private int option_selected_price;               // 옵션 선택 후 가격 
 	 
-
+	 private int work_id;							// cart.jsp 장바구니 관련해서 조인해서 사용할 목적
 }

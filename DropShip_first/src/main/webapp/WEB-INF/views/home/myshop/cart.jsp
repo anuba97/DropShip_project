@@ -117,8 +117,8 @@
 	                                	<c:forEach items="${optionVoList}" var="optionVo" varStatus="loop">
 		                                    <tr>
 		                                        <td data-title="No" class="td_chk chk-box">
-		                                            <input type="checkbox" name="ct_chk[]" value="${workVoList[loop.index].id}" id="ct_chk_${workVoList[loop.index].id}" checked="checked" class="selec_chk">
-		                                            <label for="ct_chk_${workVoList[loop.index].id}"><span></span><b class="sound_only">상품</b></label>
+		                                            <input type="checkbox" name="ct_chk[]" value="${optionVo.id}" id="ct_chk_${optionVo.id}" checked="checked" class="selec_chk">
+		                                            <label for="ct_chk_${optionVo.id}"><span></span><b class="sound_only">상품</b></label>
 		                                        </td>
 		                                        <td data-title="Product" class="td_prd">
 		                                            <div class="sod_img"><a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" style="background-image:url(/admin/img/work/${workVoList[loop.index].work_img_url})"><span class="hide">제품이미지</span></a></div>
@@ -341,6 +341,7 @@
                     var cnt = f.records.value;
                     
                     if (act == "buy") {
+                    	
                         if ($("input[name^=ct_chk]:checked").length < 1) {
                             alert("주문하실 상품을 하나이상 선택해 주십시오.");
                             return false;
@@ -349,7 +350,9 @@
                         selectedWorkAndOptionId();
                         f.action = "../myshop/order_form";
                         f.submit();
+                        
                     } else if (act == "alldelete" || act == "seldelete") {	// '선택삭제' 누르든 '장바구니 비우기' 누르든
+                    	
                     	if(act == "seldelete"){	// 만약 '선택삭제' 누른 거면
 	                        if ($("input[name^=ct_chk]:checked").length < 1) {	// 선택 하나라도 돼있는지 체크
 	                            alert("삭제하실 상품을 하나이상 선택해 주십시오.");
@@ -363,10 +366,7 @@
                         f.act.value = act;
                         selectedWorkAndOptionId();
                         
-//                         alert("선택된 작품의 option_id : " + selectedOptionsId);
-//                         alert("선택된 작품의 work_id : " + selectedWorksId);
-                        
-                     	// ajax 통해서 서버로 option_id리스트를 보냄. 삭제할 때 work_id는 필요없음. 주문은 필요함
+                     	// 삭제할 때 ajax 통해서 서버로 option_id리스트를 보냄. 삭제할 때 work_id는 필요없음. 주문할 땐 work_id들 필요함
 						$.ajax({	
 							url : "../myshop/deleteCart",
 							data : {"option_id_array" : JSON.stringify(selectedOptionsId)},
@@ -417,25 +417,6 @@
     <script src="../home/theme/buzinga/js/base.js"></script>
     <script src="../home/theme/buzinga/js/sub.js"></script>
 
-    <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-    <!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
-
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
-
-
 </body>
-
-<!-- Mirrored from bxgs.co.kr/shop/cart.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:44 GMT -->
 
 </html>

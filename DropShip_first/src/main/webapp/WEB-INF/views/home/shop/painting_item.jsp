@@ -18,16 +18,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../home/img/favicon.ico" />
     <title>그림작품 view페이지</title>
-
 	<!-- ai채팅창에 필요 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	<%@ include file ="../ai/chatbot.jsp" %>
 	<!-- ai채팅창에 필요 -->
-
-
-
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -69,86 +62,9 @@
     <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
     <script src="../home/js/viewimageresize3816.js?ver=210618"></script>
     
-    <style>
-        .chatbot-container {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 300px;
-            height: 400px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            z-index: 999;
-        }
-
-        .chatbot-header {
-            padding: 10px;
-            background-color: #f1f1f1;
-            border-bottom: 1px solid #ccc;
-            font-weight: bold;
-        }
-
-        .chatbot-messages {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 10px;
-        }
-
-        .user-message {
-            text-align: right;
-            background-color: #e0e0e0;
-            padding: 5px;
-            border-radius: 5px;
-            margin-bottom: 5px;
-        }
-
-        .ai-message {
-            text-align: left;
-            background-color: #c0c0c0;
-            padding: 5px;
-            border-radius: 5px;
-            margin-bottom: 5px;
-        }
-
-        .chatbot-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #ccc;
-        }
-
-        .chatbot-input input {
-            flex-grow: 1;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        .chatbot-input button {
-            background-color: #4caf50;
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            margin-left: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
-
-    <div id="chatbot-container" class="chatbot-container">
-        <div class="chatbot-header">AI Chatbot</div>
-        <div class="chatbot-messages"></div>
-        <div class="chatbot-input">
-            <input type="text" id="user-input" placeholder="Type your message here...">
-            <button id="send-btn">Send</button>
-        </div>
-    </div>
-
 
     <div class="cursor-ball">
         <div class="ball"></div>
@@ -1934,60 +1850,6 @@
                         var url = "/shop/painting_item?work_id=" + work_id + "&artist_id=" + artist_id;
                         location.href = url;
                     }
-
-
-                    // AI 챗봇!!!!!!!!!!
-                    $(document).ready(function() {
-                        // Attach sendMessage function to the Send button's click event
-                        $("#send-btn").on("click", sendMessage);
-
-                        // Handle Enter keypress event in the input field
-                        $("#user-input").on("keypress", function(event) {
-                            if (event.which === 13) { // 13 is the Enter key's keycode
-                                event.preventDefault(); // Prevent the default form submission behavior
-                                sendMessage();
-                            }
-                        });
-                        $("#chatbot-container").draggable().resizable({
-                            handles: 'n, e, s, w, ne, se, sw, nw'
-                        });
-                    });
-
-                    function sendMessage() {
-                        const userInput = $("#user-input");
-                        const message = userInput.val().trim();
-
-                        if (message !== "") {
-                            addMessageToChat(message, "user");
-                            userInput.val("");
-
-                            // AJAX request to send user message and get AI response
-                            $.ajax({
-                                url: "../ai/chat_index",
-                                type: "POST",
-                                contentType: "application/json", // Set the content type to application/json
-                                dataType: "json", // Expect JSON data in the response
-                                data: JSON.stringify({ // Convert data to JSON string
-                                    "prompt": message
-                                }),
-                                success: function(response) {
-                                    addMessageToChat(response.response, "ai");
-                                },
-                                error: function(error) {
-                                    console.error("Error communicating with the server:", error);
-                                }
-                            });
-                        }
-                    }
-
-                    function addMessageToChat(message, sender) {
-                        const chatMessages = $(".chatbot-messages");
-                        const messageElement = $("<div></div>")
-                            .addClass(sender === "user" ? "user-message" : "ai-message")
-                            .text(message);
-                        chatMessages.append(messageElement);
-                        chatMessages.scrollTop(chatMessages[0].scrollHeight);
-                    }
                 </script>
             </div>
         </main>
@@ -2007,26 +1869,6 @@
     <link rel="stylesheet" href="../home/theme/buzinga/css/animate.css">
     <script src="../home/theme/buzinga/js/base.js"></script>
     <script src="../home/theme/buzinga/js/sub.js"></script>
-
-    <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-    <!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
-
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
-
-
 </body>
-
-<!-- Mirrored from bxgs.co.kr/shop/item.php?it_id=1654133092 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:57 GMT -->
 
 </html>

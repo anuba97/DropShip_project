@@ -107,6 +107,7 @@ public class MyShopController {
 			if (cart_MemberMap.get("workIdList").size() != 0) { // 장바구니에 작품이 존재할 때
 				// 리턴받았던 work와 option 각각의 id들을 토대로 optionVo들과 workVo들과 artistVo들이 담긴 List를 가져옴
 				List<OptionVo> optionVoList = shopservice.selectOptionList(cart_MemberMap.get("optionIdList"));
+				
 				Map<String, List<? extends Object>> workArtistVoMap = shopservice
 						.selectMemberWorkList(cart_MemberMap.get("workIdList"));
 				////////// ------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
@@ -354,6 +355,7 @@ public class MyShopController {
 		if (work_id_list_from_cart != null) { // 1. 장바구니 페이지에서 넘어왔을 때
 
 			workIdList = work_id_list_from_cart;
+			System.out.println("장바구니에서 주문할 때 workIdList : " + workIdList);
 			Map<String, List<? extends Object>> workArtistVoMap = shopservice.selectMemberWorkList(workIdList); 
 			// workArtistVoMap에 workVoList와 artistVoList가 담겨있음
 			workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList"); // 여러개 주문 할 수 있으니까 List로 보내서 front페이지에서 forEach사용해야.

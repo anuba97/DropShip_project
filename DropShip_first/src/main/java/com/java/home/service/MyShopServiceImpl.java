@@ -126,14 +126,13 @@ public class MyShopServiceImpl implements MyShopService{
 	///////////----------↓--------↓------ cart(장바구니) 관련 ↓ -------------↓--------↓---------//////////
 	
 	@Override
-	public void insertCart_Member(int member_id, int work_id_int, int option_id) {  //ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+	public void insertCart_Member(int member_id, int work_id_int, int option_id) {  
 		myshopMapper.insertCart_Member(member_id, work_id_int, option_id);
 	}
 
 	@Override
-	public Map<String, List<Integer>> selectCart_MemberList(int member_id) {	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+	public Map<String, List<Integer>> selectCart_MemberList(int member_id) {	
 		List<Cart_MemberVo> cart_MemberVoList = myshopMapper.selectCart_MemberList(member_id);
-		System.out.println("장바구니 객체 개수 : " + cart_MemberVoList.size());
 		
 		List<Integer> workIdList = new ArrayList<>();
 		List<Integer> optionIdList = new ArrayList<>();

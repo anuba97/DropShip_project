@@ -238,10 +238,11 @@ public class ShopServiceImpl implements ShopService {
 	// 회원 주문 상세용 work객체들 가져오기 + artist 객체들 가져오기
 	@Override
 	public Map<String, List<? extends Object>> selectMemberWorkList(List<Integer> workIdList) {
-
 		
-		List<WorkVo> workVoList = shopMapper.selectMemberWorkList(workIdList);
-
+		List<WorkVo> workVoList = new ArrayList<>();
+		for(int work_id : workIdList) {
+			workVoList.add(shopMapper.selectShopWorkList(work_id));
+		}
 		
 		// 작가 한글이름도 order_inquiry_view.jsp에 필요. 근데 작가는 작품(work)이랑만 연결되어있음.
 		// 따라서 work를 통해 artist를 조회할 수 밖에 없고,

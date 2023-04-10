@@ -17,7 +17,7 @@ public class ChatCompletionRequest {
     }
 
     public static ChatCompletionRequest defaultWith(List<Message> messages) {
-        return new ChatCompletionRequest("gpt-3.5-turbo", messages, 0.7, 500);
+        return new ChatCompletionRequest("gpt-3.5-turbo", messages, 0.8, 500);
     }
     
     public String getModel() {
