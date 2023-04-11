@@ -119,13 +119,14 @@
 		                                        <td data-title="No" class="td_chk chk-box">
 		                                            <input type="checkbox" name="ct_chk[]" value="${optionVo.id}" id="ct_chk_${optionVo.id}" checked="checked" class="selec_chk">
 		                                            <label for="ct_chk_${optionVo.id}"><span></span><b class="sound_only">상품</b></label>
+	                                                <input type="hidden" name="work_id" value="${workVoList[loop.index].id}">
+	                                                <input type="hidden" name="option_id" value="${optionVo.id}">
 		                                        </td>
 		                                        <td data-title="Product" class="td_prd">
 		                                            <div class="sod_img"><a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" style="background-image:url(/admin/img/work/${workVoList[loop.index].work_img_url})"><span class="hide">제품이미지</span></a></div>
 		                                            <div class="sod_name">
 		                                                <input type="hidden" name="it_id[]" value="${workVoList[loop.index].id}">
 	<%-- 	                                                <input type="hidden" name="it_name[${workVoList[loop.index].id}]" value="${workVoList[loop.index].work_name}"> --%>
-		                                                <input type="hidden" name="optionIdList[]" value="${optionVo.id}">
 		                                                <a href="/shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" class="prd_name"><strong>${workVoList[loop.index].work_name}</strong><span>${artistVoList[loop.index].artist_korean_name}</span><span class="price_txt"></span>
 		                                                    <div class="sod_opt_txt">
 		                                                        <c:choose>
@@ -347,7 +348,7 @@
                             return false;
                         }
                         f.act.value = act;
-                        selectedWorkAndOptionId();
+                        selectedWorkAndOptionId(act);
                         f.action = "../myshop/order_form";
                         f.submit();
                         
@@ -364,7 +365,7 @@
                     		});
                     	}
                         f.act.value = act;
-                        selectedWorkAndOptionId();
+                        selectedWorkAndOptionId(act);
                         
                      	// 삭제할 때 ajax 통해서 서버로 option_id리스트를 보냄. 삭제할 때 work_id는 필요없음. 주문할 땐 work_id들 필요함
 						$.ajax({	
@@ -384,14 +385,16 @@
                 } // form_check()
                 
                 // 체크된 작품들의 work_id리스트와 option_id리스트를 각각 만들어서 input에 value로 넣기
-                function selectedWorkAndOptionId(){	
+                function selectedWorkAndOptionId(act){	
             	    $('input[name="ct_chk[]"]').each(function() {	// 체크박스 다 돌아
-            	        if ($(this).is(':checked')) {
-           	        	   selectedWorksId.push($(this).val());	/* 체크된 작품의 workId들을 배열에 집어넣기 */
-           	        	   
-           	        	   var optionId= $(this).closest('tr').find('input[name="optionIdList[]"]').val(); 
-           	        	   selectedOptionsId.push(optionId); /* 체크된 작품의 optionId들을 배열에 집어넣기 */
-            	        }
+            	    	if ($(this).is(':checked')) {	// 체크되어있니?
+               	        	var option_id= $(this).closest('tr').find('input[name="option_id"]').val(); 
+              	        	selectedOptionsId.push(option_id); /* option_id는 삭제, 주문에 모두 필요. 체크된 작품의 option_id들을 배열에 집어넣기 */
+            	    		if (act === "buy") {	// '주문하기' 버튼을 누른거니? (주문에만 work_id가 추가적으로 필요)
+            	    			var work_id = $(this).closest('tr').find('input[name="work_id"]').val(); 
+            	    	        selectedWorksId.push(work_id);	// '주문하기' 버튼 누른거면 work_id를 배열에 담아
+                	        } 
+            	    	}
                  	 });
             	    $('input[name="selectedWorksId"]').val(selectedWorksId);
             	    $('input[name="selectedOptionsId"]').val(selectedOptionsId);

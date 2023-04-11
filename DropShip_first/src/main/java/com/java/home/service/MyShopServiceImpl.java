@@ -80,6 +80,14 @@ public class MyShopServiceImpl implements MyShopService{
 		return order_detail_list;
 	}
 	
+	
+	// 마이페이지 - '진행 중인 주문'의 주문상태 가져오려고.
+	@Override
+	public List<Order_MemberVo> selectOrderMemberAll(int member_id) {
+		List<Order_MemberVo> order_MemberVoList = myshopMapper.selectOrderMemberAll(member_id);
+		return order_MemberVoList;
+	}
+	
 	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
 	@Override
 	public int selectOrder_member_count(int member_id, String fr_date, String to_date) {	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
@@ -131,7 +139,6 @@ public class MyShopServiceImpl implements MyShopService{
 		map.put("order_memberVo", order_memberVo);
 		return map;
 	}
-	
 	
 	///////////----------↓--------↓------ cart(장바구니) 관련 ↓ -------------↓--------↓---------//////////
 	
@@ -338,6 +345,9 @@ public class MyShopServiceImpl implements MyShopService{
 		
 		return myAiWorkListPageMap;
 	}
+
+	
+	
 
 	
 

@@ -192,7 +192,7 @@ public class MyShopController {
 			// ------↓ 회원 주문번호(order_member_id)와 & 회원 주문번호가 동일한 order_Detail_inquireVo들의
 			// '개수'가 담긴 map을 만듦 ---↓--//
 			// ------ 예) map의 key:2 value:3 -> 뜻 : order_member_id가 2인
-			// order_Detail_inquireVo의 개수가 5개. ------//
+			// order_Detail_inquireVo의 개수가 3개. => 즉, '주문번호가 2번인 주문은 상품 3개를 한꺼번에 산 주문이다' ------//
 			Map<Integer, Integer> orderMemberIdCountMap = new HashMap<>();
 			for (Order_Detail_inquireVo order_Detail_inquireVo : order_detail_list) {
 				int order_member_id = order_Detail_inquireVo.getOrder_member_id();
@@ -204,10 +204,11 @@ public class MyShopController {
 			}
 			model.addAttribute("orderMemberIdCountMap", orderMemberIdCountMap);
 
-			// '진행 중인 주문' 에서 주문상태들(order_status) 각각 몇개씩인지 map에 저장(order_status : 0 , 개수 : 4개 | order_status : 1 , 개수 : 3개....|..)
-			Map<String, Integer> orderStatusCountMap = new HashMap<>(); 
-			for (Order_Detail_inquireVo order_detail_inquireVo : order_detail_list) {
-				int order_status = order_detail_inquireVo.getOrder_status();
+			// 주문 order_member 객체들이 담긴 List 가져와서 각 객체의 order_status로 map 만들기. key는 order_status, value는 누적 값(ordert_status가 1,2,3..인 vo가 몇 개인지)
+			Map<String, Integer> orderStatusCountMap = new HashMap<>();
+			List<Order_MemberVo> order_MemberVoList = myShopService.selectOrderMemberAll(member_id);
+			for (Order_MemberVo order_MemberVo : order_MemberVoList) {
+				int order_status = order_MemberVo.getOrder_status();
 				if(orderStatusCountMap.containsKey(order_status + "")) {	// 이미 있으면 (int를 +""함으로써 String으로 변환시켜서 key에 저장
 					orderStatusCountMap.put(order_status + "", orderStatusCountMap.get(order_status+"") + 1);
 				} else {
@@ -216,6 +217,7 @@ public class MyShopController {
 			}
 			model.addAttribute("orderStatusCountMap", orderStatusCountMap);
 			
+			// 민수가 만든 찜목록
 			int wishListCount = myShopService.selectWishlistCount(member_id);  // 찜리스트에 member_id가 저장한 작품이 있는지 확인
 			List<WishListVo> wishListPageList = myShopService.selectMypageView(member_id);  // wishlist페이지에 보여주는 작품 가져오기
 			model.addAttribute("wishListCount",wishListCount);
@@ -360,7 +362,6 @@ public class MyShopController {
 		if (work_id_list_from_cart != null) { // 1. 장바구니 페이지에서 넘어왔을 때
 
 			workIdList = work_id_list_from_cart;
-			System.out.println("장바구니에서 주문할 때 workIdList : " + workIdList);
 			Map<String, List<? extends Object>> workArtistVoMap = shopservice.selectMemberWorkList(workIdList); 
 			// workArtistVoMap에 workVoList와 artistVoList가 담겨있음
 			workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList"); // 여러개 주문 할 수 있으니까 List로 보내서 front페이지에서 forEach사용해야.

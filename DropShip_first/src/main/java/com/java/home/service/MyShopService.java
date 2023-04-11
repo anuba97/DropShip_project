@@ -30,12 +30,17 @@ public interface MyShopService {
 	// 회원 마이페이지 주문조회 클릭시
 	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id, String fr_date, String to_date);	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ	// GetMapping("orderinquiry")에도 사용
 	
+	// 마이페이지 - '진행 중인 주문'의 주문상태 가져오려고.
+	List<Order_MemberVo> selectOrderMemberAll(int member_id);
+		
+	
 	
 	///////////----------↓--------↓------ 주문조회, 주문목록/배송조회 (GetMapping("orderinquiry")) -------------↓--------↓---------//////////
 	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
 	int selectOrder_member_count(int member_id, String fr_date, String to_date);	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 	
 	Map<String, Object> selectFind_Dronshipment(int id);
+	
 	///////////----------↓--------↓------ // 구매 상세내역 (GetMapping("orderinquiry_view")) -------------↓--------↓---------//////////
 	Order_MemberVo selectOrderMemberOne_result(int order_member_id);	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 	Map<String, List<Integer>> selectOrderDetail(int order_member_id_int);	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
@@ -76,6 +81,7 @@ public interface MyShopService {
 	///////////----------↓--------↓------ AI 마이페이지 관련 -------------↓--------↓---------//////////
 	// 마이페이지 - '내가 생성한 그림' 리스트
 	Map<String, Object> selectMyAiWorkVoList(int page, String member_nName);
+
 	
 
 	

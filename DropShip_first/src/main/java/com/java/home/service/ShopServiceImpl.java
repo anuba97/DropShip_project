@@ -2,7 +2,6 @@ package com.java.home.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -208,8 +207,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int insertOption(OptionVo optionVo) {
 		int successOrFail = shopMapper.insertOption(optionVo); 
-		System.out.println("insertOption 성공이냐 실패냐 : 	" + successOrFail);
-		return optionVo.getId();	// 여기를 option_id로 하면 무조건 1만 나옴(왜..). insertOption실행하면 optionVo에 id부분에 currval이 세팅되어있으니까 이렇게 가져오는 것
+		return optionVo.getId();	
 	}
 
 	@Override

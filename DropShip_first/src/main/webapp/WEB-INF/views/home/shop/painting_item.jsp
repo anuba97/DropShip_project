@@ -45,7 +45,7 @@
         var g5_shop_url = "https://bxgs.co.kr:443/shop/";
     </script>
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!--     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> 이거 겹침 있음 안됨 -->
+<!--         <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> 이거 겹침 있음 안됨 -->
     <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
     <script src="../home/js/common3816.js?ver=210618"></script>
     <script src="../home/js/wrest3816.js?ver=210618"></script>
@@ -58,8 +58,8 @@
     <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
-    <!-- <script src="../home/js/jquery.bxslider3816.js?ver=210618"></script> -->
-    <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
+<!--     <script src="../home/js/jquery.bxslider3816.js?ver=210618"></script> -->
+<!--     <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
     <script src="../home/js/viewimageresize3816.js?ver=210618"></script>
     
 </head>

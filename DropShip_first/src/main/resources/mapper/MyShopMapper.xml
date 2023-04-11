@@ -84,6 +84,14 @@
 		ORDER BY om.order_date DESC
 	 </select>
 	  
+	  <!-- 회원 주문 객체 가져오기(주문 결과 띄우기용) -->
+	  <select id="selectOrderMemberAll" resultType="com.java.vo.Order_MemberVo">	
+	    	SELECT * FROM Order_Member WHERE member_id = #{member_id}
+	  </select>
+	  
+	  
+	  
+	  
 	  
 	  <!-- 회원 마이페이지주문조회시 회원 주문 개수 가져오기  -->
 	  <select id="selectOrder_member_count" resultType="int">	<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
@@ -128,8 +136,8 @@
             </foreach>
            )
 	  </delete>
-	  
-	  <!--///////////////////////////////////////드론/////////////////////////////////////////////  -->
+
+	<!--///////////////////////////////////////드론/////////////////////////////////////////////  -->
 	  <select id="selectFind_Dronshipment" resultType="com.java.vo.Order_MemberVo">
 	 	 select * from order_member where id=#{id}
 	  </select>
