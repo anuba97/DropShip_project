@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.mapper.DropshipMemberMapper;
+import com.java.vo.Count_Order_Price_By_MonthVo;
 import com.java.vo.DropshipMemberVo;
+import com.java.vo.MemberCountDayVo;
 
 @Service
 public class DropshipMemberServiceImpl implements DropshipMemberService {
@@ -111,5 +113,21 @@ public class DropshipMemberServiceImpl implements DropshipMemberService {
 		
 		return map;
 	}//pageMethod
+
+
+	@Override
+	public List<MemberCountDayVo> selectMember_Reg_Date() {
+		List<MemberCountDayVo> list = dropshipMemberMapper.selectMember_Reg_Date();
+		return list;
+	}
+
+	@Override
+	public List<Count_Order_Price_By_MonthVo> selectOrderTotalByMonth() {
+		List<Count_Order_Price_By_MonthVo>list= dropshipMemberMapper.selectOrderTotalByMonth();
+		return list;
+	}
+	
+	
+	
 
 }

@@ -40,8 +40,13 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    DropShip 방문자수
+                                    DropShip 회원가입 현황
                                 </div>
+                                <select name="period" id="period">
+									<option value="daily" selected>일별 회원가입</option>
+									<option value="weekly">준비 중</option>
+									<option value="monthly">준비 중</option>
+								</select>
                                 <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
@@ -51,6 +56,11 @@
                                     <i class="fas fa-chart-bar me-1"></i>
                                     DropShip 주문건수
                                 </div>
+                                <select name="period2" id="period2">
+									<option value="daily"selected>일별 매출</option>
+									<option value="weekly">준비 중</option>
+									<option value="monthly">준비 중</option>
+								</select>
                                 <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
@@ -111,8 +121,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="admin/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="admin/assets/demo/chart-area-demo.js"></script>
-    <script src="admin/assets/demo/chart-bar-demo.js"></script>
+    <script src="admin/assets/demo/chart-area-bar-demo.js"></script>
+<!--     <script src="admin/assets/demo/chart-bar-demo.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="admin/js/datatables-simple-demo.js"></script>
 </body>

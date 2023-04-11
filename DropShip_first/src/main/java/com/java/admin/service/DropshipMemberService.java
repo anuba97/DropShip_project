@@ -1,8 +1,11 @@
 package com.java.admin.service;
 
+import java.util.List;
 import java.util.Map;
 
+import com.java.vo.Count_Order_Price_By_MonthVo;
 import com.java.vo.DropshipMemberVo;
+import com.java.vo.MemberCountDayVo;
 
 public interface DropshipMemberService {
 
@@ -11,5 +14,9 @@ public interface DropshipMemberService {
 	public DropshipMemberVo dropship_memberselectOne(int id);
 
 	public Map<String, Object> indexMemberList(int page);
+	
+	public List<MemberCountDayVo> selectMember_Reg_Date();
+
+	public List<Count_Order_Price_By_MonthVo> selectOrderTotalByMonth();
 
 }//DropshipMemberService
