@@ -36,6 +36,7 @@ public class Order_DetailVo {
 	private String delivery_road;	// Order_MemberVo에서 조인으로 주문 상태 정보를 가져와서 관리자 페이지에 뿌리기 위해 추가
 	private String delivery_address;// Order_MemberVo에서 조인으로 주문 상태 정보를 가져와서 관리자 페이지에 뿌리기 위해 추가
 	private String delivery_phone;	// 받는 사람 휴대폰번호 회원 정보와 다를 수 있으니까 존재
+	private int order_detail_id; //Order_Detail에 id값을 가져오기 위해 추가
 	private int delivery_id; // 배송 고유번호(송장)
 	
 	

@@ -130,7 +130,7 @@
                    	</c:if>
                    	<c:if test="${not empty order_list}">
                    		<c:forEach items="${order_list}" var="ol">
-	                    	<tr onClick="location.href='admin_orderView?id=' + ${ol.id}" style="cursor:pointer;">
+	                    	<tr onClick="location.href='admin_orderView?id='+${ol.order_detail_id}" style="cursor:pointer;">
 		                        <td>${ol.delivery_name}</td>
 		                        <td><fmt:formatDate value="${ol.order_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		                        <td>${ol.final_price}</td>

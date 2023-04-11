@@ -37,7 +37,7 @@
                         <div class="card-body">DropShip 고객 주문 현황 확인 페이지입니다. <span style="color:blue;">결제 완료된 주문</span>을 눌러 배송처리를 진행해 주세요.</div>
                     </div>
                 </div>
-                <span style="padding-left:24px;">총 ${map.listCount}건의 주문이 있습니다.</span>
+                <span style="padding-left:24px;">총 ${map.listCount}건의 주문이 있습니다.</span> || 최근 주문날짜 + 입금 상태에 따라 정렬됩니다.
                 <div class="admin_orderListDiv">
                     <table class="admin_orderListTable">
                         <colgroup>
@@ -56,9 +56,10 @@
                             <th>주문 날짜</th>
                             <th>주문 상태</th>
                         </tr>
+                        <!-- 반복문 forEach -->
                         <c:forEach items="${map.list}" var="aol">
 	                        <tr onClick="location.href='admin_orderView?id=${aol.id}&page=${map.page}'" style="cursor:pointer;">
-	                            <td>${aol.id}</td>
+                            	<td>${aol.order_member_id}</td>
 	                            <td>${aol.member_name}</td>
 	                            <td>${aol.work_name} || 작품ID: ${aol.work_id}</td>
 	                            <td><fmt:formatNumber value="${aol.final_price}" type="number"/> 원</td>
@@ -86,6 +87,15 @@
 	                            </c:if>
 	                        </tr>
                         </c:forEach>
+						<!-- 반복문 forEach -->
+		
+
+					
+					
+					
+					
+					
+
                     </table>
                 </div>
             </main>

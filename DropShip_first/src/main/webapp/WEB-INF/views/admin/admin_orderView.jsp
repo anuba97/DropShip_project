@@ -20,7 +20,7 @@
 <script>
 	$(function() {
 	    $('#order_status').on('change', function() {
-	        var orderId = $('#order_id').text();
+	        var orderId = $('#order_member_id').text();
 	        var selectedValue = $(this).val();
 	        $.ajax({
 	            type: 'POST',
@@ -64,6 +64,7 @@
                         <div class="card-body">DropShip 고객 주문 현황 상세 확인 페이지입니다. 주문 상태에 따라 진행해 주세요.</div>
                     </div>
                 </div>
+                <span style="color:red; font-weight:bold; margin-left:24px;">주문 고유번호가 동일한 상품은 주문 상태 적용이 함께 처리됩니다.</span>
                 <form action="order_condition" name="order_condition" method="post">
                     <table class="admin_customerTable" >
                         <colgroup>
@@ -71,14 +72,14 @@
                             <col width="70%">
                         </colgroup>
                         <tr>
-                            <th>주문 고유번호</th>
-                            <td id="order_id">
+                            <th>회원 주문상세 고유번호</th>
+                            <td>
                                 ${order_DetailVo.id}
                             </td>
                         </tr>
                         <tr>
-                            <th>주문자 아이디</th>
-                            <td>
+                            <th>주문 고유번호</th>
+                            <td id="order_member_id">
                                 ${order_DetailVo.order_member_id}
                             </td>
                         </tr>
@@ -133,11 +134,11 @@
                         <tr>
                             <th>배송 고유번호(송장)</th>
                             <td>
-                                ${order_DetailVo.id}
+                                ${order_DetailVo.delivery_id}
                             </td>
                         </tr>
                         <tr>
-                            <th>처리 상태</th>
+                            <th>주문 상태</th>
                             <td>
                                 <select name="order_status" id="order_status">
                                     <option value="0" <c:if test="${order_DetailVo.order_status == '0'}">selected</c:if>>0. 입금 확인 중</option>

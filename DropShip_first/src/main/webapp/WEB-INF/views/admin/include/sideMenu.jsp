@@ -30,12 +30,11 @@
 				    </c:if>
 				</c:forEach>
 				<c:if test="${statusSet}">
-				    <a class="nav-link" href="admin_orderList">주문 현황 🛒</a>
+				    <a class="nav-link" href="admin_orderList">작품 주문 현황 🛒</a>
 				</c:if>
 				<c:if test="${allStatusGreater}">
-				    <a class="nav-link" href="admin_orderList">주문 현황</a>
+				    <a class="nav-link" href="admin_orderList">작품 주문 현황</a>
 				</c:if>
-				                
 <%--                 <c:forEach items="${order.list}" var="order"> --%>
 <%--                 	<c:if test="${order.order_status eq '0'}"> --%>
 <!--                     	<a class="nav-link" href="admin_orderList">주문 현황 🛒</a> -->
@@ -44,7 +43,7 @@
 <!--                     	<a class="nav-link" href="admin_orderList">주문 현황</a> -->
 <%--                     </c:if> --%>
 <%--                 </c:forEach>     --%>
-                    <a class="nav-link" href="admin_printingList">인화주문 관리</a>
+<!--                     <a class="nav-link" href="admin_printingList">인화주문 관리</a> -->
                 </nav>
             </div>
 				<a class="nav-link collapsed" data-bs-target="#collapseLayouts" aria-expanded="true" aria-controls="collapseLayouts">

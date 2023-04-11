@@ -118,7 +118,7 @@
 								</ul>
 							</div>
 							<div id="sthDrone"></div><br>
-							<div class="mypage-order" >
+							<div class="mypage-order">
 								<div class="mypage-tit">
 									<h3>드론 배송 현황</h3>
 									<!--<p>최근 30일 내에 진행중인 주문정보입니다.</p>-->
@@ -162,7 +162,7 @@
 											<!--------------------------------------------------------------------->
 										</tbody>
 									</table>
-									<a href="../myshop/mypage?member_id=${sessionMember_id}" class="btnset btn-type02">마이 페이지</a>
+									<a href="../myshop/mypage?member_id=${sessionMember_id}" class="btnset btn-type02">My Page</a>
 								</div>
 							</div>
 						</div>

@@ -2129,7 +2129,7 @@
 }
 .combine-list #item-list-wrap {
     padding-top:0;
-    padding-left:120px;
+/*     padding-left:120px; */
     max-width:1230px;
     width:calc(100% - 380px);
 }
