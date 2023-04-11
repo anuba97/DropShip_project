@@ -123,6 +123,16 @@ public class MyShopServiceImpl implements MyShopService{
 		return map;
 	}
 	
+	@Override
+	public Map<String, Object> selectFind_Dronshipment(int id) {
+		Map<String, Object> map = new HashMap<>();
+		Order_MemberVo order_memberVo = myshopMapper.selectFind_Dronshipment(id);
+		
+		map.put("order_memberVo", order_memberVo);
+		return map;
+	}
+	
+	
 	///////////----------↓--------↓------ cart(장바구니) 관련 ↓ -------------↓--------↓---------//////////
 	
 	@Override

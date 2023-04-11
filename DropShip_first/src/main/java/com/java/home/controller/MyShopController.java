@@ -228,7 +228,12 @@ public class MyShopController {
 	}
 
 	@GetMapping("mypage_drone") // 마이페이지 (드론페이지)
-	public String mypage_dron(Model model) {
+	public String mypage_dron(int id,Model model) {
+		Map<String, Object> map =myShopService.selectFind_Dronshipment(id);
+		
+		model.addAttribute("map",map);
+		model.addAttribute("id",id);
+		
 		return "home/myshop/mypage_drone";
 	}
 

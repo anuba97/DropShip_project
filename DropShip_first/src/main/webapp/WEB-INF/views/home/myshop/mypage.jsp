@@ -199,7 +199,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
                                                         <c:if test="${order_detail_inquireVo.order_status == 3}">
                                                             <div><br>
                                                                 <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
-                                                                    <a href="../myshop/mypage_drone" class="btnset btn-sight">
+                                                                    <a href="../myshop/mypage_drone?id=${order_detail_inquireVo.order_member_id}" class="btnset btn-sight">
                                                                         <svg height="45" width="140">
                                                                             <rect height="45" width="140"></rect>
                                                                         </svg>

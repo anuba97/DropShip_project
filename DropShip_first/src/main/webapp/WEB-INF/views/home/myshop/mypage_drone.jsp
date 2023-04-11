@@ -142,17 +142,17 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>2023.03.23/565656</td>
+												<td>${map.order_memberVo.order_date}&nbsp;&nbsp;/&nbsp;&nbsp;${map.order_memberVo.id}</td>
 												<td>신정 비행장</td>
-												<td>경기도 고양시 일산서구 대화2로 121 606동 502호</td>
-												<td>고혁우</td>
+												<td>${map.order_memberVo.delivery_road}${map.order_memberVo.delivery_address}</td>
+												<td>${map.order_memberVo.delivery_name}</td>
 											</tr>
 											<!--------------------드론 페이지 들어가는 부분--------------------------->
 											<tr>
 												<td colspan="4">
 													<div class="video-container">
 										               	<div>
-									                       <video id="video-player" autoplay muted controls>
+									                       <video id="video-player" autoplay muted>
 										                    	<source src="../home/video/drone.mp4" type="video/mp4">
 										                    </video>
 									                    </div>

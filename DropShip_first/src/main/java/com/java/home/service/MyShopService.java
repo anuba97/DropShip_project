@@ -35,7 +35,7 @@ public interface MyShopService {
 	// 회원 마이페이지 주문조회 클릭시 총 주문 수 보여줄려고
 	int selectOrder_member_count(int member_id, String fr_date, String to_date);	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 	
-	
+	Map<String, Object> selectFind_Dronshipment(int id);
 	///////////----------↓--------↓------ // 구매 상세내역 (GetMapping("orderinquiry_view")) -------------↓--------↓---------//////////
 	Order_MemberVo selectOrderMemberOne_result(int order_member_id);	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 	Map<String, List<Integer>> selectOrderDetail(int order_member_id_int);	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ

@@ -30,6 +30,9 @@ public interface MyShopMapper {
 			int total_price_int);
 	
 	Order_MemberVo selectOrderMemberOne_result(int order_member_id);  //ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+	
+	//드론 불러오기 
+	Order_MemberVo selectFind_Dronshipment(int id);
 
 	List<Order_Detail_inquireVo> selectOrderDetailByMemberId(int member_id, String fr_date, String to_date); //ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 	
