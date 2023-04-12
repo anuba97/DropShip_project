@@ -43,8 +43,27 @@
     <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+    <script src="../js/checkbox.js"></script>
     <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> --> 
     <%@ include file ="../ai/chatbot.jsp" %>
+    <script>
+    // get all checkboxes on the page
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // add an event listener to each checkbox to update its checked state in storage
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        sessionStorage.setItem(checkbox.id, checkbox.checked);
+      });
+    });
+
+    // initialize the checked state of each checkbox based on its stored value (if any)
+    checkboxes.forEach(checkbox => {
+      const checked = sessionStorage.getItem(checkbox.id) === 'true';
+      checkbox.checked = checked;
+    });
+</script>
+
 </head>
 <style>
     .page-numul {
@@ -172,7 +191,7 @@
                                 
                                  <div class="grid-sort-list">
                                     <a href="javascript:;" class="grid-sort-current btn-sort-open">
-                                        6개씩 보기ㅇㅇ
+                                        6개씩 보기
                                     </a>
                                     <ul>
                                         <li><a href="painting_list">6개씩 보기</a></li>
@@ -186,46 +205,45 @@
 
                                 <!-- <script src="../js/jquery.fancylist.js"></script> -->
 								<form action="compare2" name="docompareFrm" id="docompare" method="post">
-								<!-- <input type="hidden" name="work_id" value="${sessionScope.work_id}" /> --!>
-	                                <!-- 그림작품 부분 시작 -->
-	                                <ul class="sct sct_20">
-	                                    <c:forEach items="${map.list}" var="workVo" >
-	                                        <!-- list가아니라 map.list라고해야 페이지가 나눠지면서 하단 넘버링이 생긴다 -->
-	                                        <li class="sct_li">
-	                                            <div class="li_wr">
-	                                                <div class="sct_img_wrap">
-	                                                    <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
-	                                                        <span class="hide">작품이름</span>
-	                                                    </div>
-	                                                    <div class="sct_opt_wrap">
-	                                                        <div class="sct_btn list-10-btn">
-	                                                            <button type="button"  onclick="AddToCartBtn(${workVo.id},${workVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
-	                                                                <svg height="45" width="160">
-	                                                                    <rect height="45" width="160"></rect>
-	                                                                </svg>
-	                                                                <span>ADD TO CART</span>
-	                                                            </button>
-	                                                        </div>
-	                                                        <div class="cart-layer"></div>
-	                                                        <div class="sct_op_btn">
-	                                                            <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
-	                                                            <c:if test="${sessionMember_login_id == null }">
-	                                                            	<button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
-	                                                            </c:if>
-	                                                             <c:if test="${sessionMember_login_id != null }">
-	                                                             	<button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
-	                                                             </c:if>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                                <div class="sct_txt"><a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="sct_a">${workVo.work_name}</a></div>
-	                                                <div class="sct_desc"><span>${workVo.artist_name}</span>
-	                                                    <p>20.0cm x 35.7cm</p>
-	                                                </div>
-	                                                <div class="sct_cost">
-	                                                	<span class="price_cost">
-	                                                        <strong>
-	                                                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
+												  <input type="hidden" id="chkValue" name="chkValue">
+												
+												  <ul class="sct sct_20">
+												    <c:forEach items="${map.list}" var="workVo" >
+												      <li class="sct_li">
+												        <div class="li_wr">
+												          <div class="sct_img_wrap">
+												            <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
+												              <span class="hide">작품이름</span>
+												            </div>
+												            <div class="sct_opt_wrap">
+												              <div class="sct_btn list-10-btn">
+												                <button type="button"  onclick="AddToCartBtn(${workVo.id},${workVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
+												                  <svg height="45" width="160">
+												                    <rect height="45" width="160"></rect>
+												                  </svg>
+												                  <span>ADD TO CART</span>
+												                </button>
+												              </div>
+												              <div class="cart-layer"></div>
+												              <div class="sct_op_btn">
+												                <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
+												                <c:if test="${sessionMember_login_id == null }">
+												                  <button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+												                </c:if>
+												                <c:if test="${sessionMember_login_id != null }">
+												                  <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+												                </c:if>
+												              </div>
+												            </div>
+												          </div>
+												          <div class="sct_txt"><a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="sct_a">${workVo.work_name}</a></div>
+												          <div class="sct_desc"><span>${workVo.artist_name}</span>
+												            <p>20.0cm x 35.7cm</p>
+												          </div>
+												          <div class="sct_cost">
+												            <span class="price_cost">
+												              <strong>
+												                <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
 	                                                            <!-- 비교 체크박스 -->
 	                                                            &nbsp;&nbsp;
 	                                                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.3);">
