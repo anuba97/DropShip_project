@@ -31,13 +31,19 @@
 		SELECT COUNT(*) count FROM work
 	</select>
 	
-	<!-- 작품 베스트 가져오기 -->
+	<!-- 작품 베스트(판매량 상위 6개) 가져오기 -->
 	<select id="selectWorkBest" resultType="com.java.vo.WorkVo">
-		SELECT w.id AS id, w.work_name, w.work_img_url ,a.artist_korean_name AS artist_name, w.artist_id, 
-				w.work_price 
+		SELECT w.id, w.work_name, w.work_img_url, w.artist_id, 
+			w.work_price, a.artist_korean_name as artist_name 
+			, SUM(wo.option_quantity) AS total_sale_quantity
 		FROM Work w
+		JOIN Order_Detail od ON W.id = od.work_id
+		JOIN Work_Option wo ON OD.option_id = wo.id
 		JOIN Artist a ON w.artist_id = a.id
-		WHERE work_isBest = 1
+		GROUP BY w.id, w.work_name, w.work_img_url, w.artist_id, 
+				 w.work_price, a.artist_korean_name
+		ORDER BY total_sale_quantity DESC
+		FETCH NEXT 6 ROWS ONLY
 	</select>
 	
 	<!-- 작품 new 가져오기 -->

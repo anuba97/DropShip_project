@@ -121,14 +121,12 @@ public class MyShopController {
 					cart_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
 				}
 
-				System.out.println("workVoList : " + workVoList);
-				System.out.println("optionVoList : " + optionVoList);
-				System.out.println("artistVoList : " + artistVoList);
-				
 				model.addAttribute("cart_total_price", cart_total_price);
 				model.addAttribute("workVoList", workVoList);
 				model.addAttribute("artistVoList", artistVoList);
 				model.addAttribute("optionVoList", optionVoList);
+				
+				session.setAttribute("sessionCartCount", optionVoList.size());	// 헤더 장바구니 버튼 옆에 몇개 담겨있는지 표시할 용도
 				////////// ------------- cart.jsp에 뿌려주기 위한 과정 ----------------------///////////
 			} else { // 장바구니에 작품이 존재하지 않을 때
 				model.addAttribute("isEmptyCart", "Empty");
@@ -148,16 +146,18 @@ public class MyShopController {
 			optionIdList.add(Integer.parseInt(string_option_id.trim()));
 		}
 
-		System.out.println("컨트롤러에서 ajax로 받은 optionIdList : " + optionIdList);
+		
 		
 		// 장바구니에서 주문한거면 주문끝났으니 장바구니 테이블에서 work_id, option_id 삭제
 		int member_id = (int) session.getAttribute("sessionMember_id");
 		myShopService.deleteCart_member(member_id, optionIdList);
-		System.out.println("장바구니 삭제 완료~~!!");
+	
+		
+		// 장바구니 개수 알아내서 헤더에 뿌리기 (@GetMapping("cart")에서 쓴거 그대로 재사용.)
+		Map<String, List<Integer>> cart_MemberMap = myShopService.selectCart_MemberList(member_id);
+		session.setAttribute("sessionCartCount", cart_MemberMap.get("optionIdList").size());
 		
 		String result = "삭제 완료됐습니다";
-		System.out.println(result);
-		
 		return result;
 	}
 
@@ -189,10 +189,8 @@ public class MyShopController {
 			List<Order_Detail_inquireVo> order_detail_list = myShopService.selectOrderDetailByMemberId(member_id, fr_date, to_date);
 			model.addAttribute("order_detail_list", order_detail_list);	// 회원상세주문 객체들이 담긴 리스트 넘김
 
-			// ------↓ 회원 주문번호(order_member_id)와 & 회원 주문번호가 동일한 order_Detail_inquireVo들의
-			// '개수'가 담긴 map을 만듦 ---↓--//
-			// ------ 예) map의 key:2 value:3 -> 뜻 : order_member_id가 2인
-			// order_Detail_inquireVo의 개수가 3개. => 즉, '주문번호가 2번인 주문은 상품 3개를 한꺼번에 산 주문이다' ------//
+			// ------↓ 회원 주문번호(order_member_id)와 & 회원 주문번호가 동일한 order_Detail_inquireVo들의 '개수'가 담긴 map을 만듦 ---↓--//
+						// ------ 예) map의 key:2 value:3 -> 뜻 : order_member_id가 2인 order_Detail_inquireVo의 개수가 3개. => 즉, '주문번호가 2번인 주문은 상품 3개를 한꺼번에 산 주문이다' ------//
 			Map<Integer, Integer> orderMemberIdCountMap = new HashMap<>();
 			for (Order_Detail_inquireVo order_Detail_inquireVo : order_detail_list) {
 				int order_member_id = order_Detail_inquireVo.getOrder_member_id();
@@ -230,9 +228,9 @@ public class MyShopController {
 	}
 
 	@GetMapping("mypage_drone") // 마이페이지 (드론페이지)
-	public String mypage_dron(int id,Model model) {
-		Map<String, Object> map =myShopService.selectFind_Dronshipment(id);
-		
+	public String mypage_drone(int id,Model model) {
+		getOrderInquiryData(id, model);
+		Map<String, Object> map = myShopService.selectFind_Dronshipment(id);
 		model.addAttribute("map",map);
 		model.addAttribute("id",id);
 		
@@ -278,51 +276,7 @@ public class MyShopController {
 
 	@GetMapping("orderinquiry_view") // 구매 상세내역
 	public String orderinquiry_view(int order_member_id, Model model) {
-		int member_id = 0;
-
-		// 회원 객체 가져옴 (아직 비회원 구매기능은 구현 안해놔서 로그인 했을때만 제대로 작동)
-		if (session.getAttribute("sessionMember_id") != null) {
-			member_id = (int) session.getAttribute("sessionMember_id");
-			memberVo = memberservice.selectOne(member_id);
-		}
-
-		// 전달받았던 order_member_id_int(회원 주문 고유번호)를 사용해서 회원 주문 객체(order_memberVo)를 통째로 가져옴.
-		Order_MemberVo order_memberVo = myShopService.selectOrderMemberOne_result(order_member_id); // 회원 주문 객체. 회원 주문은
-
-		// work_id들이 담긴 리스트와 option_id들이 담긴 리스트를 저장한 map을 리턴받는 메소드. -> workVo와
-		// optionVo들이 필요하기 때문. 중간과정.
-		Map<String, List<Integer>> orderDetail = myShopService.selectOrderDetail(order_member_id); // orderDetail에
-																									// 담겨있음
-		// 방금 받아온 optionIdList를 사용해서 OptionVo들이 담긴 리스트를 받아오기
-		List<OptionVo> optionVoList = shopservice.selectOptionList(orderDetail.get("optionIdList")); // 주문 상세에 대한
-
-		// 이번엔 workIdList를 사용해서 WorkVo들이 담긴 리스트(workVoList) 받아오기 + 작가이름을 가져오기 위해
-		// artistVo들이 담긴 리스트(artistVoList)도 맵으로 한번에 가져오기
-		Map<String, List<? extends Object>> workArtistVoMap = shopservice
-				.selectMemberWorkList(orderDetail.get("workIdList"));
-
-		List<WorkVo> workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList");
-		List<ArtistVo> artistVoList = (List<ArtistVo>) workArtistVoMap.get("artistVoList");
-
-		model.addAttribute("memberVo", memberVo);
-		model.addAttribute("order_memberVo", order_memberVo);
-		model.addAttribute("workVoList", workVoList);
-		model.addAttribute("artistVoList", artistVoList);
-		model.addAttribute("optionVoList", optionVoList);
-
-		model.addAttribute("optionVoListSize", optionVoList.size());
-
-//		// 원래 내 무지성 join 방식.
-//		Order_Detail_inquire_viewVo order_Detail_inquire_viewVo = shopservice.selectOptionOneInquiryView(order_member_id);
-//		model.addAttribute("order_Detail_inquire_viewVo", order_Detail_inquire_viewVo);
-
-		int total_price = 0;
-		for (OptionVo optionVo : optionVoList) {
-			total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
-		}
-
-		model.addAttribute("total_price", total_price);
-
+		getOrderInquiryData(order_member_id, model);
 		return "home/myshop/orderinquiry_view"; // join을 최대한 적게 하는 방식 -> 대신 테이블별로 다 나눠져서 데이터를 넘김
 //		return "home/myshop/orderinquiry_view_joinUse";		// join을 5번 한 방식으로 한 경우 -> order_Detail_inquire_viewVo객체에 모든 5개 테이블의 정보가 한꺼번에 담겨서 model에도 한번만 담아서 프론트에 넘김
 	}
@@ -435,7 +389,6 @@ public class MyShopController {
 			// 회원 주문상세 테이블(Order_Detail)에 주문 저장하기 "전에"
 			// optionVo의 id가 필요하기 때문에 optionVo를 Work_Option테이블에 저장
 			option_id = shopservice.insertOption(optionVo);
-			System.out.println("painting_item에서 넘어오고 저장한 optionVo의 option_id : " + option_id);
 			session.removeAttribute("optionVo"); // optionVo를 DB에 저장했으니까 session은 지우기
 		}
 
@@ -503,7 +456,14 @@ public class MyShopController {
 		// 장바구니에서 주문한거면 주문끝났으니 장바구니 테이블에서 주문했던 작품들의 work_id, option_id 삭제
 		int member_id = memberVo.getId();
 		myShopService.deleteCart_member(member_id, orderDetail.get("optionIdList"));
-
+		// 장바구니 개수 알아내서 헤더에 뿌리기 (@GetMapping("cart")에서 쓴거 그대로 재사용.)
+		Map<String, List<Integer>> cart_MemberMap = myShopService.selectCart_MemberList(member_id);
+		session.setAttribute("sessionCartCount", cart_MemberMap.get("optionIdList").size());
+		
+		
+		
+		
+		
 		return "home/myshop/order_result";
 	}
 
@@ -635,7 +595,11 @@ public class MyShopController {
 			optionVo.setOption_frame_added_price(28000);
 			break;
 		}
-
+		
+		
+		
+		////////---------------------- 재사용 위한 메소드화 ----------------------////////
+		
 		if (optionVo.getOption_frame() == 5 || optionVo.getOption_frame() == 6) { // 프레임이 앤틱D실버(5), 원목베이지(6)일 때만 매트(여백)
 																					// 선택 가능
 			switch (optionVo.getOption_matt()) {
@@ -671,4 +635,58 @@ public class MyShopController {
 		return optionVo;
 	}// settingOptions()
 
+	// 1. 주문상세 orderinquiry.jsp랑 2. 드론조회 mypage_drone.jsp 에서 사용
+	public void getOrderInquiryData(int order_member_id, Model model) {
+		int member_id = 0;
+
+		// 회원 객체 가져옴 (아직 비회원 구매기능은 구현 안해놔서 로그인 했을때만 제대로 작동)
+		if (session.getAttribute("sessionMember_id") != null) {
+			member_id = (int) session.getAttribute("sessionMember_id");
+			memberVo = memberservice.selectOne(member_id);
+		}
+
+		// 전달받았던 order_member_id_int(회원 주문 고유번호)를 사용해서 회원 주문 객체(order_memberVo)를 통째로 가져옴.
+		Order_MemberVo order_memberVo = myShopService.selectOrderMemberOne_result(order_member_id); // 회원 주문 객체. 회원 주문은
+
+		// work_id들이 담긴 리스트와 option_id들이 담긴 리스트를 저장한 map을 리턴받는 메소드. -> workVo와
+		// optionVo들이 필요하기 때문. 중간과정.
+		Map<String, List<Integer>> orderDetail = myShopService.selectOrderDetail(order_member_id); // orderDetail에
+																									// 담겨있음
+		// 방금 받아온 optionIdList를 사용해서 OptionVo들이 담긴 리스트를 받아오기
+		List<OptionVo> optionVoList = shopservice.selectOptionList(orderDetail.get("optionIdList")); // 주문 상세에 대한
+
+		// 이번엔 workIdList를 사용해서 WorkVo들이 담긴 리스트(workVoList) 받아오기 + 작가이름을 가져오기 위해
+		// artistVo들이 담긴 리스트(artistVoList)도 맵으로 한번에 가져오기
+		Map<String, List<? extends Object>> workArtistVoMap = shopservice
+				.selectMemberWorkList(orderDetail.get("workIdList"));
+
+		List<WorkVo> workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList");
+		List<ArtistVo> artistVoList = (List<ArtistVo>) workArtistVoMap.get("artistVoList");
+
+		model.addAttribute("memberVo", memberVo);
+		model.addAttribute("order_memberVo", order_memberVo);
+		model.addAttribute("workVoList", workVoList);
+		model.addAttribute("artistVoList", artistVoList);
+		model.addAttribute("optionVoList", optionVoList);
+		model.addAttribute("optionVoListSize", optionVoList.size());
+
+		System.out.println("워크브이오리스트 : "  + workVoList);
+		System.out.println("옵션브이오리스트 : "  + optionVoList);
+		System.out.println("아티스트브이오리스트 : "  + artistVoList);
+		
+		
+//			// 원래 내 무지성 join 방식.
+//			Order_Detail_inquire_viewVo order_Detail_inquire_viewVo = shopservice.selectOptionOneInquiryView(order_member_id);
+//			model.addAttribute("order_Detail_inquire_viewVo", order_Detail_inquire_viewVo);
+
+		int total_price = 0;
+		for (OptionVo optionVo : optionVoList) {
+			total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
+		}
+
+		model.addAttribute("total_price", total_price);
+	} // getOrderInquiryData()
+
+	
+	
 }

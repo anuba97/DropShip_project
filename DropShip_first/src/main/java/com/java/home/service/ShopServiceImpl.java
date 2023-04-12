@@ -83,9 +83,17 @@ public class ShopServiceImpl implements ShopService {
 	// 작품 베스트 가져오기
 	@Override
 	public List<WorkVo> selectWorkBest() {
-		List<WorkVo> list = new ArrayList<WorkVo>();
-		list = shopMapper.selectWorkBest();
-		return list;
+		List<WorkVo> bestWorkList = new ArrayList<WorkVo>();
+		bestWorkList = shopMapper.selectWorkBest();
+		
+		int startRow = 6;
+		if(bestWorkList.size() < 6) {	// 판매량 상위 6개인 작품이 6개보다 적으면(주문이 없는 경우)
+			for(WorkVo workVo : shopMapper.selectWorkList(startRow, startRow+2)) {	// 상위 n개 작품 제외한 전체 작품중 6-n개를 랜덤으로 가져와서 추가?
+				bestWorkList.add(workVo);
+			}
+		}
+		
+		return bestWorkList;
 	}
 
 	// 작품 new 가져오기

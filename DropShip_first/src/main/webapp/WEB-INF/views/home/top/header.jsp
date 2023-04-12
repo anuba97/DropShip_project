@@ -103,7 +103,7 @@
 	            <li><a href="../myshop/orderinquiry">주문조회</a></li>
             </c:if>
             <c:if test="${sessionMember_login_id != null}">
-            <li><a href="../myshop/cart">장바구니<span class="basket-num">${workVoList.size()}</span></a></li>
+            <li><a href="../myshop/cart">장바구니<span class="basket-num">${sessionCartCount}</span></a></li>
             </c:if>
             <li><a href="../bbs/board">자유게시판</a></li>
         </ul>

@@ -144,7 +144,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 										<div class="sct_btn list-10-btn">
 											<button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654135804">
 												<svg height="45" width="160"><rect height="45" width="160"></rect></svg>
-												<span>ADD TO CART</span>
+												<span>상세페이지 이동</span>
 											</button>
 										</div>
 										<div class="cart-layer"></div>

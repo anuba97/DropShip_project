@@ -301,22 +301,16 @@ public class MyShopServiceImpl implements MyShopService{
 		for(WorkVo workVo : myAiWorkVoList) {
 			workIdList.add(workVo.getId());
 		}
-		System.out.println("workIdList 워크아이디들 : " + workIdList);
-		
 		// 1. 작품 팔린 개수 알기위해 주문상세 테이블에서 work_id마다 option_id들 리스트로 가져오기(work_id 하나에 option_id들이 여러개, 즉 work_id 하나에 optionIdList 1개 할당(map을 통해서)) 
 		Map<String, List<Integer>> orderDetail_workId_OptionIdMap = new HashMap<>();
 		for(Integer work_id : workIdList) { 	// workIdList안의 1개의 work_id마다 각각의 optionIdList가 따로 나오게 됨. 왜냐면 상세주문 테이블에서 예를들어 work_id가 43번인 애들의 option_id가 여러개일 수 있기 때문.	
 			orderDetail_workId_OptionIdMap.put(work_id+"", myshopMapper.selectOrderDetail_OptionIds(work_id)); 
-		}
-		System.out.println("orderDetail_workId_OptionIdMap : " + orderDetail_workId_OptionIdMap);
-		
+		}	
 		// 2. work_id마다 있는 optionIdList가 담긴 map을 가지고 option테이블에서 option_quantity값들을 list로 가져와서 optionWorkId_QuantityMap에 저장 
 		Map<String, List<Integer>> optionWorkId_QuantityMap = new HashMap<>(); // 변수명 해석 : option -> 테이블명, WorkId_Quantity -> work_id에 따른 option들의 개수
 		for(Integer work_id : workIdList) { 	// orderDetail_workId_OptionIdMap.get(work_id+"") -> 얘가 1개의 work_id에 따른 option_id들이 담겨있는 List<Integer>임 
 			optionWorkId_QuantityMap.put(work_id+"", myshopMapper.selectOptionQuantity(orderDetail_workId_OptionIdMap.get(work_id+""))); 
-		}
-		System.out.println("optionWorkId_QuantityMap : " + optionWorkId_QuantityMap);
-		
+		}	
 		// 3. work_id마다 있는 option_quantity들의 리스트가 담긴 map(optionWorkId_QuantityMap)을 가지고 option_quantity들의 합을 구해서 sumOfQuantityMap 맵에 저장
 		Map<String, Integer> sumOfQuantityMap = new HashMap<>(); // work_id에 따른 quantity들의 합, 즉 총 판매개수
 		for(Integer work_id : workIdList) { 	// optionWorkId_QuantityMap.get(work_id+"") -> 얘가 1개의 work_id에 따른 option_quantity들이 담겨있는 List<Integer>임	 
@@ -330,8 +324,6 @@ public class MyShopServiceImpl implements MyShopService{
 				sumOfQuantityMap.put(work_id+"", 0); 	// 해당 work_id의 value로 0을 지정
 			}
 		}
-		System.out.println("sumOfQuantityMap : " + sumOfQuantityMap);
-		
 		// work_id마다 있는 총 합계들을 key는 없애고 숫자만 넣는 List에 담음. map안에 map태우기가 좀 그래서..
 		List<Integer> quantityList = new ArrayList<>();
 		for(Integer work_id : workIdList) {

@@ -42,27 +42,10 @@ public class ShopController {
 		return "home/shop/painting_list";
 	}
 	
-//	@GetMapping("painting_item")				///////////// session을 이용해서 그림작품 뜨게하기 ////////////
-//	public String painting_item(@RequestParam int work_id, HttpSession session, Model model) {
-//	    // get the workVo object from the service
-//	    WorkVo workVo = shopservice.selectWork(work_id);
-//
-//	    // set the work_id in the session
-//	    session.setAttribute("work_id", work_id);
-//
-//	    // add the workVo object to the model
-//	    model.addAttribute("workVo", workVo);
-//
-//	    return "home/shop/painting_item";
-//	}
-	
-	
 	@GetMapping("best_list")	// 베스트	작품 페이지로 이동
 	public String best_list(WorkVo workVo, Model model) {
 		List<WorkVo> list = shopservice.selectWorkBest();
-		//System.out.println("controller에서 보내는 list"+list);
 		model.addAttribute("list",list);
-		//System.out.println("DB에서 받아온 list 값"+list);
 		return "home/shop/best_list";
 	}
 	
@@ -102,7 +85,6 @@ public class ShopController {
 	public String artist_list(@RequestParam(defaultValue = "1") int page, Model model) {
 		Map<String, Object> map = shopservice.selectArtistList(page);
 		model.addAttribute("map",map);
-		//System.out.println("컨트롤러 DB에서 가져온 map : " + map);
 		return "home/shop/artist_list";
 	}
 	

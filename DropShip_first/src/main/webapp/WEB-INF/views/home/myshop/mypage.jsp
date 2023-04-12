@@ -249,7 +249,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
                                                                     <svg height="45" width="160">
                                                                         <rect height="45" width="160"></rect>
                                                                     </svg>
-                                                                    <span>ADD TO CART</span>
+                                                                    <span>상세페이지 이동</span>
                                                                 </button>
                                                             </div>
 
