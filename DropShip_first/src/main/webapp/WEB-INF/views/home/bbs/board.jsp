@@ -123,11 +123,12 @@
 								<table>
 									<caption>게시판 리스트</caption>
 									<colgroup>
-										<col class="col2" width="5%">
+										<col class="col2" width="10%">
 										<col class="col3" width="10%">
-										<col class="col4 td-mb-hide" width="30%">
-										<col class="col5 td-mb-hide" width="30%">
-										<col class="col6" width="5%">
+										<col class="col4 td-mb-hide" width="50%">
+										<col class="col5 td-mb-hide" width="10%">
+										<col class="col6" width="10%">
+										<col class="col6" width="10%">
 									</colgroup>
 									<tbody>
 										<tr>

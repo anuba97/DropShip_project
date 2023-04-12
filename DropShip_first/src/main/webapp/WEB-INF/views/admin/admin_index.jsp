@@ -40,7 +40,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    DropShip 회원가입 현황
+                                    <a href="dropship_memberList">DropShip 회원 - 고객 관리 바로가기</a>
                                 </div>
                                 <select name="period" id="period">
 									<option value="daily" selected>일별 회원가입</option>
@@ -54,7 +54,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
-                                    DropShip 주문건수
+                                    <a href="admin_orderList">DropShip 매출 - 주문 현황 바로가기</a>
                                 </div>
                                 <select name="period2" id="period2">
 									<option value="daily"selected>일별 매출</option>

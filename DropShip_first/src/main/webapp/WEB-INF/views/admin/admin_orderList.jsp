@@ -11,9 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>DropShip Admin - 고객 관리</title>
+    <title>DropShip Admin - 작품 주문 관리</title>
     <link rel="shortcut icon" href="admin/img/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -88,15 +89,45 @@
 	                        </tr>
                         </c:forEach>
 						<!-- 반복문 forEach -->
-		
-
-					
-					
-					
-					
-					
-
                     </table>
+                    <!--	PAGE 처리 부분		 -->
+					<div class="bottom-paging">
+						<ul class="page-numul" style="list-style:none;">
+							<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></c:if>
+							<c:if test="${map.page != 1}">
+							<a href="admin_orderList?page=1"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></a>
+							</c:if>
+							
+							<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></c:if>
+							<c:if test="${map.page != 1}">
+							<a href="admin_orderList?page=${map.page - 1}"><li><span class="material-symbols-outlined">chevron_left</span></li></a>
+							</c:if>
+							
+							<c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number">
+								<c:if test="${map.page == number}">
+								<li class="page-num" id="page-on">
+									<div id="page-number">${number}</div>
+								</li>
+								</c:if>
+								<c:if test="${map.page != number}">
+								<li class="page-num">
+									<a href="admin_orderList?page=${number}"><div id="page-number">${number}</div></a>
+								</li>
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">chevron_right</span></li></c:if>
+							<c:if test="${map.page != map.maxPage}">
+							<a href="admin_orderList?page=${map.page + 1}"><li><span class="material-symbols-outlined">chevron_right</span></li></a>
+							</c:if>
+							
+							<c:if test="${map.page == map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></c:if>
+							<c:if test="${map.page != map.maxPage}">
+							<a href="admin_orderList?page=${map.maxPage}"><li><span class="material-symbols-outlined">keyboard_double_arrow_right</span></li></a>
+							</c:if>
+						</ul>
+					</div>
+					<!-- 	PAGE 처리 부분		 -->
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
