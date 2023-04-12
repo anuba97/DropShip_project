@@ -13,6 +13,7 @@ import com.java.vo.ArtistVo;
 import com.java.vo.BoardEventVo;
 import com.java.vo.BoardNoticeVo;
 import com.java.vo.Order_DetailVo;
+import com.java.vo.Order_MemberVo;
 
 @Service
 public class AdminOrderServiceImpl implements AdminOrderService {
@@ -89,8 +90,11 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		return order_list;
 	}
 
-	
-	
+	@Override //전체 주문 현황 가져오기
+	public List<Order_MemberVo> selectOrderAll() {
+		List<Order_MemberVo> order_MemberVoList = adminOrderMapper.selectOrderAll();
+		return order_MemberVoList;
+	}	
 
 	
 	

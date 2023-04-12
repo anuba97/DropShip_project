@@ -82,6 +82,9 @@ public interface MyShopService {
 	// 마이페이지 - '내가 생성한 그림' 리스트
 	Map<String, Object> selectMyAiWorkVoList(int page, String member_nName);
 
+
+	
+
 	
 
 	

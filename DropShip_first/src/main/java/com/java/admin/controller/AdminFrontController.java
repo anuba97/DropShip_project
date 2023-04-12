@@ -23,10 +23,11 @@ import com.java.admin.service.BoardNoticeService;
 import com.java.admin.service.DropshipMemberService;
 import com.java.home.service.BoardService;
 import com.java.home.service.MemberService;
-
+import com.java.home.service.MyShopService;
 import com.java.vo.Count_Order_Price_By_MonthVo;
 import com.java.vo.MemberCountDayVo;
 import com.java.vo.Order_DetailVo;
+import com.java.vo.Order_MemberVo;
 
 @Controller
 public class AdminFrontController {
@@ -48,6 +49,9 @@ public class AdminFrontController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	MyShopService myShopService;
 	
 	@Autowired
 	DropshipMemberService dropshipMemberService;
@@ -81,6 +85,20 @@ public class AdminFrontController {
 	@GetMapping("admin_orderList")//어드민 주문 게시판 리스트 열기
 	public String admin_orderList(@RequestParam(defaultValue = "1") int page, Model model) {
 		Map<String, Object> map = adminOrderService.selectOrderList(page);
+		
+		Map<String, Integer> orderStatusCountMap = new HashMap<>();
+		List<Order_MemberVo> order_MemberVoList = adminOrderService.selectOrderAll();
+		for (Order_MemberVo order_MemberVo : order_MemberVoList) {
+			int order_status = order_MemberVo.getOrder_status();
+			if(orderStatusCountMap.containsKey(order_status + "")) {	// 이미 있으면 (int를 +""함으로써 String으로 변환시켜서 key에 저장
+				orderStatusCountMap.put(order_status + "", orderStatusCountMap.get(order_status+"") + 1);
+			} else {
+				orderStatusCountMap.put(order_status + "", 1);
+			}
+		}
+		model.addAttribute("orderStatusCountMap", orderStatusCountMap);
+		
+		
 		model.addAttribute("map", map);
 		model.addAttribute("page", page);
 		return "admin/admin_orderList";

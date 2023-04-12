@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.java.vo.BoardEventVo;
 import com.java.vo.Order_DetailVo;
+import com.java.vo.Order_MemberVo;
 
 public interface AdminOrderService {
 
@@ -16,7 +17,7 @@ public interface AdminOrderService {
 
 	List<Order_DetailVo> adminMemberSelectOrder(int id);
 
-	
+	List<Order_MemberVo> selectOrderAll();
 	
 
 

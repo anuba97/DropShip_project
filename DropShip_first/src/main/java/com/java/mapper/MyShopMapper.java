@@ -54,7 +54,6 @@ public interface MyShopMapper {
 	void deleteCart_member(int member_id, List<Integer> optionIdList); //shopMapper에서 주석처리함????????????
 	
 	
-	
 	///////////----------↓--------↓------ 찜리스트 관련 -------------↓--------↓---------//////////
 	int selectWishListCount(String tableName, String columnName, int member_id);  // 찜 리스트 page 카운트하는 구문	// 이거 재사용 하려고 인자 두개로 만들어놓음(승택)
 	
@@ -81,6 +80,8 @@ public interface MyShopMapper {
 	List<Integer> selectOrderDetail_OptionIds(Integer work_id);	// 작품 팔린 개수 알기위해 주문상세 테이블에서 option_id들 리스트로 가져오기
 
 	List<Integer> selectOptionQuantity(List<Integer> orderDetail_workId_OptionIdList);
+
+	
 
 
 	
