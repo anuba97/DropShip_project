@@ -13,7 +13,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="/home/img/favicon.ico" />
-<title>공지사항 view</title>
+<title>자유게시판</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
@@ -122,32 +122,32 @@
                        <li class="prev">
                            <a href="board_view?id=${map.preBoardVo.getId()}" class="link-none">
                                <span style="cursor:pointer;">PREV</span>
-                               <p>${map.preBoardVo.getFreeBoard_title()}</p>
+                               <p style="cursor:pointer;">${map.preBoardVo.getFreeBoard_title()}</p>
                            </a>
                        </li>
                      </c:if>
                      <c:if test="${map.preBoardVo.getId() == null}">   
                        <li class="prev">
-                           <a href="" class="link-none">
+                           <a class="link-none">
                                <span style="color:#A0A0A0;">PREV</span>
                                <p style="color:#A0A0A0;">이전글이 없습니다.</p>
                            </a>
                        </li>
                      </c:if>  
                             
-                            <li class="mid" ><a href="board?id=${map.preBoardVo.getId()}"><span class="hide">목록으로</span></a></li>
+                            <li class="mid" ><a href="board??page=${page}"><span class="hide">목록으로</span></a></li>
                             
                             <c:if test="${map.nextBoardVo.getId() != null}">
                        <li class="next">
-                           <a href="board_view?id=${map.preBoardVo.getId()}" class="link-none">
+                           <a href="board_view?id=${map.nextBoardVo.getId()}" class="link-none">
                                <span style="cursor:pointer;">NEXT</span>
-                               <p>${map.nextBoardVo.getFreeBoard_title()}</p>
+                               <p style="cursor:pointer;">${map.nextBoardVo.getFreeBoard_title()}</p>
                            </a>
                        </li>
                      </c:if>
                      <c:if test="${map.nextBoardVo.getId() == null}">   
                        <li class="next">
-                           <a href="" class="link-none">
+                           <a class="link-none">
                                <span style="color:#A0A0A0;">NEXT</span>
                                <p style="color:#A0A0A0;">다음글이 없습니다.</p>
                            </a>

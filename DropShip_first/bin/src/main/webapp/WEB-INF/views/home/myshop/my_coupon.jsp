@@ -92,8 +92,8 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 					<h3>쿠폰</h3>
 				</div>
 				<ul class="mypage-sm-nav">
-					<li class="on"><a href="/shop/my_coupon.php">사용가능쿠폰</a></li>
-					<li><a href="/shop/my_coupon_done.php">사용완료쿠폰</a></li>
+					<li class="on"><a href="">사용가능쿠폰</a></li>
+					<li><a href="">사용완료쿠폰</a></li>
 				</ul>
 				<div class="tbstyle01">
 					<table>

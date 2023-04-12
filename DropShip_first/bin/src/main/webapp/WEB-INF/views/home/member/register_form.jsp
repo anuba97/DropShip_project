@@ -9,7 +9,8 @@
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="../home/img/favicon.ico" />
-<title>회원가입2 (form 페이지)</title>
+<title>회원가입2 (정보 입력)</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -124,9 +125,9 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        <div class="right-con">
 	                            <div class="box-id">
 	                                <input type="text" name="member_login_id"  id="reg_mb_id" class="inp-type01 half" minlength="5" maxlength="12"  placeholder="아이디">
-	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkIdBtn" value="중복확인">     
+	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkIdBtn" value="중복 확인">     
 	                            </div>
-	                            <span class="sm-notice-txt">5~12자의 영문 소문자,숫자만 사용가능합니다.</span>
+	                            <span class="sm-notice-txt">아이디는 5~12자의 영문 소문자,숫자만 사용가능합니다.</span>
 	                            <strong><span id="result_checkId" style="font-size:14px; color:red; display:none">※ ID 중복 확인을 진행해주세요.</span></strong>
 	                        </div>
 	                    </div>
@@ -138,7 +139,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        </div>
 	                        <div class="right-con">
 	                            <input type="password" name="member_pw" id="reg_mb_password" class="inp-type01 half " minlength="8" maxlength="16"   placeholder="비밀번호">
-	                            <span class="sm-notice-txt">8~16자 영문, 숫자, 특수문자를 포함하여 8자 이상으로 작성해주세요.</span>
+	                            <span class="sm-notice-txt">비밀번호는 8~16자 영문, 숫자, 특수문자를 포함하여 8자 이상으로 작성해주세요.</span>
 	                        </div>
 	                    </div>
 	
@@ -167,9 +168,9 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        <div class="right-con">
 	                            <div class="box-id">
 	                                <input type="text" name="member_nName"  id="reg_mb_nName" class="inp-type01 half" minlength="2" maxlength="8"  placeholder="닉네임">
-	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkNicBtn" value="중복확인">     
+	                                <input type="button" class="btnset btn-type03 btn-fill-brown" id="checkNicBtn" value="중복 확인">     
 	                            </div>
-	                            <span class="sm-notice-txt">한글, 영문만 2-8자</span>
+	                            <span class="sm-notice-txt">닉네임은 한글, 영문를 포함해서 2~8자 이상으로 작성해주세요.</span>
 	                            <strong><span id="result_checkNic" style="font-size:14px; color:red; display:none">※ 닉네임 중복 확인을 진행해주세요.</span></strong>
 	                        </div>
 	                    </div>
@@ -181,7 +182,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        <div class="right-con">
 	                            <input type="hidden" name="old_email" value="">
 	                            <input type="email" name="member_email" value="" id="reg_mb_email"  class="inp-type01 half email"  size="50" maxlength="100" placeholder="E-mail">
-	                            <span class="sm-notice-txt">이메일주소는 끝에 com, net, edu 로 끝나는 형식만 가능합니다.</span>
+	                            <span class="sm-notice-txt">이메일주소는 끝에 .com, .net, .edu 로 끝나는 형식만 가능합니다.</span>
 	                            
 	                        </div>
 	                    </div>
@@ -210,7 +211,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                        </div>
 	                        <div class="right-con">
 	                            <input type="text" name="member_phone" id="reg_mb_hp"  class="inp-type01 half"  maxlength="11" placeholder="휴대폰번호">
-	                            <span class="sm-notice-txt">숫자로만 입력해주세요.</span>
+	                            <span class="sm-notice-txt">숫자만 입력해주세요.</span>
 	                        </div>
 	                    </div>
 	                    
@@ -229,6 +230,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	                            </div>
 	                        </div>
 	                    </div>
+	                    
 						<script>
 							// 다음주소찾기
 							function addressBtn(){
@@ -293,53 +295,120 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	
 	
 		<script>
-	
 		  // 사이트 열리자마자 dup을 0으로 설정(중복확인 안누른 상태가 0). 눌렀으면 1
 		  var dup = 0;
 		  var dup2 = 0;
-		  $(function(){
-			  
-			  var now = new Date();
-			  var year = now.getFullYear(); // 년
-			  var month = (now.getMonth()+1); // 월
-			  var date = now.getDate(); // 일
-			  
-			  // 년도 넣기
-			  var htmlData="";
-			  htmlData += "<option selected>선택</option>";
-			  for(var i=1900;i<=year;i++){
-				  htmlData +="<option value='"+i+"'>"+i+"</option>";
-			  }
-			  $("#mb_1").html(htmlData);
-			  
-			  // 월 넣기
-			  htmlData="";
-			  htmlData += "<option selected>선택</option>"; 
-			  for(var i=1;i<=12;i++){
-				  if(i<10){
-				  	  htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-				  }else if(i>9){
-				  	  htmlData +="<option value='"+i+"'>"+i+"</option>";
-				  }
-			  }
-			  $("#mb_2").html(htmlData);
-			  
-			  // 일 넣기
-			  htmlData="";
-			  htmlData += "<option selected>선택</option>";
-			  for(var i=1;i<=31;i++){
-				  if(i<10){
-					  htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
-				  }else if(i>9){
-					  htmlData +="<option value='"+i+"'>"+i+"</option>";
-				  }
-			  }
-			  $("#mb_3").html(htmlData);
-			  
-			  
-		  });//jquery
-		
 		  
+		  $(function(){
+	           
+	           var now = new Date();
+	           var year = now.getFullYear(); // 년
+	           var month = (now.getMonth()+1); // 월
+	           var date = now.getDate(); // 일
+	           
+	           // 년도 넣기
+	           var htmlData="";
+	           htmlData += "<option selected>선택</option>";
+	           for(var i=1900;i<=year;i++){
+	              htmlData +="<option value='"+i+"'>"+i+"</option>";
+	           }
+	           $("#mb_1").html(htmlData);
+	           
+	           // 월 넣기
+	           htmlData="";
+	           htmlData += "<option selected>선택</option>"; 
+	           for(var i=1;i<=12;i++){
+	              if(i<10){
+	                   htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+	              }else if(i>9){
+	                   htmlData +="<option value='"+i+"'>"+i+"</option>";
+	              }
+	           }
+	           $("#mb_2").html(htmlData);
+	           
+	           // 일 넣기
+	           htmlData="";
+	           htmlData += "<option selected>선택</option>";
+	           for(var i=1;i<=31;i++){
+	              if(i<10){
+	                 htmlData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+	              }else if(i>9){
+	                 htmlData +="<option value='"+i+"'>"+i+"</option>";
+	              }
+	           }
+	           $("#mb_3").html(htmlData);
+	           
+	           
+	        });//jquery
+		  
+		  
+		  
+		  
+		  
+		  
+		  // 윤달 생년월일 안돼서 일단 주석처리해놈
+// 		   $(function(){   
+			  
+// 			  var now = new Date();
+// 			  var year = now.getFullYear(); // 년
+			  
+// 			  // 년도
+// 			  var yearData="";
+// 			  yearData += "<option selected>선택</option>";
+// 			  for(var i=1900;i<=year;i++){
+// 				  yearData +="<option value='"+i+"'>"+i+"</option>";
+// 			  }
+// 			  $("#mb_1").html(yearData);
+			  
+// 			  // 월
+// 			  var monthData="";
+// 			  monthData += "<option selected>선택</option>"; 
+// 			  for(var i=1;i<=12;i++){
+// 			      if(i<10){
+// 			    	  monthData +="<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+// 			      }else if(i>9){
+// 			    	  monthData +="<option value='"+i+"'>"+i+"</option>";
+// 			      }
+// 			  }
+// 			  $("#mb_2").html(monthData);
+			  
+			  
+// 			  $("#mb_3").html("<option selected>선택</option>");
+			  
+// 			// 월이 변경될 때 나오는 일
+// 				$('#mb_2').on('change', function() {
+// 				  var year = $("#mb_1").val();
+// 				  var month = $("#mb_2").val();
+// 				  var day = 0;
+// 				  var dayData ="";
+// 				  dayData = "<option selected>선택</option>"
+				  
+// 				  if ( month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) { day = 31; }
+// 				  else if ( month == 4 || month == 6 || month == 9 || month == 11 ) { day = 30; }
+// 				  else if ( month == 2 ) {
+// 				      if ( year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ) { day = 29; }
+// 				      else { day = 28; }
+// 				  }
+				  
+				  
+// 				  for ( var i = 1; i<= day; i++ ) {
+// 				      if(i<10){
+// 				          dayData += "<option value='"+("0"+i)+"'>"+("0"+i)+"</option>";
+// 				      }else if(i>9){
+// 				          dayData += "<option value='"+i+"'>"+i+"</option>";
+// 				      }
+// 				  }
+				  
+// 				  alert($("#mb_3").val());
+// 				  alert(dayData);
+// 				  $("#mb_3").html(dayData);
+// 				});//function
+			  
+// 			});//제이쿼리 
+		  
+			
+ 		  
+ 		  
 		  //(회원가입)확인버튼
 		  function joinBtn(){
 			  // 정규표현식
@@ -475,6 +544,10 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 			  registerform.submit();
 		  }//joinBtn()
 			
+		  
+		  	 
+		  
+		  
 			 // ID중복확인 버튼
 		 	 $(function(){
 		 		// ID중복확인 버튼을 눌렀을 때
@@ -591,9 +664,9 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 	</div>
 	
 	
-	<script src="https://bxgs.co.kr/js/sns.js"></script>
-	<script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
-	<script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
+	<script src="../home/js/sns.js"></script>
+	<script src="../home/theme/buzinga/js/css3-animate-it.js"></script>
+	<script src="../home/theme/buzinga/js/base.js"></script><script src="../home/theme/buzinga/js/sub.js"></script>
 	
 	<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 	<!--[if lte IE 7]>

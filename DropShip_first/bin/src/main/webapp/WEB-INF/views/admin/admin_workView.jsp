@@ -26,14 +26,14 @@
 		
 		function updateWorkBtn(){
 			alert("작품 정보 수정페이지로 이동합니다.");
-			location.href="admin/admin_workUpdate?id=${workVo.getId()}";
+			location.href="admin_workUpdate?id=${workVo.getId()}";
 		}//updateBtn()
 		
 		function deleteWorkBtn() {
 			if(confirm("작품을 삭제하시겠습니까?")){
 				location.href="admin/deleteWork?id=${workVo.getId()}";
 				alert("작품이 삭제되었습니다.");
-				location.href="admin/admin_workList";
+				location.href="admin_workList";
             }// if
         } //deleteWorkBtn()
 		
@@ -73,15 +73,18 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">작품 상세 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 작품을 상세 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다..</div>
+                        <div class="card-body">DropShip 작품을 상세 관리하는 메뉴입니다. 작품 정보를 확인 및 추가, 수정, 삭제할 수 있습니다.</div>
                     </div>
                 </div>
                 
-                <!-- 작품 이미지 (이미지 등록때부터 반드시 입력받게 할거라 if문 안씀 -->
                 <img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage">
                 
                 <div class="admin_workViewTableDiv">
                     <table class="admin_workViewTable">
+                	<colgroup>
+                        <col width="25%">
+                        <col width="75%">
+                    </colgroup>
                         <tr>
                             <th>작품 고유번호</th>
                             <td>${workVo.getId()}</td>
@@ -164,10 +167,10 @@
                             </td>
                         </tr>
                     </table><br>
-                    <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_workAdd'" style="margin: 0 0 0 500px; color:red;">작품 추가</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="updateWorkBtn()" style="margin: 0 0 0 500px; color:blue;">작품 수정</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="deleteWorkBtn()" style="margin: 0 0 0 500px; color:black;">작품 삭제</button>
+                    <div class="admin_eventBoardAdd_div">
+                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_workAdd'" style="margin: 0 0 0 600px; color:red; border-radius: 5px;">작품 추가</button>
+                        <button type="button" class="admin_noticeBoard_button" onclick="updateWorkBtn()" style="color:blue; border-radius: 5px;">작품 수정</button>
+                        <button type="button" class="admin_noticeBoard_button" onclick="deleteWorkBtn()" style="color:black; border-radius: 5px;">작품 삭제</button>
                     </div>
                 </div>
             </main>

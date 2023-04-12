@@ -11,17 +11,17 @@
             </ul>
             <address class="ft-address">
                 <p>
-                    <span>대표자 : 권순상</span>
-                    <span>사업자 등록번호 : 137-81-30071</span>
+                    <span>대표자 : 드랍쉽</span>
+                    <span>사업자 등록번호 : 123-45-6789</span>
                 </p>
                 <p>
-                    <span>주소 : 경기도 고양시 일산동구 산황로 178-15</span>
-                    <span>EMAIL : <a href="mailto:gDropShipang@gmail.com">gDropShipang@gmail.com</a></span>
-                    <span>TEL : 031-954-9541</span>
-                    <span>FAX : 031-977-9540</span>
+                    <span>주소 : 서울 구로구 디지털로34길 27</span>
+                    <span>EMAIL : <a href="mailto:DropShip@gmail.com">DropShip@gmail.com</a></span>
+                    <span>TEL : 012-345-6789</span>
+                    <span>FAX : 012-345-6789</span>
                 </p>
             </address>
-            <p class="copyright">Copyright © 2022 DropShip Gallery. All rights reserved.</p>
+            <p class="copyright">Copyright © 2023 DropShip Gallery. All rights reserved.</p>
         </div>
         <!--<div class="ft-family-wrap">
             <button type="button" class="btnset btn-family-site">Family Site</button>

@@ -574,7 +574,7 @@
             	// 모두체크
 				$("#chk_all").click(function(){
 				    if ($(this).prop("checked")) {
-				        if (confirm("모두 동의를 체크하시겠습니까??")) {
+				        if (confirm("모든 약관을 동의하시겠습니까??")) {
 				            $("input:checkbox[name='agree']").prop("checked", true);
 				        } else {
 				            $(this).prop("checked", false);
@@ -586,7 +586,7 @@
             	
             	function nextBtn(){
             		if($("input:checkbox[name='agree']:checked").length<2){
-            			alert("모두 동의를 하셔야 회원가입이 가능합니다 전체동의를 해주세요.");
+            			alert("모든 약관을 동의를 하셔야 회원가입이 가능합니다. 전체동의를 진행해 주세요.");
             			$("#chk_all").focus();
             			return false;
             		}

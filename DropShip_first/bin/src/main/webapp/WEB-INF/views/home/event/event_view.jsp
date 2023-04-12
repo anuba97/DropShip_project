@@ -118,13 +118,13 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 							<p style="text-align: center;" align="center">
 							 <c:if test="${map.boardEventVo.eventboard_file_name != null}">
 								<img
-									src="../admin/img/Event/${map.boardEventVo.eventboard_file_name}"
+									src="../admin/upload/${map.boardEventVo.eventboard_file_name}"
 									title="${map.boardEventVo.eventboard_file_name}" style="width:600px;"><br
 									style="clear: both;">&nbsp;<br>
 							</c:if>		
 							 <c:if test="${map.boardEventVo.eventboard_file_name == null}">
 								<img
-									src="../admin/img/Event/Event_deafaultLogo.png"
+									src="../admin/upload/Event_deafaultLogo.png"
 									title="Event_deafaultLogo.png" style="width:600px;"><br
 									style="clear: both;">&nbsp;<br>
 							</c:if>		
@@ -138,36 +138,32 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 						      <a href="event_view?id=${map.preBoardEventVo.getId()}" class="link-none">
 								  <li class="prev">
 								          <span style="cursor:pointer;">PREV</span>
-								          <p>${map.preBoardEventVo.getEventboard_title()}</p>
+								          <p style="cursor:pointer;">${map.preBoardEventVo.getEventboard_title()}</p>
 								  </li>
 						      </a>
 							</c:if>
 							<c:if test="${map.preBoardEventVo.getId() == null}">   
 							  <li class="prev">
-							      <a href="" class="link-none">
+							      <a class="link-none">
 							          <span style="color:#A0A0A0;">PREV</span>
 							          <p style="color:#A0A0A0;">이전글이 없습니다.</p>
 							      </a>
 							  </li>
 							</c:if> 
 							
-<!-- 							<li class="prev"><a href="" class="link-none"><span>PREV</span><p>이전글이 없습니다.</p></a></li> -->
-							
 							<li class="mid"><a href="all_event?page=${page}"><span class="hide">목록으로</span></a></li>
-							
-<!-- 							<li class="next"><a href=""><span>NEXT</span><p>트리플 봄 특가</p></a></li> -->
 							
 							<c:if test="${map.nextBoardEventVo.getId() != null}">
 						      <a href="event_view?id=${map.nextBoardEventVo.getId()}" class="link-none">
 								  <li class="next">
 								          <span style="cursor:pointer;">NEXT</span>
-								          <p>${map.nextBoardEventVo.getEventboard_title()}</p>
+								          <p style="cursor:pointer;">${map.nextBoardEventVo.getEventboard_title()}</p>
 								  </li>
 						      </a>
 							</c:if>
 							<c:if test="${map.nextBoardEventVo.getId() == null}">   
 							  <li class="next">
-							      <a href="" class="link-none">
+							      <a class="link-none">
 							          <span style="color:#A0A0A0;">NEXT</span>
 							          <p style="color:#A0A0A0;">다음글이 없습니다.</p>
 							      </a>

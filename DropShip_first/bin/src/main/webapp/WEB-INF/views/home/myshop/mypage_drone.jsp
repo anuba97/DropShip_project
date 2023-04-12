@@ -47,6 +47,7 @@
 			var g5_theme_shop_url = "https://bxgs.co.kr/theme/buzinga/shop";
 			var g5_shop_url = "https://bxgs.co.kr/shop";
 		</script>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel="stylesheet"
 			href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 			integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
@@ -70,10 +71,18 @@
 				height:600px;
 			}
 		</style>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('html, body').animate({
+				scrollTop: $('#sthDrone').offset().top
+				}, 'slow');
+				});
+		</script>
+		
 	</head>
 	<body>
 		<div id="hd_login_msg">
-			오민수님 로그인 중 <a href="https://bxgs.co.kr/bbs/logout.php">로그아웃</a>
+			<a href="https://bxgs.co.kr/bbs/logout.php">로그아웃</a>
 		</div>
 		<div class="cursor-ball">
 			<div class="ball"></div>
@@ -108,12 +117,13 @@
 									<li><span class="">0</span>배송완료</li>
 								</ul>
 							</div>
+							<div id="sthDrone"></div><br>
 							<div class="mypage-order">
 								<div class="mypage-tit">
 									<h3>드론 배송 현황</h3>
 									<!--<p>최근 30일 내에 진행중인 주문정보입니다.</p>-->
 								</div>
-								<div class="tbstyle01">
+								<div class="tbstyle01" >
 									<table>
 										<caption class="hide">주문목록</caption>
 										<colgroup>
@@ -132,17 +142,17 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>2023.03.23/565656</td>
+												<td>${map.order_memberVo.order_date}&nbsp;&nbsp;/&nbsp;&nbsp;${map.order_memberVo.id}</td>
 												<td>신정 비행장</td>
-												<td>경기도 고양시 일산서구 대화2로 121 606동 502호</td>
-												<td>고혁우</td>
+												<td>${map.order_memberVo.delivery_road}${map.order_memberVo.delivery_address}</td>
+												<td>${map.order_memberVo.delivery_name}</td>
 											</tr>
 											<!--------------------드론 페이지 들어가는 부분--------------------------->
 											<tr>
 												<td colspan="4">
 													<div class="video-container">
 										               	<div>
-									                       <video id="video-player" autoplay muted controls>
+									                       <video id="video-player" autoplay muted>
 										                    	<source src="../home/video/drone.mp4" type="video/mp4">
 										                    </video>
 									                    </div>
@@ -152,7 +162,7 @@
 											<!--------------------------------------------------------------------->
 										</tbody>
 									</table>
-									<a href="mypage" class="btnset btn-type02">이전 페이지</a>
+									<a href="../myshop/mypage?member_id=${sessionMember_id}" class="btnset btn-type02">My Page</a>
 								</div>
 							</div>
 						</div>

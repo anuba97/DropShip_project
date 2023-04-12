@@ -6,16 +6,16 @@
 	<!--//////////////////↓////////////↓////////order(주문) 관련 //////////////////↓////////////↓//////// -->
 	
 	<!-- 주문 저장 전 배송 데이터 저장  -->
-	<insert id="insertDelivery">  				<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+	<insert id="insertDelivery">  				
 	  	INSERT INTO Delivery (id, delivery_start, delivery_end)
 		VALUES (Delivery_SEQ.NEXTVAL, sysdate+1, sysdate+3)
   	</insert>
   	
-  	<select id="selectDeliverySeq" resultType="int">	<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+  	<select id="selectDeliverySeq" resultType="int">	
   		SELECT DELIVERY_SEQ.CURRVAL FROM DUAL
   	</select>
 	
-	<insert id="insertDelivery2">			<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+	<insert id="insertDelivery2">			
 	    <selectKey resultType="int" keyProperty="id" order="AFTER">
 	        SELECT Delivery_SEQ.currval FROM dual
 	    </selectKey>
@@ -23,7 +23,7 @@
 		VALUES (Delivery_SEQ.nextval, sysdate+1, sysdate+3)
 	</insert>
 	
-	<insert id="insertOrder_Member2" >		<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+	<insert id="insertOrder_Member2" >		
 	    <selectKey resultType="int" keyProperty="order_memberVo.id" order="BEFORE">  <!-- keyProperty를 원랜 id만 적어도 넘어온 vo의 id인스턴수 변수를 찾을 수 있는데 인자로 여러개 넘어오면 이렇게 뭐의 id인지 지정해줘야.  -->
 	        SELECT Order_Member_SEQ.nextval FROM dual
 	    </selectKey>
@@ -35,7 +35,7 @@
 	
 	<!-- 아래 방식은 조인 적게하는 대신 여러번 걸쳐서 가져오는 방식. 유지보수/확장성 장점  -->
 	<!--  회원 주문 상세 객체 리스트를 받아옴 -->
-	  <select id="selectOrderDetail" resultType="com.java.vo.Order_DetailVo">	<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+	  <select id="selectOrderDetail" resultType="com.java.vo.Order_DetailVo">	
 	  	SELECT work_id, option_id 
 	  	FROM order_detail 
 	  	WHERE order_member_id = #{order_member_id}
@@ -43,12 +43,12 @@
 	
 	
 	<!-- 회원 주문 객체 가져오기(주문 결과 띄우기용) -->
-	<select id="selectOrderMemberOne_result" resultType="com.java.vo.Order_MemberVo">	<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+	<select id="selectOrderMemberOne_result" resultType="com.java.vo.Order_MemberVo">	
 		SELECT * FROM Order_Member WHERE id = #{order_member_id}
 	</select>
 	
 	<!-- 회원 주문상세 저장 (작품상세페이지에서만 넘어왔을 때)  -->
-	<insert id="insertOrder_Detail">						<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+	<insert id="insertOrder_Detail">						
 		 INSERT INTO Order_Detail (id, order_member_id, work_id, option_id, total_price, 
 		 							event_work_sale, event_period_sale, final_price)
 		 VALUES (Order_Detail_SEQ.NEXTVAL, #{order_member_id}, #{work_id}, #{option_id}, #{total_price}, 
@@ -57,7 +57,7 @@
 	
 
 	 <!-- 회원 마이페이지주문조회 (날짜 검색도) -->
-	 <select id="selectOrderDetailByMemberId" resultType="com.java.vo.Order_Detail_inquireVo">	<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
+	 <select id="selectOrderDetailByMemberId" resultType="com.java.vo.Order_Detail_inquireVo">	
 	    SELECT om.order_date, od.order_member_id, w.work_img_url, w.work_name, a.artist_korean_name, 
 	    	   wo.option_quantity, wo.option_selected_price, om.order_status
 			FROM order_detail od
@@ -83,6 +83,14 @@
 	 </if>
 		ORDER BY om.order_date DESC
 	 </select>
+	  
+	  <!-- 회원 주문 객체 가져오기(주문 결과 띄우기용) -->
+	  <select id="selectOrderMemberAll" resultType="com.java.vo.Order_MemberVo">	
+	    	SELECT * FROM Order_Member WHERE member_id = #{member_id}
+	  </select>
+	  
+	  
+	  
 	  
 	  
 	  <!-- 회원 마이페이지주문조회시 회원 주문 개수 가져오기  -->
@@ -129,14 +137,11 @@
            )
 	  </delete>
 
-
-
-
-
-
-
-
-
+	<!--///////////////////////////////////////드론/////////////////////////////////////////////  -->
+	  <select id="selectFind_Dronshipment" resultType="com.java.vo.Order_MemberVo">
+	 	 select * from order_member where id=#{id}
+	  </select>
+	  <!--/////////////////////////////////////////////////////////////////////////////////////////////  -->
 
 	<!--//////////////////↓////////////↓//////// 찜 리스트 관련 //////////////////↓////////////↓//////// -->
 	<!-- 찜리스트 page 처리해서 가져오기 -->
@@ -152,8 +157,13 @@
 	</select>	
 	
 	<!-- 찜리스트 갯수 확인 -->
+<!-- 	<select id="selectWishListCount" resultType="int"> -->
+<!-- 		SELECT COUNT(*) count FROM wishlist where member_id = #{member_id} -->
+<!-- 	</select> -->
+	
+	<!-- 찜리스트 갯수 확인 -->
 	<select id="selectWishListCount" resultType="int">
-		SELECT COUNT(*) count FROM wishlist where member_id = #{member_id}
+		SELECT COUNT(*) count FROM ${tableName} where ${columnName} = #{member_id}	<!-- ${}는 테이블명/컬럼명에 사용 -->
 	</select>
 
 	<!-- index에서 찜 리스트에 작품이 있는지 확인 -->
@@ -204,6 +214,51 @@
 	<delete id="deleteAll_items">
 		DELETE FROM wishlist WHERE member_id = #{member_id}
 	</delete>
+	
+	
+	
+	<!--//////////////////↓////////////↓//////// AI 관련 //////////////////↓////////////↓//////// -->
+	
+	<!-- 마이페이지 - AI 내가 생성한 그림 리스트 가져오기 -->
+	<select id="selectMyAiWorkVoList" resultType="com.java.vo.WorkVo">
+		SELECT *
+	    FROM (
+	       SELECT k.*, ROWNUM AS rnum
+	       FROM (
+	          SELECT *
+	          FROM Work w
+	          JOIN Artist a ON w.artist_id = a.id
+	          WHERE work_is_ai = 1 AND artist_korean_name = #{member_nName}
+	          ORDER BY work_reg_date DESC
+	       ) k
+	    ) 
+	    WHERE rnum BETWEEN #{startRow} AND #{endRow}
+	</select>
+
+	<!-- 1. 작품 팔린 개수 알기위해 주문상세 테이블에서 work_id마다 option_id들을 리스트에 담아 가져오기(work_id 하나에 option_id들이 여러개, 즉 work_id 하나에 optionIdList 1개 할당(map을 통해서)) -->
+	<select id="selectOrderDetail_OptionIds" resultType="int">
+	   SELECT COALESCE(od.option_id, 0) AS option_id	<!-- COALESCE(컬럼명,0): 컬럼의 값이 null이면 0을 반환  -->
+	   FROM work w
+	   LEFT JOIN order_detail od ON w.id = od.work_id	<!-- LEFT JOIN : 오른쪽(자식(서브-order_detail))테이블의 값이 null이 있든 없든 왼쪽(부모(메인-work))테이블을 기준으로 싹 다 연결해서 가져와-->
+	   WHERE w.id = #{workId}
+	   ORDER BY od.option_id DESC
+	</select>
+	
+	<!-- 2. work_id마다 있는 optionIdList가 담긴 map을 가지고, option테이블에서 option_quantity값들을 list로 가져와서 optionWorkId_QuantityMap에 저장 -->
+	<select id="selectOptionQuantity" resultType="int">
+		SELECT COALESCE(option_quantity, 0) FROM work_option WHERE id in (
+		  	<foreach collection="orderDetail_workId_OptionIdList" item="optionId" separator=",">
+                #{optionId}
+            </foreach>
+		) 
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 
 </mapper>

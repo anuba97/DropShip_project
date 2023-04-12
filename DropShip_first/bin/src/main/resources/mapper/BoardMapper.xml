@@ -37,25 +37,21 @@
 	</select>
 	
    <select id="preSelectOne" resultType="com.java.vo.BoardVo">
-      select * from
-      (select rownum rnum, a.*from freeboard a order by id desc)
-      where rnum = 
-      (
-      select rnum from
-      (select rownum rnum, a.*from freeboard a order by id desc)
-      where id=#{id}
-      )-1
+   		select * from freeboard 
+		where id = 
+		(select prev_id from
+		(select id,freeBoard_title, lead(id,1,-1) over(ORDER BY id desc) as prev_id
+		from freeboard) 
+		where id = #{id})
    </select>
  
    <select id="nextSelectOne" resultType="com.java.vo.BoardVo">
-      select * from
-      (select rownum rnum, a.*from freeboard a order by id desc)
-      where rnum = 
-      (
-      select rnum from
-      (select rownum rnum, a.*from freeboard a order by id desc)
-      where id=#{id}
-      )+1
+   		select * from freeboard 
+		where id = 
+		(select next_id from
+		(select id,freeboard_title, lag(id,1,-1) over(ORDER BY id desc) as next_id
+		from freeboard) 
+		where id = #{id})
    </select>
     
 	<select id="selectCount" resultType="int"> 

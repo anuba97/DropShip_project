@@ -12,7 +12,7 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="../home/img/favicon.ico" />
+    <link rel="shortcut icon" href="/home/img/favicon.ico" />
     <title>마이페이지</title>
     <!-- !!!!!!!!!!!!!!!!!!!!!!!   제이쿼리 최신   !!!!!!!!!!!!!!!!!!!! -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -27,34 +27,34 @@
     <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
 <![endif]-->
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "https://bxgs.co.kr";
-        var g5_bbs_url = "https://bxgs.co.kr/bbs";
-        var g5_is_member = "1";
-        var g5_is_admin = "";
-        var g5_is_mobile = "1";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-        var g5_theme_shop_url = "https://bxgs.co.kr/theme/buzinga/shop";
-        var g5_shop_url = "https://bxgs.co.kr/shop";
-    </script>
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url = "https://bxgs.co.kr";
+var g5_bbs_url = "https://bxgs.co.kr/bbs";
+var g5_is_member = "1";
+var g5_is_admin = "";
+var g5_is_mobile = "1";
+var g5_bo_table = "";
+var g5_sca = "";
+var g5_editor = "";
+var g5_cookie_domain = "";
+var g5_theme_shop_url = "https://bxgs.co.kr/theme/buzinga/shop";
+var g5_shop_url = "https://bxgs.co.kr/shop";
+</script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="../js/jquery-1.12.4.min3816.js?ver=210618"></script>
-    <script src="../js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
-    <script src="../js/common3816.js?ver=210618"></script>
-    <script src="../js/wrest3816.js?ver=210618"></script>
-    <script src="../js/placeholders.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/aos3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
-    <script src="../js/modernizr.custom.701113816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
-    <script src="../theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
+    <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+    <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
+    <script src="../home/js/common3816.js?ver=210618"></script>
+    <script src="../home/js/wrest3816.js?ver=210618"></script>
+    <script src="../home/js/placeholders.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/swiper.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/gsap-3.6.0.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/aos3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/jquery.nice-select3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/jquery.sidr.min3816.js?ver=210618"></script>
+    <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
+    <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 
 <body>
@@ -185,30 +185,30 @@
                                                     </td>
                                                     <td data-title="상품수량" class="td-numbig">${order_detail_inquireVo.option_quantity}</td>
                                                     <td data-title="주문금액" class="td-numbig td-total">${order_detail_inquireVo.option_selected_price * order_detail_inquireVo.option_quantity+2000} 원</td>
-                                                    <!--<td class="td-numbig">0원</td>-->
-                                                    <!--<td class="td-numbig">146,700원</td>-->
-                                                    <td data-title="주문상태" class="td-state">
-                                                        <c:choose>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 4}">배송완료</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 5}">주문취소</c:when>
-                                                        </c:choose>
-                                                        <c:if test="${order_detail_inquireVo.order_status == 3}">
-                                                            <div><br>
-                                                                <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
-                                                                    <a href="../myshop/mypage_drone" class="btnset btn-sight">
-                                                                        <svg height="45" width="140">
-                                                                            <rect height="45" width="140"></rect>
-                                                                        </svg>
-                                                                    </a>
-                                                                    <span style="margin-left:-15px;">드론배송 현황</span>
-                                                                </button>
-                                                            </div>
-                                                        </c:if>
-                                                    </td>
+                                                    <c:if test="${loop.first || order_detail_inquireVo.order_member_id ne prevOrderMemberId}">
+	                                                    <td data-title="주문상태" class="td-state" rowspan="${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}">
+	                                                        <c:choose>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 4}">배송완료</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 5}">주문취소</c:when>
+	                                                        </c:choose>
+	                                                        <c:if test="${order_detail_inquireVo.order_status == 3}">
+	                                                            <div><br>
+	                                                                <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
+	                                                                    <a href="../myshop/mypage_drone?id=${order_detail_inquireVo.order_member_id}" class="btnset btn-sight">
+	                                                                        <svg height="45" width="140">
+	                                                                            <rect height="45" width="140"></rect>
+	                                                                        </svg>
+	                                                                    </a>
+	                                                                    <span style="margin-left:-15px;">드론배송 현황</span>
+	                                                                </button>
+	                                                            </div>
+	                                                        </c:if>
+	                                                    </td>
+                                                    </c:if>
                                                 </tr>
                                                 <c:set var="prevOrderMemberId" value="${order_detail_inquireVo.order_member_id}" />
                                             </c:forEach>
@@ -245,7 +245,7 @@
 
                                                         <div class="sct_opt_wrap">
                                                             <div class="sct_btn list-10-btn">
-                                                                <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
+                                                                <button type="button" onclick="AddToCartBtn(${wishlistVo.id},${wishlistVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
                                                                     <svg height="45" width="160">
                                                                         <rect height="45" width="160"></rect>
                                                                     </svg>
@@ -304,6 +304,14 @@
                         }
                     }); //ajax
                 } //function
+                
+                
+             	// ADD To CART 구문
+        		function AddToCartBtn(work_id, artist_id){
+        			var url = "/shop/painting_item?work_id=" + work_id + "&artist_id=" + artist_id;
+        			location.href = url;
+        		}
+                
             </script>
 
         </main>

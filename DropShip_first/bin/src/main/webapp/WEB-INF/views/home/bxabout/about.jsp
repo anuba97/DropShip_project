@@ -147,23 +147,25 @@
                             </a>
                         </div>
                     </div>
+                    <c:forEach items="${BestList}" var="workVo">
                     <div class="about-art-img">
                         <div class="art-flow-list">
                             <div class="flow-wrap">
-                                <div class="img01"><img src="/img/sub/about-slide-img01.jpg" alt=""></div>
-                                <div class="img02"><img src="/img/sub/about-slide-img02.jpg" alt=""></div>
-                                <div class="img03"><img src="/img/sub/about-slide-img03.jpg" alt=""></div>
-                                <div class="img04"><img src="/img/sub/about-slide-img04.jpg" alt=""></div>
+                                <div class="img01"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
+                                <div class="img02"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
+                                <div class="img03"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
+                                <div class="img04"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
                             </div>
                             <!-- 위와 동일(flow용) -->
                             <div class="flow-wrap">
-                                <div class="img01"><img src="/img/sub/about-slide-img01.jpg" alt=""></div>
-                                <div class="img02"><img src="/img/sub/about-slide-img02.jpg" alt=""></div>
-                                <div class="img03"><img src="/img/sub/about-slide-img03.jpg" alt=""></div>
-                                <div class="img04"><img src="/img/sub/about-slide-img04.jpg" alt=""></div>
+                                <div class="img01"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
+                                <div class="img02"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
+                                <div class="img03"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
+                                <div class="img04"><img src="/admin/img/work/${workVo.work_img_url}" alt=""></div>
                             </div>
                         </div>
                     </div>
+                    </c:forEach>    
                 </div>
 
             </section>

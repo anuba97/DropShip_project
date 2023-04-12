@@ -39,7 +39,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">관리자 설정</h1>
                     <div class="card mb-4">
-                        <div class="card-body">Super Admin이 일반 관리자를 관리하는 메뉴입니다. 수정이나 삭제가 필요한 관리자를 선택하세요.</div>
+                        <div class="card-body">Super Admin이 일반 관리자를 관리하는 메뉴입니다. 관리자를 추가, 수정, 삭제할 수 있습니다.</div>
                     </div>
                 </div>
                 <div class="admin_memberListTableDiv">

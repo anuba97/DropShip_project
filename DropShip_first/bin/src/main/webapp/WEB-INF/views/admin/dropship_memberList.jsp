@@ -37,7 +37,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">고객 관리</h1>
 					<div class="card mb-4">
-						<div class="card-body">DropShip 고객을 관리하는 메뉴입니다. 원하는 회원을 클릭해서 상세 정보를 확인하세요.</div>
+						<div class="card-body">DropShip 고객을 관리하는 메뉴입니다. 원하는 회원을 클릭해서 <span style="color:red;"> 상세 정보와 주문 현황을 확인</span>할 수 있습니다.</div>
 					</div>
 				</div>
 				<div>
@@ -59,7 +59,7 @@
 							<th>회원 가입일</th>
 						</tr>
 						<c:forEach items="${map.list}" var="dvo">
-							<tr onClick="location.href='dropship_memberDetail?member_login_id=${dvo.member_login_id}&page=${page}'" style="cursor:pointer;">
+							<tr onClick="location.href='dropship_memberDetail?id=${dvo.id}&page=${page}'" style="cursor:pointer;">
 								<td>${dvo.id}</td>
 								<td>${dvo.member_login_id}</td>
 								<td>${dvo.member_name}</td>
@@ -69,7 +69,7 @@
 							</tr>
 						</c:forEach>	
 					</table>
-			<!-- 			PAGE 처리 부분		 -->
+			<!--	PAGE 처리 부분		 -->
 			<div class="bottom-paging">
 				<ul class="page-numul" style="list-style:none;">
 					<c:if test="${map.page == 1}"><li><span class="material-symbols-outlined">keyboard_double_arrow_left</span></li></c:if>
@@ -106,7 +106,7 @@
 					</c:if>
 				</ul>
 			</div>
-			<!-- 			PAGE 처리 부분		 -->
+			<!-- 	PAGE 처리 부분		 -->
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">

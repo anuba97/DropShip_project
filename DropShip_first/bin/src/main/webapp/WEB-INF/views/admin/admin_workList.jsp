@@ -84,21 +84,22 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">작품 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다..</div>
+                        <div class="card-body">DropShip 작품을 관리하는 메뉴입니다. 작품을 등록, 수정, 삭제할 수 있습니다.&nbsp; <span style="color:red;">작품 리스트를 클릭하면 수정 페이지로 이동합니다.</span></div>
                     </div>
                 </div>
-                <div class="admin_customerListDiv">
+                <div class="admin_customerListDiv" style="margin-left:24px;">
                     <table class="admin_workListTable">
                         <colgroup>
 						  <col width="5%">
-						  <col width="25%">
+						  <col width="20%">
 						  <col width="15%">
 						  <col width="5%">
-						  <col width="10%">
-						  <col width="5%">
-						  <col width="5%">
+						  <col width="8%">
+						  <col width="7%">
+						  <col width="7%">
+						  <col width="7%">
 						  <col width="15%">
-						  <col width="15%">
+						  <col width="5%">
 						</colgroup>
                         <tr>
                             <th>작품 ID</th>
@@ -106,6 +107,7 @@
                             <th>작가 이름</th>
                             <th>작가 ID</th>
                             <th>가격</th>
+                            <th>AI 생성여부</th>
                             <th>전시 여부</th>
                             <th>베스트 여부</th>
                             <th>등록일</th>
@@ -119,6 +121,14 @@
                                 <td>${workVo.getArtist_id()}</td>
                                 <td>
                                     <fmt:formatNumber value="${workVo.work_price}" type="number" pattern="#,##0 원" />
+                                </td>
+                                <td>
+		                            <c:if test="${workVo.work_is_ai == 0}">
+		                            	X
+		                           	</c:if>
+		                           	<c:if test="${workVo.work_is_ai == 1}">
+		                            	O
+		                           	</c:if>
                                 </td>
                                 <td>
 		                            <c:if test="${workVo.getWork_available() == 0}">
@@ -144,7 +154,7 @@
                         </c:forEach>
                     </table><br>
                     <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_workAdd'" style="margin: 0 0 0 500px; color:red;">작품 추가</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_workAdd'" style="margin-left: 550px; color:red; border-radius: 5px;">작품 추가</button>
                     </div>
                 </div>
             </main>

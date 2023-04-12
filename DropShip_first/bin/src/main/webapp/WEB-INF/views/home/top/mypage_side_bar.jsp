@@ -10,6 +10,14 @@
 	            <li><a href="../myshop/my_wishlist?member_id=${sessionMember_id}">찜리스트</a></li>
 	        </ul>
 	    </div>
+	    
+	    <div class="mypage-nav-depth">
+	        <h3>AI</h3>
+	        <ul>
+	            <li><a href="../myshop/my_ai_work">내가 생성한 그림</a></li>
+	        </ul>
+	    </div>
+	    
 	    <div class="mypage-nav-depth">
 	        <h3>혜택관리</h3>
 	        <ul>

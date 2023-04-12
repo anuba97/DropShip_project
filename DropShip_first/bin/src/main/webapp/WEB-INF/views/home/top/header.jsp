@@ -20,7 +20,7 @@
                                 <li><a href="../shop/best_list">베스트 작품</a></li>
                                 <li><a href="../shop/painting_list">그림 작품</a></li>
                                 <li><a href="../shop/artist_list">작가별</a></li>
-                                <li><a href="../shop/genre_list">사진인화 신청</a></li>
+                                <li><a href="../image">사진인화 신청</a></li>
                             </ul>
                         </li>
                         <li>
@@ -62,9 +62,7 @@
 						<c:if test="${sessionMember_login_id != null }">
                         	<li><a href="../myshop/mypage?member_id=${sessionMember_id}">마이페이지</a></li>
 						</c:if>
-						
                         <li><a href="../myshop/personalpay">개인결제창(일단냅두기)</a></li>
-
                     </ul>
                 </nav>
                 <a href="javascript:;" class="btn-sitemap-close"><span class="hide">전체 사이트맵 닫기</span></a>
@@ -78,7 +76,7 @@
             <li><a href="../shop/best_list">베스트 작품</a></li>
             <li><a href="../shop/painting_list">그림 작품</a></li>
             <li><a href="../shop/artist_list">작가별</a></li>
-            <li><a href="../shop/genre_list">사진인화 신청</a></li>
+            <li><a href="../ai/image_generate">AI 그림생성</a></li>
         </ul>
     </nav>
 
@@ -104,7 +102,9 @@
             <c:if test="${sessionMember_login_id != null}">
 	            <li><a href="../myshop/orderinquiry">주문조회</a></li>
             </c:if>
-            <li><a href="../myshop/cart">장바구니<span class="basket-num">0</span></a></li>
+            <c:if test="${sessionMember_login_id != null}">
+            <li><a href="../myshop/cart">장바구니<span class="basket-num">${workVoList.size()}</span></a></li>
+            </c:if>
             <li><a href="../bbs/board">자유게시판</a></li>
         </ul>
     </nav>
@@ -116,11 +116,41 @@
             <fieldset id="hd_sch">
                 <legend>쇼핑몰 전체검색</legend>
                 <div class="sch-word-box">
-                    <form name="frmsearch1" action="http://localhost:8181/bxgs.co.kr/shop/search.php" onsubmit="return search_submit(this);">
+                
+                
+                
+<!--                     <form name="searchHeader" action="search" id="sch_str" method="get"> -->
+<!--                         <label for="sch_str" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label> -->
+<!--                         <input type="text" name="searchWord" value="" id="sch_str" required placeholder="Search..." autocomplete="off"> -->
+<!--                         <button type="submit" id="sch_submit" value="검색"><span class="sound_only">검색</span></button> -->
+<!--                     </form> -->
+
+
+
+                    <form name="search" action="../bxabout/search" id="search" method="post">
                         <label for="sch_str" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                        <input type="text" name="q" value="" id="sch_str" required placeholder="Search..." autocomplete="off">
+                        <input type="text" name="searchWord" id="sch_str" required placeholder="Search..." autocomplete="off">
                         <button type="submit" id="sch_submit" value="검색"><span class="sound_only">검색</span></button>
                     </form>
+                
+                
+                	<!-- <form action="searchNotice" name="searchNotice" id="searchNotice" method="get">
+                         <label for="sfl" class="sound_only">검색대상</label>
+                         <div class="sch-box">
+                             <input type="text" name="searchWord" id="searchWord"  placeholder="검색어를 입력해주세요." required id="stx" class="inp-type01" size="15" minlength="1" maxlength="20">
+                             <button type="button" id="searchBtn" class="sch-btn" />
+                         </div>
+                     </form> -->
+					
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 </div>
                 <div class="sch-word-wrap">
                     <div class="sch-recent-word">
@@ -164,7 +194,7 @@
             </fieldset>
         </div>
 
-        <script>
+       <script>
             function search_submit(f) {
                 if (f.q.value.length < 2) {
                     alert("검색어는 두글자 이상 입력하십시오.");

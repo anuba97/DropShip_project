@@ -123,10 +123,10 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 					    <a href="event_view?id=${eb.id}&page=${map.page}" class="event-end">
 					      <div class="event-thumb">
 						    <c:if test="${eb.eventboard_file_name != null}">
-						     	<div class="imgbox" style="background-image:url(../admin/img/Event/${eb.eventboard_file_name})"><span class="hide">썸네일</span></div>
+						     	<div class="imgbox" style="background-image:url(../admin/upload/${eb.eventboard_file_name})"><span class="hide">썸네일</span></div>
 						     </c:if>
 	                   		 <c:if test="${eb.eventboard_file_name == null}">
-						     	<div class="imgbox" style="background-image:url(../admin/img/Event/Event_deafaultLogo.png)"><span class="hide">썸네일</span></div>
+						     	<div class="imgbox" style="background-image:url(../admin/upload/Event_deafaultLogo.png)"><span class="hide">썸네일</span></div>
 						     </c:if>
 							<div class="event-end-box">종료된 이벤트입니다.</div>                                  
 						  </div>

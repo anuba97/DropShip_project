@@ -76,6 +76,10 @@
   }
 }
 
+#datatablesSimple th{
+	
+} 
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -106,11 +110,6 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-}
-
-#dropship_indexTable{
-	background-color: #212529;
-	color: #fff;
 }
 
 .login-alret{
@@ -4614,10 +4613,6 @@ width: 400px;
 .card-body {
   flex: 1 1 auto;
   padding: 1rem 1rem;
-}
-.card-body > table > thead > tr > th{
-  background-color: #212529;
-  color: #fff;
 }
 
 .card-title {
@@ -11569,7 +11564,15 @@ body {
 	margin: 0 0 0 24px;
 	width: 1200px;
 }
+.dropship_listTable{
+	margin: 0 0 0 24px;
+	width: 1200px;
+}
 .dropship_memberListTable th{
+	background-color: #212529;
+	color: #fff;
+}
+.dropship_listTable th{
 	background-color: #212529;
 	color: #fff;
 }
@@ -11585,6 +11588,7 @@ body {
 	margin: 0 0 0 24px;
 }
 .admin_noticeBoard_div{
+	width: 1300px;
 	margin: 0 0 0 24px;
 }
 .admin_eventBoardAdd_button{
@@ -11623,7 +11627,7 @@ body {
 	width: 300px;
 }
 .admin_customerTable{
-	width: 660px;
+	width: 40%;
 	border-collapse: collapse;
 	margin: 0 0 0 24px;
 }
@@ -11639,7 +11643,7 @@ body {
 
 .memberInOrder{
 	margin: 0 0 0 24px;
-	width: 660px;
+	width: 680px;
 }
 .memberInOrder th{
 	background-color: #212529;
@@ -11802,7 +11806,7 @@ tr,th,td{
 
 .dataTable-table > thead > tr > th {
   vertical-align: bottom;
-  text-align: center;
+  text-align: left;
   border-bottom: none;
 }
 
@@ -11937,6 +11941,21 @@ ul.page-numul-eventBoardList {
   font-size: 13px;
 }
 
-#indextable tr{
-	width: 100%;
+.admin_workListTable{
+	width: 1300px;
+}
+
+.admin_workListTable th{
+  	background-color: #212529;
+    color: #fff;
+}
+
+.admin_workViewTable th{
+	background-color: #212529;
+    color: #fff;
+}
+
+.admin_workViewTableDiv{
+	margin-left:24px;
+	width: 80%;
 }

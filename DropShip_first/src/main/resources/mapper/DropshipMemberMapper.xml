@@ -55,6 +55,7 @@
    	  FROM order_member om
       JOIN order_detail od ON om.ID = od.ORDER_MEMBER_ID
       GROUP BY TRUNC(om.ORDER_DATE)
+      ORDER BY TO_CHAR(TRUNC(om.ORDER_DATE), 'MONTH DD'), TRUNC(om.ORDER_DATE)
 	</select>
 	
 <!-- 	<select id="selectOrderTotalByMonth" resultType="com.java.vo.Count_Order_Price_By_MonthVo"> -->

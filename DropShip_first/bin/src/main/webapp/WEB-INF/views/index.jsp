@@ -15,6 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="home/img/favicon.ico" />
+    <!-- !!!!!!!!!!!!!!!!!!!!!  ↓ ↓ ↓ ↓ ↓ 제이쿼리 최신 ↓ ↓ ↓ ↓ ↓  !!!!!!!!!!!!!!!!!!!!! -->
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>DropShip</title>
     <link rel="stylesheet" href="home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
@@ -25,9 +26,7 @@
     <link rel="stylesheet" href="home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
     <link rel="stylesheet" href="home/theme/buzinga/css/common3816.css?ver=210618">
     <link rel="stylesheet" href="home/theme/buzinga/css/main3816.css?ver=210618">
-    <!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
+    <%@ include file ="home/ai/chatbot.jsp" %>	<!-- ai챗봇 -->
     <script>
         // 자바스크립트에서 사용하는 전역변수 선언
         var g5_url = "index";
@@ -43,7 +42,7 @@
         var g5_shop_url = "https://bxgs.co.kr:443/shop/";
     </script>
     <link rel="stylesheet" href="../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<!--     <script src="home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
     <script src="home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
     <script src="home/js/common3816.js?ver=210618"></script>
     <script src="home/js/wrest3816.js?ver=210618"></script>
@@ -177,7 +176,7 @@
 	                                        </div>
 	                                        <div class="sct_opt_wrap">
 	                                            <div class="sct_btn">
-	                                                <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
+	                                                <button type="button" onclick="AddToCartBtn(${workVo.id},${workVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
 	                                                    <svg height="45" width="160">
 	                                                        <rect height="45" width="160"></rect>
 	                                                    </svg>
@@ -193,7 +192,7 @@
 			                                                <button type="button" onclick="NoheartBtn()" class="btnset btn-like btn_wish" data-it_id="1654133549"><span class="hide">찜하기</span></button>
 	                                                	</c:if>
 	                                                	<c:if test="${sessionMember_login_id != null }">
-			                                                <button type="button" onclick="heartBtn('${sessionMember_id}', ${workVo.id})" class="btnset btn-like btn_wish" data-it_id="1654133549"><span class="hide">찜하기</span></button>
+			                                                <button type="button" onclick="heartBtn(${sessionMember_id}, ${workVo.id})" class="btnset btn-like btn_wish" data-it_id="1654133549"><span class="hide">찜하기</span></button>
 	                                                	</c:if>
 		                                                
 		                                                
@@ -225,35 +224,7 @@
                 </div>
             </section>
 			<!-- BEST ART 슬라이드 끝 -->	
-			<script>
-				var member_id;
-				var work_id;
-				// button에서 onclick="heartBtn(${workVo.id}) 들고왔다 function hearBtn()안에 넣을때는 (머가들어가든 괜찮다 ex) aa이런식으로 )
-				function heartBtn(member_id, work_id){  
-					$.ajax({
-						url: "myshop/workWishlist_ajax",
-						type: "post",
-						data:{"member_id":member_id, "work_id":work_id},
-						success: function(list){
-							if(list == 0){
-								alert("상품을 찜리스트에 담았습니다.");
-							} else {
-								alert("이미 있습니다.");
-								
-								
-							}
-						},
-						error : function(){
-							alert("시스템 오류입니다");
-						}
-						
-					})//ajax
-				}//function
-				
-				function NoheartBtn(){
-					alert("회원 전용 서비스 입니다.");
-				}
-			</script>
+			
 				
             <!----- MD PICK 슬라이드 그림작품2개 (DB에서 가져온게아니라 직접 적어야함) ----->
             <section class="pick">
@@ -412,7 +383,7 @@
                             <div class="swiper-slide">
                                 <div class="review-thumb-wrap">
                                     <span class="review-date">
-                                        <strong>02</strong>Jun </span>
+                                        <strong>02</strong></span>
                                     <div class="review-thumb" style="background-image:url('home/data/item/1652406511/thum05.png')">
                                         <span class="hide">썸네일 이미지</span>
                                     </div>
@@ -601,26 +572,49 @@
     <link rel="stylesheet" href="home/theme/buzinga/css/animate.css">
     <script src="home/theme/buzinga/js/base.js"></script>
     <script src="home/theme/buzinga/js/main.js"></script>
+	
+	
+	
+	<script>
+		// 찜 리스트 구문
+		
+		// button에서 onclick="heartBtn(${workVo.id}) 들고왔다 function hearBtn()안에 넣을때는 (머가들어가든 괜찮다 ex) aa이런식으로 )
+		function heartBtn(member_id, work_id){  
+			$.ajax({
+				url: "myshop/workWishlist_ajax",
+				type: "post",
+				data:{"member_id":member_id, "work_id":work_id},
+				success: function(list){
+					if(list == 0){
+						alert("상품을 찜리스트에 담았습니다.");
+					} else {
+						alert("이미 있습니다.");
+						
+						
+					}
+				},
+				error : function(){
+					alert("시스템 오류입니다");
+				}
+				
+			})//ajax
+		}//function
+		
+		function NoheartBtn(){
+			alert("회원 전용 서비스 입니다.");
+		}
+	</script>
+	
 
-    <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-    <!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
+	<script>
+		// ADD To CART 구문
+		function AddToCartBtn(work_id, artist_id){
+			var url = "/shop/painting_item?work_id=" + work_id + "&artist_id=" + artist_id;
+			location.href = url;
+		}
+	</script>
 
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
 
 
 </body>
-
-<!-- Mirrored from bxgs.co.kr/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:02:52 GMT -->
-
 </html>

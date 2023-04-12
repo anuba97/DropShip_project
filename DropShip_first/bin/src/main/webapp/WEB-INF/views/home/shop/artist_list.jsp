@@ -13,6 +13,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" href="../img/favicon.ico" />
 <title>작가별 페이지</title>
+<%@ include file ="../ai/chatbot.jsp" %>	<!-- ai챗봇 -->
 <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
 <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -21,9 +22,6 @@
 <link rel="stylesheet" href="../home/theme/buzinga/js/owl.carousel3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
 <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
-<!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "../index.html";
@@ -37,11 +35,9 @@ var g5_editor    = "";
 var g5_cookie_domain = "";
 var g5_theme_shop_url = "https://bxgs.co.kr:443/theme/buzinga/shop/";
 var g5_shop_url = "https://bxgs.co.kr:443/shop/";
-
-
 </script>
 <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<!-- <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
 <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
 <script src="../home/js/common3816.js?ver=210618"></script>
 <script src="../home/js/wrest3816.js?ver=210618"></script>
@@ -94,48 +90,48 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
 	<section class="artist-list">
 		<div class="combine-list">
 			<!-----  SEARCH LIST ----->
-			<div class="combine-sort-wrap">
-				<h3>Artist List</h3>
-				<ul class="combine-sort-list">
-					<li class="all  on "><a href="artist_list.html"><span>All</span></a></li>
-					<li class="">
-						<a href="#"><span>ㄱ ~ ㄹ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_list4e11.html?ca_id=101010"><span>ㄱ, ㄲ</span></a></li>
-							<li class=""><a href="artist_list6974.html?ca_id=101020"><span>ㄴ</span></a></li>
-							<li class=""><a href="artist_listb3c8.html?ca_id=101030"><span>ㄷ, ㄸ</span></a></li>
-							<li class=""><a href="artist_list9f23.html?ca_id=101040"><span>ㄹ</span></a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="#"><span>ㅁ ~ ㅇ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_listc7f5.html?ca_id=102010"><span>ㅁ</span></a></li>
-							<li class=""><a href="artist_list646f.html?ca_id=102020"><span>ㅂ, ㅃ</span></a></li>
-							<li class=""><a href="artist_list2f4c.html?ca_id=102030"><span>ㅅ, ㅆ</span></a></li>
-							<li class=""><a href="artist_list1ac9.html?ca_id=102040"><span>ㅇ</span></a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="#"><span>ㅈ ~ ㅌ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_liste19f.html?ca_id=103010"><span>ㅈ, ㅉ</span></a></li>
-							<li class=""><a href="artist_list8259.html?ca_id=103020"><span>ㅊ</span></a></li>
-							<li class=""><a href="artist_listdef3.html?ca_id=103030"><span>ㅋ</span></a></li>
-							<li class=""><a href="artist_listc4d5.html?ca_id=103040"><span>ㅌ</span></a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="#"><span>ㅍ ~ ㅎ</span></a>
-						<ul class="sort-depth">
-							<li class=""><a href="artist_lista4a8.html?ca_id=104010"><span>ㅍ</span></a></li>
-							<li class=""><a href="artist_list5abc.html?ca_id=104020"><span>ㅎ</span></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+<!-- 			<div class="combine-sort-wrap"> -->
+<!-- 				<h3>Artist List</h3> -->
+<!-- 				<ul class="combine-sort-list"> -->
+<!-- 					<li class="all  on "><a href="artist_list.html"><span>All</span></a></li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㄱ ~ ㄹ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_list4e11.html?ca_id=101010"><span>ㄱ, ㄲ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list6974.html?ca_id=101020"><span>ㄴ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_listb3c8.html?ca_id=101030"><span>ㄷ, ㄸ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list9f23.html?ca_id=101040"><span>ㄹ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㅁ ~ ㅇ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_listc7f5.html?ca_id=102010"><span>ㅁ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list646f.html?ca_id=102020"><span>ㅂ, ㅃ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list2f4c.html?ca_id=102030"><span>ㅅ, ㅆ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list1ac9.html?ca_id=102040"><span>ㅇ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㅈ ~ ㅌ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_liste19f.html?ca_id=103010"><span>ㅈ, ㅉ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list8259.html?ca_id=103020"><span>ㅊ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_listdef3.html?ca_id=103030"><span>ㅋ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_listc4d5.html?ca_id=103040"><span>ㅌ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 					<li class=""> -->
+<!-- 						<a href="#"><span>ㅍ ~ ㅎ</span></a> -->
+<!-- 						<ul class="sort-depth"> -->
+<!-- 							<li class=""><a href="artist_lista4a8.html?ca_id=104010"><span>ㅍ</span></a></li> -->
+<!-- 							<li class=""><a href="artist_list5abc.html?ca_id=104020"><span>ㅎ</span></a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<!-----  ARTIST LIST ----->
-			<div id="item-list-wrap">
+			<div id="item-list-wrap" style="margin: 0 auto;">
 				<div class="grid-list-opt">
 					<div class="grid-opt-left">총 <strong class="f-color">${map.listCount}</strong>명의 작가가 있습니다.</div>
 					<div class="grid-opt-right">

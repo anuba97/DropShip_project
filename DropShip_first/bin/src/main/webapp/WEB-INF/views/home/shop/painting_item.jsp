@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!doctype html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html lang="ko">
 
 <!-- Mirrored from bxgs.co.kr/shop/item.php?it_id=1654133092 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:56 GMT -->
 <!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!-- /Added by HTTrack -->
 
 <head>
     <meta charset="utf-8">
@@ -15,7 +17,10 @@
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../home/img/favicon.ico" />
-    <title>그림작품  view페이지</title>
+    <title>그림작품 view페이지</title>
+	<!-- ai채팅창에 필요 -->
+	<%@ include file ="../ai/chatbot.jsp" %>
+	<!-- ai채팅창에 필요 -->
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -25,9 +30,6 @@
     <link rel="stylesheet" href="../home/theme/buzinga/mobile/skin/shop/basic/style3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/common3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
-    <!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
     <script>
         // 자바스크립트에서 사용하는 전역변수 선언
         var g5_url = "../index.html";
@@ -43,7 +45,7 @@
         var g5_shop_url = "https://bxgs.co.kr:443/shop/";
     </script>
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<!--         <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> 이거 겹침 있음 안됨 -->
     <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
     <script src="../home/js/common3816.js?ver=210618"></script>
     <script src="../home/js/wrest3816.js?ver=210618"></script>
@@ -56,13 +58,13 @@
     <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
-    <script src="../home/js/jquery.bxslider3816.js?ver=210618"></script>
-    <script src="../home/js/shop.list.action3816.js?ver=210618"></script>
+<!--     <script src="../home/js/jquery.bxslider3816.js?ver=210618"></script> -->
+<!--     <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
     <script src="../home/js/viewimageresize3816.js?ver=210618"></script>
+    
 </head>
 
 <body>
-
 
     <div class="cursor-ball">
         <div class="ball"></div>
@@ -76,40 +78,43 @@
     <div id="wrap" class="sub">
 
         <!-- header 부분 시작 -->
-        <%@ include file ="../top/header.jsp" %>
+        <%@ include file="../top/header.jsp"%>
         <!-- header 부분 끝 -->
 
         <main id="contents">
 
             <div id="sit_hhtml"></div>
             <script src="../home/js/shop.js"></script>
-
-
             <div id="sit">
+                <form name="fitem" action="https://bxgs.co.kr/shop/cartupdate.php" method="post" onsubmit="return fitem_submit(this);" style="position: relative; z-index: 1;">
+                    <input type="hidden" name="it_id[]" value="1654133092"> <input type="hidden" name="sw_direct"> <input type="hidden" name="url">
+
+                    <input type="hidden" name="work_id" value="${param.work_id}">
+                    <!-- work_id 를 order_form.jsp로 보내기  -->
 
 
-
-
-                <form name="fitem" action="https://bxgs.co.kr/shop/cartupdate.php" method="post" onsubmit="return fitem_submit(this);" style="position:relative; z-index:1;">
-                    <input type="hidden" name="it_id[]" value="1654133092">
-                    <input type="hidden" name="sw_direct">
-                    <input type="hidden" name="url">
-                    
-                    <input type="hidden" name="work_id" value="${param.work_id}">	<!-- work_id 를 order_form.jsp로 보내기  -->
-
-				 	
                     <div id="sit_ov_wrap">
                         <!----- 배경 변경 ----->
                         <div id="sit_bg_preview">
-                            <div class="bg-preview" style="background-image:url('../home/img/sub/item-detail-frame-bg01.jpg')">
+                            <div class="bg-preview" style="background-image: url('../home/img/sub/item-detail-frame-bg01.jpg')">
                                 <div class="hide">배경이미지</div>
                             </div>
                             <div class="bg-thumb-list">
-                                <div class="bg-thumb on"><img src="../home/img/sub/item-detail-frame-bg01.jpg" alt=""></div>
-                                <div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg02.jpg" alt=""></div>
-                                <div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg03.jpg" alt=""></div>
-                                <div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg04.jpg" alt=""></div>
-                                <div class="bg-thumb"><img src="../home/img/sub/item-detail-frame-bg05.jpg" alt=""></div>
+                                <div class="bg-thumb on">
+                                    <img src="../home/img/sub/item-detail-frame-bg01.jpg" alt="">
+                                </div>
+                                <div class="bg-thumb">
+                                    <img src="../home/img/sub/item-detail-frame-bg02.jpg" alt="">
+                                </div>
+                                <div class="bg-thumb">
+                                    <img src="../home/img/sub/item-detail-frame-bg03.jpg" alt="">
+                                </div>
+                                <div class="bg-thumb">
+                                    <img src="../home/img/sub/item-detail-frame-bg04.jpg" alt="">
+                                </div>
+                                <div class="bg-thumb">
+                                    <img src="../home/img/sub/item-detail-frame-bg05.jpg" alt="">
+                                </div>
                             </div>
                         </div>
 
@@ -120,7 +125,9 @@
                             <!----- 액자 미리보기 ----->
                             <div id="sit_frame_img">
                                 <!-- 이미지 사이즈 3종류 있습니다.-->
-                                <div class="frame-img" style="background-image:url(/admin/img/work/${workVo.work_img_url}); width: 540px; height: 390px;"><span class="hide">주문액자 미리보기</span></div>
+                                <div class="frame-img" style="background-image:url(/admin/img/work/${workVo.work_img_url}); width: 540px; height: 390px;">
+                                    <span class="hide">주문액자 미리보기</span>
+                                </div>
                             </div>
 
                             <!----- 상품 주문옵션 ----->
@@ -385,11 +392,12 @@
                                                 <div class="opt-step05-wrap">
                                                     <div class="opt-sm-tit">
                                                         그림사이즈 선택
-                                                        <p><span class="f-color">*</span>캔버스/래핑캔버스는 짧은변 최대 140cm</p>
+                                                        <p>
+                                                            <span class="f-color">*</span>캔버스/래핑캔버스는 짧은변 최대 140cm
+                                                        </p>
                                                     </div>
                                                     <div class="opt-select1">
-                                                        <label for="opt4"></label>
-                                                        <select name="opt4" id="opt4" class="deco-select" onchange="price_calculate()">
+                                                        <label for="opt4"></label> <select name="opt4" id="opt4" class="deco-select" onchange="price_calculate()">
                                                             <option value="">사이즈를 선택하세요.</option>
                                                             <option selected value="0">20.0cm x 35.7cm</option>
                                                             <option value="1">25.0cm x 44.6cm</option>
@@ -400,37 +408,31 @@
                                                 <div class="opt-step01-wrap">
                                                     <div class="opt-sm-tit">미디어 선택</div>
                                                     <ul class="opt-gall">
-                                                        <li>
-                                                            <label>
-                                                                <input type="radio" name="opt1" value="1" checked onclick="chg_opt(), price_calculate()">
-                                                                <div class="opt-thumb"><img src="../home/img/sub/item-detail-step01-fineart.jpg"></div>
+                                                        <li><label> <input type="radio" name="opt1" value="1" checked onclick="chg_opt(), price_calculate()">
+                                                                <div class="opt-thumb">
+                                                                    <img src="../home/img/sub/item-detail-step01-fineart.jpg">
+                                                                </div>
                                                                 <p>캔버스</p>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input type="radio" name="opt1" value="2" onclick="chg_opt(), price_calculate()">
-                                                                <div class="opt-thumb"><img src="../home/img/sub/item-detail-step01-canvas.jpg"></div>
+                                                            </label></li>
+                                                        <li><label> <input type="radio" name="opt1" value="2" onclick="chg_opt(), price_calculate()">
+                                                                <div class="opt-thumb">
+                                                                    <img src="../home/img/sub/item-detail-step01-canvas.jpg">
+                                                                </div>
                                                                 <p>파인아트</p>
-                                                            </label>
-                                                        </li>
+                                                            </label></li>
                                                     </ul>
                                                 </div>
 
                                                 <div class="opt-step03-wrap">
                                                     <div class="opt-sm-tit">
                                                         마띠에르 리터치 선택
-                                                        <p><span class="f-color">*</span>그림면 질감 리터칭. 캔버스 전용</p>
+                                                        <p>
+                                                            <span class="f-color">*</span>그림면 질감 리터칭. 캔버스 전용
+                                                        </p>
                                                     </div>
                                                     <ul class="opt-normal">
-                                                        <li>
-                                                            <input type="radio" id="opt-step03-1" name="opt5" value="1" checked onclick="chg_opt()">
-                                                            <label for="opt-step03-1">없음</label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" id="opt-step03-2" name="opt5" value="2" onclick="chg_opt()">
-                                                            <label for="opt-step03-2">선택</label>
-                                                        </li>
+                                                        <li><input type="radio" id="opt-step03-1" name="opt5" value="1" checked onclick="chg_opt()"> <label for="opt-step03-1">없음</label></li>
+                                                        <li><input type="radio" id="opt-step03-2" name="opt5" value="2" onclick="chg_opt()"> <label for="opt-step03-2">선택</label></li>
 
                                                     </ul>
                                                 </div>
@@ -438,7 +440,9 @@
                                                 <div class="opt-step02-wrap">
                                                     <div class="opt-sm-tit">
                                                         프레임 선택
-                                                        <p><span class="f-color">*</span>스크롤 사용시 다양한 프레임을 확인하실 수 있습니다.</p>
+                                                        <p>
+                                                            <span class="f-color">*</span>스크롤 사용시 다양한 프레임을 확인하실 수 있습니다.
+                                                        </p>
                                                     </div>
                                                     <ul class="opt-gall" id="opt2">
 
@@ -448,7 +452,9 @@
                                                 <div class="opt-step04-wrap">
                                                     <div class="opt-sm-tit">
                                                         매트(여백) 선택
-                                                        <p><span class="f-color">*</span>선택 가능한 경우에만 표시됩니다.</p>
+                                                        <p>
+                                                            <span class="f-color">*</span>선택 가능한 경우에만 표시됩니다.
+                                                        </p>
                                                     </div>
                                                     <ul class="opt-gall" id="opt3">
 
@@ -456,14 +462,14 @@
                                                 </div>
 
                                             </div>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
+
+
+
+
+
+
                                             <!-- 원래 주석부분 -->
-                        <!--  
+                                            <!--  
 						<div class="swiper-slide">
 							<div class="opt-step02-wrap">
 								<h3>STEP <span class="f-color">02</span></h3>
@@ -621,17 +627,17 @@
 							</div>
 						</div>
 							-->
-							<!-- 원래 주석부분 끝 -->
+                                            <!-- 원래 주석부분 끝 -->
 
                                         </div>
-                    <!-- 원래 주석부분 -->
-                    <!--
+                                        <!-- 원래 주석부분 -->
+                                        <!--
 					<div class="swiper-button-next"></div>
 					<div class="swiper-button-prev"></div>
 					<div class="swiper-pagination"></div>
 					-->
-					<!-- 원래 주석부분 끝 -->
-					
+                                        <!-- 원래 주석부분 끝 -->
+
                                     </div>
                                 </div>
 
@@ -693,21 +699,21 @@
 
                                 <div id="sit_sel_option">
                                     <ul id="sit_opt_added">
-                                        <li class="sit_opt_list">
-                                            <input type="hidden" name="io_type[1654133092][]" value="0">
-                                            <input type="hidden" name="io_id[1654133092][]" value="">
-                                            <input type="hidden" name="io_value[1654133092][]" value="수확하는 사람">
-                                            <input type="hidden" class="io_price" value="0">
-                                            <input type="hidden" class="io_stock" value="99999">
+                                        <li class="sit_opt_list"><input type="hidden" name="io_type[1654133092][]" value="0"> <input type="hidden" name="io_id[1654133092][]" value=""> <input type="hidden" name="io_value[1654133092][]" value="수확하는 사람">
+                                            <input type="hidden" class="io_price" value="0"> <input type="hidden" class="io_stock" value="99999">
                                             <div class="opt_name">
                                                 <span class="sit_opt_subj">${workVo.work_name}</span>
                                             </div>
                                             <div class="opt_count">
                                                 <label for="ct_qty_7" class="sound_only">수량</label>
-                                                <button type="button" class="sit_qty_minus"><span class="sound_only">감소</span></button>
+                                                <button type="button" class="sit_qty_minus">
+                                                    <span class="sound_only">감소</span>
+                                                </button>
                                                 <input type="text" name="ct_qty[1654133092][]" value="1" id="ct_qty_7" class="num_input" size="5">
-                                                <button type="button" class="sit_qty_plus"><span class="sound_only">증가</span></button>
-                                                <span class="sit_opt_prc" style="display:none;"></span>
+                                                <button type="button" class="sit_qty_plus">
+                                                    <span class="sound_only">증가</span>
+                                                </button>
+                                                <span class="sit_opt_prc" style="display: none;"></span>
                                             </div>
                                         </li>
                                     </ul>
@@ -719,10 +725,13 @@
                                     </script>
                                 </div>
 
-                               <div id="sit_tot_price"></div>
-                               
+                                <div id="sit_tot_price"></div>
 
 
+								 <c:if test="${sessionMember_login_id == null }">
+								 <span>구입은 <strong><a href="/member/login">로그인</a></strong> 후 진행해 주세요!</span>
+								 </c:if>
+								 <c:if test="${sessionMember_login_id != null }">
                                 <div id="sit_ov_btn">
                                     <div class="sit_ov_order_btn">
                                         <button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="btnset btn-type01 gray">
@@ -738,10 +747,13 @@
                                             <span>구매하기</span>
                                         </button>
                                     </div>
+                                  </c:if>
                                 </div>
-								
+
                                 <div class="sns_share">
-                                    <button type="button" class="btn_sns_share"><span class="sound_only">공유</span></button>
+                                    <button type="button" class="btn_sns_share">
+                                        <span class="sound_only">공유</span>
+                                    </button>
                                     <a href="javascript:item_wish(document.fitem, '1654133092');" id="sit_btn_wish">위시리스트</a>
                                     <div class="sns_area">
                                         <div class="bg btn_snscl"></div>
@@ -755,9 +767,7 @@
                                                             "type": "f"
                                                         });
                                                     </script>
-                                                </span>
-                                                <a href="https://story.kakao.com/share?url=http://bxgs.co.kr/shop/item.php?it_id=1654133092" class="sns_link sns_kakao target=" _blank">
-                                                    <img src="../home/img/ico/ico-social-login-kakao-on.png" alt="카카오">
+                                                </span> <a href="https://story.kakao.com/share?url=http://bxgs.co.kr/shop/item.php?it_id=1654133092" class="sns_link sns_kakao target=" _blank"> <img src="../home/img/ico/ico-social-login-kakao-on.png" alt="카카오">
                                                 </a>
 
                                             </div>
@@ -773,7 +783,7 @@
                         </div>
                     </div>
 
-                    
+
                 </form>
 
                 <!----- 아티스트 다른 그림 ----->
@@ -781,48 +791,65 @@
                     <h2>아티스트 다른 그림</h2>
                     <div class="grid-list">
                         <div class="sct-slider-wrap">
-	                        <!-- 상단 아티스트의 다른 그림작품 시작(상단 1개그림 제외) { -->
+                            <!-- 상단 아티스트의 다른 그림작품 시작(상단 1개그림 제외) { -->
                             <div class="sct-slider">
                                 <ul class="swiper-wrapper sct">
-                                	 <c:forEach items="${list}" var="artistWorkVo"> 
-		                                    <li class="swiper-slide sct_li">
-		                                        <div class="li_wr">
-		                                            <div class="sct_img_wrap">
-		                                                <div class="sct_img" style="background-image:url(/admin/img/work/${artistWorkVo.work_img_url})">
-		                                                    <span class="hide">작품이름</span>
-		                                                </div>
-		                                                <div class="sct_opt_wrap">
-		                                                    <div class="sct_btn">
-		                                                        <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654135291">
-		                                                            <svg height="45" width="160">
-		                                                                <rect height="45" width="160"></rect>
-		                                                            </svg>
-		                                                            <span>ADD TO CART</span>
-		                                                        </button>
-		                                                    </div>
-		                                                    <div class="cart-layer"></div>
-		                                                    <div class="sct_op_btn">
-		                                                        <a href="painting_item?work_id=${artistWorkVo.id}&artist_id=${artistWorkVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
-		                                                        <button type="button" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
-		                                                    </div>
-		                                                </div>
-		                                            </div>
-		                                            <div class="sct_txt"><a href="painting_item?work_id=${artistWorkVo.id}&artist_id=${artistWorkVo.artist_id}" class="sct_a">${artistWorkVo.work_name}</a></div>
-		                                            <div class="sct_desc"><span>${artistWorkVo.artist_name}</span><p>20.0cm x 35.7cm</p></div>
-		                                            <div class="sct_cost"><span class="price_cost">
-		                                            	<strong>
-		                                            		<fmt:formatNumber type="number" value="${artistWorkVo.work_price}" pattern="#,###" />원
-		                                            	</strong></span></div>
-		                                        	</div>
-		                                    </li>
-                                	 </c:forEach> 
+                                    <c:forEach items="${list}" var="artistWorkVo">
+                                        <li class="swiper-slide sct_li">
+                                            <div class="li_wr">
+                                                <div class="sct_img_wrap">
+                                                    <div class="sct_img" style="background-image:url(/admin/img/work/${artistWorkVo.work_img_url})">
+                                                        <span class="hide">작품이름</span>
+                                                    </div>
+                                                    <div class="sct_opt_wrap">
+                                                        <div class="sct_btn">
+                                                            <button type="button" onclick="AddToCartBtn(${artistWorkVo.id},${artistWorkVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
+                                                                <svg height="45" width="160">
+                                                                    <rect height="45" width="160"></rect>
+                                                                </svg>
+                                                                <span>ADD TO CART</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="cart-layer"></div>
+                                                        <div class="sct_op_btn">
+                                                            <a href="painting_item?work_id=${artistWorkVo.id}&artist_id=${artistWorkVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
+
+                                                            <c:if test="${sessionMember_login_id == null }">
+                                                                <button type="button" onclick="NoheartBtn()" class="btnset btn-like btn_wish">
+                                                                    <span class="hide">찜하기</span>
+                                                                </button>
+                                                            </c:if>
+                                                            <c:if test="${sessionMember_login_id != null }">
+                                                                <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" class="btnset btn-like btn_wish">
+                                                                    <span class="hide">찜하기</span>
+                                                                </button>
+                                                            </c:if>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sct_txt">
+                                                    <a href="painting_item?work_id=${artistWorkVo.id}&artist_id=${artistWorkVo.artist_id}" class="sct_a">${artistWorkVo.work_name}</a>
+                                                </div>
+                                                <div class="sct_desc">
+                                                    <span>${artistWorkVo.artist_name}</span>
+                                                    <p>20.0cm x 35.7cm</p>
+                                                </div>
+                                                <div class="sct_cost">
+                                                    <span class="price_cost"> <strong>
+                                                            <fmt:formatNumber type="number" value="${artistWorkVo.work_price}" pattern="#,###" />원
+                                                        </strong></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                             <div class="swiper-button-prev cursor-able"></div>
                             <div class="swiper-button-next cursor-able"></div>
                             <div class="swiper-pagination"></div>
-                        <!-- } 상품진열 끝 -->
-	                        
+                            <!-- } 상품진열 끝 -->
+
                         </div>
                     </div>
                 </div>
@@ -845,7 +872,7 @@
                         <div class="sit_inf_explan_wrap">
                             <h3 class="hide">상품 상세설명</h3>
                             <div id="sit_inf_explan">
-						
+
                                 <!----- 작품설명 ----->
                                 <div class="sit_inf_explan_item">
                                     <div class="item_tit_wrap">
@@ -853,18 +880,18 @@
                                         <h4 class="item_tit">${workVo.work_name}</h4>
                                     </div>
                                     <div class="item_frame_wrap">
-                                        <div class="item_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})"><span class="hide">제품이미지</span></div>
+                                        <div class="item_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
+                                            <span class="hide">제품이미지</span>
+                                        </div>
                                     </div>
                                     <div class="item_desc_wrap">
                                         <div class="item_desc_tit">
-                                            <strong class="item_name">${workVo.work_name}</strong>
-                                            <span class="item_sm_name">
-                                                <span class="item_eng_name">${artistVo.artist_english_name}</span>
+                                            <strong class="item_name">${workVo.work_name}</strong> <span class="item_sm_name"> <span class="item_eng_name">${artistVo.artist_english_name}</span>
                                                 <span class="item_artist_name">${workVo.artist_name}</span>
                                             </span>
                                         </div>
                                         <div class="item_desc_con">
-                                        	<p>${workVo.work_content}</p>
+                                            <p>${workVo.work_content}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -874,10 +901,13 @@
                                 <!----- 작가설명 ----->
                                 <div class="sit_inf_explan_artist">
                                     <div class="artist_img_wrap">
-                                        <div class="artist_img" style="background-image:url(/admin/img/artist/${artistVo.artist_img_url})"><span class="hide">작가이미지</span></div>
+                                        <div class="artist_img" style="background-image:url(/admin/img/artist/${artistVo.artist_img_url})">
+                                            <span class="hide">작가이미지</span>
+                                        </div>
                                     </div>
                                     <div class="artist_info_wrap">
-                                        <h4 class="artist_name">${artistVo.artist_korean_name}<span class="artist_eng_name">${artistVo.artist_english_name}</span></h4>
+                                        <h4 class="artist_name">${artistVo.artist_korean_name}<span class="artist_eng_name">${artistVo.artist_english_name}</span>
+                                        </h4>
                                         <dl class="artist_sum">
                                             <dt>국적</dt>
                                             <dd>${artistVo.artist_country}</dd>
@@ -891,10 +921,12 @@
                                             <dd>${artistVo.artist_main}</dd>
                                         </dl>
                                         <div class="artist_desc">
-                                            <p><span style="color: rgb(102, 102, 102);">${artistVo.artist_content}</span></p>
+                                            <p>
+                                                <span style="color: rgb(102, 102, 102);">${artistVo.artist_content}</span>
+                                            </p>
                                         </div>
                                         <div class="artist_btnwrap">
-                                            <a href="artist_viewa25a.html?aidx=3" class="btnset btn-type02">Read More</a>
+                                            <a href="artist_view?artist_id=${artistVo.id}" class="btnset btn-type02">Read More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -921,44 +953,48 @@
                                     </div>
                                     <div class="itembuy-con">
                                         <dl>
-                                            <dt><span>1</span>사이즈 오차</dt>
+                                            <dt>
+                                                <span>1</span>사이즈 오차
+                                            </dt>
+                                            <dd>DropShip갤러리 그림액자는 수제작 상품 특성상 제조 과정에서 크기에 따라 1~3cm 사이즈 오차가
+                                                발생할 수 있으며 이는 상품 고유의 하자가 아닙니다. 동일 사이즈의 상품을 나란히 거치하시려는 경우 등 정밀 사이즈
+                                                제작이 필요하신 경우는 구매시 배송메세지, 1:1 상담게시판에 요청사항을 남겨주시거나 고객센터로 연락주세요.</dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>
+                                                <span>2</span>색감차이
+                                            </dt>
+                                            <dd>화면에서 보는 상품기술서 상의 색감과 실제 상품의 색감은 모니터와 미디어라는 매체의 특성, 사용자 기기의
+                                                고유 특성에 따라 차이가 날 수 있으며 이는 상품의 하자가 아닙니다. 동일한 색상이라도 사람에 따라서 느끼는 색의
+                                                차이가 존재하며 계절, 관람공간의 색상 및 조명 등 수많은 요소에 따라 다르게 보일 수 있기 때문에 색감, 느낌 등의
+                                                사유로 인한 A/S 및 교환/반품이 불가한 점 양해 부탁드립니다.</dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>
+                                                <span>3</span>배송정책
+                                            </dt>
                                             <dd>
-                                                DropShip갤러리 그림액자는 수제작 상품 특성상 제조 과정에서 크기에 따라 1~3cm 사이즈 오차가 발생할 수 있으며 이는 상품 고유의 하자가 아닙니다.
-                                                동일 사이즈의 상품을 나란히 거치하시려는 경우 등 정밀 사이즈 제작이 필요하신 경우는 구매시 배송메세지, 1:1 상담게시판에 요청사항을
-                                                남겨주시거나 고객센터로 연락주세요.
+                                                DropShip갤러리 명화액자는 각 그림별 비율을 지키기 위한 개별 주문 수제작 상품으로 공장 상황에 따라 주문일로
+                                                부터 출고까지 영업일 기준 5일내외 (마띠에르 리터치 상품은 영업일 20일이내 소요)의 제작기간이 소요됩니다. 넉넉하게
+                                                여유를 가지고 주문해 주시기 바랍니다.<br>
+                                                <br> * 주말 및 휴무일, 천재지변에 의한 기간은 배송기한에 포함되지 않습니다.
                                             </dd>
                                         </dl>
                                         <dl>
-                                            <dt><span>2</span>색감차이</dt>
-                                            <dd>
-                                                화면에서 보는 상품기술서 상의 색감과 실제 상품의 색감은 모니터와 미디어라는 매체의 특성, 사용자 기기의 고유 특성에
-                                                따라 차이가 날 수 있으며 이는 상품의 하자가 아닙니다. 동일한 색상이라도 사람에 따라서 느끼는 색의 차이가 존재하며 계절,
-                                                관람공간의 색상 및 조명 등 수많은 요소에 따라 다르게 보일 수 있기 때문에 색감, 느낌 등의 사유로 인한 A/S 및 교환/반품이 불가한 점 양해 부탁드립니다.
-                                            </dd>
+                                            <dt>
+                                                <span>4</span>배송비
+                                            </dt>
+                                            <dd>DropShip갤러리의 배송비는 기본 4,000원이며 10만원 이상 구매시 무료로 배송됩니다. 액자류는
+                                                특성 및 크기에 따라 합포장이 어려우며, 배송비가 높은 점 양해 부탁드립니다.</dd>
                                         </dl>
                                         <dl>
-                                            <dt><span>3</span>배송정책</dt>
-                                            <dd>
-                                                DropShip갤러리 명화액자는 각 그림별 비율을 지키기 위한 개별 주문 수제작 상품으로 공장 상황에 따라 주문일로 부터 출고까지 영업일 기준
-                                                5일내외 (마띠에르 리터치 상품은 영업일 20일이내 소요)의 제작기간이 소요됩니다. 넉넉하게 여유를 가지고 주문해 주시기 바랍니다.<br><br>
-
-                                                * 주말 및 휴무일, 천재지변에 의한 기간은 배송기한에 포함되지 않습니다.
-                                            </dd>
-                                        </dl>
-                                        <dl>
-                                            <dt><span>4</span>배송비</dt>
-                                            <dd>
-                                                DropShip갤러리의 배송비는 기본 4,000원이며 10만원 이상 구매시 무료로 배송됩니다. 액자류는 특성 및 크기에 따라
-                                                합포장이 어려우며, 배송비가 높은 점 양해 부탁드립니다.
-                                            </dd>
-                                        </dl>
-                                        <dl>
-                                            <dt><span>5</span>보증 및 A/S</dt>
-                                            <dd>
-                                                DropShip갤러리 액자류 상품 AS기한은 구매일로부터 1년 입니다. 배송파손이나 초기 불량의 경우 무상 수리 또는 재제작 배송 처리되며,
-                                                AS기간 이후는 소정의 비용으로 A/S 해드립니다. A/S신청 시 문제 부위의 사진을 잘 보이도록 촬영하여 카카오채널, 1:1상담,
-                                                휴대폰(010-0000-0000) 또는 이메일(DropShipang@DropShipang.co.kr)으로 보내주세요.
-                                            </dd>
+                                            <dt>
+                                                <span>5</span>보증 및 A/S
+                                            </dt>
+                                            <dd>DropShip갤러리 액자류 상품 AS기한은 구매일로부터 1년 입니다. 배송파손이나 초기 불량의 경우
+                                                무상 수리 또는 재제작 배송 처리되며, AS기간 이후는 소정의 비용으로 A/S 해드립니다. A/S신청 시 문제 부위의
+                                                사진을 잘 보이도록 촬영하여 카카오채널, 1:1상담, 휴대폰(010-0000-0000) 또는
+                                                이메일(DropShipang@DropShipang.co.kr)으로 보내주세요.</dd>
                                         </dl>
                                     </div>
                                 </div>
@@ -971,38 +1007,39 @@
                                     </div>
                                     <div class="itembuy-con">
                                         <dl>
-                                            <dt><span>1</span>교환 환불 정책</dt>
-                                            <dd>
-                                                DropShip갤러리의 그림액자는 그림, 미디어, 크기, 프레임 등을 고객이 지정하여 제작하는 주문제작 상품으로 제품 특성상
-                                                소비자의 변심에 의한 상품교환 또는 환불이 불가합니다. 신중하게 구매해 주시기 바랍니다.
-
-                                                아크릴 압착 상품이 오배송 된 경우 보호필름을 제거하시면 상품성 상실로 반송 처리가 불가합니다.
-                                                오배송을 확인하시면 절대로 보호필름을 제거하지 마시고, 배송된 포장재에 그대로 재 포장하여 고객센터로 수거를 요청 해 주세요.
-                                            </dd>
+                                            <dt>
+                                                <span>1</span>교환 환불 정책
+                                            </dt>
+                                            <dd>DropShip갤러리의 그림액자는 그림, 미디어, 크기, 프레임 등을 고객이 지정하여 제작하는 주문제작
+                                                상품으로 제품 특성상 소비자의 변심에 의한 상품교환 또는 환불이 불가합니다. 신중하게 구매해 주시기 바랍니다. 아크릴
+                                                압착 상품이 오배송 된 경우 보호필름을 제거하시면 상품성 상실로 반송 처리가 불가합니다. 오배송을 확인하시면 절대로
+                                                보호필름을 제거하지 마시고, 배송된 포장재에 그대로 재 포장하여 고객센터로 수거를 요청 해 주세요.</dd>
                                         </dl>
                                         <dl>
-                                            <dt><span>2</span>상품하자 / 오배송</dt>
-                                            <dd>
-                                                상품하자, 오배송의 경우 상품을 받으신 날로부터 7일 이내(신청일 기준) 교환 환불이 가능합니다.
-                                                배송중 파손 또는 상품 초기 불량의 경우 수거 후 AS처리 되거나, 액자류 특성상 수거 없이 재제작 배송 될 수 있습니다.
-                                                상품하자, 오배송에 따른 임의 반송 시 액자류 특성상 상품이 파손되기 쉬으므로 반드시 받으신 포장을 활용하여 재포장
-                                                해 주시고 고객센터로 수거를 요청 해 주세요.
-                                            </dd>
+                                            <dt>
+                                                <span>2</span>상품하자 / 오배송
+                                            </dt>
+                                            <dd>상품하자, 오배송의 경우 상품을 받으신 날로부터 7일 이내(신청일 기준) 교환 환불이 가능합니다. 배송중
+                                                파손 또는 상품 초기 불량의 경우 수거 후 AS처리 되거나, 액자류 특성상 수거 없이 재제작 배송 될 수 있습니다.
+                                                상품하자, 오배송에 따른 임의 반송 시 액자류 특성상 상품이 파손되기 쉬으므로 반드시 받으신 포장을 활용하여 재포장 해
+                                                주시고 고객센터로 수거를 요청 해 주세요.</dd>
                                         </dl>
                                         <dl>
-                                            <dt><span>3</span>주문취소 / 환불</dt>
-                                            <dd>
-                                                주문제작상품 특성상 주문이 접수 이후 제작이 시작되면 배송 이전이라도 주문취소에 따른 전액 환불이 불가합니다.
-                                                반드시 주문을 취소하셔야 하는 경우, 인쇄공정 진행시 상품금액의 30%, 프레임 공정 진행시 상품금액의 70%를
-                                                차감한 나머지 금액을 환불 받으실 수 있습니다.
-                                            </dd>
+                                            <dt>
+                                                <span>3</span>주문취소 / 환불
+                                            </dt>
+                                            <dd>주문제작상품 특성상 주문이 접수 이후 제작이 시작되면 배송 이전이라도 주문취소에 따른 전액 환불이
+                                                불가합니다. 반드시 주문을 취소하셔야 하는 경우, 인쇄공정 진행시 상품금액의 30%, 프레임 공정 진행시 상품금액의
+                                                70%를 차감한 나머지 금액을 환불 받으실 수 있습니다.</dd>
                                         </dl>
                                         <dl>
-                                            <dt><span>4</span>배송비</dt>
+                                            <dt>
+                                                <span>4</span>배송비
+                                            </dt>
                                             <dd>
-                                                상품의 하자로 인한 반품, A/S등을 위해 반송이 필요한 경우 반드시 고객센터에 문의/요청 해주세요.
-                                                임의 반송시 상품이 파손/훼손되기 쉬우며, 이경우 고객과실로 반품, A/S등의 조치를 받기 어려울 수 있습니다.<br><bR>
-                                                * 반송주소 : 서울 강남구 강남대로 1234 (DropShip갤러리)
+                                                상품의 하자로 인한 반품, A/S등을 위해 반송이 필요한 경우 반드시 고객센터에 문의/요청 해주세요. 임의 반송시
+                                                상품이 파손/훼손되기 쉬우며, 이경우 고객과실로 반품, A/S등의 조치를 받기 어려울 수 있습니다.<br>
+                                                <bR> * 반송주소 : 서울 강남구 강남대로 1234 (DropShip갤러리)
                                             </dd>
                                         </dl>
                                     </div>
@@ -1021,47 +1058,59 @@
                             <div id="itemgrade">
                                 <div class="left">
                                     <strong class="grade-total">4.8</strong>
-                                    <p><strong>100%</strong>의 구매자들이 이 상품을 좋아합니다.</p>
+                                    <p>
+                                        <strong>100%</strong>의 구매자들이 이 상품을 좋아합니다.
+                                    </p>
                                 </div>
                                 <div class="right">
                                     <ul>
                                         <li class="on">
-                                            <div class="grade-star"><img src="/home/img/s_star5_big.png" alt="5점"></div>
+                                            <div class="grade-star">
+                                                <img src="/home/img/s_star5_big.png" alt="5점">
+                                            </div>
                                             <div class="grade-txt">아주 좋아요</div>
                                             <div class="grade-graph">
-                                                <div class="grade-bar" style="width:98%;"></div>
+                                                <div class="grade-bar" style="width: 98%;"></div>
                                             </div>
                                             <div class="grade-score">98%</div>
                                         </li>
                                         <li class="on">
-                                            <div class="grade-star"><img src="/home/img/s_star4_big.png" alt="4점"></div>
+                                            <div class="grade-star">
+                                                <img src="/home/img/s_star4_big.png" alt="4점">
+                                            </div>
                                             <div class="grade-txt">맘에 들어요</div>
                                             <div class="grade-graph">
-                                                <div class="grade-bar" style="width:100%;"></div>
+                                                <div class="grade-bar" style="width: 100%;"></div>
                                             </div>
                                             <div class="grade-score">100%</div>
                                         </li>
                                         <li>
-                                            <div class="grade-star"><img src="/home/img/s_star3_big.png" alt="3점"></div>
+                                            <div class="grade-star">
+                                                <img src="/home/img/s_star3_big.png" alt="3점">
+                                            </div>
                                             <div class="grade-txt">보통이예요</div>
                                             <div class="grade-graph">
-                                                <div class="grade-bar" style="width:0%;"></div>
+                                                <div class="grade-bar" style="width: 0%;"></div>
                                             </div>
                                             <div class="grade-score">0%</div>
                                         </li>
                                         <li>
-                                            <div class="grade-star"><img src="/home/img/s_star2_big.png" alt="2점"></div>
+                                            <div class="grade-star">
+                                                <img src="/home/img/s_star2_big.png" alt="2점">
+                                            </div>
                                             <div class="grade-txt">그냥 그래요</div>
                                             <div class="grade-graph">
-                                                <div class="grade-bar" style="width:0%;"></div>
+                                                <div class="grade-bar" style="width: 0%;"></div>
                                             </div>
                                             <div class="grade-score">0%</div>
                                         </li>
                                         <li>
-                                            <div class="grade-star"><img src="/home/img/s_star1_big.png" alt="1점"></div>
+                                            <div class="grade-star">
+                                                <img src="/home/img/s_star1_big.png" alt="1점">
+                                            </div>
                                             <div class="grade-txt">별로예요</div>
                                             <div class="grade-graph">
-                                                <div class="grade-bar" style="width:0%;"></div>
+                                                <div class="grade-bar" style="width: 0%;"></div>
                                             </div>
                                             <div class="grade-score">0%</div>
                                         </li>
@@ -1085,7 +1134,8 @@
                                 </div>
 
                                 <div id="sit_use_list">
-                                    <div class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림">
+                                    <div class="empty-content">
+                                        <img src="../home/img/ico/ico-information-big.png" alt="알림">
                                         <p>사용후기가 없습니다.</p>
                                     </div>
                                 </div>
@@ -1094,8 +1144,7 @@
                                     <a href="itemuseform0fd2.html?it_id=1654133092" class="btnset btn-type01 itemuse_form" onclick="return false;">
                                         <svg height="50" width="180">
                                             <rect height="50" width="180"></rect>
-                                        </svg>
-                                        <span>사용후기 쓰기</span>
+                                        </svg> <span>사용후기 쓰기</span>
                                     </a>
                                 </div>
 
@@ -1160,15 +1209,16 @@
                                 <div id="sit_qa_tit">
                                     <div class="left">
                                         <h2>Q&amp;A</h2>
-                                        <p>상품문의를 제외한 반품, 교환, 취소 등에 관한 문의는 <a href="#">고객센터 1:1 문의 게시판</a> 을 이용해주시기 바랍니다.</p>
+                                        <p>
+                                            상품문의를 제외한 반품, 교환, 취소 등에 관한 문의는 <a href="#">고객센터 1:1 문의 게시판</a> 을
+                                            이용해주시기 바랍니다.
+                                        </p>
                                     </div>
                                     <div class="right">
                                         <div id="sit_qa_wbtn">
-                                            <a href="itemqaform0fd2.html?it_id=1654133092" class="btnset btn-type01 itemqa_form">
-                                                <svg height="50" width="180">
+                                            <a href="itemqaform0fd2.html?it_id=1654133092" class="btnset btn-type01 itemqa_form"> <svg height="50" width="180">
                                                     <rect height="50" width="180"></rect>
-                                                </svg>
-                                                <span>상품 문의하기</span>
+                                                </svg> <span>상품 문의하기</span>
                                             </a>
                                             <!--
             <a href="https://bxgs.co.kr/shop/itemqaform.php?it_id=1654133092" class="itemqa_form qa_wr">상품문의 쓰기<span class="sound_only"> 새 창</span></a>
@@ -1180,14 +1230,14 @@
 
                                 <div id="sit_qa_list">
 
-                                    <div class="empty-content"><img src="../home/img/ico/ico-information-big.png" alt="알림">
+                                    <div class="empty-content">
+                                        <img src="../home/img/ico/ico-information-big.png" alt="알림">
                                         <p>상품문의가 없습니다.</p>
                                     </div>
                                 </div>
 
 
-
-                                 <script>
+                                <script>
                                     $(function() {
                                         $(".itemqa_form").click(function() {
                                             window.open(this.href, "itemqa_form", "width=810,height=680,scrollbars=1");
@@ -1353,10 +1403,10 @@
 
                         if (document.pressed == "장바구니") {
                             f.sw_direct.value = 0;
-	                        f.action = "../myshop/cart"; // 장바구니 페이지 이동
+                            f.action = "../myshop/cart"; // 장바구니 페이지 이동
                         } else { // 바로구매
                             f.sw_direct.value = 1;
-	                        f.action = "../myshop/order_form"; // 구매페이지 이동
+                            f.action = "../myshop/order_form"; // 구매페이지 이동
                         }
 
                         // 판매가격이 0 보다 작다면
@@ -1768,12 +1818,48 @@
                             }());
                         } //end if check function
                     });
-                </script> 
+                </script>
+
+                <script>
+                    // 찜리스트
+                    function heartBtn(member_id, work_id) {
+                        $.ajax({
+                            url: "../myshop/workWishlist_ajax",
+                            type: "post",
+                            data: {
+                                "member_id": member_id,
+                                "work_id": work_id
+                            },
+                            success: function(list) {
+                                if (list == 0) {
+                                    alert("상품을 찜리스트에 담았습니다.");
+                                } else {
+                                    alert("이미 있습니다");
+                                }
+                            },
+                            error: function() {
+                                alert("시스템 오류입니다.");
+                            }
+                        }); //ajax
+                    } //function
+
+
+                    function NoheartBtn() {
+                        alert("회원 전용 서비스 입니다.");
+                    }
+
+
+                    // ADD To CART 구문
+                    function AddToCartBtn(work_id, artist_id) {
+                        var url = "/shop/painting_item?work_id=" + work_id + "&artist_id=" + artist_id;
+                        location.href = url;
+                    }
+                </script>
             </div>
         </main>
 
         <!-- header 부분 시작 -->
-        <%@ include file ="../top/footer.jsp" %>
+        <%@ include file="../top/footer.jsp"%>
         <!-- header 부분 끝 -->
 
         <div id="gotop">
@@ -1787,26 +1873,6 @@
     <link rel="stylesheet" href="../home/theme/buzinga/css/animate.css">
     <script src="../home/theme/buzinga/js/base.js"></script>
     <script src="../home/theme/buzinga/js/sub.js"></script>
-
-    <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-    <!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
-
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
-
-
 </body>
-
-<!-- Mirrored from bxgs.co.kr/shop/item.php?it_id=1654133092 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Feb 2023 07:03:57 GMT -->
 
 </html>

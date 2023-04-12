@@ -95,7 +95,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
         </div>
         <div class="join-result">
             <img src="/home/img/common/logo2.png" alt="DropShip갤러리">
-            <h3>회원가입이 완료되었습니다.</h3>
+            <h3>DropShip 회원가입이 완료되었습니다.</h3>
 
                             <p>
                     Art &amp; Design DropShip입니다.<br>

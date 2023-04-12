@@ -20,6 +20,11 @@
 <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
 <link type="text/css" href="..//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" />
 <link type="text/css" href="../plugin/jquery-ui/style.css?ver=210618">
+<script src="../home/js/sns.js"></script>
+<script src="../home/js/css3-animate-it.js"></script>
+<link href="../home/theme/buzinga/css/animate.css" rel="stylesheet" >
+<script src="../home/js/base.js"></script>
+<script src="../home/js/sub.js"></script>
 
 <!--[if lte IE 8]>
 <script src="https://bxgs.co.kr/js/html5.js"></script>
@@ -40,7 +45,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 
 
 </script>
-<link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
 <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
 <script src="../home/js/common3816.js?ver=210618"></script>
@@ -56,7 +61,7 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
 </head>
 <body>
-<div id="hd_login_msg">오민수님 로그인 중 <a href="https://bxgs.co.kr/bbs/logout.php">로그아웃</a></div>
+<div id="hd_login_msg">로그인 중 <a href="https://bxgs.co.kr/bbs/logout.php">로그아웃</a></div>
 
 <div class="cursor-ball">
     <div class="ball"></div>
@@ -162,22 +167,22 @@ jQuery(function($){
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="td-mb-hide">2023-03-15 14:53:53</td>
-								<td class="td-mb-hide">
-																		만료230315																	</td>
-								<td class="ta-l">주문번호 2023031514521495 결제</td>
-								<td>-1,000</td>
-								<td class="f-color">0</td>
-							</tr>
-							<tr>
-								<td class="td-mb-hide">2023-03-07 14:46:51</td>
-								<td class="td-mb-hide">
-									&nbsp;								</td>
-								<td class="ta-l">회원가입 축하</td>
-								<td>+1,000</td>
-								<td class="f-color">1,000</td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<td class="td-mb-hide">2023-03-15 14:53:53</td> -->
+<!-- 								<td class="td-mb-hide"> -->
+<!-- 																		만료230315																	</td> -->
+<!-- 								<td class="ta-l">주문번호 2023031514521495 결제</td> -->
+<!-- 								<td>-1,000</td> -->
+<!-- 								<td class="f-color">0</td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td class="td-mb-hide">2023-03-07 14:46:51</td> -->
+<!-- 								<td class="td-mb-hide"> -->
+<!-- 									&nbsp;								</td> -->
+<!-- 								<td class="ta-l">회원가입 축하</td> -->
+<!-- 								<td>+1,000</td> -->
+<!-- 								<td class="f-color">1,000</td> -->
+<!-- 							</tr> -->
 
 						</tbody>
 					</table>
@@ -199,7 +204,7 @@ jQuery(function($){
 <script>
     $("#sdate, #edate").datepicker({
         showOn: "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다.
-        buttonImage: "/home/img/ico/ico-date.png", // 버튼 이미지
+        buttonImage: "../home/img/ico/ico-date.png", // 버튼 이미지
         //buttonImageOnly: true, // 버튼에 있는 이미지만 표시한다.
         changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
         changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
@@ -248,10 +253,7 @@ jQuery(function($){
 </div>
 
 
-<script src="https://bxgs.co.kr/js/sns.js"></script>
-<script src="https://bxgs.co.kr/theme/buzinga/js/css3-animate-it.js"></script>
-<link rel="stylesheet" href="https://bxgs.co.kr/theme/buzinga/css/animate.css">
-<script src="https://bxgs.co.kr/theme/buzinga/js/base.js"></script><script src="https://bxgs.co.kr/theme/buzinga/js/sub.js"></script>
+
 
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>

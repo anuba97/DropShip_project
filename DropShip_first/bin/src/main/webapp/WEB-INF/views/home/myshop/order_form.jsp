@@ -371,9 +371,10 @@
                                                         <div class="order_choice_place">
                                                             <ul class="chk-list-type01 type-radio">
                                                                 <li><input type="radio" name="ad_sel_addr" value="same" id="ad_sel_addr_same"> <label for="ad_sel_addr_same">주문자와 동일</label></li>
-                                                                <li><input type="radio" name="ad_sel_addr" value="recent" id="ad_sel_addr_1"> <label for="ad_sel_addr_1">최근배송지(집)</label>
+<!--                                                                 <li><input type="radio" name="ad_sel_addr" value="recent" id="ad_sel_addr_1"> <label for="ad_sel_addr_1">최근배송지(집)</label> -->
                                                                 </li>
-                                                                <li><input type="radio" name="ad_sel_addr" value="new" id="od_sel_addr_new"> <label for="od_sel_addr_new">신규배송지</label> <a href="javascript:;" id="order_address" class="btn_frmline btnset btn-type03 btn-fill-brown btn-pop-open" data-popnum="01">배송지 목록</a></li>
+                                                                <li><input type="radio" name="ad_sel_addr" value="new" id="od_sel_addr_new"> <label for="od_sel_addr_new">신규배송지</label> 
+<!--                                                                 <a href="javascript:;" id="order_address" class="btn_frmline btnset btn-type03 btn-fill-brown btn-pop-open" data-popnum="01">배송지 목록</a></li> -->
                                                             </ul>
                                                         </div>
                                                         <!-----  
@@ -505,18 +506,18 @@
                                                         <!----- } 배송지목록 입력팝업창 ----->
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row"><label for="ad_subject"><span class="f-color">*</span> 배송지명</label></th>
-                                                    <td>
-                                                        <div class="ad_default_box">
-                                                            <input type="text" name="ad_subject" id="ad_subject" class="inp-type01" maxlength="20">
-                                                            <div class="chk-box">
-                                                                <input type="checkbox" name="ad_default" id="ad_default" value="1"> <label for="ad_default">기본배송지로
-                                                                    설정</label>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+<!--                                                 <tr> -->
+<!--                                                     <th scope="row"><label for="ad_subject"><span class="f-color">*</span> 배송지명</label></th> -->
+<!--                                                     <td> -->
+<!--                                                         <div class="ad_default_box"> -->
+<!--                                                             <input type="text" name="ad_subject" id="ad_subject" class="inp-type01" maxlength="20"> -->
+<!--                                                             <div class="chk-box"> -->
+<!--                                                                 <input type="checkbox" name="ad_default" id="ad_default" value="1"> <label for="ad_default">기본배송지로 -->
+<!--                                                                     설정</label> -->
+<!--                                                             </div> -->
+<!--                                                         </div> -->
+<!--                                                     </td> -->
+<!--                                                 </tr> -->
                                                 <tr>
                                                     <th scope="row"><label for="od_b_name"><span class="f-color">*</span> 받으시는분</label></th>
                                                     <td><input type="text" name="delivery_name" id="od_b_name" required class="inp-type01" maxlength="20"></td>

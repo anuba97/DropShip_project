@@ -18,6 +18,14 @@
 		ORDER BY Artist_id ASC -->
 	</select>
 	
+	<!-- MD-Pick 슬라이드쇼 랜덤으로 보여질 수 있게 일단 모든 작품 다 가져옴 -->	
+	<select id="selectWorkAll" resultType="com.java.vo.WorkVo">
+		SELECT * FROM work w 
+		JOIN Artist a ON w.artist_id = a.id
+		WHERE work_available = 1
+	</select>
+	
+	
 	<!-- 작품 갯수 확인 -->
 	<select id="selectWorkCount" resultType="int">
 		SELECT COUNT(*) count FROM work
@@ -65,7 +73,20 @@
 		ORDER BY work_hit DESC
 	</select>  
 	
-	
+
+
+<!-- 전체 검색 -->
+	<!-- 전체 검색 -->
+	<select id="search" resultType="com.java.vo.WorkVo">
+		SELECT w.*, a.id, a.artist_korean_name FROM work w
+        JOIN Artist a ON w.artist_id = a.id WHERE 
+	 	w.work_name LIKE '%'||#{searchWord}||'%' OR a.artist_korean_name LIKE '%'||#{searchWord}||'%'
+	</select>
+	<!-- 전체 검색 -->
+	<!-- 전체 검색 -->
+
+
+
 	<!--//////////////////       ↓  Artist(작가)관련 ↓         /////////////////////////  -->
 	
 	<!-- 작가 전체 가져오기 -->
@@ -187,17 +208,9 @@
 		    </if>
 	  </select>
 	  
-	  <!-- 회원 주문 상세용 work객체들 가져오기 (여기서 반복문 쓰면 중복되는 id는 제거되고 하나만 가져와서 다 못가져옴)-->
-<!-- 	  <select id="selectMemberWorkList" resultType="com.java.vo.WorkVo"> -->
-<!-- 	  	SELECT * FROM work WHERE id IN ( -->
-<!--             <foreach collection="workIdList" item="workId" separator="," open="(" close=")"> -->
-<!--                 #{workId} -->
-<!--             </foreach> -->
-<!--         ) ORDER BY id DESC -->
-<!-- 	  </select> -->
-
-	  <select id="selectMemberWorkList" resultType="com.java.vo.WorkVo">
-	  	SELECT * FROM work WHERE id = #{work_id} ORDER BY id DESC
+	  <!-- 회원 주문 상세용 work객체들 가져오기 -->
+	  <select id="selectShopWorkList" resultType="com.java.vo.WorkVo">
+	  	SELECT * FROM work WHERE id = #{workId}
 	  </select>
 	  
 	  
@@ -228,15 +241,5 @@
 	  
 	  
      
-<!--      장바구니에서 모든 작품을 주문 후 장바구니에 담긴 것들 싹 다 삭제. -->
-<!--      <delete id="deleteCart_member"> -->									<!-- ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ -->
-<!--      	DELETE FROM cart_member WHERE member_id = #{member_id} -->
-<!--      </delete> -->
-     
-     
-     
-     
-			 
-			
 			
 </mapper>

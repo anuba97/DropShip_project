@@ -35,7 +35,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">공지 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 공지 게시판을 관리하는 메뉴입니다. 공지 게시판의 글을 확인하고 관리하세요.</div>
+                        <div class="card-body">DropShip 공지 게시판을 관리하는 메뉴입니다. 공지를 추가, 수정, 삭제등을 할 수 있습니다.</div>
                     </div>
                 </div>
                 <span style="padding-left:24px;">총 ${map.listCount}개의 공지사항이 등록되어 있습니다.</span>

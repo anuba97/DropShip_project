@@ -35,9 +35,7 @@
 	href="../home/theme/buzinga/css/common3816.css?ver=210618">
 <link rel="stylesheet"
 	href="../home/theme/buzinga/css/sub3816.css?ver=210618">
-<!--[if lte IE 8]>
-<script src="https://bxgs.co.kr/js/html5.js"></script>
-<![endif]-->
+<%@ include file ="../ai/chatbot.jsp" %>	<!-- ai챗봇 -->
 <script>
 	// 자바스크립트에서 사용하는 전역변수 선언
 	var g5_url = "../index.html";
@@ -56,7 +54,7 @@
 	href="../../use.fontawesome.com/releases/v5.8.1/css/all.css"
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
-<script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<!-- <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
 <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
 <script src="../home/js/common3816.js?ver=210618"></script>
 <script src="../home/js/wrest3816.js?ver=210618"></script>

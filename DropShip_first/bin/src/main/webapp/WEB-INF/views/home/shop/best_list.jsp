@@ -16,6 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../img/favicon.ico" />
     <title>베스트 작품</title>
+    <%@ include file ="../ai/chatbot.jsp" %>	<!-- ai채팅 -->
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -42,7 +43,7 @@
         var g5_shop_url = "https://bxgs.co.kr:443/shop/";
     </script>
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script>
+<!--     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
     <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
     <script src="../home/js/common3816.js?ver=210618"></script>
     <script src="../home/js/wrest3816.js?ver=210618"></script>
@@ -55,7 +56,7 @@
     <script src="../home/js/modernizr.custom.701113816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
-    <script src="../home/js/shop.list.action3816.js?ver=210618"></script>
+    <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
 </head>
 
 <body>
@@ -134,7 +135,7 @@
                                                     </div>
                                                     <div class="sct_opt_wrap">
                                                         <div class="sct_btn list-10-btn">
-                                                            <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1652406531">
+                                                            <button type="button" onclick="AddToCartBtn(${workVo.id},${workVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart" >
                                                                 <svg height="45" width="160">
                                                                     <rect height="45" width="160"></rect>
                                                                 </svg>
@@ -179,33 +180,6 @@
                     </div>
                 </div>
             </section>
-			<script>
-				var member_id;
-				var work_id;
-				function heartBtn(member_id, work_id){
-					$.ajax({
-						url : "../myshop/workWishlist_ajax",
-						type : "post",
-						data : {"member_id":member_id, "work_id":work_id},
-						success: function(list){
-							if(list == 0){
-								alert("상품을 찜리스트에 담았습니다.");
-							}else{
-								alert("이미 있습니다");
-							}
-						},
-						error : function(){
-							alert("시스템 오류입니다.");
-						}
-					});//ajax
-				}//function
-				
-				
-				function NoheartBtn(){
-					alert("회원 전용 서비스 입니다.");
-				}
-				
-			</script>
 
             <!-----  POPUP BEST COUNT ----->
             <div class="pop-wrap pop01" id="pop-best-count">
@@ -245,21 +219,41 @@
     <script src="../home/theme/buzinga/js/base.js"></script>
     <script src="../home/theme/buzinga/js/sub.js"></script>
 
-    <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-    <!--[if lte IE 7]>
 	<script>
-	$(function() {
-	    var $sv_use = $(".sv_use");
-	    var count = $sv_use.length;
-	
-	    $sv_use.each(function() {
-	        $(this).css("z-index", count);
-	        $(this).css("position", "relative");
-	        count = count - 1;
-	    });
-	});
+		var member_id;
+		var work_id;
+		function heartBtn(member_id, work_id){
+			$.ajax({
+				url : "../myshop/workWishlist_ajax",
+				type : "post",
+				data : {"member_id":member_id, "work_id":work_id},
+				success: function(list){
+					if(list == 0){
+						alert("상품을 찜리스트에 담았습니다.");
+					}else{
+						alert("이미 있습니다");
+					}
+				},
+				error : function(){
+					alert("시스템 오류입니다.");
+				}
+			});//ajax
+		}//function
+		
+		
+		function NoheartBtn(){
+			alert("회원 전용 서비스 입니다.");
+		}
+		
+		// ADD To CART 구문
+		function AddToCartBtn(work_id, artist_id){
+			var url = "/shop/painting_item?work_id=" + work_id + "&artist_id=" + artist_id;
+			location.href = url;
+		}
+		
+		
 	</script>
-	<![endif]-->
+
 
 
 </body>

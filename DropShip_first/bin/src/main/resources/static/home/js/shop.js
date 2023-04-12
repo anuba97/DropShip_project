@@ -176,7 +176,7 @@ $(function() {
     // 수량변경 및 삭제
     $(document).on("click", "#sit_sel_option li button", function() {
         var $this = $(this),
-            mode = $this.text(),
+            mode = $this.text().replace(/\s+/g, ''),
             this_qty, max_qty = 9999, min_qty = 1,
             $el_qty = $(this).closest("li").find("input[name^=ct_qty]"),
             stock = parseInt($(this).closest("li").find("input.io_stock").val());

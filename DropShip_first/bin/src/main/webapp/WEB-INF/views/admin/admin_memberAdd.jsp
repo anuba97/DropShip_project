@@ -139,7 +139,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">관리자 등록</h1>
                     <div class="card mb-4">
-                        <div class="card-body">Super Admin이 일반 관리자를 등록하는 메뉴입니다.</div>
+                        <div class="card-body">Super Admin이 일반 관리자를 <span style="color:red;">추가</span>하는 메뉴입니다.</div>
                     </div>
                 </div>
                 <form action="admin_memberAdd" name="admin_memberAddFrm" method="post">
@@ -188,9 +188,9 @@
                         <tr>
                             <th>관리자 상태</th>
                             <td>
-                                <input type="radio" id="true" name="admin_ban" value="1" checked>
+                                <input type="radio" id="true" name="admin_ban" value="0" checked>
                                 <label for="true">사용</label>
-                                <input type="radio" id="false" name="admin_ban" value="0">
+                                <input type="radio" id="false" name="admin_ban" value="1">
                                 <label for="false">정지</label>
                             </td>
                         </tr>
