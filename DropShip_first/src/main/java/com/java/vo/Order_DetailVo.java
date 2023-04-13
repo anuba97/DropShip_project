@@ -38,11 +38,16 @@ public class Order_DetailVo {
 	private String delivery_phone;	// 받는 사람 휴대폰번호 회원 정보와 다를 수 있으니까 존재
 	private int order_detail_id; //Order_Detail에 id값을 가져오기 위해 추가
 	private int delivery_id; // 배송 고유번호(송장)
+	private String delivery_request; // 배송 고유번호(송장)
 	
+	//주문 상세 페이지를 위해서 추가
 	private int option_quantity; // 주문 옵션 확인을 위한 값
 	private int option_size; // 주문 옵션 확인을 위한 값
 	private int option_media; // 주문 옵션 확인을 위한 값
 	private int option_mattier; // 주문 옵션 확인을 위한 값
 	private int option_frame; // 주문 옵션 확인을 위한 값
 	private int option_matt; // 주문 옵션 확인을 위한 값
+	private int option_selected_price;
+	private int option_frame_added_price;
+	private int option_matt_added_price;
 }

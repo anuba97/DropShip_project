@@ -26,8 +26,9 @@
 	
 	<!-- admin Order 1개 상세 가져오기 -->
   	<select id="adminSelectOrderOne" resultType="com.java.vo.Order_DetailVo">
-  		SELECT od.id AS id, od.order_member_id, od.final_price, d.id as delivery_id, wo.option_quantity, wo.option_size, wo.option_media, wo.option_mattier, wo.option_frame, wo.option_matt,
-  		m.member_name, om.order_date, om.order_status, om.member_id, om.delivery_name, om.delivery_road, om.delivery_address, om.delivery_phone, w.work_name
+  		SELECT od.id AS id, od.order_member_id, od.final_price, d.id as delivery_id, wo.option_quantity, wo.option_size, wo.option_media, wo.option_mattier, wo.option_frame, wo.option_matt, 
+  		wo.option_selected_price, wo.option_frame_added_price, wo.option_matt_added_price,
+  		m.member_name, om.order_date, om.order_status, om.member_id, om.delivery_name, om.delivery_road, om.delivery_address, om.delivery_phone, w.work_name, om.delivery_request
 		FROM Order_Detail od
 		JOIN Order_Member om ON od.order_member_id = om.id
 		Join Work w ON w.id = od.work_id 

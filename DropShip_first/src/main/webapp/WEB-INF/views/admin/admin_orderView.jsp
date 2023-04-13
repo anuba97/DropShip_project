@@ -114,7 +114,7 @@
                                     <li>미디어 : 캔버스(+0)</li>
                                	</c:if>
                                	<c:if test="${order_DetailVo.option_media == 1}">
-                                    <li>미디어 : 파인아트(미정)</li>
+                                    <li>미디어 : 파인아트(+${optionVo.option_selected_price - optionVo.option_frame_added_price - optionVo.option_matt_added_price})</li>
                                	</c:if>
                                	<c:if test="${order_DetailVo.option_mattier == 0}">
                                     <li>리터치 : 없음(+0)</li>
@@ -207,6 +207,12 @@
                             <th>배송 고유번호(송장)</th>
                             <td>
                                 ${order_DetailVo.delivery_id}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>배송 요청 사항</th>
+                            <td>
+                                ${order_DetailVo.delivery_request}
                             </td>
                         </tr>
                         <tr>
