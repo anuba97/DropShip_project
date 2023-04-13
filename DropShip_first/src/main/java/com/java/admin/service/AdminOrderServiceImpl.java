@@ -25,7 +25,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	Order_DetailVo order_DetailVo;
 
 	@Override
-	public Map<String, Object> selectOrderList(int page) {//이벤트 리스트 전체 가져오기
+	public Map<String, Object> selectOrderList(int page) {//주문 리스트 전체 가져오기
 		HashMap<String, Object> map = pageMethod(page);
 
 		int startRow = (int) map.get("startRow");
@@ -73,24 +73,24 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	}//pageMethod
 
 	@Override
-	public Order_DetailVo adminSelectOrderOne(int id) {
+	public Order_DetailVo adminSelectOrderOne(int id) { //어드민에서 주문 정보 1개 가져오기
 		order_DetailVo = adminOrderMapper.adminSelectOrderOne(id);
 		return order_DetailVo;
 	}
 
 	@Override
-	public int updateOrderStatus(int id, int orderStatus) {
+	public int updateOrderStatus(int id, int orderStatus) { //주문 상태 업데이트하기
 	  int success = adminOrderMapper.updateOrderStatus(id,orderStatus);
 	  return success;
 	}
 
 	@Override
-	public List<Order_DetailVo> adminMemberSelectOrder(int id) {
+	public List<Order_DetailVo> adminMemberSelectOrder(int id) { //고객 관리에서 주문 부분만 추가로 가져오기
 		List<Order_DetailVo> order_list = adminOrderMapper.adminMemberSelectOrder(id);
 		return order_list;
 	}
 
-	@Override //전체 주문 현황 가져오기
+	@Override //전체 주문 현황 가져오기 - 주문 현황 상단 정보 표시용
 	public List<Order_MemberVo> selectOrderAll() {
 		List<Order_MemberVo> order_MemberVoList = adminOrderMapper.selectOrderAll();
 		return order_MemberVoList;
