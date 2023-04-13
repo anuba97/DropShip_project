@@ -37,6 +37,27 @@
 	    }
 	}//deleteBtn
 </script>
+<script>
+    $(document).ready(function() {
+        $('input[name="eventboard_status"]').change(function() {
+            if ($(this).val() == '0') {
+                var now = new Date();
+                var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()) .slice(-2);
+                var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+                $('#eventboard_start').val(dateString + 'T' + timeString);
+                $('#eventboard_end').val(dateString + 'T' + timeString);
+            } else if ($(this).val() == '1') {
+                var now = new Date();
+                var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()) .slice(-2);
+                var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+                var oneWeekLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); 
+                var endDateString = oneWeekLater.getFullYear() + '-' + ('0' + (oneWeekLater.getMonth() + 1)).slice(-2) + '-' + ('0' + oneWeekLater.getDate()) .slice(-2);
+                $('#eventboard_start').val(dateString + 'T' + timeString);
+                $('#eventboard_end').val(endDateString + 'T' + timeString);
+            }
+        });
+    });
+</script>
 
 <body class="sb-nav-fixed">
     <!-- navBar 부분 시작 -->
@@ -63,35 +84,35 @@
                                 <col width="25%">
                                 <col width="75%">
                             </colgroup>
-                            <input type="hidden" id="id" name="id" value=${map.boardEventVo.getId()}>
-	                        <input type="hidden" name="original_file" value="${map.boardEventVo.getEventboard_file_name()}">
+                            <input type="hidden" id="id" name="id" value=${map.boardEventVo.id}>
+	                        <input type="hidden" name="original_file" value="${map.boardEventVo.eventboard_file_name}">
                             <tr>
                                 <th style="background-color: #212529; color: #fff;"><label for="eventboard_title">이벤트 제목</label></th>
-                                <td><input type="text" id="eventboard_title" name="eventboard_title" style="width:100%; text-align:center;" value="${map.boardEventVo.getEventboard_title()}"><br></td>
+                                <td><input type="text" id="eventboard_title" name="eventboard_title" style="width:100%; text-align:center;" value="${map.boardEventVo.eventboard_title}"><br></td>
                             </tr>
                             <tr>
                             	<th style="background-color: #212529; color: #fff;">상단 등록</th>
 	                            <td>
-	                            	<input type="radio" id="true" name="eventboard_istop" value="1" <c:if test="${map.boardEventVo.getEventboard_istop() == '1'}">checked</c:if>>
-	                                <label for="true">등록</label>
-	                                <input type="radio" id="false" name="eventboard_istop" value="0" <c:if test="${map.boardEventVo.getEventboard_istop() == '0'}">checked</c:if>>
-	                                <label for="false">해제</label>
+	                            	<input type="radio" id="true_istop" name="eventboard_istop" value="1" <c:if test="${map.boardEventVo.eventboard_istop == '1'}">checked</c:if>>
+	                                <label for="true_istop">등록</label>
+	                                <input type="radio" id="false_istop" name="eventboard_istop" value="0" <c:if test="${map.boardEventVo.eventboard_istop == '0'}">checked</c:if>>
+	                                <label for="false_istop">해제</label>
 	                            </td>
                        		</tr>
                             <tr>
                             	<th style="background-color: #212529; color: #fff;">이벤트 상태</th>
 	                            <td>
-	                            	<input type="radio" id="true" name="eventboard_status" value="1" <c:if test="${map.boardEventVo.getEventboard_status() == '1'}">checked</c:if>>
-	                                <label for="true">진행</label>
-	                                <input type="radio" id="false" name="eventboard_status" value="0" <c:if test="${map.boardEventVo.getEventboard_status() == '0'}">checked</c:if>>
-	                                <label for="false">종료</label>
+	                            	<input type="radio" id="true_status" name="eventboard_status" value="1" <c:if test="${map.boardEventVo.eventboard_status == '1'}">checked</c:if>>
+	                                <label for="true_status">진행</label>
+	                                <input type="radio" id="false_status" name="eventboard_status" value="0" <c:if test="${map.boardEventVo.eventboard_status == '0'}">checked</c:if>>
+	                                <label for="false_status">종료</label>
 	                            </td>
                        		</tr>
                             <tr>
                                 <th style="background-color: #212529; color: #fff;"><label for="eventboard_start">이벤트 시작</label></th>
                                 <td>
 	                                <input type="datetime-local" id="eventboard_start" name="eventboard_start" style="width:50%;" 
-	                                value="<fmt:formatDate value='${map.boardEventVo.getEventboard_start()}' pattern="yyyy-MM-dd\'T\'HH:mm" />">
+	                                value="<fmt:formatDate value='${map.boardEventVo.eventboard_start}' pattern="yyyy-MM-dd\'T\'HH:mm" />">
                                 </td>
                             </tr>
                             <tr>
@@ -103,24 +124,24 @@
                             </tr>
                             <tr>
                                 <th style="background-color: #212529; color: #fff;"><label for="eventboard_date">등록일</label></th>
-                                <td><fmt:formatDate value="${map.boardEventVo.getEventboard_date()}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                <td><fmt:formatDate value="${map.boardEventVo.eventboard_date}" pattern="yyyy-MM-dd HH:mm"/></td>
                             </tr>
                             <tr>
                             	<th style="background-color: #212529; color: #fff;"><label for="eventboard_update_date">최종 수정일</label></th>
-                                <td><fmt:formatDate value="${map.boardEventVo.getEventboard_update_date()}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                <td><fmt:formatDate value="${map.boardEventVo.eventboard_update_date}" pattern="yyyy-MM-dd HH:mm"/></td>
                             </tr>
                             <tr>
                                 <th style="background-color: #212529; color: #fff;"><label for="eventboard_content">이벤트 내용</label></th>
                                 <td>
-                                    <textarea id="eventboard_content" name="eventboard_content" cols="50" rows="10" style="width:100%;">${map.boardEventVo.getEventboard_content()}</textarea>
+                                    <textarea id="eventboard_content" name="eventboard_content" cols="50" rows="10" style="width:100%;">${map.boardEventVo.eventboard_content}</textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <th style="background-color: #212529; color: #fff;"><label>첨부 파일명</label></th>
-                                <c:if test="${map.boardEventVo.getEventboard_file_name() != null }">
-	                            	<td>${map.boardEventVo.getEventboard_file_name()}</td>
+                                <c:if test="${map.boardEventVo.eventboard_file_name != null }">
+	                            	<td>${map.boardEventVo.eventboard_file_name}</td>
 	                            </c:if>	
-	                            <c:if test="${map.boardEventVo.getEventboard_file_name() == null}">
+	                            <c:if test="${map.boardEventVo.eventboard_file_name == null}">
 	                            	<td>첨부 파일이 없습니다.</td>
 	                            </c:if>	
                             </tr>

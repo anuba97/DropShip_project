@@ -104,18 +104,6 @@
                         </div>
                         <div class="grid-list-opt">
                             <div class="grid-opt-left">총 <strong class="f-color">${list.size()}</strong>개의 상품이 있습니다.</div>
-                            <!--
-	                <div class="grid-opt-right">
-	                    <a href="javascript:;" class="btnset btn-pop-open btn-information" data-popnum="01">베스트 집계 기준</a>
-	                    <div class="grid-sort-list">
-	                        <a href="javascript:;" class="grid-sort-current btn-sort-open">Monthly</a>
-	                        <ul>
-	                            <li><a href="">Monthly</a></li>
-	                            <li><a href="">Weekly</a></li>
-	                        </ul>
-	                    </div>
-	                </div>
-	-->
                         </div>
                         <div class="grid-list">
                             <div class="sct_wrap">
@@ -125,10 +113,12 @@
 
                                 <!-- 메인상품진열 20 시작 { -->
                                 <ul class="sct sct_20">
-                                    <c:forEach items="${list}" var="workVo">
+                                    <c:forEach items="${list}" var="workVo" varStatus="loop">
                                         <li class="sct_li">
-
                                             <div class="li_wr">
+                                            	<div class="sct_rank">
+								                    <span>Rank: ${loop.index + 1}</span>
+								                </div>
                                                 <div class="sct_img_wrap">
                                                     <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.getWork_img_url()})">
                                                         <span class="hide">${workVo.getWork_name()}</span>
@@ -139,7 +129,7 @@
                                                                 <svg height="45" width="160">
                                                                     <rect height="45" width="160"></rect>
                                                                 </svg>
-                                                                <span>ADD TO CART</span>
+                                                                <span>상세페이지 이동</span>
                                                             </button>
                                                         </div>
                                                         <div class="cart-layer"></div>

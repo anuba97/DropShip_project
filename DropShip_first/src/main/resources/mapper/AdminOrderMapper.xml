@@ -15,6 +15,7 @@
 		JOIN Order_Detail od ON od.ORDER_MEMBER_ID = om.id
 		JOIN Member m ON om.MEMBER_ID = m.id
 		JOIN Work w ON od.work_id = w.id
+		JOIN Work_Option wo ON wo.id = od.option_id
 		ORDER BY om.order_status ASC, om.order_date DESC
 	</select>
 	
@@ -25,13 +26,14 @@
 	
 	<!-- admin Order 1개 상세 가져오기 -->
   	<select id="adminSelectOrderOne" resultType="com.java.vo.Order_DetailVo">
-  		SELECT od.id AS id, od.order_member_id, od.final_price, d.id as delivery_id,
+  		SELECT od.id AS id, od.order_member_id, od.final_price, d.id as delivery_id, wo.option_quantity, wo.option_size, wo.option_media, wo.option_mattier, wo.option_frame, wo.option_matt,
   		m.member_name, om.order_date, om.order_status, om.member_id, om.delivery_name, om.delivery_road, om.delivery_address, om.delivery_phone, w.work_name
 		FROM Order_Detail od
 		JOIN Order_Member om ON od.order_member_id = om.id
 		Join Work w ON w.id = od.work_id 
 		JOIN Member m ON om.member_id = m.id
 		JOIN Delivery d ON om.delivery_id = d.id
+		JOIN Work_Option wo ON wo.id = od.option_id
 		WHERE od.id = #{id}
 	</select>
 	

@@ -35,7 +35,7 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">이벤트 관리</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 이벤트 게시판을 관리하는 메뉴입니다. 이벤트를 추가, 수정, 삭제등을 할 수 있습니다.</div>
+                        <div class="card-body">DropShip 고객 주문 현황 확인 페이지입니다. <span style="color:blue;">입금 완료된 주문</span>만 배송처리를 진행해 주세요.</div>
                     </div>
                 </div>
                 <div class="dropship_memberListDiv">

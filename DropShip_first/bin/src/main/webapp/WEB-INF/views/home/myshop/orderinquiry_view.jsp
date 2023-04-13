@@ -119,7 +119,7 @@
 	                                                    </a>
 	                                                </div>
 	                                                  <div class="sod_name">
-	                                                    <a href="../shop/painting_item?work_id=${workVoList[loop.index].id}" class="prd_name">
+	                                                    <a href="../shop/painting_item?work_id=${workVoList[loop.index].id}&artist_id=${workVoList[loop.index].artist_id}" class="prd_name">
 	                                                        <strong>${workVoList[loop.index].work_name}</strong>
 	                                                        <span>${artistVoList[loop.index].artist_korean_name}</span>
 	                                                    </a>

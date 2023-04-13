@@ -39,5 +39,10 @@ public class Order_DetailVo {
 	private int order_detail_id; //Order_Detail에 id값을 가져오기 위해 추가
 	private int delivery_id; // 배송 고유번호(송장)
 	
-	
+	private int option_quantity; // 주문 옵션 확인을 위한 값
+	private int option_size; // 주문 옵션 확인을 위한 값
+	private int option_media; // 주문 옵션 확인을 위한 값
+	private int option_mattier; // 주문 옵션 확인을 위한 값
+	private int option_frame; // 주문 옵션 확인을 위한 값
+	private int option_matt; // 주문 옵션 확인을 위한 값
 }

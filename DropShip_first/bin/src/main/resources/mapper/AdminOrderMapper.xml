@@ -11,8 +11,8 @@
 		SELECT od.id AS id, om.id AS member_id, m.id AS Member_ID,
 		od.WORK_ID, od.OPTION_ID, od.TOTAL_PRICE, od.EVENT_WORK_SALE, od.EVENT_PERIOD_SALE, od.order_member_id,
 		(od.TOTAL_PRICE - od.EVENT_WORK_SALE - od.EVENT_PERIOD_SALE) AS FINAL_PRICE, m.member_name, w.work_name, om.order_date, om.order_status
-		FROM Order_Detail od
-		JOIN Order_Member om ON od.ORDER_MEMBER_ID = om.id
+		FROM Order_Member om
+		JOIN Order_Detail od ON od.ORDER_MEMBER_ID = om.id
 		JOIN Member m ON om.MEMBER_ID = m.id
 		JOIN Work w ON od.work_id = w.id
 		ORDER BY om.order_status ASC, om.order_date DESC
@@ -51,7 +51,12 @@
 	<update id="updateOrderStatus" >
 	    UPDATE Order_Member SET order_status = #{orderStatus} WHERE id = #{id}
 	</update>
-
 	
+	<!-- admin Order 전체 불러오기 -->
+	<select id="selectOrderAll" resultType="com.java.vo.Order_MemberVo">	
+	    	SELECT om.*
+			FROM Order_Member om
+			JOIN Order_Detail od ON om.id = od.order_member_id
+	  </select>
 	
 </mapper>

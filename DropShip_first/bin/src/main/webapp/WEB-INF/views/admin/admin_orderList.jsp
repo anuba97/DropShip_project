@@ -18,6 +18,21 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    
+    <style>
+    	.f-color { color:#c9ab81 !important; }
+  		.mypage-tit { margin:0 30px; }
+		.mypage-tit h3 { display:inline-block; font-size:20px; color:#333333; font-family: 'Noto Serif KR', 'EB Garamond', 'Noto Sans KR', 'Malgun Gothic', dotum, sans-serif; line-height:5px; }
+		.mypage-tit p { display:inline-block; margin-left:15px; font-size:16px; color:#666666; line-height:26px; }
+    	.mypage-progress ul { width:1200px; display:flex; justify-content:center; margin-left:24px; padding:5px 5px; border:1px solid #ddd; }
+		.mypage-progress ul li { flex:1; position:relative; padding:0 2%; font-size:16px; color:#333; text-align:center; line-height:26px; list-style: none;}
+		.mypage-progress ul li::after { content:""; position:absolute; right:-5.5px; top:20px; width:11px; height:19px; background:url(../home/img/bu/bu-mypage-progress.png) no-repeat center; }
+		.mypage-progress ul li:last-child::after { display:none; }
+		.mypage-progress ul li span { display:flex; justify-content:center; align-items:center; margin:0 auto 5px; width:60px; height:60px; background:#f8f8f8; border-radius:50%; font-size:18px; color:#666666; font-family: 'EB Garamond', 'Noto Sans KR', 'Noto Serif KR', 'Malgun Gothic', dotum, sans-serif; }
+    </style>
+    
+    
+    
 </head>
 
 <body class="sb-nav-fixed">
@@ -35,10 +50,62 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">주문 현황</h1>
                     <div class="card mb-4">
-                        <div class="card-body">DropShip 고객 주문 현황 확인 페이지입니다. <span style="color:blue;">결제 완료된 주문</span>을 눌러 배송처리를 진행해 주세요.</div>
+                        <div class="card-body">DropShip 고객 주문 현황 확인 페이지입니다. <span style="color:blue;">입금 완료된 주문</span>을 눌러 배송처리를 진행해 주세요.</div>
                     </div>
                 </div>
-                <span style="padding-left:24px;">총 ${map.listCount}건의 주문이 있습니다.</span> || 최근 주문날짜 + 입금 상태에 따라 정렬됩니다.
+                
+                <div class="mypage-progress">
+                     <div class="mypage-tit">
+                         <h3>진행 중인 주문: 총 <strong style="color:blue;">${map.listCount} 건</strong>의 주문이 있습니다.</h3>
+                     </div>
+                     <ul>
+                         <c:if test="${orderStatusCountMap['0'] != null}">
+                             <li><span class="f-color">
+                                     <c:out value="${orderStatusCountMap['0']}" /></span>입금 확인 중</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['0'] == null}">
+                             <li><span class="">0</span>입금 확인 중</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['1'] != null}">
+                             <li><span class="f-color">${orderStatusCountMap['1']}</span>입금 완료</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['1'] == null}">
+                             <li><span class="">0</span>입금 완료</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['2'] != null}">
+                             <li><span class="f-color">${orderStatusCountMap['2']}</span>상품 준비 중</li><!-- 갯수 있을땐 class="f-color" -->
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['2'] == null}">
+                             <li><span class="">0</span>상품 준비 중</li><!-- 갯수 있을땐 class="f-color" -->
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['3'] != null}">
+                             <li><span class="f-color">${orderStatusCountMap['3']}</span>배송 중</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['3'] == null}">
+                             <li><span class="">0</span>배송 중</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['4'] != null}">
+                             <li><span class="f-color">${orderStatusCountMap['4']}</span>배송 완료</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['4'] == null}">
+                             <li><span class="">0</span>배송 완료</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['5'] != null}">
+                             <li><span class="f-color">${orderStatusCountMap['5']}</span>주문 취소</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['5'] == null}">
+                             <li><span class="">0</span>주문 취소</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['6'] != null}">
+                             <li><span class="f-color">${orderStatusCountMap['6']}</span>환불 완료</li>
+                         </c:if>
+                         <c:if test="${orderStatusCountMap['6'] == null}">
+                             <li><span class="">0</span>환불 완료</li>
+                         </c:if>
+                     </ul>
+                 </div>
+                 
+                <span style="padding-left:24px;">※ 최근 주문날짜 + 상태에 따라 정렬됩니다. || 주문을 선택해서 <span style="color:red;">상태값을 변경</span>할 수 있습니다.</span>
                 <div class="admin_orderListDiv">
                     <table class="admin_orderListTable">
                         <colgroup>

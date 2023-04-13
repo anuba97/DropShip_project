@@ -123,148 +123,132 @@
 						</div>
 					</form>
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 				</div>
 
 				<div class="combine-list">
 
 					<!-- COMBINE SORTING -->
-					<div class="combine-sort-wrap">
-						<h3>Filter</h3>
-						<ul class="combine-sort-list">
-							<li class="on"><a href="javascript:;"><span>장르별</span></a>
-								<ul class="sort-depth chk-list-type01" style="display: block">
-									<li><input type="checkbox" id="ft-genre-all"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre-all">전체</label></li>
-									<li><input type="checkbox" id="ft-genre01"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre01">초상화</label></li>
-									<li><input type="checkbox" id="ft-genre02"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre02">추상화</label></li>
-									<li><input type="checkbox" id="ft-genre03"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre03">풍경</label></li>
-									<li><input type="checkbox" id="ft-genre04"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre04">정물</label></li>
-									<li><input type="checkbox" id="ft-genre05"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre05">타이포그래피</label></li>
-									<li><input type="checkbox" id="ft-genre06"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre06">일러스트</label></li>
-									<li><input type="checkbox" id="ft-genre07"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre07">포스터</label></li>
-									<li><input type="checkbox" id="ft-genre08"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre08">팝아트</label></li>
-									<li><input type="checkbox" id="ft-genre09"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre09">초현실</label></li>
-									<li><input type="checkbox" id="ft-genre10"
-										name="delete_list" value="" autocomplete="off"> <label
-										for="ft-genre10">카툰</label></li>
-								</ul></li>
-							<li><a href="javascript:;"><span>주제별</span></a>
-								<ul class="sort-depth chk-list-type01">
-									<li><input type="checkbox" id="ft-subject-all" name=""
-										value="" autocomplete="off"> <label
-										for="ft-subject-all">전체</label></li>
-									<li><input type="checkbox" id="ft-subject01" name=""
-										value="" autocomplete="off"> <label for="ft-subject01">초상화</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject02" name=""
-										value="" autocomplete="off"> <label for="ft-subject02">추상화</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject03" name=""
-										value="" autocomplete="off"> <label for="ft-subject03">풍경</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject04" name=""
-										value="" autocomplete="off"> <label for="ft-subject04">정물</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject05" name=""
-										value="" autocomplete="off"> <label for="ft-subject05">타이포그래피</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject06" name=""
-										value="" autocomplete="off"> <label for="ft-subject06">일러스트</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject07" name=""
-										value="" autocomplete="off"> <label for="ft-subject07">포스터</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject08" name=""
-										value="" autocomplete="off"> <label for="ft-subject08">팝아트</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject09" name=""
-										value="" autocomplete="off"> <label for="ft-subject09">초현실</label>
-									</li>
-									<li><input type="checkbox" id="ft-subject10" name=""
-										value="" autocomplete="off"> <label for="ft-subject10">카툰</label>
-									</li>
-								</ul></li>
-							<li><a href="javascript:;"><span>Size</span></a>
-								<ul class="sort-depth chk-list-type01">
-									<li><input type="checkbox" id="ft-size-all" name=""
-										value="" autocomplete="off"> <label for="ft-size-all">전체</label>
-									</li>
-									<li><input type="checkbox" id="ft-size01" name="" value=""
-										autocomplete="off"> <label for="ft-size01">30x30cm</label>
-									</li>
-									<li><input type="checkbox" id="ft-size02" name="" value=""
-										autocomplete="off"> <label for="ft-size02">30x30cm</label>
-									</li>
-									<li><input type="checkbox" id="ft-size03" name="" value=""
-										autocomplete="off"> <label for="ft-size03">30x30cm</label>
-									</li>
-								</ul></li>
-							<li><a href="javascript:;"><span>그림 방향</span></a>
-								<ul class="sort-depth chk-list-type01">
-									<li><input type="checkbox" id="ft-direction-all" name=""
-										value="" autocomplete="off"> <label
-										for="ft-direction-all">전체</label></li>
-									<li><input type="checkbox" id="ft-direction01" name=""
-										value="" autocomplete="off"> <label
-										for="ft-direction01">30x30cm</label></li>
-									<li><input type="checkbox" id="ft-direction02" name=""
-										value="" autocomplete="off"> <label
-										for="ft-direction02">30x30cm</label></li>
-									<li><input type="checkbox" id="ft-direction03" name=""
-										value="" autocomplete="off"> <label
-										for="ft-direction03">30x30cm</label></li>
-								</ul></li>
-						</ul>
-						<button type="button" class="btn-filter-reset">
-							<span class="hide">RESET</span>
-						</button>
-					</div>
+<!-- 					<div class="combine-sort-wrap"> -->
+<!-- 						<h3>Filter</h3> -->
+<!-- 						<ul class="combine-sort-list"> -->
+<!-- 							<li class="on"><a href="javascript:;"><span>장르별</span></a> -->
+<!-- 								<ul class="sort-depth chk-list-type01" style="display: block"> -->
+<!-- 									<li>정비 중 입니다</li> -->
+<!-- 								    <li><input type="checkbox" id="ft-genre-all" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre-all">전체</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre01" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre01">초상화</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre02" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre02">추상화</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre03" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre03">풍경</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre04" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre04">정물</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre05" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre05">타이포그래피</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre06" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre06">일러스트</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre07" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre07">포스터</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre08" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre08">팝아트</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre09" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre09">초현실</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-genre10" -->
+<!-- 										name="delete_list" value="" autocomplete="off"> <label -->
+<!-- 										for="ft-genre10">카툰</label></li> -->
+<!-- 								</ul></li> -->
+<!-- 							<li><a href="javascript:;"><span>주제별</span></a> -->
+<!-- 								<ul class="sort-depth chk-list-type01"> -->
+<!-- 									<li>정비 중 입니다</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject-all" name="" -->
+<!-- 										value="" autocomplete="off"> <label -->
+<!-- 										for="ft-subject-all">전체</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject01" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject01">초상화</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject02" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject02">추상화</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject03" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject03">풍경</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject04" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject04">정물</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject05" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject05">타이포그래피</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject06" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject06">일러스트</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject07" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject07">포스터</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject08" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject08">팝아트</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject09" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject09">초현실</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-subject10" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-subject10">카툰</label> -->
+<!-- 									</li> -->
+<!-- 								</ul></li> -->
+<!-- 							<li><a href="javascript:;"><span>Size</span></a> -->
+<!-- 								<ul class="sort-depth chk-list-type01"> -->
+<!-- 									<li>정비 중 입니다</li> -->
+<!-- 									<li><input type="checkbox" id="ft-size-all" name="" -->
+<!-- 										value="" autocomplete="off"> <label for="ft-size-all">전체</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-size01" name="" value="" -->
+<!-- 										autocomplete="off"> <label for="ft-size01">30x30cm</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-size02" name="" value="" -->
+<!-- 										autocomplete="off"> <label for="ft-size02">30x30cm</label> -->
+<!-- 									</li> -->
+<!-- 									<li><input type="checkbox" id="ft-size03" name="" value="" -->
+<!-- 										autocomplete="off"> <label for="ft-size03">30x30cm</label> -->
+<!-- 									</li> -->
+<!-- 								</ul></li> -->
+<!-- 							<li><a href="javascript:;"><span>그림 방향</span></a> -->
+<!-- 								<ul class="sort-depth chk-list-type01"> -->
+<!-- 									<li>정비 중 입니다</li> -->
+<!-- 									<li><input type="checkbox" id="ft-direction-all" name="" -->
+<!-- 										value="" autocomplete="off"> <label -->
+<!-- 										for="ft-direction-all">전체</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-direction01" name="" -->
+<!-- 										value="" autocomplete="off"> <label -->
+<!-- 										for="ft-direction01">30x30cm</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-direction02" name="" -->
+<!-- 										value="" autocomplete="off"> <label -->
+<!-- 										for="ft-direction02">30x30cm</label></li> -->
+<!-- 									<li><input type="checkbox" id="ft-direction03" name="" -->
+<!-- 										value="" autocomplete="off"> <label -->
+<!-- 										for="ft-direction03">30x30cm</label></li> -->
+<!-- 								</ul></li> -->
+<!-- 						</ul> -->
+<!-- 						<button type="button" class="btn-filter-reset"> -->
+<!-- 							<span class="hide">RESET</span> -->
+<!-- 						</button> -->
+<!-- 					</div> -->
 
 					<!-- COMBINE LIST -->
-					<div id="item-list-wrap">
+					<div style="width:100%;">
+					<div id="item-list-wrap" style="margin:0 auto;">
 						<div class="grid-list-opt">
 							<div class="grid-opt-left">
-								검색된 작품은 총 <strong class="f-color"></strong>개 입니다.
+								검색된 작품은 총 <strong class="f-color">${searchResultList.size()}</strong>개 입니다.
 							</div>
 							<div class="grid-opt-right">
 								<div class="grid-sort-list">

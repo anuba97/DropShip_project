@@ -60,22 +60,22 @@
                                 <th style="background-color: #212529; color: #fff;"><label for="eventboard_title">이벤트 제목</label></th>
                                 <td><input type="text" id="eventboard_title" name="eventboard_title" style="width:100%; text-align:center;" readonly value="${map.boardEventVo.getEventboard_title()}"><br></td>
                             </tr>
-                            <tr>
+                           <tr>
                             	<th style="background-color: #212529; color: #fff;">상단 등록</th>
 	                            <td>
-	                            	<input type="radio" id="true" name="eventboard_istop" value="1" readonly <c:if test="${map.boardEventVo.getEventboard_istop() == '1'}">checked</c:if>>
-	                                <label for="true">등록</label>
-	                                <input type="radio" id="false" name="eventboard_istop" value="0" readonly <c:if test="${map.boardEventVo.getEventboard_istop() == '0'}">checked</c:if>>
-	                                <label for="false">해제</label>
+	                            	<input type="radio" id="true_istop" name="eventboard_istop" value="1" readonly <c:if test="${map.boardEventVo.getEventboard_istop() == '1'}">checked</c:if>>
+	                                <label for="true_istop">등록</label>
+	                                <input type="radio" id="false_istop" name="eventboard_istop" value="0" readonly <c:if test="${map.boardEventVo.getEventboard_istop() == '0'}">checked</c:if>>
+	                                <label for="false_istop">해제</label>
 	                            </td>
                        		</tr>
                             <tr>
                             	<th style="background-color: #212529; color: #fff;">이벤트 상태</th>
 	                            <td>
-	                            	<input type="radio" id="true" name="eventboard_status" value="1" readonly <c:if test="${map.boardEventVo.getEventboard_status() == '1'}">checked</c:if>>
-	                                <label for="true">진행</label>
-	                                <input type="radio" id="false" name="eventboard_status" value="0" readonly <c:if test="${map.boardEventVo.getEventboard_status() == '0'}">checked</c:if>>
-	                                <label for="false">종료</label>
+	                            	<input type="radio" id="true_status" name="eventboard_status" value="1" readonly <c:if test="${map.boardEventVo.getEventboard_status() == '1'}">checked</c:if>>
+	                                <label for="true_status">진행</label>
+	                                <input type="radio" id="false_status" name="eventboard_status" value="0" readonly <c:if test="${map.boardEventVo.getEventboard_status() == '0'}">checked</c:if>>
+	                                <label for="false_status">종료</label>
 	                            </td>
                        		</tr>
                             <tr>

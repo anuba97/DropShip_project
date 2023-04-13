@@ -218,9 +218,7 @@
                                             <th scope="col">주문일/주문번호</th>
                                             <th scope="col">상품정보</th>
                                             <th scope="col">상품수</th>
-                                            <th scope="col">주문금액</th>
-                                            <!--<th scope="col">입금액</th>-->
-                                            <!--<th scope="col">미입금액</th>-->
+                                            <th scope="col">주문금액</th>                            
                                             <th scope="col">주문상태</th>
                                         </tr>
                                     </thead>
@@ -234,7 +232,6 @@
                                             <c:forEach items="${order_detail_list}" var="order_detail_inquireVo" varStatus="loop">
                                                 <tr>
                                                     <c:if test="${loop.first || order_detail_inquireVo.order_member_id ne prevOrderMemberId}">
-                                                        <!-- 이거 왜 이렇게하는지 1도 모르겠음. GPT쩐다 ㅋㅋㅋ -->
                                                         <td data-title="주문번호" class="td-num" rowspan="${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}">
                                                             <div>
                                                                 <fmt:formatDate value="${order_detail_inquireVo.order_date}" pattern="yyyy-MM-dd (E)  HH시 mm분" />
@@ -249,25 +246,35 @@
                                                             </div>
                                                             <div class="product-name">
                                                                 <strong>${order_detail_inquireVo.work_name}<span>${order_detail_inquireVo.artist_korean_name}</span></strong>
-                                                                <!-- 		                                                        <p>외 1건</p> -->
-                                                                <!-- <p>캔버스 / 캔버스판넬 / 마띠에르 리터치 선택 / 매트없음 / 90.0cm X 71.4cm</p> -->
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td data-title="상품수량" class="td-numbig">${order_detail_inquireVo.option_quantity}</td>
                                                     <td data-title="주문금액" class="td-numbig td-total">${order_detail_inquireVo.option_selected_price * order_detail_inquireVo.option_quantity+2000} 원</td>
-                                                    <!--<td class="td-numbig">0원</td>-->
-                                                    <!--<td class="td-numbig">146,700원</td>-->
-                                                    <td data-title="주문상태" class="td-state">
-                                                        <c:choose>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 4}">배송완료</c:when>
-                                                            <c:when test="${order_detail_inquireVo.order_status == 5}">주문취소</c:when>
-                                                        </c:choose>
-                                                    </td>
+                                                    <c:if test="${loop.first || order_detail_inquireVo.order_member_id ne prevOrderMemberId}">
+	                                                    <td data-title="주문상태" class="td-state" rowspan="${orderMemberIdCountMap[order_detail_inquireVo.order_member_id]}">
+	                                                        <c:choose>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 0}">입금확인중</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 1}">입금완료</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 2}">상품준비중</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 3}">배송중</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 4}">배송완료</c:when>
+	                                                            <c:when test="${order_detail_inquireVo.order_status == 5}">주문취소</c:when>
+	                                                        </c:choose>
+	                                                        <c:if test="${order_detail_inquireVo.order_status == 3}">
+	                                                            <div><br>
+	                                                                <button type="button" class="btnset btn-type01 btn_cart sct_cart" data-it_id="1654133549">
+	                                                                    <a href="../myshop/mypage_drone?id=${order_detail_inquireVo.order_member_id}" class="btnset btn-sight">
+	                                                                        <svg height="45" width="140">
+	                                                                            <rect height="45" width="140"></rect>
+	                                                                        </svg>
+	                                                                    </a>
+	                                                                    <span style="margin-left:-15px;">드론배송 현황</span>
+	                                                                </button>
+	                                                            </div>
+	                                                        </c:if>
+	                                                    </td>
+                                                    </c:if>
                                                 </tr>
                                                 <c:set var="prevOrderMemberId" value="${order_detail_inquireVo.order_member_id}" />
                                             </c:forEach>

@@ -187,7 +187,7 @@
 	                                                                <rect
 																		height="45" width="160"></rect>
 	                                                            </svg>
-																<span>ADD TO CART</span>
+																<span>상세페이지 이동</span>
 															</button>
 														</div>
 														<div class="cart-layer"></div>

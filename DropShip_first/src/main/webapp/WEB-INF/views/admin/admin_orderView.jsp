@@ -66,7 +66,7 @@
                 </div>
                 <span style="color:red; font-weight:bold; margin-left:24px;">주문 고유번호가 동일한 상품은 주문 상태 적용이 함께 처리됩니다.</span>
                 <form action="order_condition" name="order_condition" method="post">
-                    <table class="admin_customerTable" >
+                     <table class="admin_customerTable" >
                         <colgroup>
                             <col width="30%">
                             <col width="70%">
@@ -90,6 +90,12 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>주문 수량</th>
+                            <td>
+                                ${order_DetailVo.option_quantity} 개
+                            </td>
+                        </tr>
+                        <tr>
                             <th>주문 상품</th>
                             <td>
                                 ${order_DetailVo.work_name}
@@ -98,7 +104,73 @@
                         <tr>
                             <th>주문 옵션</th>
                             <td>
-                                ${order_DetailVo.option_id}
+                                <c:if test="${order_DetailVo.option_size == 0}">
+                                    <li>사이즈 : 20.0cm x 35.7cm(+36,500)</li>
+                               	</c:if>
+                               	<c:if test="${order_DetailVo.option_size == 1}">
+                                    <li>사이즈 : 25.0cm x 44.6cm(+50,300)</li>
+                               	</c:if>
+                               	<c:if test="${order_DetailVo.option_media == 0}">
+                                    <li>미디어 : 캔버스(+0)</li>
+                               	</c:if>
+                               	<c:if test="${order_DetailVo.option_media == 1}">
+                                    <li>미디어 : 파인아트(미정)</li>
+                               	</c:if>
+                               	<c:if test="${order_DetailVo.option_mattier == 0}">
+                                    <li>리터치 : 없음(+0)</li>
+                               	</c:if>
+                               	<c:if test="${order_DetailVo.option_mattier == 1}">
+                                    <li>리터치 : 선택(+0)</li>
+                               	</c:if>
+                          	<c:choose>
+								<c:when test="${order_DetailVo.option_frame == 0}">
+									<li>프레임 : 캔버스판넬(+0)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 1}">
+									<li>프레임 : 래핑캔버스(+0)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 2}">
+									<li>프레임 : 띄움(+4,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 3}">
+									<li>프레임 : 원목 띄움(+16,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 4}">
+									<li>프레임 : 올림우드(+20,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 5}">
+									<li>프레임 : 앤틱D실버(+0)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 6}">
+									<li>프레임 : 원목베이지(+30,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 7}">
+									<li>프레임 : 관화이트(+28,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 8}">
+									<li>프레임 : 관우드(+28,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_frame == 9}">
+									<li>프레임 : 관블랙(+28,000)</li>
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${order_DetailVo.option_matt == 0}">
+									<li>매트(여백) : 없음(+0)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_matt == 1}">
+									<li>매트(여백) : 2cm(+10,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_matt == 2}">
+									<li>매트(여백) : 3cm(+20,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_matt == 3}">
+									<li>매트(여백) : 6cm(+30,000)</li>
+								</c:when>
+								<c:when test="${order_DetailVo.option_matt == 4}">
+									<li>매트(여백) : 11cm(+40,000)</li>
+								</c:when>
+							</c:choose>
                             </td>
                         </tr>
                         <tr>
