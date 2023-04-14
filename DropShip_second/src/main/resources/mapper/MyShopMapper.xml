@@ -56,16 +56,18 @@
 	</insert>
 	
 
-	 <!-- 회원 마이페이지주문조회 (날짜 검색도) -->
+	 <!-- 회원 마이페이지주문조회 (날짜 검색도) , (작품id, 리뷰별점) -->
 	 <select id="selectOrderDetailByMemberId" resultType="com.java.vo.Order_Detail_inquireVo">	
 	    SELECT om.order_date, od.order_member_id, w.work_img_url, w.work_name, a.artist_korean_name, 
-	    	   wo.option_quantity, wo.option_selected_price, om.order_status, w.id as work_id
+	    	   wo.option_quantity, wo.option_selected_price, om.order_status, w.id as work_id, r.review_rate
 			FROM order_detail od
 			JOIN order_member om ON od.order_member_id = om.id
 			JOIN work w ON od.work_id = w.id
 			JOIN artist a ON w.artist_id = a.id
 			JOIN work_option wo ON od.option_id = wo.id
-		WHERE member_id = #{member_id}
+			JOIN member m ON om.member_id = m.id
+			LEFT JOIN work_review r ON od.work_id = r.work_id
+		WHERE om.member_id = #{member_id}
 	 <if test="(fr_date != null and fr_date != '') and (to_date != null and to_date != '')">	<!-- 검색 시작일 종료일 둘 다 있으면 -->
 			<![CDATA[
 			AND om.order_date >= TO_DATE(#{fr_date}) AND om.order_date <= TO_DATE(#{to_date})+1

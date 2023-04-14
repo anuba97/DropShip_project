@@ -234,6 +234,23 @@ var g5_shop_url = "https://bxgs.co.kr/shop";
 							                                            <span style="margin-left:-15px; color:blue;">ReView 수정</span>
 							                                            <!-- <span style="margin-left:-15px; color:blue;">ReView 수정${workReviewVoCountList.get(loop.index)}</span> -->
 							                                        </button>
+							                                    </div><br>
+							                                    <div>
+							                                    	<c:if test="${order_detail_inquireVo.review_rate == 1}">
+								                                    	<img src="../../home/img/s_star1_big.png">
+							                                    	</c:if>
+							                                    	<c:if test="${order_detail_inquireVo.review_rate == 2}">
+								                                    	<img src="../../home/img/s_star2_big.png">
+							                                    	</c:if>
+							                                    	<c:if test="${order_detail_inquireVo.review_rate == 3}">
+								                                    	<img src="../../home/img/s_star3_big.png">
+							                                    	</c:if>
+							                                    	<c:if test="${order_detail_inquireVo.review_rate == 4}">
+								                                    	<img src="../../home/img/s_star4_big.png">
+							                                    	</c:if>
+							                                    	<c:if test="${order_detail_inquireVo.review_rate == 5}">
+								                                    	<img src="../../home/img/s_star5_big.png">
+							                                    	</c:if>
 							                                    </div>
                                                         	</c:if>
 						                                </c:if> 

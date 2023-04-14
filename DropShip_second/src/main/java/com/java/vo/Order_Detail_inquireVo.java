@@ -40,5 +40,6 @@ public class Order_Detail_inquireVo {
 	
     // 리뷰작성을위해 필요함.
     private int work_id;
+    private int review_rate;
     
 }
