@@ -32,7 +32,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		int endRow = (int) map.get("endRow");
 
 		// 관리자 객체들 담기는 list
-		List<BoardEventVo> list = adminOrderMapper.selectOrderList(startRow, endRow);
+		List<Order_DetailVo> list = adminOrderMapper.selectOrderList(startRow, endRow);
 
 		map.put("list", list);
 		map.put("page", page);

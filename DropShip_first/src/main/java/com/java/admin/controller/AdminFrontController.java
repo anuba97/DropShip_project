@@ -71,6 +71,11 @@ public class AdminFrontController {
 	public String admin_index(@RequestParam(defaultValue = "1") int page, Model model) {
 		Map<String, Object> map = dropshipMemberService.indexMemberList(page);
 		Map<String, Object> order = adminOrderService.selectOrderList(page);
+		
+		List<Order_MemberVo> order_MemberVoList = adminOrderService.selectOrderAll();	
+		
+		session.setAttribute("order_MemberVoList", order_MemberVoList);
+		
 		model.addAttribute("map", map);
 		model.addAttribute("order", order);
 		model.addAttribute("page", page);

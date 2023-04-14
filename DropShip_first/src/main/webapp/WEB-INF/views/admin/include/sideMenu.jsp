@@ -23,8 +23,8 @@
                 <nav class="sb-sidenav-menu-nested nav">
                 <c:set var="statusSet" value="false"/>
 				<c:set var="allStatusGreater" value="true"/>
-				<c:forEach items="${order.list}" var="order">
-				    <c:if test="${order.order_status le 0}">
+				<c:forEach items="${order_MemberVoList}" var="order">
+				    <c:if test="${order.order_status <= 0}">
 				        <c:set var="statusSet" value="true"/>
 				        <c:set var="allStatusGreater" value="false"/>
 				    </c:if>

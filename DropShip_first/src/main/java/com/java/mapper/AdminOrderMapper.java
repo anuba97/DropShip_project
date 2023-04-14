@@ -12,7 +12,7 @@ import com.java.vo.Order_MemberVo;
 public interface AdminOrderMapper {
 
 	//주문 현황 전체 리스트보기
-	List<BoardEventVo> selectOrderList(int startRow, int endRow);
+	List<Order_DetailVo> selectOrderList(int startRow, int endRow);
 	
 	//주문 전체 개수 확인하기
 	int selectCount();
