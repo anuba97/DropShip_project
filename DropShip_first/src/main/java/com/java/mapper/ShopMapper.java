@@ -1,5 +1,6 @@
 package com.java.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,11 +24,12 @@ public interface ShopMapper {
 	//////////////////↓  Work(작품) 관련 ↓         /////////////////////////
 	List<WorkVo> search(String searchWord); //search 관련
 	
-	int selectWorkCount();  // 작품 list page 카운트하는 구문
+	int selectWorkCount(HashMap<String, Object> paramMap);  // 작품 list page 카운트하는 구문
 
-	List<WorkVo> selectWorkList(int startRow, int endRow);  // 작품 그림작품 가져오기
+	// painting_list.jsp 그림 작품 페이지
+	List<WorkVo> selectWorkList(int startRow, int endRow, String sortType, String viewOption);
 	
-	List<WorkVo> selectWorkBest(); // 작품 베스트 가져오기
+	List<WorkVo> selectWorkBest(int best_num); // 작품 베스트 가져오기
 	
 	List<WorkVo> selectWorkNew();  // 작품 new 가져오기
 
@@ -91,6 +93,12 @@ public interface ShopMapper {
 
 	// painting_list.jsp에 MD-Pick 슬라이드쇼 랜덤으로 보여질 수 있게 일단 모든 작품 다 가져옴(페이징 처리 안한)
 	List<WorkVo> selectWorkAll();
+
+	List<WorkVo> selectRandomWorks(int best_num, int additionalWorksNeeded);
+
+	
+
+	
 
 	
 

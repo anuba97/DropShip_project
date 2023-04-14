@@ -19,9 +19,10 @@ public interface ShopService {
 	
 	//////////////////↓  Work(작품) 관련 ↓         /////////////////////////
 	
-	Map<String, Object> selectWorkList(int page);  // 작품 그림작품과 page 불러오기  
+	// 작품 그림작품과 page 불러오기
+	Map<String, Object> selectWorkList(int page, String sortType, String viewOption);
 	
-	List<WorkVo> selectWorkBest();	// 작품 베스트 가져오기
+	List<WorkVo> selectWorkBest(int best_num);	// 작품 베스트 가져오기
 	
 	List<WorkVo> selectWorkNew();  // 작품 new 가져오기
 	
@@ -59,6 +60,10 @@ public interface ShopService {
 	void insertOrder_Details(int order_member_id, List<Integer> workIdList, List<Integer> optionIdList,
 			int total_price_int);
 //	void insertOrder_Details2(Map<String, Object> paramMap);
+
+	
+
+	
 
 	
 

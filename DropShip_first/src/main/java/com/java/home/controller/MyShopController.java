@@ -460,10 +460,6 @@ public class MyShopController {
 		Map<String, List<Integer>> cart_MemberMap = myShopService.selectCart_MemberList(member_id);
 		session.setAttribute("sessionCartCount", cart_MemberMap.get("optionIdList").size());
 		
-		
-		
-		
-		
 		return "home/myshop/order_result";
 	}
 
@@ -531,6 +527,7 @@ public class MyShopController {
 		model.addAttribute("myAiWorkListPageMap", myAiWorkListPageMap);
 		model.addAttribute("myAiWorkVoList", myAiWorkListPageMap.get("myAiWorkVoList"));
 		model.addAttribute("quantityList", myAiWorkListPageMap.get("quantityList"));
+//		return "redirect:/myshop/my_ai_work";
 		return "home/myshop/my_ai_work";
 	}
 	

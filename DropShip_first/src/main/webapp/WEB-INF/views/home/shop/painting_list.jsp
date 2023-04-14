@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../img/favicon.ico" />
     <title>작품 페이지</title>
-<!--     <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+    <!--     <script src="http://code.jquery.com/jquery-latest.min.js"></script> 제이쿼리가 include한 챗봇.jsp안에 있어서 겹쳐서 쓰면 안돼-->
     <link rel="stylesheet" href="../home/theme/buzinga/css/mobile_shop3816.css?ver=210618">
     <link rel="stylesheet" href="../home/js/font-awesome/css/font-awesome.min3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/swiper.min3816.css?ver=210618">
@@ -30,7 +30,8 @@
     <link rel="stylesheet" href="../home/theme/buzinga/css/sub3816.css?ver=210618">
     <link rel="stylesheet" href="../home/theme/buzinga/css/dropship.css"> <!-- dropship전용 css -->
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<!--     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
+    <!--     <script src="../home/js/jquery-1.12.4.min3816.js?ver=210618"></script> -->
+    <script src="../home/js/painting_list_arrange.js"></script>
     <script src="../home/js/jquery-migrate-1.4.1.min3816.js?ver=210618"></script>
     <script src="../home/js/common3816.js?ver=210618"></script>
     <script src="../home/js/wrest3816.js?ver=210618"></script>
@@ -46,6 +47,21 @@
     <script src="../js/checkbox.js"></script>
     <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> --> 
     <%@ include file ="../ai/chatbot.jsp" %>
+    <style>
+        .sct_txt {
+            display: flex;
+            align-items: center;
+        }
+
+        .member_work {
+            margin-left: 17px;
+            padding: 2px 6px;
+            background-color: #96a032d4;
+            color: white;
+            border-radius: 9px;
+            font-size: 12px;
+        }
+    </style>
     <script>
     // get all checkboxes on the page
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -71,21 +87,13 @@
         justify-content: center;
     }
 </style>
-
 <body>
-
-
     <div class="cursor-ball">
         <div class="ball"></div>
     </div>
-
-
     <div id="skip_to_container">
         <a href="#contents">본문 바로가기</a>
     </div>
-	
-
-
 
     <div id="wrap" class="sub">
 
@@ -101,10 +109,7 @@
                     <h2 class="sub-tit">PAINTING</h2>
                 </div>
             </section>
-
-
             <section class="normal-list">
-
                 <!-----  MD PICK 최대 5개 (일단 2개만 들어가있음) ----->
                 <div id="ranking-item">
                     <div class="sub-con-tit-wrap">
@@ -114,38 +119,39 @@
                         <div class="ranking-thumb-wrap">
                             <div class="ranking-thumb-slider">
                                 <div class="swiper-wrapper">
-                                	<c:forEach items="${map.randomWorkVoList}" var="workVo">
-	                                    <div class="swiper-slide">
-	                                        <div class="ranking-img-wrap">
-	                                            <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}">
-	                                                <div class="ranking-img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
-	                                                    <span class="hide">배경이미지</span>
-	                                                </div>
-	                                            </a>
-	                                        </div>
-	                                    </div>
-                                	</c:forEach>
+                                    <c:forEach items="${workMap.randomWorkVoList}" var="workVo">
+                                        <div class="swiper-slide">
+                                            <div class="ranking-img-wrap">
+                                                <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}">
+                                                    <div class="ranking-img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
+                                                        <span class="hide">배경이미지</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
                         <div class="ranking-info-wrap">
                             <div class="ranking-info-slider">
                                 <div class="swiper-wrapper">
-                                	<c:forEach items="${map.randomWorkVoList}" var="workVo">
-	                                    <div class="swiper-slide">
-	                                        <div class="ranking-desc-wrap">
-	                                            <h4 class="ranking-title">
-	                                                <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}">${workVo.work_name}</a>
-	                                            </h4>
-	                                            <div class="ranking-desc">
-	                                                <span>${workVo.artist_korean_name}</span>
-	                                                <p>20.0cm X 35.7cm</p>
-	                                            </div>
-	                                            <div class="ranking-price">
-	                                                <span class="ranking-price-cost"><strong><fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###"/>원</strong></span>
-	                                            </div>
-	                                        </div>
-	                                    </div>
+                                    <c:forEach items="${workMap.randomWorkVoList}" var="workVo">
+                                        <div class="swiper-slide">
+                                            <div class="ranking-desc-wrap">
+                                                <h4 class="ranking-title">
+                                                    <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}">${workVo.work_name}</a>
+                                                </h4>
+                                                <div class="ranking-desc">
+                                                    <span>${workVo.artist_korean_name}</span>
+                                                    <p>20.0cm X 35.7cm</p>
+                                                </div>
+                                                <div class="ranking-price">
+                                                    <span class="ranking-price-cost"><strong>
+                                                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원</strong></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -171,155 +177,151 @@
                             <h3 class="sub-con-tit" data-aos="fade-right" data-aos-delay="100">Painting Art</h3>
                         </div>
                         <div class="grid-list-opt">
-                            <div class="grid-opt-left">총 <strong class="f-color">${map.listCount}</strong>개의 상품이 있습니다.</div>
+                            <div class="grid-opt-left">총 <strong class="f-color">${workMap.listCount}</strong>개의 상품이 있습니다.</div>
                             <div class="grid-opt-right">
-                            
-	                                <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기" class="input-compare">
-	                                
-	           						<!-- <label for="docompareBtn">비교하기</label> -->
-                                <div class="grid-sort-list">
-                                    <a href="javascript:;" class="grid-sort-current btn-sort-open">인기순</a>
-                                    <ul>
-                                        <li><a href="painting_listb11a.html?&amp;sort=it_sum_qty&amp;sortodr=desc&amp;re_items=&amp;page=1#item-list-wrap">인기순</a></li>
-                                        <li><a href="painting_list1775.html?&amp;sort=it_use_cnt&amp;sortodr=desc&amp;re_items=&amp;page=1#item-list-wrap">후기순</a></li>
-                                        <li><a href="painting_list0dd6.html?&amp;sort=it_use_avg&amp;sortodr=desc&amp;re_items=&amp;page=1#item-list-wrap">평점순</a></li>
-                                        <li><a href="painting_list4a91.html?&amp;sort=it_update_time&amp;sortodr=desc&amp;re_items=&amp;page=1#item-list-wrap">등록순</a></li>
-                                        <li><a href="painting_listb37f.html?&amp;sort=it_price&amp;sortodr=desc&amp;re_items=&amp;page=1#item-list-wrap">높은가격순</a></li>
-                                        <li><a href="painting_list28e0.html?&amp;sort=it_price&amp;sortodr=asc&amp;re_items=&amp;page=1#item-list-wrap">낮은가격순</a></li>
-                                    </ul>
-                                </div>
-                                
-                                 <div class="grid-sort-list">
-                                    <a href="javascript:;" class="grid-sort-current btn-sort-open">
-                                        6개씩 보기
-                                    </a>
-                                    <ul>
-                                        <li><a href="painting_list">6개씩 보기</a></li>
-                                        <li><a href="painting_list556e.html?&amp;re_items=12&amp;sort=&amp;sortodr=&amp;page=1#item-list-wrap">전체보기</a></li>
-                                    </ul>
-                                </div> 
+
+                                <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기" class="input-compare">
+
+								<select id="sort-options" class="sort-list" onchange="fetchData(1)">
+								    <option value="high_rate" <c:if test="${sortType == 'high_rate'}">selected</c:if>>평점 높은순</option>
+								    <option value="best_sales" <c:if test="${sortType == 'best_sales'}">selected</c:if>>판매량 높은순</option>
+								    <option value="most_reviewed" <c:if test="${sortType == 'most_reviewed'}">selected</c:if>>후기 많은순</option>
+								    <option value="latest_registration" <c:if test="${sortType == 'latest_registration'}">selected</c:if>>최신 등록순</option>
+								    <option value="highest_to_lowest" <c:if test="${sortType == 'highest_to_lowest'}">selected</c:if>>높은 가격순</option>
+								    <option value="lowest_to_highest" <c:if test="${sortType == 'lowest_to_highest'}">selected</c:if>>낮은 가격순</option>
+								</select>
+								
+                                <select id="view-options" class="sort-list" onchange="fetchData(1)">
+								    <option value="all" <c:if test="${viewOption == 'all'}">selected</c:if>>전체보기</option>
+								    <option value="ai_created" <c:if test="${viewOption == 'ai_created'}">selected</c:if>>회원 생성작품보기</option>
+								    <option value="general" <c:if test="${viewOption == 'general'}">selected</c:if>>일반 작품보기</option>
+								    <option value="6_per_page" <c:if test="${viewOption == '6_per_page'}">selected</c:if>>6개씩 보기</option>
+								    <option value="9_per_page" <c:if test="${viewOption == '9_per_page'}">selected</c:if>>9개씩 보기</option>
+								</select>
                             </div>
                         </div>
                         <div class="grid-list">
                             <div class="sct_wrap">
-
+								<input type="hidden" id="page" name="page" value="${workMap.page}">
                                 <!-- <script src="../js/jquery.fancylist.js"></script> -->
-								<form action="compare2" name="docompareFrm" id="docompare" method="post">
-												  <input type="hidden" id="chkValue" name="chkValue">
-												
-												  <ul class="sct sct_20">
-												    <c:forEach items="${map.list}" var="workVo" >
-												      <li class="sct_li">
-												        <div class="li_wr">
-												          <div class="sct_img_wrap">
-												            <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
-												              <span class="hide">작품이름</span>
-												            </div>
-												            <div class="sct_opt_wrap">
-												              <div class="sct_btn list-10-btn">
-												                <button type="button"  onclick="AddToCartBtn(${workVo.id},${workVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
-												                  <svg height="45" width="160">
-												                    <rect height="45" width="160"></rect>
-												                  </svg>
-												                  <span>ADD TO CART</span>
-												                </button>
-												              </div>
-												              <div class="cart-layer"></div>
-												              <div class="sct_op_btn">
-												                <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
-												                <c:if test="${sessionMember_login_id == null }">
-												                  <button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
-												                </c:if>
-												                <c:if test="${sessionMember_login_id != null }">
-												                  <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
-												                </c:if>
-												              </div>
-												            </div>
-												          </div>
-												          <div class="sct_txt"><a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="sct_a">${workVo.work_name}</a></div>
-												          <div class="sct_desc"><span>${workVo.artist_name}</span>
-												            <p>20.0cm x 35.7cm</p>
-												          </div>
-												          <div class="sct_cost">
-												            <span class="price_cost">
-												              <strong>
-												                <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
-	                                                            <!-- 비교 체크박스 -->
-	                                                            &nbsp;&nbsp;
-	                                                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.3);">
-																<label for="compare${workVo.id}" class="sct_desc" style="color: #c9ab81; font-size: 16px; cursor: pointer;">비교선택</label>
-	                                                            <!-- 비교 체크박스 -->
-	                                                            <div id="compareWorkId"></div>
-	                                                        </strong>
-	                                                    </span>
-	                                                </div>
-	                                            </div>
-	                                        </li>
-	                                    </c:forEach>
-	                                </ul><!-- 그림작품 부분 끝 -->
-								</form>
-
-                                <!-- 하단 넘버링 부분 시작! -->
-                                <nav class="pg_wrap">
-                                    <ul class="page-numul" style="list-style:none;">
-                                    	<!-- 첫 페이지로 이동 (<<모양만있고 기능은 없음) -->
-                                        <c:if test="${map.page == 1}">
-                                            <li><span class="pg_page pg_start"></span></li>
-                                        </c:if>
-                                        <!-- 첫 페이지로 이동 (<<모양도있고, 기능까지 있는것) -->
-                                        <c:if test="${map.page != 1}">
-                                            <a href="painting_list?page=1">
-                                                <li><span class="pg_page pg_start"></span></li>
-                                            </a>
-                                        </c:if>
-
-										<!-- 이전 페이지로 이동  -->
-                                        <c:if test="${map.page == 1}">
-                                            <li><span class="pg_page pg_prev"></span></li>
-                                        </c:if>
-                                        <c:if test="${map.page != 1}">
-                                            <a href="painting_list?page=${map.page - 1}">
-                                                <li><span class="pg_page pg_prev"></span></li>
-                                            </a>
-                                        </c:if>
-
-										<!-- 하단 넘버링 반복문 -->
-                                        <c:forEach begin="${map.startPage}" end="${map.endPage}" step="1" var="number">
-                                            <c:if test="${map.page == number}">
-                                                <li>
-                                                    <div class="pg_current">${number}</div>
-                                                </li>
-                                            </c:if>
-                                            <c:if test="${map.page != number}">
-                                                <li>
-                                                    <a href="painting_list?page=${number}">
-                                                        <div class="pg_page">${number}</div>
-                                                    </a>
-                                                </li>
-                                            </c:if>
-                                        </c:forEach>
-
-										<!-- 다음 페이지로 이동 -->
-                                        <c:if test="${map.page == map.maxPage}">
-                                            <li><span class="pg_page pg_next"></span></li>
-                                        </c:if>
-                                        <c:if test="${map.page != map.maxPage}">
-                                            <a href="painting_list?page=${map.page + 1}">
-                                                <li><span class="pg_page pg_next"></span></li>
-                                            </a>
-                                        </c:if>
-										
-										<!-- 끝 페이지로 이동 -->
-                                        <c:if test="${map.page == map.maxPage}">
-                                            <li><span class="pg_page pg_end">keyboard_double_arrow_right</span></li>
-                                        </c:if>
-                                        <c:if test="${map.page != map.maxPage}">
-                                            <a href="painting_list?page=${map.maxPage}">
-                                                <li><span class="pg_page pg_end">keyboard_double_arrow_right</span></li>
-                                            </a>
-                                        </c:if>
-                                    </ul>
-                                </nav>
+                                <form action="compare2" name="docompareFrm" id="docompare" method="post">
+                                    <input type="hidden" id="chkValue" name="chkValue">
+									<ul class="sct sct_20">
+									    <c:forEach items="${workMap.sortedWorkList}" var="workVo">
+									        <li class="sct_li">
+									            <div class="li_wr">
+									                <div class="sct_img_wrap">
+									                    <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.work_img_url})">
+									                        <span class="hide">작품이름</span>
+									                    </div>
+									                    <div class="sct_opt_wrap">
+									                        <div class="sct_btn list-10-btn">
+									                            <button type="button" onclick="AddToCartBtn(${workVo.id},${workVo.artist_id})" class="btnset btn-type01 btn_cart sct_cart">
+									                                <svg height="45" width="160">
+									                                    <rect height="45" width="160"></rect>
+									                                </svg>
+									                                <span>상세페이지 이동</span>
+									                            </button>
+									                        </div>
+									                        <div class="cart-layer"></div>
+									                        <div class="sct_op_btn">
+									                            <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="btnset btn-sight"><span class="hide">자세히보기</span></a>
+									                            <c:if test="${sessionMember_login_id == null }">
+									                                <button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+									                            </c:if>
+									                            <c:if test="${sessionMember_login_id != null }">
+									                                <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+									                            </c:if>
+									                        </div>
+									                    </div>
+									                </div>
+									                <div class="sct_txt">
+									                    <a href="painting_item?work_id=${workVo.id}&artist_id=${workVo.artist_id}" class="sct_a">
+									                        ${workVo.work_name}
+									                    </a>
+									                    <c:if test="${workVo.work_is_ai == 1}">
+									                        <div class="member_work">
+									                            회원 작품
+									                        </div>
+									                    </c:if>
+									                </div>
+									                <div class="sct_desc"><span>${workVo.artist_name}</span>
+									                    <p>20.0cm x 35.7cm</p>
+									                </div>
+									                <div class="sct_cost">
+									                    <span class="price_cost">
+									                        <strong>
+									                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
+									                            <!-- 비교 체크박스 -->
+									                            &nbsp;&nbsp;
+									                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare" value="${workVo.id}" style="transform: scale(1.3);">
+									                            <label for="compare${workVo.id}" class="sct_desc" style="color: #c9ab81; font-size: 16px; cursor: pointer;">비교선택</label>
+									                            <!-- 비교 체크박스 -->
+									                            <div id="compareWorkId"></div>
+									                        </strong>
+									                    </span>
+									                </div>
+									            </div>
+									        </li>
+									    </c:forEach>
+								   </ul><!-- 그림작품 부분 끝 -->
+                                </form>
+								
+								
+								<!-- Start of bottom numbering! -->
+								<nav class="pg_wrap">
+								    <ul class="page-numul" style="list-style:none;">
+								        <!-- Go to the first page (<<Form only, no function) -->
+								        <c:if test="${workMap.page == 1}">
+								            <li><span class="pg_page pg_start"></span></li>
+								        </c:if>
+								        <!-- Go to the first page (<<It has a shape and even a function) -->
+								        <c:if test="${workMap.page != 1}">
+								            <li><span class="pg_page pg_start" onclick="fetchData(1)"></span></li>
+								        </c:if>
+								
+								        <!-- Go to the previous page -->
+								        <c:if test="${workMap.page == 1}">
+								            <li><span class="pg_page pg_prev"></span></li>
+								        </c:if>
+								        <c:if test="${workMap.page != 1}">
+								            <li><span class="pg_page pg_prev" onclick="fetchData(${workMap.page - 1})"></span></li>
+								        </c:if>
+								
+								        <!-- bottom numbering loop -->
+								        <c:forEach begin="${workMap.startPage}" end="${workMap.endPage}" step="1" var="number">
+								            <c:if test="${workMap.page == number}">
+								                <li>
+								                    <div class="pg_current">${number}</div>
+								                </li>
+								            </c:if>
+								            <c:if test="${workMap.page != number}">
+								                <li>
+								                    <span class="pg_page" onclick="fetchData(${number})">${number}</span>
+								                </li>
+								            </c:if>
+								        </c:forEach>
+								
+								        <!-- Go to the next page -->
+								        <c:if test="${workMap.page == workMap.maxPage}">
+								            <li><span class="pg_page pg_next"></span></li>
+								        </c:if>
+								        <c:if test="${workMap.page != workMap.maxPage}">
+								            <li><span class="pg_page pg_next" onclick="fetchData(${workMap.page + 1})"></span></li>
+								        </c:if>
+								
+								        <!-- Go to end page -->
+								        <c:if test="${workMap.page == workMap.maxPage}">
+								            <li><span class="pg_page pg_end">keyboard_double_arrow_right</span></li>
+								        </c:if>
+								        <c:if test="${workMap.page != workMap.maxPage}">
+								            <li><span class="pg_page pg_end" onclick="fetchData(${workMap.maxPage})"></span></li>
+								        </c:if>
+								    </ul>
+								</nav>
+								<!-- Start of bottom numbering! -->
+								
+								
                             </div>
                         </div>
                     </div>

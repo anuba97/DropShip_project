@@ -35,30 +35,31 @@ public class ShopServiceImpl implements ShopService {
 	Order_Detail_inquire_viewVo order_Detail_inquire_viewVo;
 
 	//////////////////////// ↓ Work(작품) 관련 ↓ ///////////////////////////////
-
 	// 작품 그림작품과 page 가져오기
 	@Override
-	public Map<String, Object> selectWorkList(int page) {
-		HashMap<String, Object> map = pageMethodWork(page);
-
-		int startRow = (int) map.get("startRow");
-		int endRow = (int) map.get("endRow");
-
-		List<WorkVo> list = shopMapper.selectWorkList(startRow, endRow);
-		List<WorkVo> allWorkVoList = shopMapper.selectWorkAll();
-		Collections.shuffle(allWorkVoList);
-		List<WorkVo> randomWorkVoList = allWorkVoList.subList(0, 5);
-		map.put("list", list);
-		map.put("page", page);
-		map.put("randomWorkVoList", randomWorkVoList);
-
-		return map;
+	public Map<String, Object> selectWorkList(int page, String sortType, String viewOption) {
+		HashMap<String, Object> sortedWorkMap = pageMethodWork(page, sortType, viewOption);
+		List<WorkVo> sortedWorkList = shopMapper.selectWorkList((int) sortedWorkMap.get("startRow"), (int) sortedWorkMap.get("endRow"), sortType, viewOption);
+		
+		// MD-PICK 자리에 작품 랜덤으로 보여지게 할 목적
+		List<WorkVo> allWorkVoList = shopMapper.selectWorkAll(); // -> 일단은 전체 workVo들을 가져왔지만 작품개수가 많아지면 매우 비효율적일 것. workId들만 가져오는게 나을 듯. 시간관계상 그렇게 안함
+		Collections.shuffle(allWorkVoList);	// 전체 작품들을 섞어
+		List<WorkVo> randomWorkVoList = allWorkVoList.subList(0, 5); // 그 중 0~4번째 작품만 가져와
+		
+		sortedWorkMap.put("randomWorkVoList", randomWorkVoList);
+		sortedWorkMap.put("sortedWorkList", sortedWorkList);
+		return sortedWorkMap;
 	}
+	
+	
+	// 작품 페이징 메소드
+	private HashMap<String, Object> pageMethodWork(int page, String sortType, String viewOption) { 
+	    HashMap<String, Object> map = new HashMap<>();
+	    HashMap<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("sortType", sortType);
+	    paramMap.put("viewOption", viewOption);
 
-	private HashMap<String, Object> pageMethodWork(int page) { // 작품 페이징 메소드
-		HashMap<String, Object> map = new HashMap<>();
-
-		int listCount = shopMapper.selectWorkCount(); // 작품 총 갯수
+	    int listCount = shopMapper.selectWorkCount(paramMap); // 작품 총 갯수
 		int rowPerPage = 6; // 1페이지당 작품 갯수
 		int pageList = 5; // 하단넘버링 갯수
 		int maxPage = (int) (Math.ceil((double) listCount / rowPerPage)); // 최대페이지(하단넘버링 마지막번호)
@@ -76,24 +77,23 @@ public class ShopServiceImpl implements ShopService {
 		map.put("endPage", endPage);
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
+		map.put("page", page);
 
 		return map;
 	}
 
-	// 작품 베스트 가져오기
+	// 베스트 작품 가져오기(판매량 높은)
 	@Override
-	public List<WorkVo> selectWorkBest() {
+	public List<WorkVo> selectWorkBest(int best_num) {
 		List<WorkVo> bestWorkList = new ArrayList<WorkVo>();
-		bestWorkList = shopMapper.selectWorkBest();
-		
-		int startRow = 6;
-		if(bestWorkList.size() < 6) {	// 판매량 상위 6개인 작품이 6개보다 적으면(주문이 없는 경우)
-			for(WorkVo workVo : shopMapper.selectWorkList(startRow, startRow+2)) {	// 상위 n개 작품 제외한 전체 작품중 6-n개를 랜덤으로 가져와서 추가?
-				bestWorkList.add(workVo);
-			}
-		}
-		
-		return bestWorkList;
+	    bestWorkList = shopMapper.selectWorkBest(best_num);
+
+	    int additionalWorksNeeded = best_num - bestWorkList.size();
+	    if (additionalWorksNeeded > 0) {	// 판매된 작품이 6개보다 적으면
+	        List<WorkVo> randomWorkVoList = shopMapper.selectRandomWorks(best_num, additionalWorksNeeded);
+	        bestWorkList.addAll(randomWorkVoList);
+	    }
+	    return bestWorkList;
 	}
 
 	// 작품 new 가져오기
@@ -282,6 +282,8 @@ public class ShopServiceImpl implements ShopService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 	
 

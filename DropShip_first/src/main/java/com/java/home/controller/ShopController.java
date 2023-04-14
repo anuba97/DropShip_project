@@ -2,10 +2,9 @@ package com.java.home.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,16 +34,23 @@ public class ShopController {
 	
 	//////////////////↓  Work(작품) 관련 ↓         /////////////////////////
 		
-	@GetMapping("painting_list")	// 그림 작품 페이지로 이동
-	public String painting_list(@RequestParam(defaultValue = "1") int page, Model model) {  // 이주소로 들어갔을 때 무조건 페이지가 1로뜨게 한다는것.
-		Map<String, Object> map = shopservice.selectWorkList(page);
-		model.addAttribute("map", map);
+	@GetMapping("painting_list")    // 그림 작품 페이지로 이동
+    public String painting_list(@RequestParam(defaultValue = "1") int page,
+    		@RequestParam(defaultValue = "high_rate") String sortType, 
+    		@RequestParam(defaultValue = "all") String viewOption, Model model) { // 기본은 평점 높은 순으로 정렬
+		Map<String, Object> workMap = shopservice.selectWorkList(page, sortType, viewOption);
+		model.addAttribute("workMap", workMap);
+		model.addAttribute("sortType", sortType);
+		model.addAttribute("viewOption", viewOption);
 		return "home/shop/painting_list";
-	}
+    }
+	
+	
+	
 	
 	@GetMapping("best_list")	// 베스트	작품 페이지로 이동
 	public String best_list(WorkVo workVo, Model model) {
-		List<WorkVo> list = shopservice.selectWorkBest();
+		List<WorkVo> list = shopservice.selectWorkBest(6);	// 판매량 높은 작품 상위 6개만 가져오기
 		model.addAttribute("list",list);
 		return "home/shop/best_list";
 	}
@@ -55,7 +61,6 @@ public class ShopController {
 		List<WorkVo> list = shopservice.selectWorkArtistAll(artist_id);
 		artistVo = shopservice.selectArtistAll(artist_id);
 		
-		//System.out.println("controller에서 받은 list : "+list);
 		model.addAttribute("workVo", workVo); // 작품1개 객체
 		model.addAttribute("list", list); // 작품전체 배열  --- 이렇게 보내는 이유는 painting_item에서 forEach를 사용하기위해서 이렇게 사용함
 		model.addAttribute("artistVo", artistVo);  // 작가 전체 객체
@@ -94,8 +99,6 @@ public class ShopController {
 		List<WorkVo> list = shopservice.selectWorkArtistAll(artist_id);  
 		model.addAttribute("artistVo", artistVo); // 작가 전체  
 		model.addAttribute("list",list); // 작가의 작품들  
-		//System.out.println("DB에서 받은 artistVo : "+artistVo);
-		System.out.println("DB에서 받은 list : "+list);
 		
 		return "home/shop/artist_view";
 	} 

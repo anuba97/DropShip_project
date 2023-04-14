@@ -26,7 +26,7 @@ public class FController {
 
 	@GetMapping("/")
 	public String index(Model model) {
-		List<WorkVo> list = shopservice.selectWorkBest(); // best작품 가져오기
+		List<WorkVo> list = shopservice.selectWorkBest(6); // best작품 가져오기
 		List<WorkVo> newList = shopservice.selectWorkNew(); // new작품 가져오기
 		model.addAttribute("BestList", list);
 		model.addAttribute("newList", newList);

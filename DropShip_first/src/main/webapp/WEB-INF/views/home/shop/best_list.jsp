@@ -57,6 +57,18 @@
     <script src="../home/theme/buzinga/js/owl.carousel.min3816.js?ver=210618"></script>
     <script src="../home/theme/buzinga/js/unslider.min3816.js?ver=210618"></script>
     <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> -->
+    <style>
+    	.rank-badge {
+		    display: inline-block;
+		    background-color: #f1c40f;
+		    color: #ffffff;
+		    padding: 5px 10px;
+		    font-weight: bold;
+		    border-radius: 20px;
+		    text-align: center;
+		    margin-bottom: 10px;
+		}
+    </style>
 </head>
 
 <body>
@@ -116,8 +128,8 @@
                                     <c:forEach items="${list}" var="workVo" varStatus="loop">
                                         <li class="sct_li">
                                             <div class="li_wr">
-                                            	<div class="sct_rank">
-								                    <span>Rank: ${loop.index + 1}</span>
+								                <div class="sct_rank">
+								                    <span class="rank-badge">Rank: ${loop.index + 1}</span>
 								                </div>
                                                 <div class="sct_img_wrap">
                                                     <div class="sct_img" style="background-image:url(/admin/img/work/${workVo.getWork_img_url()})">

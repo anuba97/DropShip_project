@@ -344,8 +344,9 @@
 						                data: formData,
 						                success: function(successOrFail) {
 						                	if(successOrFail == 1) {
-						                		alert("작품 등록이 완료됐습니다!")
-						                		// 마이페이지에 '내가 생성한 그림' 페이지로 이동시키면 좋을 듯. 추후 구현예정
+						                		if(confirm("작품 등록이 완료됐습니다. 마이페이지로 이동하여 작품을 확인하시겠습니까?")){
+						                			location.href="/myshop/my_ai_work";
+						                		}
 						                	} else {
 						                		alert("서버 문제로 인하여 작품 등록이 완료되지 못했습니다..")
 						                	}

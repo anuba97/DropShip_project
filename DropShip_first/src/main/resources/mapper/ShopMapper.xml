@@ -6,16 +6,121 @@
 
 	<!--//////////////////       ↓  Work(작품) 관련 ↓         /////////////////////////  -->
 	
-	<!-- 작품 그림작품 가져오기 -->
-	<select id="selectWorkList" resultType="com.java.vo.WorkVo">
-		SELECT * FROM (SELECT ROWNUM rnum, a.* FROM 
-		(SELECT w.id AS id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name as artist_name
-		FROM Work w JOIN Artist a ON w.artist_id = a.id ORDER BY artist_id asc) a)
-		WHERE rnum BETWEEN #{startRow} AND #{endRow}
-		
-		<!-- SELECT w.id AS id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name AS artist_name  
-		FROM Work w JOIN Artist a ON w.artist_id = a.id
-		ORDER BY Artist_id ASC -->
+	<!-- painting_list 그림작품 리스트를 sortType 및 viewOption에 따라 다르게 가져오기 -->
+<!-- 	<select id="selectWorkList" resultType="com.java.vo.WorkVo" parameterType="map"> -->
+<!-- 		SELECT * FROM (SELECT ROWNUM rnum, a.* FROM -->
+<!-- 		(SELECT w.id AS id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name as artist_name, w.work_is_ai -->
+<!-- 		FROM Work w JOIN Artist a ON w.artist_id = a.id -->
+<!-- 		<where> -->
+<!-- 	        <choose> -->
+<!-- 	            <when test="viewOption == 'all'"> -->
+<!-- 	            </when> -->
+<!-- 	            <when test="viewOption == 'ai_created'"> -->
+<!-- 	                w.work_is_ai = 1 -->
+<!-- 	            </when> -->
+<!-- 	            <when test="viewOption == 'general'"> -->
+<!-- 	                w.work_is_ai = 0 -->
+<!-- 	            </when> -->
+<!-- 	        </choose> -->
+<!-- 	    </where> -->
+<!-- 		<choose> -->
+<!-- 	        <when test="sortType == 'best_sales'"> -->
+<!-- 	            LEFT JOIN Order_Detail od ON w.id = od.work_id -->
+<!-- 	            LEFT JOIN Work_Option wo ON od.option_id = wo.id -->
+<!-- 	            GROUP BY w.id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name, w.work_is_ai -->
+<!-- 	            ORDER BY SUM(wo.option_quantity) DESC -->
+<!-- 	        </when> -->
+<!-- 	        <when test="sortType == 'most_reviewed'"> -->
+<!-- 	            LEFT JOIN Work_Review wr ON w.id = wr.work_id -->
+<!-- 	            GROUP BY w.id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name, w.work_is_ai -->
+<!-- 	            ORDER BY COUNT(wr.id) DESC -->
+<!-- 	        </when> -->
+<!-- 	        <when test="sortType == 'latest_registration'"> -->
+<!-- 	            ORDER BY w.work_reg_date DESC -->
+<!-- 	        </when> -->
+<!-- 	        <when test="sortType == 'highest_to_lowest'"> -->
+<!-- 	            ORDER BY work_price DESC -->
+<!-- 	        </when> -->
+<!-- 	        <when test="sortType == 'lowest_to_highest'"> -->
+<!-- 	            ORDER BY work_price ASC -->
+<!-- 	        </when> -->
+<!-- 	        <otherwise> -->
+<!-- 	            ORDER BY w.work_reg_date DESC -->
+<!-- 	        </otherwise> -->
+<!-- 	    </choose> -->
+<!-- 	    ) a) -->
+<!-- 		WHERE rnum BETWEEN #{startRow} AND #{endRow} -->
+<!-- 	</select> -->
+	
+	
+	
+	<select id="selectWorkList" resultType="com.java.vo.WorkVo" parameterType="map">
+	    SELECT * FROM (SELECT ROWNUM rnum, a.* FROM
+	    (SELECT w.id AS id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name as artist_name, w.work_is_ai
+	    FROM Work w JOIN Artist a ON w.artist_id = a.id
+	    <choose>
+	        <when test="sortType == 'best_sales'">
+	            LEFT JOIN Order_Detail od ON w.id = od.work_id
+	            LEFT JOIN Work_Option wo ON od.option_id = wo.id
+	        </when>
+	        <when test="sortType == 'most_reviewed'">
+	            LEFT JOIN Work_Review wr ON w.id = wr.work_id
+	        </when>
+	    </choose>
+	    <where>
+	        <choose>
+	            <when test="viewOption == 'all'">
+	            </when>
+	            <when test="viewOption == 'ai_created'">
+	                w.work_is_ai = 1
+	            </when>
+	            <when test="viewOption == 'general'">
+	                w.work_is_ai = 0
+	            </when>
+	        </choose>
+	    </where>
+	    <choose>
+	        <when test="sortType == 'best_sales'">
+	            GROUP BY w.id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name, w.work_is_ai
+	            ORDER BY SUM(wo.option_quantity) DESC
+	        </when>
+	        <when test="sortType == 'most_reviewed'">
+	            GROUP BY w.id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name, w.work_is_ai
+	            ORDER BY COUNT(wr.id) DESC
+	        </when>
+	        <when test="sortType == 'latest_registration'">
+	            ORDER BY w.work_reg_date DESC
+	        </when>
+	        <when test="sortType == 'highest_to_lowest'">
+	            ORDER BY work_price DESC
+	        </when>
+	        <when test="sortType == 'lowest_to_highest'">
+	            ORDER BY work_price ASC
+	        </when>
+	        <otherwise>
+	            ORDER BY w.work_reg_date DESC
+	        </otherwise>
+	    </choose>
+	    ) a)
+	    WHERE rnum BETWEEN #{startRow} AND #{endRow}
+	</select>
+
+
+	<select id="selectWorkCount" resultType="int" parameterType="map">
+	    SELECT COUNT(*) count
+	    FROM Work w JOIN Artist a ON w.artist_id = a.id
+	    <where>
+	        <choose>
+	            <when test="viewOption == 'all'">
+	            </when>
+	            <when test="viewOption == 'ai_created'">
+	                w.work_is_ai = 1
+	            </when>
+	            <when test="viewOption == 'general'">
+	                w.work_is_ai = 0
+	            </when>
+	        </choose>
+	    </where>
 	</select>
 	
 	<!-- MD-Pick 슬라이드쇼 랜덤으로 보여질 수 있게 일단 모든 작품 다 가져옴 -->	
@@ -26,12 +131,26 @@
 	</select>
 	
 	
-	<!-- 작품 갯수 확인 -->
-	<select id="selectWorkCount" resultType="int">
-		SELECT COUNT(*) count FROM work
+	
+	<!-- 베스트 가져올 때 사용. 판매량이 있는 작품이 best_num개보다 적을 때 부족한 부분을 전채 work에서 랜덤으로 채우는 함수-->
+	<select id="selectRandomWorks" resultType="com.java.vo.WorkVo">
+	    SELECT * FROM (
+		    SELECT * FROM Work
+		    WHERE id NOT IN (
+		      SELECT W.id FROM Work W
+		      JOIN Order_Detail OD ON W.id = OD.work_id
+		      JOIN Work_Option WO ON OD.option_id = WO.id
+		      GROUP BY W.id
+		      ORDER BY SUM(WO.option_quantity) DESC
+		      FETCH NEXT #{best_num} ROWS ONLY
+		    )
+		    ORDER BY DBMS_RANDOM.VALUE
+		  ) R
+		  WHERE ROWNUM <![CDATA[<=]]> #{additionalWorksNeeded}
 	</select>
 	
-	<!-- 작품 베스트(판매량 상위 6개) 가져오기 -->
+	
+	<!-- 작품 베스트(판매량 상위 best_num개) 가져오기 -->
 	<select id="selectWorkBest" resultType="com.java.vo.WorkVo">
 		SELECT w.id, w.work_name, w.work_img_url, w.artist_id, 
 			w.work_price, a.artist_korean_name as artist_name 
@@ -43,7 +162,7 @@
 		GROUP BY w.id, w.work_name, w.work_img_url, w.artist_id, 
 				 w.work_price, a.artist_korean_name
 		ORDER BY total_sale_quantity DESC
-		FETCH NEXT 6 ROWS ONLY
+		FETCH NEXT #{best_num} ROWS ONLY
 	</select>
 	
 	<!-- 작품 new 가져오기 -->

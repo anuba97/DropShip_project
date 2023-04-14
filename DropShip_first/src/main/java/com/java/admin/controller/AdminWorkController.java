@@ -55,17 +55,10 @@ public class AdminWorkController {
 		return cnt;
 	}
 
-	// 작품 삭제 FROM admin_workList (ajax사용)
+	// 작품삭제	// admin_workView, admin_workList.jsp 두 군데서 가능
 	@ResponseBody
-	@PostMapping("deleteWork")
+	@RequestMapping("deleteWork")	
 	public void deleteWork(int id) {
-		adminService.deleteWork(id);
-	}
-
-	// 작품 삭제 FROM admin_workView
-	@ResponseBody
-	@GetMapping("deleteWork")
-	public void deleteWork2(int id) {
 		adminService.deleteWork(id);
 	}
 

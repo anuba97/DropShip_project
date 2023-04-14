@@ -1815,6 +1815,39 @@
 }
 
 
+/* (승택)추가한 것 */
+/* General styles for the select box */
+.sort-list {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #007BFF;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  width: 200px;
+}
+
+/* Add a custom arrow for the select box */
+.sort-list::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #007BFF;
+  pointer-events: none;
+}
+
 
 
 

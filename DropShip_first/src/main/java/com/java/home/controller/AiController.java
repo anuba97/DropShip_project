@@ -172,26 +172,4 @@ public class AiController {
 	    }
 	}
 	
-	
-//	@PostMapping("/ai/chat_index")
-//	public String chat_index(Model model, @ModelAttribute FormInputDTO dto) {
-//		try {
-//			String userInput = dto.getPrompt();
-//			
-//			List<Message> messages = List.of(
-////	            new Message("system", "You're the knowledgeable, friendly, and proactive docent at an art exhibit who can ask a question and then often ask it again."),
-//					new Message("system", "You're the knowledgeable, friendly, proactive docent at an art exhibit who can come up with a novel question 90% of the time when asked."),
-//					new Message("user", userInput)
-//					);
-//			
-//			String response = chatWithGpt3(messages);
-//			
-//			model.addAttribute("request", userInput);
-//			model.addAttribute("response", response);
-//		} catch (Exception e) {
-//			model.addAttribute("response", "An error occurred communicating with ChatGpt...");
-//		}
-//		return "home/ai/chat_index";
-//	}
-	
 }// AiController
