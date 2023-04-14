@@ -46,8 +46,9 @@ public class ShopController {
     public String painting_list(HttpServletRequest request,
     		@RequestParam(defaultValue = "1") int page,
     		@RequestParam(required = false) String work_id,
-    		@RequestParam(defaultValue = "high_rate") String sortType, 
-    		@RequestParam(defaultValue = "all") String viewOption, Model model) { // 기본은 평점 높은 순으로 정렬
+    		@RequestParam(defaultValue = "high_rate") String sortType, 	 // 기본은 후기 평균평점 높은 순으로 정렬
+    		@RequestParam(defaultValue = "all") String viewOption, Model model) {
+		
 		Cookie[] cookies = request.getCookies(); // 모든 쿠키 가져오기
 		if (cookies != null) {
 	        for (Cookie cookie : cookies) {
@@ -59,16 +60,20 @@ public class ShopController {
 	        }
 	    }		
 		
+		int rowPerPage = 6; // 기본값은 12개
+	    if (viewOption.equals("6_per_page")) {
+	    	rowPerPage = 6;
+	    } else if (viewOption.equals("9_per_page")) {
+	    	rowPerPage = 9;
+	    }
 		
-		Map<String, Object> workMap = shopservice.selectWorkList(page, sortType, viewOption);
+		Map<String, Object> workMap = shopservice.selectWorkList(page, sortType, viewOption, rowPerPage);
+
 		model.addAttribute("workMap", workMap);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("viewOption", viewOption);
 		return "home/shop/painting_list";
     }
-	
-	
-	
 	
 	@GetMapping("best_list")	// 베스트	작품 페이지로 이동
 	public String best_list(WorkVo workVo, Model model) {

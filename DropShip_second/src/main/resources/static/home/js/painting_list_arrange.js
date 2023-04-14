@@ -9,14 +9,43 @@
 //    // Implement your logic to handle different view options
 //    // For example:
 //    // location.href = "painting_list?viewOption=" + viewOption;
-//}
+//} // 원래는 fetchData가 두개의 메소드로 따로 있었음
 
 
+//$(document).ready(function() {
+//    var scrollPosition = sessionStorage.getItem("scrollPosition");
+//    if (scrollPosition) {
+//        $(window).scrollTop(scrollPosition);
+//    }
+//});
+
+// 페이지가 로딩되었을 때 이전 스크롤 위치로 이동
+document.addEventListener('DOMContentLoaded', function() {
+    var scrollPosition = sessionStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition));
+        sessionStorage.removeItem('scrollPosition');
+    }
+
+    document.getElementById("sort-options").addEventListener("change", function() {
+        sessionStorage.setItem('scrollPosition', window.pageYOffset);
+        fetchData(1);
+    });
+
+    document.getElementById("view-options").addEventListener("change", function() {
+        sessionStorage.setItem('scrollPosition', window.pageYOffset);
+        fetchData(1);
+    });
+});
+
+// 페이지가 바뀔 때 현재 스크롤 위치를 저장
 function fetchData(pageNumber) {
+    sessionStorage.setItem("scrollPosition", $(window).scrollTop());
     var sortType = $("#sort-options").val();
     var viewOption = $("#view-options").val();
     location.href = "painting_list?sortType=" + sortType + "&viewOption=" + viewOption + "&page=" + pageNumber;
 }
+
 
 
 

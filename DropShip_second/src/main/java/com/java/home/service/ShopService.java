@@ -21,9 +21,11 @@ public interface ShopService {
 	//////////////////↓  Work(작품) 관련 ↓         /////////////////////////
 	
 	// 작품 그림작품과 page 불러오기
-	Map<String, Object> selectWorkList(int page, String sortType, String viewOption);
+	Map<String, Object> selectWorkList(int page, String sortType, String viewOption, int rowPerPage);
 	
 	List<WorkVo> selectWorkBest(int best_num);	// 작품 베스트 가져오기
+	
+	List<WorkVo> selectAiWorks();	// index ai생성그림 2개 가져오기
 	
 	List<WorkVo> selectWorkNew();  // 작품 new 가져오기
 	
@@ -41,7 +43,7 @@ public interface ShopService {
 	
 	Map<String, Object> selectArtistList(int page);  // 작가별 작가와 page 불러오기
 
-	int selectOrderMemberSeq();	//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ?????????????????????
+	int selectOrderMemberSeq();	
 
 	int selectOptionSeq();
 	

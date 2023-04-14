@@ -47,21 +47,6 @@
     <script src="../js/checkbox.js"></script>
     <!-- <script src="../home/js/shop.list.action3816.js?ver=210618"></script> --> 
     <%@ include file ="../ai/chatbot.jsp" %>
-    <style>
-        .sct_txt {
-            display: flex;
-            align-items: center;
-        }
-
-        .member_work {
-            margin-left: 17px;
-            padding: 2px 6px;
-            background-color: #96a032d4;
-            color: white;
-            border-radius: 9px;
-            font-size: 12px;
-        }
-    </style>
     <script>
     // get all checkboxes on the page
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -178,27 +163,30 @@
                         </div>
                         <div class="grid-list-opt">
                             <div class="grid-opt-left">총 <strong class="f-color">${workMap.listCount}</strong>개의 상품이 있습니다.</div>
-                            <div class="grid-opt-right">
-
-                                <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기" class="input-compare">
-
-								<select id="sort-options" class="sort-list" onchange="fetchData(1)">	<!-- fetchData()함수는 painting_list_arrange.js에 있음 -->
-								    <option value="high_rate" <c:if test="${sortType == 'high_rate'}">selected</c:if>>평점 높은순</option>
-								    <option value="best_sales" <c:if test="${sortType == 'best_sales'}">selected</c:if>>판매량 높은순</option>
-								    <option value="most_reviewed" <c:if test="${sortType == 'most_reviewed'}">selected</c:if>>후기 많은순</option>
-								    <option value="latest_registration" <c:if test="${sortType == 'latest_registration'}">selected</c:if>>최신 등록순</option>
-								    <option value="highest_to_lowest" <c:if test="${sortType == 'highest_to_lowest'}">selected</c:if>>높은 가격순</option>
-								    <option value="lowest_to_highest" <c:if test="${sortType == 'lowest_to_highest'}">selected</c:if>>낮은 가격순</option>
-								</select>
+								<div class="grid-opt-right">
+								  <input type="button" onclick="docompareBtn()" name="docompare" value="비교하기" class="input-compare">
 								
-                                <select id="view-options" class="sort-list" onchange="fetchData(1)">
-								    <option value="all" <c:if test="${viewOption == 'all'}">selected</c:if>>전체보기</option>
-								    <option value="ai_created" <c:if test="${viewOption == 'ai_created'}">selected</c:if>>회원 생성작품보기</option>
-								    <option value="general" <c:if test="${viewOption == 'general'}">selected</c:if>>일반 작품보기</option>
-								    <option value="6_per_page" <c:if test="${viewOption == '6_per_page'}">selected</c:if>>6개씩 보기</option>
-								    <option value="9_per_page" <c:if test="${viewOption == '9_per_page'}">selected</c:if>>9개씩 보기</option>
-								</select>
-                            </div>
+								  <div class="select-container">
+								    <select id="sort-options" class="sort-list" onchange="fetchData(1)">	<!-- fetchData()함수는 painting_list_arrange.js에 있음 -->
+									    <option value="high_rate" <c:if test="${sortType == 'high_rate'}">selected</c:if>>평점 높은순</option>
+									    <option value="best_sales" <c:if test="${sortType == 'best_sales'}">selected</c:if>>판매량 높은순</option>
+									    <option value="most_reviewed" <c:if test="${sortType == 'most_reviewed'}">selected</c:if>>후기 많은순</option>
+									    <option value="latest_registration" <c:if test="${sortType == 'latest_registration'}">selected</c:if>>최신 등록순</option>
+									    <option value="highest_to_lowest" <c:if test="${sortType == 'highest_to_lowest'}">selected</c:if>>높은 가격순</option>
+									    <option value="lowest_to_highest" <c:if test="${sortType == 'lowest_to_highest'}">selected</c:if>>낮은 가격순</option>
+									</select>
+								  </div>
+								  
+								  <div class="select-container">
+								    <select id="view-options" class="sort-list" onchange="fetchData(1)">
+									    <option value="all" <c:if test="${viewOption == 'all'}">selected</c:if>>전체보기</option>
+									    <option value="ai_created" <c:if test="${viewOption == 'ai_created'}">selected</c:if>>회원 생성작품보기</option>
+									    <option value="general" <c:if test="${viewOption == 'general'}">selected</c:if>>일반 작품보기</option>
+									    <option value="6_per_page" <c:if test="${viewOption == '6_per_page'}">selected</c:if>>6개씩 보기</option>
+									    <option value="9_per_page" <c:if test="${viewOption == '9_per_page'}">selected</c:if>>9개씩 보기</option>
+									</select>
+								  </div>
+							</div>
                         </div>
                         <div class="grid-list">
                             <div class="sct_wrap">
@@ -254,7 +242,7 @@
 									                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
 									                            <!-- 비교 체크박스 -->
 									                            &nbsp;&nbsp;
-									                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.3);" onclick="setCk('${workVo.id}')">
+									                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.3);" onclick="setCk(${workVo.id})">
 									                            <label for="compare${workVo.id}" class="sct_desc" style="color: #c9ab81; font-size: 16px; cursor: pointer;">비교선택</label>
 									                            <!-- 비교 체크박스 -->
 									                            <div id="compareWorkId"></div>

@@ -32,6 +32,8 @@ public interface ShopMapper {
 	
 	List<WorkVo> selectWorkBest(int best_num); // 작품 베스트 가져오기
 	
+	List<WorkVo> selectAiWorks();	// index ai작품 2개 가져오기
+	
 	List<WorkVo> selectWorkNew();  // 작품 new 가져오기
 
 	WorkVo selectWorkBuy(int work_id);  // 작품(구매창) 1개 가져오기

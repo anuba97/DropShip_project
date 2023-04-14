@@ -226,91 +226,68 @@
 			<!-- BEST ART 슬라이드 끝 -->	
 			
 				
-            <!----- MD PICK 슬라이드 그림작품2개 (DB에서 가져온게아니라 직접 적어야함) ----->
-            <section class="pick">
-                <div class="main-tit-wrap" data-aos="fade-up">
-                    <span class="main-txt">DropShip 큐레이터가 선정한 추천 작품을 만나보세요.</span>
-                    <h2 class="main-tit">MD PICK</h2>
-                </div>
-                <div class="pick-tab-wrap">
-                    <div class="pick-tab" data-aos="fade-up">
-                        <ul>
-                            <li class="on"><a href="javascript:;">사진작품</a></li>
-                        </ul>
-                    </div>
-                    <div class="pick-tabcon-wrap" data-aos="fade-up">
+            <!----- ai 생성그림 슬라이드 2개 ----->
+			<section class="pick">
+			    <div class="main-tit-wrap" data-aos="fade-up">
+			        <span class="main-txt">AI기술로 회원이 생성한 작품을 만나보세요.</span>
+			        <h2 class="main-tit">회원 생성작품</h2>
+			    </div>
+			    <div class="pick-tab-wrap">
+			        <div class="pick-tab" data-aos="fade-up">
+			            <ul>
+			                <li class="on"><a href="javascript:;">사진작품</a></li>
+			            </ul>
+			        </div>
+			        <div class="pick-tabcon-wrap" data-aos="fade-up">
+			            <div id="pick-tabcon01" class="pick-tabcon on">
+			                <div class="pick-thumb-wrap">
+			                    <div class="pick-thumb-slider">
+			                        <div class="swiper-wrapper">
+			                            <c:forEach items="${aiWorkList}" var="aiWorkVo">
+			                                <div class="swiper-slide">
+			                                    <div class="pick-img-wrap">
+			                                        <div class="pick-img" style="background-image:url(/admin/img/work/${aiWorkVo.work_img_url})">
+			                                            <span class="hide">배경이미지</span>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </c:forEach>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="pick-info-wrap">
+			                    <div class="pick-info-slider">
+			                        <div class="swiper-wrapper">
+			                            <c:forEach items="${aiWorkList}" var="aiWorkVo">
+			                                <div class="swiper-slide">
+			                                    <div class="pick-desc-wrap">
+			                                        <span class="pick-artist">${aiWorkVo.artist_korean_name}</span>
+			                                        <dl class="pick-desc">
+			                                            <dt>${aiWorkVo.work_name}</dt>
+			                                            <dd>${aiWorkVo.work_content}</dd>
+			                                        </dl>
+			                                        <div class="pick-btnwrap">
+			                                            <a href="shop/painting_item?work_id=${aiWorkVo.id}&artist_id=${aiWorkVo.artist_id}" class="btnset btn-type01">
+			                                                <svg height="50" width="180">
+			                                                    <rect height="50" width="180"></rect>
+			                                                </svg>
+			                                                <span>Read More</span>
+			                                            </a>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </c:forEach>
+			                        </div>
+			                    </div>
+			                    <div class="swiper-button-prev cursor-able"></div>
+			                    <div class="swiper-button-next cursor-able"></div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</section>
+			<!----- ai 생성그림 슬라이드 2개 끝 ----->
 
-                        <div id="pick-tabcon01" class="pick-tabcon on">
-
-                            <div class="pick-thumb-wrap">
-                                <div class="pick-thumb-slider">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="pick-img-wrap">
-                                                <div class="pick-img" style="background-image:url(/admin/img/work/1679895865047_클로드_모네_양산을_든_여인-카미유와_장.jpg)">
-                                                    <span class="hide">배경이미지</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="pick-img-wrap">
-                                                <div class="pick-img" style="background-image:url(/admin/img/work/1679901129291_아테제_호수.png)">
-                                                    <span class="hide">배경이미지</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pick-info-wrap">
-                                <div class="pick-info-slider">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="pick-desc-wrap">
-                                                <span class="pick-artist">클레드 모네</span>
-                                                <dl class="pick-desc">
-                                                    <dt>양산을 든 여인-카미유와 장</dt>
-                                                    <dd>바람 부는 날, 언덕에서 양산을 들고 서 있는 여인과 한 아이를 사랑스럽게 그린 이 작품은 모네의 아내인 카미유와 아들 장의 모습을 그린 그림입니다.
-                                                      화창한 날 오후에 한적하게 산책 나온 모네 가족의 행복한 모습을 느낄 수 있어요.</dd>
-                                                </dl>
-                                                <div class="pick-btnwrap">
-                                                    <a href="shop/painting_item?work_id=7&artist_id=8" class="btnset btn-type01">
-                                                        <svg height="50" width="180">
-                                                            <rect height="50" width="180"></rect>
-                                                        </svg>
-                                                        <span>Read More</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="swiper-slide">
-                                            <div class="pick-desc-wrap">
-                                                <span class="pick-artist">구스타프 클림트</span>
-                                                <dl class="pick-desc">
-                                                    <dt>아테제 호수</dt>
-                                                    <dd>여유로운 호수의 풍경, 아른아른 멀리 보이는 섬 하나. 무심한 듯 섬세하게 그려진 물결까지 풍경의 한 조각을 보고있는 듯한 느낌을 줍니다.
-                                                     몽환적이고 아름다운 아테제 호수를 감상해 보세요.</dd>
-                                                </dl>
-                                                <div class="pick-btnwrap">
-                                                    <a href="shop/painting_item?work_id=15&artist_id=8" class="btnset btn-type01">
-                                                        <svg height="50" width="180">
-                                                            <rect height="50" width="180"></rect>
-                                                        </svg>
-                                                        <span>Read More</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-button-prev cursor-able"></div>
-                                <div class="swiper-button-next cursor-able"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <!----- NEW ART 슬라이드 MAX 5개 노출 (3개씩 묶음이동) ----->
             <section class="newart">

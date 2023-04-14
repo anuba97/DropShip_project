@@ -12,10 +12,13 @@
 	    FROM Work w JOIN Artist a ON w.artist_id = a.id
 	    <choose>
 	        <when test="sortType == 'best_sales'">
-	            LEFT JOIN Order_Detail od ON w.id = od.work_id
-	            LEFT JOIN Work_Option wo ON od.option_id = wo.id
+	            JOIN Order_Detail od ON w.id = od.work_id
+	            JOIN Work_Option wo ON od.option_id = wo.id
 	        </when>
 	        <when test="sortType == 'most_reviewed'">
+	            LEFT JOIN Work_Review wr ON w.id = wr.work_id
+	        </when>
+	        <when test="sortType == 'high_rate'">
 	            LEFT JOIN Work_Review wr ON w.id = wr.work_id
 	        </when>
 	    </choose>
@@ -39,6 +42,10 @@
 	        <when test="sortType == 'most_reviewed'">
 	            GROUP BY w.id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name, w.work_is_ai
 	            ORDER BY COUNT(wr.id) DESC
+	        </when>
+	        <when test="sortType == 'high_rate'">
+	            GROUP BY w.id, work_name, w.artist_id, work_img_url, work_price, a.artist_korean_name, w.work_is_ai
+	            ORDER BY AVG((NVL(wr.review_rate, 0))) DESC			<!-- LEFT JOIN 했기 떄문에 work_review가 없는 work인 경우 work_review에서 review_rate를 가져오면 null이라서 평균지으면 null이되서 맨 뒤로 가게 됨. 그래서 null이라면 0으로 만들어서 정상적으로 평균을 구함   -->
 	        </when>
 	        <when test="sortType == 'latest_registration'">
 	            ORDER BY w.work_reg_date DESC
@@ -75,7 +82,7 @@
 	    </where>
 	</select>
 	
-	<!-- MD-Pick 슬라이드쇼 랜덤으로 보여질 수 있게 일단 모든 작품 다 가져옴 -->	
+	<!-- 베스트 페이지에서 MD-Pick 슬라이드쇼 랜덤으로 보여질 수 있게 일단 모든 작품 다 가져옴 -->	
 	<select id="selectWorkAll" resultType="com.java.vo.WorkVo">
 		SELECT * FROM work w 
 		JOIN Artist a ON w.artist_id = a.id
@@ -115,6 +122,15 @@
 				 w.work_price, a.artist_korean_name
 		ORDER BY total_sale_quantity DESC
 		FETCH NEXT #{best_num} ROWS ONLY
+	</select>
+	
+	<!-- index ai작품 2개 랜덤으로 가져오기 -->
+	<select id="selectAiWorks" resultType="com.java.vo.WorkVo">
+		SELECT * FROM work 
+		JOIN artist a ON a.id = work.artist_id
+		WHERE work_is_ai = 1
+		ORDER BY DBMS_RANDOM.VALUE
+		FETCH NEXT 2 ROWS ONLY
 	</select>
 	
 	<!-- 작품 new 가져오기 -->

@@ -1,7 +1,65 @@
 @charset "utf-8";
 
 
+/* painting_list.jsp */
+.sct_txt {
+    display: flex;
+    align-items: center;
+}
 
+.member_work {
+    margin-left: 17px;
+    padding: 2px 6px;
+    background-color: #96a032d4;
+    color: white;
+    border-radius: 9px;
+    font-size: 12px;
+}
+
+
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Select box */
+.select-container select {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Select box arrow icon */
+.select-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  margin-top: -3px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #333;
+  pointer-events: none;
+}
 
 /* ===== COMMON ===== */
 .sub {

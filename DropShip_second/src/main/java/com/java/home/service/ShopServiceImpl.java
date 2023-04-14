@@ -41,8 +41,8 @@ public class ShopServiceImpl implements ShopService {
 	//////////////////////// ↓ Work(작품) 관련 ↓ ///////////////////////////////
 	// 작품 그림작품과 page 가져오기
 	@Override
-	public Map<String, Object> selectWorkList(int page, String sortType, String viewOption) {
-		HashMap<String, Object> sortedWorkMap = pageMethodWork(page, sortType, viewOption);
+	public Map<String, Object> selectWorkList(int page, String sortType, String viewOption, int rowPerPage) {
+		HashMap<String, Object> sortedWorkMap = pageMethodWork(page, sortType, viewOption, rowPerPage);
 		List<WorkVo> sortedWorkList = shopMapper.selectWorkList((int) sortedWorkMap.get("startRow"), (int) sortedWorkMap.get("endRow"), sortType, viewOption);
 		
 		// MD-PICK 자리에 작품 랜덤으로 보여지게 할 목적
@@ -57,14 +57,14 @@ public class ShopServiceImpl implements ShopService {
 	
 	
 	// 작품 페이징 메소드
-	private HashMap<String, Object> pageMethodWork(int page, String sortType, String viewOption) { 
+	private HashMap<String, Object> pageMethodWork(int page, String sortType, String viewOption, int rowPerPage) { 
 	    HashMap<String, Object> map = new HashMap<>();
 	    HashMap<String, Object> paramMap = new HashMap<>();
 	    paramMap.put("sortType", sortType);
 	    paramMap.put("viewOption", viewOption);
 
 	    int listCount = shopMapper.selectWorkCount(paramMap); // 작품 총 갯수
-		int rowPerPage = 6; // 1페이지당 작품 갯수
+//		int rowPerPage = 6; // 1페이지당 작품 갯수
 		int pageList = 5; // 하단넘버링 갯수
 		int maxPage = (int) (Math.ceil((double) listCount / rowPerPage)); // 최대페이지(하단넘버링 마지막번호)
 		int startPage = ((page - 1) / pageList) * pageList + 1; // 하단넘버링1번째(현재보여지는 페이지에서)
@@ -108,6 +108,15 @@ public class ShopServiceImpl implements ShopService {
 		return list;
 	}
 
+	// ai 생성작품 랜덤으로 가져오기
+	@Override
+	public List<WorkVo> selectAiWorks() {
+		List<WorkVo> aiWorkList = new ArrayList<WorkVo>();
+		aiWorkList = shopMapper.selectAiWorks();
+		return aiWorkList;
+	}
+	
+	
 	// 작품(구매창) 1개 가져오기
 	@Override
 	public WorkVo selectWorkBuy(int work_id) {
@@ -316,7 +325,6 @@ public class ShopServiceImpl implements ShopService {
 	// painting_item에서 작품 1개의 리뷰(최신순, 별점높은순, 별점낮은순)
 	@Override
 	public List<WorkReViewVo> selectWorkReViewOne(int work_id, String sort_id) {
-	System.out.println("serviceImpl - sort_id : "+ sort_id);
 	List<WorkReViewVo> workReViewList = null;
 	switch (sort_id) {
 	
@@ -339,7 +347,7 @@ public class ShopServiceImpl implements ShopService {
 	// 작품리뷰 1개 저장
 	@Override
 	public void insertWorkReviewOne(WorkReViewVo workReViewVo) {
-	shopMapper.insertWorkReviewOne(workReViewVo);
+		shopMapper.insertWorkReviewOne(workReViewVo);
 	}
 	
 	// 작품 리뷰있는지 확인
@@ -348,10 +356,8 @@ public class ShopServiceImpl implements ShopService {
 		List<Integer> workReviewVoCheckList = new ArrayList<>();  
 		
 		for(int work_id : work_idList) {  
-			System.out.println("skdjfsdklfj : " + member_id + " sijsflsjd :  "  + work_id);
 			workReviewVoCheckList.add(shopMapper.selectMemberWorkReviewCheck(member_id, work_id));
 		}
-		System.out.println("워크리뷰체크 :  "  + workReviewVoCheckList);
 		return workReviewVoCheckList;
 	}
 	
