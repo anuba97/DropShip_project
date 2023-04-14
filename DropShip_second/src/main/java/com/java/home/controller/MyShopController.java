@@ -83,7 +83,7 @@ public class MyShopController {
 		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
 			member_id = (int) session.getAttribute("sessionMember_id");
 
-			// 고객이 설정한 옵션들을 토대로 추가되는 가격들을 set 후 그 set된 optionVo를 다시 리턴받음
+			// 고객이 설정한 옵션들을 토대로 추가되는 가격들을 set 후 그 set된 optionVo를 다시 리턴받음ㅇ
 			int work_price = workVo.getWork_price();
 			optionVo.setOption_quantity(Integer.parseInt(option_quantity));
 			optionVo = settingOptions(optionVo, work_price);
