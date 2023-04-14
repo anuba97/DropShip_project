@@ -254,7 +254,7 @@
 									                            <fmt:formatNumber type="number" value="${workVo.work_price}" pattern="#,###" />원
 									                            <!-- 비교 체크박스 -->
 									                            &nbsp;&nbsp;
-									                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare" value="${workVo.id}" style="transform: scale(1.3);">
+									                            <input type="checkbox" id="compare${workVo.id}" class="compare" name="compare"  value="${workVo.id}" style="transform: scale(1.3);" onclick="setCk('${workVo.id}')">
 									                            <label for="compare${workVo.id}" class="sct_desc" style="color: #c9ab81; font-size: 16px; cursor: pointer;">비교선택</label>
 									                            <!-- 비교 체크박스 -->
 									                            <div id="compareWorkId"></div>
@@ -327,6 +327,72 @@
                     </div>
                 </div>
             </section>
+            <script>
+			  // 쿠키 추가
+			  function setCk(work_id) {
+			    let arrCk = getCk(); // 쿠키 값 불러오기
+			    if (!arrCk.includes(work_id)) {
+			      arrCk.push(work_id); // 새로운 값 추가
+			      
+			      // 쿠키 생성하기
+			      let expiration = new Date();
+			      expiration.setMinutes(expiration.getMinutes() + 10); //쿠키값 소멸시간 10분으로 교체
+			      document.cookie = "work_id=" + arrCk.join(",") + "; expires=" + expiration.toUTCString() + ";";
+			      console.log(document.cookie);
+			    }
+			  }
+			
+			  // 쿠키 데이터 가져오기 
+			  function getCk() {
+			    let arrCk = [];
+			    // 시작위치 찾기
+			    let start = document.cookie.indexOf("work_id=");
+			    if (start !== -1) {
+			      // 끝위치 찾기
+			      let end = document.cookie.indexOf(";", start);
+			      if (end === -1) end = document.cookie.length;
+			      // 쿠키에서 데이터 가져오기
+			      arrCk = document.cookie.substring(start, end).split("=")[1].split(",");
+			    }
+			    console.log("데이터 : " + arrCk);
+			    return arrCk;
+			  }
+			
+			  function docompareBtn() {
+			    let work_id_list = getCk(); // 모든 work_id 값을 가져옴
+			    if (work_id_list.length.length < 2) {
+			      alert("2개 이상 작품을 클릭하셔야 비교하기가 가능합니다.");
+			      return false;
+			    }
+			
+			    $(".compare:checked").each(function() {
+			      work_id_list.push($(this).val());
+			    });
+			
+			    // 중복 제거
+			    work_id_list = [...new Set(work_id_list)];
+			
+			    // 쿠키에 추가
+			    let expiration = new Date();
+			    expiration.setMinutes(expiration.getMinutes() + 1); // 하루 뒤 만료
+			    document.cookie = "work_id=" + work_id_list.join(",") + "; expires=" + expiration.toUTCString() + ";";
+			    console.log(document.cookie);
+			
+			   // alert("Checked ids: " + work_id_list);
+			
+			    $('#compareWorkId').append('<input type="hidden" name="work_id_list" value="' + work_id_list.join() + '">');
+			    docompareFrm.submit();
+			
+			    /* // 팝업창에서 뒤로가기 클릭했을 때 초기화시켜줌
+			    window.onunload = function() {
+			      // 체크박스 초기화
+			      $('.compare').prop('checked', false);
+			      // 숨겨진 input 필드 제거
+			      $('#compareWorkId').empty();
+			    } */ 
+			  }
+			</script>
+			
 			<script>
 			
 				var member_id;
@@ -362,66 +428,13 @@
 					location.href = url;
 				}
 				
-				// 작품 비교하기
-				function docompareBtn(){
-				  	
-				  var work_id_list = [];
-				  if($(".compare:checked").length < 2) {
-					 alert("2개이상 작품을 클릭하셔야 비교하기가 가능합니다.");
-					 return false;
-				  }
-				  	
-				  $(".compare").each(function() {
-				    if($(this).prop('checked')){
-				      work_id_list.push($(this).val());
-				    } 
-				  });
-// 				  alert("Checked ids: " + work_id_list);
-// 				  alert("조인된 list  : " + work_id_list.join())
-				  
-				  $('#compareWorkId').append('<input type="hidden" name="work_id_list" value="' + work_id_list.join() + '">');
-				  docompareFrm.submit();
-				  
-				  
-				  // 팝업창에서 뒤로가기 클릭했을 때 초기화시켜줌
-			      window.onunload = function() {  // window.onunload는 사용자가 페이지에서 벗어나거나 창을 닫을 때 트리거 되는 JavaScript이벤트다.
-				  // 체크박스 초기화
-				  $('.compare').prop('checked', false);
-				  // 숨겨진 input 필드 제거
-				  $('#compareWorkId').empty();
-				  } 
-				  
-				  
-				}//docompareBtn()
 			</script>
-			
-			<!-- cookit 설정(input 작품들을 체크한상태로 다음페이지로 넘어가도 체크되게 저장 -->
-			
-				
-				
-				<!-- <script type="text/javascript">
-					function showPopUp() {
-						//창 크기 지정
-						
-						var width = 500;
-						var height = 500;
-						
-						//pc화면기준 가운데 정렬
-						var left = (window.screen.width / 2) - (width/2);
-						var top = (window.screen.height / 4);
-						
-					    	//윈도우 속성 지정
-						var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
-						
-					    	//연결하고싶은url
-					    	const url = "https://seeminglyjs.tistory.com/";
-					
-						//등록된 url 및 window 속성 기준으로 팝업창을 연다.
-						window.open(url, "hello popup", windowStatus);
-					}
-				</script> -->
-			
-			
+			<script>
+			    $(document).ready(function() {
+			        // 페이지가 로드되면 쿠키를 삭제합니다.
+			        document.cookie = "compare_work_id_list=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			    });
+			</script>
 
         </main>
 		

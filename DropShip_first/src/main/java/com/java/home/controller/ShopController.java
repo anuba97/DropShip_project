@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +38,23 @@ public class ShopController {
 	//////////////////↓  Work(작품) 관련 ↓         /////////////////////////
 		
 	@GetMapping("painting_list")    // 그림 작품 페이지로 이동
-    public String painting_list(@RequestParam(defaultValue = "1") int page,
+    public String painting_list(HttpServletRequest request,
+    		@RequestParam(defaultValue = "1") int page,
+    		@RequestParam(required = false) String work_id,
     		@RequestParam(defaultValue = "high_rate") String sortType, 
     		@RequestParam(defaultValue = "all") String viewOption, Model model) { // 기본은 평점 높은 순으로 정렬
+		Cookie[] cookies = request.getCookies(); // 모든 쿠키 가져오기
+		if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals("work_id")) {
+	                String cookieValue = cookie.getValue();
+	                model.addAttribute("cookieValue", cookieValue.split(","));
+	                break;
+	            }
+	        }
+	    }		
+		
+		
 		Map<String, Object> workMap = shopservice.selectWorkList(page, sortType, viewOption);
 		model.addAttribute("workMap", workMap);
 		model.addAttribute("sortType", sortType);
