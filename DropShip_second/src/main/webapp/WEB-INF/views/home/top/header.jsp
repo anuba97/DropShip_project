@@ -20,7 +20,7 @@
                                 <li><a href="../shop/best_list">베스트 작품</a></li>
                                 <li><a href="../shop/painting_list">그림 작품</a></li>
                                 <li><a href="../shop/artist_list">작가별</a></li>
-                                <li><a href="../image">사진인화 신청</a></li>
+                                <li><a href="../ai/image_generate">AI 그림생성</a></li>
                             </ul>
                         </li>
                         <li>
@@ -41,7 +41,6 @@
                         <li>
                             <a href="../bbs/faq">Service</a>
                             <ul class="depth">
-                                <li><a href="../bxabout/faq">FAQ</a></li>
                                 <li><a href="../bbs/support">제휴협찬문의</a></li>
                             </ul>
                         </li>
@@ -62,7 +61,6 @@
 						<c:if test="${sessionMember_login_id != null }">
                         	<li><a href="../myshop/mypage?member_id=${sessionMember_id}">마이페이지</a></li>
 						</c:if>
-                        <li><a href="../myshop/personalpay">개인결제창(일단냅두기)</a></li>
                     </ul>
                 </nav>
                 <a href="javascript:;" class="btn-sitemap-close"><span class="hide">전체 사이트맵 닫기</span></a>
