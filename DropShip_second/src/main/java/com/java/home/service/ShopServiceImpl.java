@@ -345,13 +345,14 @@ public class ShopServiceImpl implements ShopService {
 	// 작품 리뷰있는지 확인
 	@Override
 	public List<Integer> selectMemberWorkReviewCheck(int member_id, List<Integer> work_idList) {
-	List<Integer> workReviewVoCheckList = new ArrayList<>();  
-	
-	for(int work_id : work_idList) {  
-	workReviewVoCheckList.add(shopMapper.selectMemberWorkReviewCheck(member_id, work_id));
-	}
-	System.out.println("워크리뷰체크 :  "  + workReviewVoCheckList);
-	return workReviewVoCheckList;
+		List<Integer> workReviewVoCheckList = new ArrayList<>();  
+		
+		for(int work_id : work_idList) {  
+			System.out.println("skdjfsdklfj : " + member_id + " sijsflsjd :  "  + work_id);
+			workReviewVoCheckList.add(shopMapper.selectMemberWorkReviewCheck(member_id, work_id));
+		}
+		System.out.println("워크리뷰체크 :  "  + workReviewVoCheckList);
+		return workReviewVoCheckList;
 	}
 	
 	

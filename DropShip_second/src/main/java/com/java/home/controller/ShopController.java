@@ -137,7 +137,7 @@ public class ShopController {
 		}
 		model.addAttribute("WorkReViewUpdateResult", WorkReViewUpdateResult);
 		
-		return "home/shop/doreview";
+		return "home/shop/do_review";
 	}
 	
 	@GetMapping("work_review_delete")  // 작품리뷰 삭제 실행
@@ -151,7 +151,7 @@ public class ShopController {
 		}
 		model.addAttribute("WorkReViewDeleteResult",WorkReViewDeleteResult);
 		
-		return "home/shop/doreview";
+		return "home/shop/do_review";
 	}
 	
 	//////////////////↓  (상품비교) 관련 ↓         /////////////////////////

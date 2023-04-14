@@ -73,13 +73,13 @@
 	
 	
 	<!-- ai작품 등록때문에 artist 저장 메소드 다시 만듦 -->
-  	<insert id="insertArtist">			
-	    <selectKey resultType="int" keyProperty="id" order="AFTER">
-	        SELECT ARTIST_SEQ.currval FROM dual
-	    </selectKey>
-	    INSERT INTO artist VALUES(artist_seq.nextval, #{artist_korean_name}, #{artist_english_name}, 
-	  	#{artist_img_url}, #{artist_country}, #{artist_birth_death}, #{artist_main}, #{artist_content})
-	</insert>
+  	<insert id="insertArtist">   <!-- 시퀀스 안쓰고 id의 최대값 가져와서 +1. 컴터의 현 시퀀스 넘버가 artist시퀀스 마지막넘버랑 다르면 에러떠서 이렇게 함 -->
+      <selectKey resultType="int" keyProperty="id" order="BEFORE">
+         SELECT NVL(MAX(id), 0) + 1 FROM artist
+      </selectKey>
+	     INSERT INTO artist VALUES(#{id}, #{artist_korean_name}, #{artist_english_name},
+	     #{artist_img_url}, #{artist_country}, #{artist_birth_death}, #{artist_main}, #{artist_content})
+   </insert>
 
 
 	<!-- 익명 작가 저장 -->	
