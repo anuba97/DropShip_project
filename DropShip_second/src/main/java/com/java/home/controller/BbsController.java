@@ -71,7 +71,7 @@ public class BbsController {
 			long time = System.currentTimeMillis(); // 시간 밀리초 단위로
 			// a.jpg -> 123524123232_a.jpg 로 저장
 			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\Users\\KVC002\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\home\\upload";
+			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/upload/";
 //			String fileSaveUrl = "/upload";
 			File f = new File(fileSaveUrl + uploadFileName); // /upload/23213213_a.jpg 로 저장됨
 			try {
