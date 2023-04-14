@@ -50,5 +50,7 @@ public class BoardVo {
     private int freeBoard_hit;    // 게시글 조회수 
     
     private int freeBoard_ban;    //게시글 노출 수정
+   
+    private String member_nName;    //게시자 닉네임
 
 }

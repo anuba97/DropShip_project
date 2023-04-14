@@ -158,7 +158,7 @@
 														<td class="td-name td-mb-hide">${bvo.admin_id}</td>
 													</c:if>
 													<c:if test="${bvo.member_id!=null}">
-														<td class="td-name td-mb-hide">${bvo.member_name}</td>
+														<td class="td-name td-mb-hide">${bvo.member_nName}</td>
 													</c:if>
 													<td class="td-name td-mb-hide">${bvo.freeBoard_hit}</td>
 													<td class="td-date td-mb-hide"><fmt:formatDate

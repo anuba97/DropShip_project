@@ -9,7 +9,7 @@
       FROM (
       SELECT n.id AS id, n.freeBoard_isTop, n.member_id AS member_id, a.member_login_Id, a.member_name,
       n.freeBoard_title, n.freeBoard_content, n.freeBoard_date, n.freeBoard_update_date,
-      n.freeBoard_file_name, n.freeBoard_hit, n.freeBoard_head, n.freeBoard_ban
+      n.freeBoard_file_name, n.freeBoard_hit, n.freeBoard_head, n.freeBoard_ban ,a.member_nName
       FROM freeboard n
       JOIN member a ON n.member_id = a.id
       ORDER BY n.freeBoard_isTop DESC, n.freeBoard_date DESC, n.id ASC
