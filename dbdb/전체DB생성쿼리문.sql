@@ -709,6 +709,7 @@ ALTER TABLE work MODIFY work_img_url VARCHAR2(2000);
 
 -- 자유게시판 답글 기능 추가위해
 ALTER TABLE FreeBoard
-    ADD (freeBoard_group         NUMBER(3)         NOT NULL,
+    ADD (freeBoard_ban           NUMBER(1)         DEFAULT 0 NOT NULL,
+         freeBoard_group         NUMBER(3)         NOT NULL,
          freeBoard_indent        NUMBER(1)         DEFAULT 0 NOT NULL,
          freeBoard_step          NUMBER(4)         DEFAULT 0 NOT NULL);
