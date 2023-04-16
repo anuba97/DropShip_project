@@ -705,3 +705,9 @@ ADD (work_ai_prompt VARCHAR2(500) DEFAULT '' NULL);
 
 -- 작품 테이블 work_img_url 사이즈 늘림(ai로 이미지 만들면 url주소가 엄청 길어서)
 ALTER TABLE work MODIFY work_img_url VARCHAR2(2000);
+
+-- 자유게시판 답글 기능 추가위해
+ALTER TABLE FreeBoard
+    ADD (freeBoard_group         NUMBER(3)         NOT NULL,
+         freeBoard_indent        NUMBER(1)         DEFAULT 0 NOT NULL,
+         freeBoard_step          NUMBER(4)         DEFAULT 0 NOT NULL);
