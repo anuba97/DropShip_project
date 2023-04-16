@@ -563,7 +563,7 @@ CREATE TABLE freeBoard_Comment
     id                 NUMBER(4)         NOT NULL, 
     freeBoard_id       NUMBER(4)         NOT NULL, 
     member_id          NUMBER(4)         NOT NULL, 
-    comment_pw         NUMBER(4)         DEFAULT null NULL, 
+    comment_pw         VARCHAR2(4)       DEFAULT null NULL, 
     comment_content    VARCHAR2(1000)    NOT NULL, 
     comment_date       DATE              DEFAULT sysdate NOT NULL, 
      PRIMARY KEY (id)
@@ -713,3 +713,9 @@ ALTER TABLE FreeBoard
          freeBoard_group         NUMBER(3)         NOT NULL,
          freeBoard_indent        NUMBER(1)         DEFAULT 0 NOT NULL,
          freeBoard_step          NUMBER(4)         DEFAULT 0 NOT NULL);
+
+-- 자유게시판 댓글 기능 추가 위해 
+ALTER TABLE freeBoard_comment
+MODIFY (comment_pw VARCHAR2(4));
+
+commit;
