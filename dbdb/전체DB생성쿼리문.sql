@@ -245,6 +245,7 @@ CREATE TABLE FreeBoard
     freeBoard_update_date    DATE              DEFAULT sysdate NOT NULL, 
     freeBoard_file_name      VARCHAR2(200)     DEFAULT null NULL, 
     freeBoard_hit            NUMBER(4)         DEFAULT 0 NOT NULL, 
+    freeBoard_ban            NUMBER(1)         DEFAULT 0 NULL, 
      PRIMARY KEY (id)
 );
 
