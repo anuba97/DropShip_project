@@ -19,6 +19,7 @@
 .page-numul{
 	display: flex;
   	justify-content: center;
+  	margin: 0 auto;
 }
 
 .page-num {

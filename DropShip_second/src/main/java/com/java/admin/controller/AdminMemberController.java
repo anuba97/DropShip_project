@@ -99,8 +99,8 @@ public class AdminMemberController {
 	}//admin_memberUpdate
 
 	@RequestMapping("admin_memberUpdatePW")//admin 비번수정 페이지 이동하기
-	public String admin_memberUpdatePW(@RequestParam String id, Model model) {
-		AdminVo adminVo = adminService.selectOne(Integer.parseInt(id));
+	public String admin_memberUpdatePW(@RequestParam String admin_login_id, Model model) {
+		AdminVo adminVo = adminService.selectOnePW(admin_login_id);
 		model.addAttribute("adminVo", adminVo);
 		return "admin/admin_memberUpdatePW";
 	}//admin_memberUpdatePW

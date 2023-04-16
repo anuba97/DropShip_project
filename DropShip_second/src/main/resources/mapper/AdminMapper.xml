@@ -33,6 +33,11 @@
 		SELECT * FROM admin WHERE id = #{id}
 	</select>
 	
+	<!-- adminPW 페이지 1개 정보 가져오기 -->
+	<select id="selectOnePW" resultType="com.java.vo.AdminVo">
+		SELECT * FROM admin WHERE admin_login_id = #{admin_login_id}
+	</select>
+	
 	<!-- admin 1개 전번&상태 변경하기 -->
 	<update id="updateAdminData">
 		UPDATE admin SET admin_phone = #{admin_phone}, admin_isSuper = #{admin_isSuper}, admin_ban = #{admin_ban} WHERE admin_login_id = #{admin_login_id}

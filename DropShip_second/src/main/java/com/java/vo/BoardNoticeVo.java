@@ -20,6 +20,6 @@ public class BoardNoticeVo {
 	private String noticeboard_title, noticeboard_content, noticeboard_file_name;
 	private Date noticeboard_date, noticeboard_update_date;
 	
-	private String admin_login_id, admin_name, searchType, searchWord;
+	private String admin_login_id, admin_name, search, searchWord;
 	
 }

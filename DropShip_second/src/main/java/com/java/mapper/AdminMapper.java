@@ -22,6 +22,8 @@ public interface AdminMapper {
 	public int selectCount(); // admin list page 카운트하는 문구
 
 	public AdminVo selectOne(int id); // admin 1명 정보만 불러오기
+	
+	public AdminVo selectOnePW(String admin_login_id); // admin PW 변경 페이지 1명 정보만 불러오기
 
 	public void updateAdminData(AdminVo adminMemberVo); // admin 정보 업데이트
 
@@ -64,6 +66,8 @@ public interface AdminMapper {
 	public void deleteWork(int id); // 작품 삭제
 
 	public List<WorkVo> selectWorksByArtist(int artistId); // 해당 아티스트의 작품들 전체 리스트 가져오기
+
+	
 
 	
 

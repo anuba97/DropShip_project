@@ -101,6 +101,12 @@ public class AdminServiceImpl implements AdminService {
 		AdminVo adminMemberVo = adminMapper.selectOne(id);
 		return adminMemberVo;
 	}// selectOne
+	
+	@Override
+	public AdminVo selectOnePW(String admin_login_id) {
+		AdminVo adminMemberVo = adminMapper.selectOnePW(admin_login_id);
+		return adminMemberVo;
+	}//selectOnePW
 
 	@Override
 	public void updateAdminData(AdminVo adminMemberVo) {
@@ -328,6 +334,8 @@ public class AdminServiceImpl implements AdminService {
 		workVo.setWork_available(1); workVo.setWork_is_ai(1); workVo.setWork_ai_prompt(prompt);
 		return workVo;
 	}
+
+	
 	
 	
 

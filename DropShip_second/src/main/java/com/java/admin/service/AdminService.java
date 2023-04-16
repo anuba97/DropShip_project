@@ -24,6 +24,8 @@ public interface AdminService {
 	public Map<String, Object> selectAdminList(int page); //admin 리스트와 page 불러오기
 
 	public AdminVo selectOne(int id); //admin 1명 정보만 불러오기
+	
+	public AdminVo selectOnePW(String admin_login_id);
 
 	public void updateAdminData(AdminVo adminVo); //admin 정보 수정
 
@@ -85,6 +87,8 @@ public interface AdminService {
 	//////////////////       ↓  AI 관련 ↓         /////////////////////////
 	public int registerAiWork(String work_img_url, String work_name, String work_content, int work_price,
 			String work_genre, String work_subject, String member_nName, HttpSession session) throws IOException;
+
+	
 	
 
 
