@@ -146,7 +146,7 @@ public class AdminBoardController {
 			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
 			long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
 			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\GIT\\DropShip_Spring_20230405\\DropShip_Spring\\DropShip_first_0405\\src\\main\\resources\\static\\admin\\img\\Event\\";
+			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/upload/";
 			
 			File f = new File(fileSaveUrl + uploadFileName);  
 			try {
@@ -190,7 +190,7 @@ public class AdminBoardController {
 			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
 			long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
 			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\Users\\KV014\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\admin\\upload\\";
+			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/upload/";
 			
 			File f = new File(fileSaveUrl + uploadFileName);  
 			try {
@@ -266,7 +266,7 @@ public class AdminBoardController {
 			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
 			long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
 			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = "C:\\Users\\KV014\\git\\DropShip_Spring\\DropShip_Integrate\\src\\main\\resources\\static\\admin\\upload\\";
+			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/upload/";
 			File f = new File(fileSaveUrl + uploadFileName);  
 			try {
 				file.transferTo(f);
