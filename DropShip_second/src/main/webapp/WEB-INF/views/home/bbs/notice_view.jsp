@@ -115,7 +115,7 @@
 					<p>
 						<span class="hide">첨부파일</span>
 						<c:if test="${map.boardNoticeVo.getNoticeboard_file_name() != null}">
-                        	첨부파일: <a href="../admin/upload/${map.boardNoticeVo.getNoticeboard_file_name()}" download>${boardNoticeVo.getNoticeboard_file_name()}</a>
+                        	첨부파일: <a href="../admin/upload/${map.boardNoticeVo.getNoticeboard_file_name()}" download>${map.boardNoticeVo.getNoticeboard_file_name()}</a>
                         </c:if>
 						<c:if test="${map.boardNoticeVo.getNoticeboard_file_name() == null}">
                         	첨부파일: 첨부파일이 없습니다.
@@ -158,15 +158,6 @@
 							      </a>
 							  </li>
 							</c:if> 
-                            
-                            
-<!--                             <li class="next"> -->
-<%--                                 <a href="notice_view?id=${map.nextBoardNoticeVo.getId()}" class="link-none"> --%>
-<!--                                     <span style="cursor:pointer;">NEXT</span> -->
-<%--                                     <p>${map.nextBoardNoticeVo.getNoticeboard_title()}</p> --%>
-<!--                                     <p>다음글이 없습니다.</p> -->
-<!--                                 </a> -->
-<!--                             </li> -->
                         </ul>
                     </div>
                 </div>

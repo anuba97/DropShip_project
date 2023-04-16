@@ -52,6 +52,7 @@
                 <div>
                     <table class="admin_eventBoardAdd">
                         <form action="eventBoardAdd" name="eventBoardAddFrm" method="post" enctype="multipart/form-data">
+                        	<input type="hidden" id="admin_id" name="admin_id" value="${sessionAdminId}">
                             <colgroup>
                                 <col width="25%">
                                 <col width="75%">
@@ -63,19 +64,19 @@
                             <tr>
                             	<th>상단 등록</th>
 	                            <td>
-	                            	<input type="radio" id="true" name="eventboard_istop" value="1">
-	                                <label for="true">등록</label>
-	                                <input type="radio" id="false" name="eventboard_istop" value="0" checked>
-	                                <label for="false">해제</label>
+	                            	<input type="radio" id="true_istop" name="eventboard_istop" value="1">
+	                                <label for="true_istop">등록</label>
+	                                <input type="radio" id="false_istop" name="eventboard_istop" value="0" checked>
+	                                <label for="false_istop">해제</label>
 	                            </td>
                        		</tr>
                             <tr>
                             	<th>이벤트 상태</th>
 	                            <td>
-	                            	<input type="radio" id="true" name="eventboard_status" value="1" checked>
-	                                <label for="true">진행</label>
-	                                <input type="radio" id="false" name="eventboard_status" value="0">
-	                                <label for="false">종료</label>
+	                            	<input type="radio" id="true_status" name="eventboard_status" value="1" checked>
+	                                <label for="true_status">진행</label>
+	                                <input type="radio" id="false_status" name="eventboard_status" value="0">
+	                                <label for="false_status">종료</label>
 	                            </td>
                        		</tr>
                             <tr>
