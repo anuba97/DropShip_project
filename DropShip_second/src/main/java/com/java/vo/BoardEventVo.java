@@ -17,9 +17,16 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BoardEventVo {
 	
-	private int id, eventboard_istop, admin_id, eventboard_hit, eventboard_status;
-	private String eventboard_title, eventboard_content, eventboard_file_name;
-	private Date eventboard_date, eventboard_update_date;
+	private int id; 
+	private int eventboard_istop;
+	private int admin_id;
+	private int eventboard_hit;
+	private int eventboard_status;
+	private String eventboard_title;
+	private String eventboard_content;
+	private String eventboard_file_name;
+	private Date eventboard_date;
+	private Date eventboard_update_date;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd\'T\'HH:mm")
     private Date eventboard_start;
@@ -27,6 +34,9 @@ public class BoardEventVo {
     @DateTimeFormat(pattern = "yyyy-MM-dd\'T\'HH:mm")
     private Date eventboard_end;
 	
-	private String admin_login_id, admin_name, searchType, searchWord;
+	private String admin_login_id; //join을 위해 필요한 값
+	private String admin_name; //join을 위해 필요한 값
+	private String searchType; //검색을 위해 필요한 값
+	private String searchWord; //검색을 위해 필요한 값
 	
 }

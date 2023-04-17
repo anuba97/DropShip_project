@@ -49,8 +49,6 @@ public class DropshipMemberController {
 		model.addAttribute("dropshipMemberVo", dropshipMemberVo);
 		model.addAttribute("order_list", order_list);
 		model.addAttribute("page", page);
-		System.out.println("dropshipMemberVodropshipMemberVodropshipMemberVodropshipMemberVo"+dropshipMemberVo);
-		System.out.println("map sizemap sizemap sizemap sizemap sizemap sizemap sizemap size"+order_list.size());
 		return "admin/dropship_memberDetail";
 	}//dropship_memberDetail
 	

@@ -36,6 +36,7 @@
 		SELECT * FROM member WHERE id = #{id}
 	</select>
 	
+	<!-- index 차트 가입자 확인용 -->
 	<select id="selectMember_Reg_Date" resultType="com.java.vo.MemberCountDayVo">
 		SELECT EXTRACT(YEAR FROM MEMBER_REG_DATE) AS YEAR,
 		       EXTRACT(MONTH FROM MEMBER_REG_DATE) AS MONTH,
@@ -49,6 +50,7 @@
 		
 	</select>
 	
+	<!-- index 차트 매출 확인용 -->
 	<select id="selectOrderTotalByMonth" resultType="com.java.vo.Count_Order_Price_By_MonthVo">
 	  SELECT TRUNC(om.ORDER_DATE) AS ORDER_DAY,
            SUM(od.FINAL_PRICE) AS TOTAL_PRICE

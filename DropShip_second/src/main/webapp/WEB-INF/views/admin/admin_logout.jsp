@@ -9,7 +9,7 @@
 	<body>
 		<% session.invalidate(); %>
 		<script>
-			alert("로그아웃 되었습니다");
+			alert("관리자 페이지에서 로그아웃 되었습니다");
 			location.href="admin_login";
 		</script>
 	</body>

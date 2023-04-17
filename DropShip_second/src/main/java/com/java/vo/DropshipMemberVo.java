@@ -16,8 +16,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DropshipMemberVo {
 	
-	private String member_login_id, member_pw, member_name, member_email, member_birth, member_road, member_addr, member_nname; 
-	private int id, member_phone, member_zip, admin_ban;
+	private String member_login_id;
+	private String member_pw;
+	private String member_name;
+	private String member_email;
+	private String member_birth;
+	private String member_road;
+	private String member_addr;
+	private String member_nname; 
+	private int id;
+	private int member_phone;
+	private int member_zip;
+	private int admin_ban;
 	private Date member_reg_date;
 	
 	private int member_id; //고객 관리에서 주문 고객 불러오기용

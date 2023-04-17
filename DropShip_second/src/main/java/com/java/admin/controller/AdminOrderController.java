@@ -31,7 +31,7 @@ public class AdminOrderController {
 		return "admin/admin_orderView";
 	}
 	
-	@RequestMapping(value = "/updateOrderStatus", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateOrderStatus", method = RequestMethod.POST)//주문 상태 변경하기
 	@ResponseBody
 	public int updateOrderStatus(@RequestParam("id") int id, @RequestParam("order_status") int orderStatus) {
 		int success = adminOrderService.updateOrderStatus(id, orderStatus);
