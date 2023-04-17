@@ -168,9 +168,11 @@
 					        <td><input type="file" name="file" id="artist_img_url"></td>
 					    </tr>
 					</table><br>
-					<div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onclick="artistUpdateBtn()" style="margin: 0 0 0 130px; color:red;">작가 수정</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_artistList'" style="margin: 0 auto;">작가 리스트</button>
+					<div class="admin_artistViewTable" style="text-align: center;">
+						<div style="margin-left: 300px;">
+	                        <button type="button" class="admin_noticeBoard_button" onclick="artistUpdateBtn()" style="color:red; border-radius:5px;">작가 수정</button>
+	                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_artistList'" style="border-radius:5px;">작가 리스트</button>
+	                    </div>    
                     </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

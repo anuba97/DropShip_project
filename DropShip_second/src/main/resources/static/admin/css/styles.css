@@ -11588,8 +11588,7 @@ body {
 	margin: 0 0 0 24px;
 }
 .admin_noticeBoard_div{
-	width: 1300px;
-	margin: 0 0 0 24px;
+	width: 100%;
 }
 .admin_eventBoardAdd_button{
 	width: 150px;
@@ -11950,6 +11949,10 @@ ul.page-numul-eventBoardList {
     color: #fff;
 }
 
+.admin_workViewTableDiv{
+	width:100%;
+}
+
 .admin_workViewTable th{
 	background-color: #212529;
     color: #fff;
@@ -11957,5 +11960,19 @@ ul.page-numul-eventBoardList {
 
 .admin_workViewTableDiv{
 	margin-left:24px;
-	width: 80%;
+	width: 100%;
+}
+
+.admin_workViewTable{
+	width: 50%;
+}
+
+.admin_artistViewTable{
+	margin-left:24px;
+	width: 50%;
+}
+
+.admin_artistList_div{
+	margin-left:24px;
+	width: 1345px;
 }

@@ -102,6 +102,10 @@
                 
                 <div class="admin_artistViewTableDiv">
                     <table class="admin_artistViewTable">
+                    	<colgroup>
+                            <col width="25%">
+                            <col width="75%">
+                        </colgroup>
                         <tr>
                             <th>작가 고유번호</th>
                             <td>${artistVo.getId()}</td>
@@ -144,13 +148,14 @@
                             </td>
                         </tr>
                     </table><br>
-                    <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_artistAdd'" style="margin: 0 0 0 500px; color:red;">작가 추가</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="updateArtistBtn()" style="margin: 0 0 0 500px; color:blue;">작가 수정</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="deleteArtistBtn(${artistVo.getId()},'${artistVo.getArtist_korean_name()}')" style="margin: 0 0 0 500px; color:black;">작가 삭제</button>
-                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_artistList'" style="margin: 0 0 0 500px; color:black;">작가 리스트</button>
-                    </div>
-                </div>
+                    <div class="admin_noticeBoard_div" style="display: flex; justify-content: center;">
+                    	<div style="margin: 0 auto;">
+	                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_artistAdd'" style="color:red; border-radius:5px;">작가 추가</button>
+	                        <button type="button" class="admin_noticeBoard_button" onclick="updateArtistBtn()" style="color:blue; border-radius:5px;">작가 수정</button>
+	                        <button type="button" class="admin_noticeBoard_button" onclick="deleteArtistBtn(${artistVo.getId()},'${artistVo.getArtist_korean_name()}')" style="color:black; border-radius:5px;">작가 삭제</button>
+	                        <button type="button" class="admin_noticeBoard_button" onclick="location.href='admin_artistList'" style="color:black; border-radius:5px;">작가 리스트</button>
+                        </div>
+                	</div>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

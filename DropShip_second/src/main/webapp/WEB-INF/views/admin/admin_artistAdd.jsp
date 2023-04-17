@@ -145,8 +145,8 @@
                         </tr>
                     </table><br>
                     <div class="admin_noticeBoard_div">
-                        <button type="button" class="admin_noticeBoard_button" onclick="artistAddBtn()" style="margin: 0 0 0 130px; color:red;">작가 등록</button>
-                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_artistList'" style="margin: 0 auto;">작가 리스트</button>
+                        <button type="button" class="admin_noticeBoard_button" onclick="artistAddBtn()" style="margin: 0 0 0 130px; color:red; border-radius:5px;">작가 등록</button>
+                        <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_artistList'" style="margin: 0 auto; border-radius:5px;">작가 리스트</button>
                     </div>
                 </form>
             </main>

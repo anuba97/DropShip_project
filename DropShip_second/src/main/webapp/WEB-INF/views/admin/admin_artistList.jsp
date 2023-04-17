@@ -18,85 +18,22 @@
     <link href="admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <style>
-    	#workImage {width: 100px; height: 100px; text-align: center; 
-		 margin: 0 auto;}
+   		#workImage {width: 100px; height: 100px; text-align: center; margin: 0 auto;}
 			
 		/* 추가 */
-			.admin_memberListTable {
-    width: 80%;
-    margin-left: 25px;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-}
-
-.admin_memberListTable th,
-.admin_memberListTable td {
-    height: 40px;
-    padding: 8px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.admin_memberListTable th {
-    background-color: #2c3e50;
-    color: #ffffff;
-}
-		.admin_memberListTable tr:hover {
-    background-color: #f5f5f5;
-}	
-			.delete-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-		.admin_noticeBoard_div {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.admin_noticeBoard_button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-}	
-.uploaded-works {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.uploaded-work {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-.inner-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.inner-table td {
-    padding: 5px;
-    text-align: center;
-    vertical-align: top;
-}
+		.admin_memberListTable { width: 80%; margin-left: 25px; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 14px; }
+		.admin_memberListTable th, .admin_memberListTable td { height: 40px; padding: 8px; text-align: center; vertical-align: middle; }
+ 		.admin_memberListTable th { background-color: #2c3e50; color: #ffffff; }
+		.admin_memberListTable tr:hover { background-color: #f5f5f5; }	
+		.delete-button { background-color: #f44336; color: white; border: none; padding: 5px 10px; text-align: center; 
+						 text-decoration: none; display: inline-block; font-size: 14px; margin: 4px 2px; cursor: pointer; border-radius: 4px; }
+		.admin_noticeBoard_div { display: flex; justify-content: center; margin-bottom: 20px; }
+		.admin_noticeBoard_button { background-color: #4CAF50; color: white; border: none; align-items: center; justify-content: center; padding: 10px 20px; text-align: center;
+    								text-decoration: none; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 4px; }	
+		.uploaded-works { display: flex; flex-wrap: wrap; }
+		.uploaded-work { margin-right: 10px; margin-bottom: 10px; text-align: center; }
+		.inner-table { width: 100%; border-collapse: collapse; }
+		.inner-table td { padding: 5px; text-align: center; vertical-align: top; }
 		/* 추가 */
     </style>
     <script>
@@ -223,7 +160,7 @@
                         </c:forEach>
                     </table>
                 </div><br>
-                <div class="admin_noticeBoard_div">
+                <div class="admin_artistList_div" style="text-align: center;">
                     <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_artistAdd'" style="margin: 0 auto; color:red;">작가 추가</button>
                 </div>
             </main>
