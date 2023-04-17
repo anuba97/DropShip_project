@@ -39,6 +39,13 @@
                 $("#admin_login_id").focus();
                 return;
             }
+            
+            if ($("#admin_phone").val().length > 11) {
+                alert("연락처는 11글자까지만 입력해야합니다!");
+                $("#admin_phone").val("");
+                $("#admin_phone").focus();
+                return;
+            }
 
             if (!idPattern.test($("#admin_login_id").val())) {
                 alert("영문과 숫자만 사용할 수 있습니다.!");

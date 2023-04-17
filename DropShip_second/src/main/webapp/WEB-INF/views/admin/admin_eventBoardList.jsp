@@ -43,9 +43,10 @@
                         <colgroup>
                             <col width="10%">
                             <col width="35%">
-                            <col width="15%">
-                            <col width="15%">
-                            <col width="15%">
+                            <col width="10%">
+                            <col width="10%">
+                            <col width="12%">
+                            <col width="12%">
                             <col width="10%">
                         </colgroup>
                         <tr>
@@ -53,7 +54,8 @@
                             <th>이벤트 게시글 제목</th>
                             <th>진행 상태</th>
                             <th>작성자</th>
-                            <th>게시일</th>
+                            <th>등록일</th>
+                            <th>시작일</th>
                             <th>조회수</th>
                         </tr>
                         <c:forEach items="${map.list}" var="eb">
@@ -69,10 +71,14 @@
 	                            	<td style="color:blue; font-weight:bold;">진행</td>
 	                            </c:if>
 	                            <c:if test="${eb.eventboard_status == '0'}">
-	                            	<td>종료</td>
+	                            	<td style="color:red; font-weight:bold;">종료</td>
+	                            </c:if>
+	                            <c:if test="${eb.eventboard_status == '2'}">
+	                            	<td style="color:green; font-weight:bold;">진행 예정</td>
 	                            </c:if>
 	                            <td>${eb.admin_name}</td>
 	                            <td><fmt:formatDate value="${eb.eventboard_date}" pattern="yyyy-MM-dd HH:mm"/></td>
+	                            <td><fmt:formatDate value="${eb.eventboard_start}" pattern="yyyy-MM-dd HH:mm"/></td>
 	                            <td>${eb.eventboard_hit}</td>
 	                        </tr>
                         </c:forEach>
@@ -116,7 +122,7 @@
 					</div>
 					<!-- 			PAGE 처리 부분		 -->
                     <div class="admin_noticeBoard_div">
-                        <button type="button" onclick="location.href='admin_eventBoardAdd'" style="color:red; border-radius:5px;">이벤트 추가</button>
+                        <button type="button" onclick="location.href='admin_eventBoardAdd'" style="color:red; border-radius:5px; margin-left: 24px;">이벤트 추가</button>
                     </div>
                 </div>
             </main>

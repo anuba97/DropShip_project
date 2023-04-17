@@ -7,6 +7,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="Content-Language" content="ko">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
@@ -106,6 +107,77 @@
                  </div>
                  
                 <span style="padding-left:24px;">※ 최근 주문날짜 + 상태에 따라 정렬됩니다. || 주문을 선택해서 <span style="color:red;">상태값을 변경</span>할 수 있습니다.</span>
+                <div class="select-container" style="width: 1200px; margin-left:24px; text-align: right;">
+				    <select id="view-options" name="order_status" class="sort-list">
+					    <option value="0">입금 확인 중</option>
+					    <option value="1">입금 완료</option>
+					    <option value="2">상품 준비 중</option>
+					    <option value="3">배송 중</option>
+					    <option value="4">배송 완료</option>
+					    <option value="5">주문 취소</option>
+					    <option value="6">환불 완료</option>
+					</select>
+			    </div>
+			    <script>
+			    $(function() {
+			        $('#view-options').change(function() {
+			            var option = $(this).val(); // 선택된 옵션의 값
+			            $.ajax({
+			                type: "POST",
+			                url: "/viewData",
+			                data: { option: option }, // 서버에 보낼 데이터
+			                success: function(data) {
+			                    console.log(data);
+
+			                    // HTML 템플릿 생성 및 출력
+			                    var html = "";
+			                    data.forEach(function(data) {
+			                        html += "<tr onClick=\"location.href='admin_orderView?id=" + data.id + "&page=" + data.page + "'\" style=\"cursor:pointer;\">";
+			                        html += "<td>" + data.order_member_id + "</td>";
+			                        html += "<td>" + data.member_name + "</td>";
+			                        html += "<td>" + data.work_name + " || 작품ID: " + data.work_id + "</td>";
+			                        html += "<td>" + data.final_price + " 원</td>";
+			                        html += "<td>" + data.order_date + "</td>";
+
+			                        switch (data.order_status.toString()) {
+			                        case "0":
+			                            html += "<td>0. 입금 확인 중</td>";
+			                            break;
+			                        case "1":
+			                            html += "<td>1. 입금 완료</td>";
+			                            break;
+			                        case "2":
+			                            html += "<td>2. 상품 준비 중</td>";
+			                            break;
+			                        case "3":
+			                            html += "<td>3. 배송 중</td>";
+			                            break;
+			                        case "4":
+			                            html += "<td>4. 배송 완료</td>";
+			                            break;
+			                        case "5":
+			                            html += "<td>5. 주문 취소</td>";
+			                            break;
+			                        case "6":
+			                            html += "<td>6. 환불 완료</td>";
+			                            break;
+			                        default:
+			                            html += "<td>" + data.order_status + "</td>";
+			                            break;
+			                    	}
+
+			                        html += "</tr>";
+			                    });
+			                    $("#tbody").empty().append(html);
+			                  },
+			                  error: function() {
+			                    console.log("오류 발생!");
+			                  }
+			                });
+			              });
+			            });
+
+			    </script>
                 <div class="admin_orderListDiv">
                     <table class="admin_orderListTable">
                         <colgroup>
@@ -125,6 +197,7 @@
                             <th>주문 상태</th>
                         </tr>
                         <!-- 반복문 forEach -->
+                        <tbody id="tbody">
                         <c:forEach items="${map.list}" var="aol">
 	                        <tr onClick="location.href='admin_orderView?id=${aol.id}&page=${map.page}'" style="cursor:pointer;">
                             	<td>${aol.order_member_id}</td>
@@ -155,6 +228,7 @@
 	                            </c:if>
 	                        </tr>
                         </c:forEach>
+                        </tbody>
 						<!-- 반복문 forEach -->
                     </table>
                     <!--	PAGE 처리 부분		 -->

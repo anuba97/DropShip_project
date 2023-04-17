@@ -96,8 +96,11 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		return order_MemberVoList;
 	}	
 
-	
-	
+	@Override
+	public List<Order_DetailVo> getOrdersByStatus(String orderStatus, int page) { //주문 정렬(공사중)
+		List<Order_DetailVo> orderList = adminOrderMapper.getOrdersByStatus(orderStatus, page);
+		return orderList;
+	}	
 
 
 

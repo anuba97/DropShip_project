@@ -73,10 +73,12 @@
                             <tr>
                             	<th>이벤트 상태</th>
 	                            <td>
-	                            	<input type="radio" id="true_status" name="eventboard_status" value="1" checked>
+	                            	<input type="radio" id="true_status" name="eventboard_status" value="1">
 	                                <label for="true_status">진행</label>
 	                                <input type="radio" id="false_status" name="eventboard_status" value="0">
 	                                <label for="false_status">종료</label>
+	                                <input type="radio" id="ready_status" name="eventboard_status" value="2">
+	                                <label for="ready_status">진행 예정</label>
 	                            </td>
                        		</tr>
                             <tr>
@@ -108,6 +110,41 @@
                         <button type="button" class="admin_eventBoardAdd_button" onClick="location.href='admin_eventBoardList'" style="margin: 0 auto; border-radius:5px;">이벤트 리스트</button>
                     </div>
                 </div>
+                <script>
+	                $(document).ready(function() {
+	                	$('input[name="eventboard_status"]').on('click', function() {
+	                        if ($(this).val() == '0') {
+	                            var now = new Date();
+	                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+	                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+	                            $('#eventboard_start').val(dateString + 'T' + timeString);
+	                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
+	                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
+	                        } else if ($(this).val() == '1') {
+	                            var now = new Date();
+	                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+	                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+	                            var oneWeekLater = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000); 
+	                            var endDateString = oneWeekLater.getFullYear() + '-' + ('0' + (oneWeekLater.getMonth() + 1)).slice(-2) + '-' + ('0' + oneWeekLater.getDate()).slice(-2);
+	                            $('#eventboard_start').val(dateString + 'T' + timeString);
+	                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
+	                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
+	                            $('#eventboard_end').attr('max', endDateString + 'T' + timeString);
+	                        } else if ($(this).val() == '2') {
+	                        	var now = new Date();
+	                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+	                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+	                            $('#eventboard_start').val(dateString + 'T' + timeString);
+	                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
+	                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
+	                        }
+	                    });
+	                    $('#eventboard_start').on('click', function() {
+	                        $('#eventboard_end').attr('min', $(this).val());
+	                        $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
+	                    });
+	                });
+				</script>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

@@ -6,40 +6,44 @@
 	
 	<!-- 이벤트 상태 변경하기 -->
 	<update id="updateEventboard_status">
-		UPDATE eventboard SET eventboard_status = CASE
-		<![CDATA[
-    	WHEN eventboard_start <= SYSDATE AND SYSDATE <= eventboard_end THEN 1 ELSE 0
-    	]]>
-  		END
+		UPDATE eventboard 
+		SET eventboard_status = 1 
+		WHERE (eventboard_status = 0 OR eventboard_status = 2) 
+		AND eventboard_start <![CDATA[ <= SYSDATE 
+		AND SYSDATE <= eventboard_end]]>
 	</update>
 	
-	<!-- 이벤트 리스트 정렬 -->
+	<!-- 이벤트 리스트 정렬 - 어드민 페이지용 -->
 	<select id="selectEventList" resultType="com.java.vo.BoardEventVo">
-		SELECT * FROM (
-		SELECT rownum rnum, a.*
+		SELECT *
 		FROM (
-		SELECT e.id AS id, e.eventboard_istop, e.admin_id AS admin_id, a.admin_login_id, a.admin_name,
-		e.eventboard_title, e.eventboard_content, e.eventboard_date, e.eventboard_update_date,
-		e.eventboard_file_name, e.eventboard_hit, e.eventboard_status, e.eventboard_start, e.eventboard_end
-		FROM eventboard e
-		JOIN admin a ON e.admin_id = a.id
-		ORDER BY e.eventboard_istop DESC, e.eventboard_date DESC, e.id ASC 
-		) a
+		  SELECT rownum rnum, a.*
+		  FROM (
+		    SELECT e.id AS id, e.eventboard_istop, e.admin_id AS admin_id, a.admin_login_id, a.admin_name,
+		    e.eventboard_title, e.eventboard_content, e.eventboard_date, e.eventboard_update_date,
+		    e.eventboard_file_name, e.eventboard_hit, e.eventboard_status, e.eventboard_start, e.eventboard_end
+		    FROM eventboard e
+		    JOIN admin a ON e.admin_id = a.id
+		    ORDER BY e.eventboard_istop DESC, e.eventboard_start DESC, e.eventboard_status DESC, e.id ASC 
+		  ) a
 		) WHERE rnum BETWEEN #{startRow} AND #{endRow}
+
 	</select>
 	
 	<!-- 이벤트 리스트 정렬 - 프론트용 -->
 	<select id="selectEventListAll" resultType="com.java.vo.BoardEventVo">
-		SELECT * FROM (
-		SELECT rownum rnum, a.*
+		SELECT *
 		FROM (
-		SELECT e.id AS id, e.eventboard_istop, e.admin_id AS admin_id, a.admin_login_id, a.admin_name,
-		e.eventboard_title, e.eventboard_content, e.eventboard_date, e.eventboard_update_date,
-		e.eventboard_file_name, e.eventboard_hit, e.eventboard_status, e.eventboard_start, e.eventboard_end
-		FROM eventboard e
-		JOIN admin a ON e.admin_id = a.id
-		ORDER BY e.eventboard_istop DESC, e.eventboard_date DESC, e.id ASC
-		) a
+		  SELECT rownum rnum, a.*
+		  FROM (
+		    SELECT e.id AS id, e.eventboard_istop, e.admin_id AS admin_id, a.admin_login_id, a.admin_name,
+		    e.eventboard_title, e.eventboard_content, e.eventboard_date, e.eventboard_update_date,
+		    e.eventboard_file_name, e.eventboard_hit, e.eventboard_status, e.eventboard_start, e.eventboard_end
+		    FROM eventboard e
+		    JOIN admin a ON e.admin_id = a.id
+		    WHERE e.eventboard_status = 0 or e.eventboard_status = 1
+		    ORDER BY e.eventboard_istop DESC, e.eventboard_start DESC, e.id ASC, e.eventboard_status DESC 
+		  ) a
 		) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 	

@@ -62,9 +62,28 @@
 	
 	<!-- admin Order 전체 불러오기 -->
 	<select id="selectOrderAll" resultType="com.java.vo.Order_MemberVo">	
-	    	SELECT om.*
-			FROM Order_Member om
-			JOIN Order_Detail od ON om.id = od.order_member_id
-	  </select>
+    	SELECT om.*
+		FROM Order_Member om
+		JOIN Order_Detail od ON om.id = od.order_member_id
+  	</select>
+  	
+  	<!-- admin 주문 정렬(공사중) -->
+  	<select id="getOrdersByStatus" resultType="com.java.vo.Order_DetailVo">
+	    SELECT * FROM (
+	    SELECT rownum rnum, a. id, order_member_id, member_name, work_name, WORK_ID, FINAL_PRICE, order_date, order_status
+	    FROM (
+	        SELECT od.id AS id, om.id AS member_id, m.id AS Member_ID,
+	            od.WORK_ID, od.OPTION_ID, od.TOTAL_PRICE, od.EVENT_WORK_SALE, od.EVENT_PERIOD_SALE, od.order_member_id,
+	            (od.TOTAL_PRICE - od.EVENT_WORK_SALE - od.EVENT_PERIOD_SALE) AS FINAL_PRICE, m.member_name, w.work_name, om.order_date, om.order_status
+	        FROM Order_Member om
+	        JOIN Order_Detail od ON od.ORDER_MEMBER_ID = om.id
+	        JOIN Member m ON om.MEMBER_ID = m.id
+	        JOIN Work w ON od.work_id = w.id
+	        JOIN Work_Option wo ON wo.id = od.option_id
+	        WHERE om.order_status = #{orderStatus}
+	        ORDER BY om.order_status ASC, om.order_date DESC
+	    ) a
+		)
+	</select>
 	
 </mapper>

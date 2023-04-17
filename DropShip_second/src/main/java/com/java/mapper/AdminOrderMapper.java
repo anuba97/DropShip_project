@@ -29,6 +29,7 @@ public interface AdminOrderMapper {
 	//모든 주문 가져오기
 	List<Order_MemberVo> selectOrderAll();
 	
-	
+	//주문 정렬(공사중)
+	List<Order_DetailVo> getOrdersByStatus(String orderStatus, int page);
 
 }// AdminMemberMapper

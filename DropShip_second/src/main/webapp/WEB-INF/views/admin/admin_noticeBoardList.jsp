@@ -118,7 +118,7 @@
 					</ul>
 				</div>
                     <div class="admin_noticeBoard_div">
-                        <button type="button" onclick="location.href='admin_noticeBoardAdd'" style="color:red; border-radius: 5px;">공지 추가</button>
+                        <button type="button" onclick="location.href='admin_noticeBoardAdd'" style="margin-left: 24px; color:red; border-radius: 5px;">공지 추가</button>
                     </div>
                 </div>
             </main>

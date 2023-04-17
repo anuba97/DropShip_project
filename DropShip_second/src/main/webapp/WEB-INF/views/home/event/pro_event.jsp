@@ -118,7 +118,7 @@ var g5_shop_url = "https://bxgs.co.kr:443/shop/";
             <div class="grid-event-list">
               <ul id="gall_ul">
                <c:forEach items="${map.list}" var="eb">	
-	                <c:if test="${eb.eventboard_status == 1}">
+	                <c:if test="${eb.eventboard_status == '1'}">
 		               <li>
 		                 <a href="event_view?id=${eb.id}&page=${map.page}">
 		                   <div class="event-thumb">

@@ -76,6 +76,8 @@
 	                                <label for="true_status">진행</label>
 	                                <input type="radio" id="false_status" name="eventboard_status" value="0" readonly <c:if test="${map.boardEventVo.getEventboard_status() == '0'}">checked</c:if>>
 	                                <label for="false_status">종료</label>
+	                                <input type="radio" id="ready_status" name="eventboard_status" value="2" readonly <c:if test="${map.boardEventVo.getEventboard_status() == '2'}">checked</c:if>>
+	                                <label for="ready_status">진행 예정</label>
 	                            </td>
                        		</tr>
                             <tr>
