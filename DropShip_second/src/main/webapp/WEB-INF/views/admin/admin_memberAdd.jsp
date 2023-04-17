@@ -186,19 +186,19 @@
                         <tr>
                             <th>관리자 등급</th>
                             <td>
-                                <input type="radio" id="true" name="admin_isSuper" value="1">
-                                <label for="true">슈퍼</label>
-                                <input type="radio" id="false" name="admin_isSuper" value="0" checked>
-                                <label for="false">일반</label>
+                                <input type="radio" id="true_isSuper" name="admin_isSuper" value="1">
+                                <label for="true_isSuper">슈퍼</label>
+                                <input type="radio" id="false_isSuper" name="admin_isSuper" value="0" checked>
+                                <label for="false_isSuper">일반</label>
                             </td>
                         </tr>
                         <tr>
                             <th>관리자 상태</th>
                             <td>
-                                <input type="radio" id="true" name="admin_ban" value="0" checked>
-                                <label for="true">사용</label>
-                                <input type="radio" id="false" name="admin_ban" value="1">
-                                <label for="false">정지</label>
+                                <input type="radio" id="true_ban" name="admin_ban" value="0" checked>
+                                <label for="true_ban">사용</label>
+                                <input type="radio" id="false_ban" name="admin_ban" value="1">
+                                <label for="false_ban">정지</label>
                             </td>
                         </tr>
                     </table><br>

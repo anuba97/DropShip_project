@@ -237,9 +237,9 @@
                         </tr>
                     </table>
                 </form><br>
-                <div class="admin_noticeBoard_div">
+                <div class="admin_customerTable" style="text-align: center;">
 <!--                     <button type="button" class="admin_noticeBoard_button" onClick="location.href=''" style="margin: 0 0 0 180px; color:red; border-radius:5px;">주문 수정</button> -->
-                    <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_orderList'" style="margin: 0 0 0 250px; border-radius:5px;">주문 리스트</button>
+                    <button type="button" class="admin_noticeBoard_button" onClick="location.href='admin_orderList'" style="border-radius:5px;">주문 리스트</button>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

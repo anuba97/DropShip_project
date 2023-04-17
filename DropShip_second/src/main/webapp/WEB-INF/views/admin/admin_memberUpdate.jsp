@@ -91,19 +91,19 @@
                         <tr>
 							<th>관리자 등급</th>
 							<td>
-								<input type="radio" id="true" name="admin_issuper" value="1" <c:if test="${adminVo.admin_isSuper == '1'}">checked</c:if>> 
-								<label for="true">슈퍼</label> 
-								<input type="radio" id="false" name="admin_issuper" value="0" <c:if test="${adminVo.admin_isSuper == '0'}">checked</c:if>>
-								<label for="false">일반</label>
+								<input type="radio" id="true_issuper" name="admin_issuper" value="1" <c:if test="${adminVo.admin_isSuper == '1'}">checked</c:if>> 
+								<label for="true_issuper">슈퍼</label> 
+								<input type="radio" id="false_issuper" name="admin_issuper" value="0" <c:if test="${adminVo.admin_isSuper == '0'}">checked</c:if>>
+								<label for="false_issuper">일반</label>
 							</td>
 						</tr>
                         <tr>
                             <th>관리자 상태</th>
                             <td>
-                                <input type="radio" id="true" name="admin_ban" value="1" <c:if test="${adminVo.admin_ban == '1'}">checked</c:if> />
-                                <label for="true">사용</label>
-                                <input type="radio" id="false" name="admin_ban" value="0" <c:if test="${adminVo.admin_ban == '0'}">checked</c:if> />
-                                <label for="false">정지</label>
+                                <input type="radio" id="true_ban" name="admin_ban" value="0" <c:if test="${adminVo.admin_ban == '0'}">checked</c:if> />
+                                <label for="true_ban">사용</label>
+                                <input type="radio" id="false_ban" name="admin_ban" value="1" <c:if test="${adminVo.admin_ban == '1'}">checked</c:if> />
+                                <label for="false_ban">정지</label>
                             </td>
                         </tr>
                     </table><br>
