@@ -42,7 +42,7 @@
 		    FROM eventboard e
 		    JOIN admin a ON e.admin_id = a.id
 		    WHERE e.eventboard_status = 0 or e.eventboard_status = 1
-		    ORDER BY e.eventboard_istop DESC, e.eventboard_start DESC, e.eventboard_status DESC, e.id ASC  
+		    ORDER BY e.eventboard_istop DESC, e.eventboard_status DESC, e.eventboard_start DESC, e.id ASC   
 		  ) a
 		) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
