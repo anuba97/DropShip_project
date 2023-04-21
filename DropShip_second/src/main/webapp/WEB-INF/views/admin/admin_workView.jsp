@@ -79,7 +79,7 @@
                 
                 <img src="admin/img/work/${workVo.getWork_img_url()}" id="workImage">
                 
-                <div class="admin_workViewTableDiv">
+                <div class="admin_workViewTableDiv" style="margin: 0 auto;">
                     <table class="admin_workViewTable">
                 	<colgroup>
                         <col width="25%">

@@ -69,7 +69,7 @@
                                 	${adminVo.admin_login_id}
                                 </td>
                                 <td>${adminVo.admin_name}</td>
-                                <td>${adminVo.admin_phone}</td>
+                                <td>0${adminVo.admin_phone}</td>
                                 <td>${adminVo.admin_reg_date}</td>
                                 <c:if test="${adminVo.admin_isSuper == 1}">
                                     <td style="color:blue; font-weight:bold;">슈퍼</td>

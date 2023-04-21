@@ -27,9 +27,10 @@ public class BoardEventServiceImpl implements BoardEventService {
 		int startRow = (int) map.get("startRow");
 		int endRow = (int) map.get("endRow");
 
-		// 관리자 객체들 담기는 list
+		// 이벤트 객체들 담기는 list
 		List<BoardEventVo> list = boardEventMapper.selectEventList(startRow, endRow);
-		boardEventMapper.updateEventboard_status();
+		boardEventMapper.updateEventboard_status_start();
+		boardEventMapper.updateEventboard_status_end();
 
 		map.put("list", list);
 		map.put("page", page);
@@ -50,7 +51,8 @@ public class BoardEventServiceImpl implements BoardEventService {
 
 		// 관리자 객체들 담기는 list
 		List<BoardEventVo> list = boardEventMapper.selectEventListAll(startRow, endRow);
-		boardEventMapper.updateEventboard_status();
+		boardEventMapper.updateEventboard_status_start();
+		boardEventMapper.updateEventboard_status_end();
 
 		map.put("list", list);
 		map.put("page", page);
@@ -71,7 +73,8 @@ public class BoardEventServiceImpl implements BoardEventService {
 		
 		// 관리자 객체들 담기는 list
 		List<BoardEventVo> list = boardEventMapper.selectEventListOn(startRow, endRow);
-		boardEventMapper.updateEventboard_status();
+		boardEventMapper.updateEventboard_status_start();
+		boardEventMapper.updateEventboard_status_end();
 		
 		map.put("list", list);
 		map.put("page", page);
@@ -92,7 +95,8 @@ public class BoardEventServiceImpl implements BoardEventService {
 		
 		// 관리자 객체들 담기는 list
 		List<BoardEventVo> list = boardEventMapper.selectEventListOff(startRow, endRow);
-		boardEventMapper.updateEventboard_status();
+		boardEventMapper.updateEventboard_status_start();
+		boardEventMapper.updateEventboard_status_end();
 		
 		map.put("list", list);
 		map.put("page", page);

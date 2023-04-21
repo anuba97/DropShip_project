@@ -103,6 +103,12 @@
                                 <th><label for="eventboard_file_name">첨부 파일(이미지)</label></th>
                                 <td><input type="file" id="eventboard_file_name" name="file" style="width:100%;"></td>
                             </tr>
+                            <script>
+	                            $('#eventboard_start').on('change', function() {
+	                                $('#eventboard_end').attr('min', $(this).val());
+	                                $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
+	                            });
+                            </script>
                         </form>
                     </table><br>
                     <div classs="admin_eventBoardAdd_div">
@@ -111,34 +117,34 @@
                     </div>
                 </div>
                 <script>
-	                $(document).ready(function() {
-	                	$('input[name="eventboard_status"]').on('click', function() {
-	                        if ($(this).val() == '0') {
-	                            var now = new Date();
-	                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
-	                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
-	                            $('#eventboard_start').val(dateString + 'T' + timeString);
-	                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
-	                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
-	                        } else if ($(this).val() == '1') {
-	                            var now = new Date();
-	                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
-	                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
-	                            var oneWeekLater = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000); 
-	                            var endDateString = oneWeekLater.getFullYear() + '-' + ('0' + (oneWeekLater.getMonth() + 1)).slice(-2) + '-' + ('0' + oneWeekLater.getDate()).slice(-2);
-	                            $('#eventboard_start').val(dateString + 'T' + timeString);
-	                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
-	                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
-	                            $('#eventboard_end').attr('max', endDateString + 'T' + timeString);
-	                        } else if ($(this).val() == '2') {
-	                        	var now = new Date();
-	                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
-	                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
-	                            $('#eventboard_start').val(dateString + 'T' + timeString);
-	                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
-	                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
-	                        }
-	                    });
+                $(document).ready(function() {
+                    $('input[name="eventboard_status"]').on('click', function() {
+                        if ($(this).val() == '0') {
+                            var now = new Date();
+                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+                            $('#eventboard_start').val(dateString + 'T' + timeString);
+                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
+                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
+                        } else if ($(this).val() == '1') {
+                            var now = new Date();
+                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+                            var oneHourLater = new Date(now.getTime() + 60 * 60 * 1000); 
+                            var endDateString = oneHourLater.getFullYear() + '-' + ('0' + (oneHourLater.getMonth() + 1)).slice(-2) + '-' + ('0' + oneHourLater.getDate()).slice(-2);
+                            var endTimeString = ('0' + oneHourLater.getHours()).slice(-2) + ':' + ('0' + oneHourLater.getMinutes()).slice(-2);
+                            $('#eventboard_start').val(dateString + 'T' + timeString);
+                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
+                            $('#eventboard_end').val(endDateString + 'T' + endTimeString);
+                        } else if ($(this).val() == '2') {
+                            var now = new Date();
+                            var dateString = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+                            var timeString = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+                            $('#eventboard_start').val(dateString + 'T' + timeString);
+                            $('#eventboard_end').attr('min', dateString + 'T' + timeString);
+                            $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
+                        }
+                    });
 	                    $('#eventboard_start').on('click', function() {
 	                        $('#eventboard_end').attr('min', $(this).val());
 	                        $('#eventboard_end').val($('#eventboard_end').val() < $('#eventboard_start').val() ? $('#eventboard_start').val() : $('#eventboard_end').val());
