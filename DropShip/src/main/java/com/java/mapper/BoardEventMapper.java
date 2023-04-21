@@ -37,7 +37,9 @@ public interface BoardEventMapper {
 
 	int selectCountEventOff(); //종료된 이벤트 개수만 체크
 
-	void updateEventboard_status(); //날짜에 따라 이벤트 시작 종료 변경하기
+	void updateEventboard_status_start(); //날짜에 따라 이벤트 시작 종료 변경하기
+	
+	void updateEventboard_status_end(); //날짜에 따라 이벤트 시작 종료 변경하기
 
 	
 

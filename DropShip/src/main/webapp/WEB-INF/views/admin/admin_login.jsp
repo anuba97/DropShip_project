@@ -47,7 +47,7 @@
             <main>
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-5 ">
+                        <div class="col-lg-5" style="margin-top:-80px;">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="adminlogo">
                                     <img class="adminlogo" src="admin/img/adminlogo.png">
