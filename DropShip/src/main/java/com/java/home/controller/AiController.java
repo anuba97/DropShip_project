@@ -153,9 +153,10 @@ public class AiController {
    }
 
    
-   @PostMapping(value = "/ai/chat_index", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+   @PostMapping("/ai/chat_index")
+//   @PostMapping(value = "/ai/chat_index", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE) // 생략가능
    @ResponseBody
-   public ResponseEntity<Map<String, String>> chat_index(@RequestBody FormInputDTO dto) {
+   public ResponseEntity<Map<String, String>> chat_index(@RequestBody FormInputDTO dto) {	//ResponseEntity를 반환해주면 1.HTTP 상태 코드, 2.헤더 3.본문을 설정할 수 있어서 그냥 map을 전달해주는 거보다 좋음
        Map<String, String> responseMap = new HashMap<>();	// 응답 메시지를 담을 Map 객체 생성
        try {	
            List<Message> messages = List.of(
@@ -174,3 +175,14 @@ public class AiController {
    }
    
 }// AiController
+
+
+
+
+
+
+
+
+
+
+

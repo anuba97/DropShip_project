@@ -64,38 +64,66 @@ public class MyShopController {
 	@Autowired
 	WorkReViewVo workReViewVo;
 
-	@PostMapping("cart") // 장바구니 DB에 저장 (주문과 비슷)
-	public String cartPost(int work_id, String opt1, String opt2, String opt3, String opt4, String opt5,
-			@RequestParam("ct_qty[1654133092][]") String option_quantity, Model model) {
+	@PostMapping("cart") 
+	public String cartPost(int work_id, int opt1, int opt2, int opt3, int opt4, int opt5,
+			@RequestParam("ct_qty[1654133092][]") int option_quantity, Model model) {
 
 		// 변수 초기화
 		int member_id = 1;
 		int option_id = 1;
 		int work_id_int = 1;
 
-		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
-		optionVo.setOption_media(Integer.parseInt(opt1));
-		optionVo.setOption_frame(Integer.parseInt(opt2));
-		optionVo.setOption_matt(Integer.parseInt(opt3));
-		optionVo.setOption_size(Integer.parseInt(opt4));
-		optionVo.setOption_mattier(Integer.parseInt(opt5));
+		optionVo.setOption_media(opt1);
+		optionVo.setOption_frame(opt2);
+		optionVo.setOption_matt(opt3);
+		optionVo.setOption_size(opt4);
+		optionVo.setOption_mattier(opt5);
 
-		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
+		if (session.getAttribute("sessionMember_id") != null) { 
 			member_id = (int) session.getAttribute("sessionMember_id");
 
-			// 고객이 설정한 옵션들을 토대로 추가되는 가격들을 set 후 그 set된 optionVo를 다시 리턴받음ㅇ
 			int work_price = workVo.getWork_price();
-			optionVo.setOption_quantity(Integer.parseInt(option_quantity));
+			optionVo.setOption_quantity(option_quantity);
 			optionVo = settingOptions(optionVo, work_price);
 
-			option_id = shopservice.insertOption(optionVo); // optionVo의 안의 값들을 DB work_option 테이블에 저장 후 시퀀스로 생성된 ID를
-															// 반환받음
-			// 회원 장바구니 테이블(Cart_Member)에 데이터 insert
+			option_id = shopservice.insertOption(optionVo); 
 			myShopService.insertCart_Member(member_id, work_id, option_id);
 		}
-		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
 		return "redirect:cart";
 	}
+	
+//	@PostMapping("cart") // 장바구니 DB에 저장 (주문과 비슷)
+//	public String cartPost(int work_id, int opt1, int opt2, int opt3, int opt4, int opt5,
+//			@RequestParam("ct_qty[1654133092][]") int option_quantity, Model model) {
+//		
+//		// 변수 초기화
+//		int member_id = 1;
+//		int option_id = 1;
+//		int work_id_int = 1;
+//		
+//		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
+//		optionVo.setOption_media(opt1);
+//		optionVo.setOption_frame(opt2);
+//		optionVo.setOption_matt(opt3);
+//		optionVo.setOption_size(opt4);
+//		optionVo.setOption_mattier(opt5);
+//		
+//		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
+//			member_id = (int) session.getAttribute("sessionMember_id");
+//			
+//			// 고객이 설정한 옵션들을 토대로 추가되는 가격들을 set 후 그 set된 optionVo를 다시 리턴받음ㅇ
+//			int work_price = workVo.getWork_price();
+//			optionVo.setOption_quantity(option_quantity);
+//			optionVo = settingOptions(optionVo, work_price);
+//			
+//			option_id = shopservice.insertOption(optionVo); // optionVo의 안의 값들을 DB work_option 테이블에 저장 후 시퀀스로 생성된 ID를
+//			// 반환받음
+//			// 회원 장바구니 테이블(Cart_Member)에 데이터 insert
+//			myShopService.insertCart_Member(member_id, work_id, option_id);
+//		}
+//		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
+//		return "redirect:cart";
+//	}
 
 	// 장바구니 페이지 보여줄 때
 	@GetMapping("cart")
@@ -113,18 +141,14 @@ public class MyShopController {
 				// 리턴받았던 work와 option 각각의 id들을 토대로 optionVo들과 workVo들과 artistVo들이 담긴 List를 가져옴
 				List<OptionVo> optionVoList = shopservice.selectOptionList(cart_MemberMap.get("optionIdList"));
 				
-				Map<String, List<? extends Object>> workArtistVoMap = shopservice
-						.selectMemberWorkList(cart_MemberMap.get("workIdList"));
-				////////// ------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
+				Map<String, List<? extends Object>> workArtistVoMap = shopservice.selectMemberWorkList(cart_MemberMap.get("workIdList"));
+		////////// ------------- DB에서 정보들을 가져오는 과정 ----------------------//////////
 
 				////////// ------------- cart.jsp에 뿌려주기 위한 과정 ---------------------//////////
 				List<WorkVo> workVoList = (List<WorkVo>) workArtistVoMap.get("workVoList");
 				List<ArtistVo> artistVoList = (List<ArtistVo>) workArtistVoMap.get("artistVoList");
 
-				int cart_total_price = 0;
-				for (OptionVo optionVo : optionVoList) {
-					cart_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
-				}
+				int cart_total_price = myShopService.calculateOrderTotalPrice(optionVoList);
 
 				model.addAttribute("cart_total_price", cart_total_price);
 				model.addAttribute("workVoList", workVoList);
@@ -180,15 +204,15 @@ public class MyShopController {
 	public String mypage(int member_id, Model model) {
 		
 		// 최근 주문 정보이기 때문에 오늘로부터 30일 전부터의 주문만 가져와야 함 (기준 바꾸려면 daysAgo변수만 바꾸면 됨)
-		int daysAgo = 30; 
-	    LocalDate now = LocalDate.now();
-	    LocalDate daysAgoDate = now.minus(daysAgo, ChronoUnit.DAYS);
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	    String formattedDate = daysAgoDate.format(formatter);
+		int daysAgo = 30;       
+		LocalDate now = LocalDate.now();                       
+		LocalDate daysAgoDate = now.minus(daysAgo, ChronoUnit.DAYS); 	// 현재 날짜로부터 'daysAgo' 일 전의 날짜를 계산
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");// 날짜를 "yyyy-MM-dd" 형식의 문자열로 포맷하는 DateTimeFormatter 생성
+		String formattedDate = daysAgoDate.format(formatter);  // DateTimeFormatter를 사용하여 'daysAgoDate'를 포맷하고 문자열로 저장
 	    
 		String fr_date = formattedDate; String to_date = "";	// 검색 종료일은 빈칸""으로 하면 알아서 오늘까지로 검색되는 걸로 mapper.xml에서 해놓음
 		
-		if (session.getAttribute("sessionMember_id") != null) { // 로그인 돼있을 때만 일단 구현
+		if (session.getAttribute("sessionMember_id") != null) { // 로그인 돼있을 때만
 			member_id = (int) session.getAttribute("sessionMember_id");
 			
 			List<Order_Detail_inquireVo> order_detail_list = myShopService.selectOrderDetailByMemberId(member_id, fr_date, to_date);
@@ -212,13 +236,25 @@ public class MyShopController {
 			List<Order_MemberVo> order_MemberVoList = myShopService.selectOrderMemberAll(member_id);
 			for (Order_MemberVo order_MemberVo : order_MemberVoList) {
 				int order_status = order_MemberVo.getOrder_status();
-				if(orderStatusCountMap.containsKey(order_status + "")) {	// 이미 있으면 (int를 +""함으로써 String으로 변환시켜서 key에 저장
+				if(orderStatusCountMap.containsKey(order_status + "")) {	
 					orderStatusCountMap.put(order_status + "", orderStatusCountMap.get(order_status+"") + 1);
 				} else {
 					orderStatusCountMap.put(order_status + "", 1);
 				}
 			}
 			model.addAttribute("orderStatusCountMap", orderStatusCountMap);
+//			// 주문 order_member 객체들이 담긴 List 가져와서 각 객체의 order_status로 map 만들기. key는 order_status, value는 누적 값(ordert_status가 1,2,3..인 vo가 몇 개인지)
+//			Map<String, Integer> orderStatusCountMap = new HashMap<>();
+//			List<Order_MemberVo> order_MemberVoList = myShopService.selectOrderMemberAll(member_id);
+//			for (Order_MemberVo order_MemberVo : order_MemberVoList) {
+//				int order_status = order_MemberVo.getOrder_status();
+//				if(orderStatusCountMap.containsKey(order_status + "")) {	// 이미 있으면 (int를 +""함으로써 String으로 변환시켜서 key에 저장
+//					orderStatusCountMap.put(order_status + "", orderStatusCountMap.get(order_status+"") + 1);
+//				} else {
+//					orderStatusCountMap.put(order_status + "", 1);
+//				}
+//			}
+//			model.addAttribute("orderStatusCountMap", orderStatusCountMap);
 			
 			// 민수가 만든 찜목록
 			int wishListCount = myShopService.selectWishlistCount(member_id);  // 찜리스트에 member_id가 저장한 작품이 있는지 확인
@@ -425,7 +461,7 @@ public class MyShopController {
 		// 회원 주문상세 테이블(Order_Detail)에 주문 저장
 		int total_price_int = Integer.parseInt(total_price);
 
-		List<Integer> workIdList = (List<Integer>) session.getAttribute("workIdList");
+		List<Integer> workIdList = (List<Integer>) session.getAttribute("workIdList");	// order_form.jsp에서 <c:set var=~~ scope="sesssion">으로 해놓음
 		List<Integer> optionIdList = (List<Integer>) session.getAttribute("optionIdList");
 
 		if (fromWhatPage.equals("painting_item")) { // 작품상세페이지에서 넘어온 경우라면 따로 optionVo의 id를 가져와줘야함.
@@ -441,39 +477,37 @@ public class MyShopController {
 
 	@GetMapping("order_result") // 주문작업 완료 후(-PostMapping으로 한 order_result. DB에 집어넣기) 결과물 보여주기(DB에서 다시 가져오기)
 	public String order_resultGet(int order_member_id, Model model) {
-
+		
 		// 회원 주문 테이블의 정보 가져오기(order_result에 뿌려야 함. 회원주문id, 주문일시만 필요. 그러나 어디서 또 쓰일지 몰라서
 		// 일단 다 가져올 것.)
 		Order_MemberVo order_memberVo = myShopService.selectOrderMemberOne_result(order_member_id); 
 		// 함수명 이렇게 한 이유 : 회원주문 객체 1명을 가져오는 일은 admin에서도 필요하기 때문에 함수명 같으면 안돼서 다르게 하려고 뒤에 언더바랑 언제 사용되는지(result-주문결과)를 적은 것.
-
+		
 		// 해당 주문건의 회원 주문 상세 테이블 가져오기
 		Map<String, List<Integer>> orderDetail = myShopService.selectOrderDetail(order_member_id); // optionIdList와 workIdList가 담겨있음.
-
+		
 		// 옵션 객체들 DB에서 가져오기
 		List<OptionVo> optionVoList = shopservice.selectOptionList(orderDetail.get("optionIdList"));
 		// 작품 객체들과 아티스트 객체들 DB에서 가져오기
 		Map<String, List<? extends Object>> workArtistMap = shopservice
 				.selectMemberWorkList(orderDetail.get("workIdList"));
 		List<WorkVo> workVoList = (List<WorkVo>) workArtistMap.get("workVoList");
-
-		int order_total_price = 0;
-		for (OptionVo optionVo : optionVoList) {
-			order_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
-		}
-
+		
+		int order_total_price = myShopService.calculateOrderTotalPrice(optionVoList);
+		
 		model.addAttribute("order_total_price", order_total_price);
 		model.addAttribute("memberVo", memberVo);
 		model.addAttribute("workVoList", workVoList);
 		model.addAttribute("optionVoList", optionVoList);
 		model.addAttribute("order_memberVo", order_memberVo);
-
+		
 		// 장바구니에서 주문한거면 주문끝났으니 장바구니 테이블에서 주문했던 작품들의 work_id, option_id 삭제
 		int member_id = memberVo.getId();
 		myShopService.deleteCart_member(member_id, orderDetail.get("optionIdList"));
 		// 장바구니 개수 알아내서 헤더에 뿌리기 (@GetMapping("cart")에서 쓴거 그대로 재사용.)
-		Map<String, List<Integer>> cart_MemberMap = myShopService.selectCart_MemberList(member_id);
-		session.setAttribute("sessionCartCount", cart_MemberMap.get("optionIdList").size());
+		
+		int cartCount = myShopService.getCartCount(member_id);
+		session.setAttribute("sessionCartCount", cartCount);
 		
 		return "home/myshop/order_result";
 	}

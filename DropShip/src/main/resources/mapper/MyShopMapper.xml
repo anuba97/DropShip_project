@@ -68,21 +68,21 @@
 			JOIN member m ON om.member_id = m.id
 			LEFT JOIN work_review r ON od.work_id = r.work_id
 		WHERE om.member_id = #{member_id}
-	 <if test="(fr_date != null and fr_date != '') and (to_date != null and to_date != '')">	<!-- 검색 시작일 종료일 둘 다 있으면 -->
+	 	<if test="(fr_date != null and fr_date != '') and (to_date != null and to_date != '')">	<!-- 검색 시작일 종료일 둘 다 있으면 -->
 			<![CDATA[
 			AND om.order_date >= TO_DATE(#{fr_date}) AND om.order_date <= TO_DATE(#{to_date})+1
 			]]>
-	 </if>
-	 <if test="(fr_date != '' and fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 있고 & 종료일이 없으면 --><!-- 종료일을 오늘로 함 -->
+	 	</if>
+	 	<if test="(fr_date != '' and fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 있고 & 종료일이 없으면 --><!-- 종료일을 오늘로 함 -->
 			<![CDATA[									
 			AND om.order_date >= TO_DATE(#{fr_date}) AND om.order_date <= sysdate	
 			]]>
-	 </if>
-	 <if test="(fr_date == '' or fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 & 종료일 둘 다 없으면 --><!-- 전체. 그냥 넘어가 -->
-	 </if>
-	 <if test="fr_date == '' and to_date != ''">	<!-- 시작일이 없고 & 종료일 있으면 -->
+	 	</if>
+	 	<if test="(fr_date == '' or fr_date != null) and (to_date == '' or to_date == null)">	<!-- 시작일 & 종료일 둘 다 없으면 --><!-- 전체. 그냥 넘어가 -->
+	 	</if>
+	 	<if test="fr_date == '' and to_date != ''">	<!-- 시작일이 없고 & 종료일 있으면 -->
 			AND om.order_date <![CDATA[<=]]> TO_DATE(#{to_date})+1	<!-- 종료일 이전까지 -->
-	 </if>
+	 	</if>
 		ORDER BY om.order_date DESC
 	 </select>
 	  

@@ -5,10 +5,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.java.vo.OptionVo;
 import com.java.vo.Order_Detail_inquireVo;
 import com.java.vo.Order_MemberVo;
 import com.java.vo.WishListVo;
-import com.java.vo.WorkVo;
 
 @Service
 public interface MyShopService {
@@ -81,6 +81,12 @@ public interface MyShopService {
 	///////////----------↓--------↓------ AI 마이페이지 관련 -------------↓--------↓---------//////////
 	// 마이페이지 - '내가 생성한 그림' 리스트
 	Map<String, Object> selectMyAiWorkVoList(int page, String member_nName);
+
+	// 주문 총액 계산
+	int calculateOrderTotalPrice(List<OptionVo> optionVoList);
+
+	// 장바구니 담긴 개수 가져오는 메소드
+	int getCartCount(int member_id);
 
 
 	

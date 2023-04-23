@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.java.mapper.AdminMapper;
 import com.java.mapper.MyShopMapper;
 import com.java.vo.Cart_MemberVo;
+import com.java.vo.OptionVo;
+import com.java.vo.OptionVo;
 import com.java.vo.Order_DetailVo;
 import com.java.vo.Order_Detail_inquireVo;
 import com.java.vo.Order_MemberVo;
@@ -171,8 +173,20 @@ public class MyShopServiceImpl implements MyShopService{
 		
 	}
 	
+	@Override
+	public int calculateOrderTotalPrice(List<OptionVo> optionVoList) {
+	    int order_total_price = 0;
+	    for (OptionVo optionVo : optionVoList) {
+	        order_total_price += optionVo.getOption_selected_price() * optionVo.getOption_quantity();
+	    }
+	    return order_total_price;
+	}
 	
-	
+	@Override
+	public int getCartCount(int member_id) {
+	    Map<String, List<Integer>> cart_MemberMap = selectCart_MemberList(member_id);
+	    return cart_MemberMap.get("optionIdList").size();
+	}
 	
 	
 	///////////----------↓--------↓------ 찜리스트 관련ㅋㅋ -------------↓--------↓---------//////////

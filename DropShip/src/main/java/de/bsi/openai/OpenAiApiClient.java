@@ -69,7 +69,7 @@ public class OpenAiApiClient {
 //    private String openaiApiKey;
     
     // 2. 그냥 무식하게 바로 api키 여기다 집어넣음 (api키 깃허브에 올리면 키 사라짐. 다시 얼마든지 만들 순 있긴 한데 그래도 조심..)
-    private String openaiApiKey = "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";
+    private String openaiApiKey = "";
 
     private final HttpClient client = HttpClient.newHttpClient();
 

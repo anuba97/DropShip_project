@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Data	// 게터로 data확인해보려고 만듦
 public class GenerationResponse {
 	
-//	private final List<ImageUrl> data; // 원래.
 	private List<ImageUrl> data;
 	
 	public GenerationResponse(List<ImageUrl> data) {
