@@ -46,6 +46,9 @@ public interface AdminService {
 	
 	public ArtistVo settingArtistVoForAi(ArtistVo artistVo, String member_nName);  // ai생성그림 등록 전에 작가객체 만들어져야. 작가만들기 전 AiController.java 코드 줄이려고 만듦
 	
+	// 아티스트 등록 전 workVo set하기(AdminArtistController 깔끔하게 하려고 만듦)
+	ArtistVo settingArtistVo(ArtistVo artistVo, MultipartFile file);
+	
 	public int insertArtist(ArtistVo artistVo);	// 아티스트 등록
 	
 	public void updateArtistOne(ArtistVo artistVo);		// 아티스트 수정
@@ -87,6 +90,8 @@ public interface AdminService {
 	//////////////////       ↓  AI 관련 ↓         /////////////////////////
 	public int registerAiWork(String work_img_url, String work_name, String work_content, int work_price,
 			String work_genre, String work_subject, String member_nName, HttpSession session) throws IOException;
+
+	
 
 	
 	

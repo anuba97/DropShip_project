@@ -96,16 +96,21 @@
   
   	<!-- /////↓↓↓↓////   ↓↓↓   답글 댓글  ↓↓↓↓    /////↓↓↓↓//// -->
   	
+  	
+  	
   	<!-- 답글 달기 전 뒤에있는 글들 step + 1 해주기  -->
 	<update id="setStepPlusOne">
-		update freeboard set freeBoard_step = freeBoard_step + 1 where freeBoard_group = #{freeBoard_group} and freeBoard_step  <![CDATA[ > ]]> #{freeBoard_step}
+		UPDATE freeboard SET freeBoard_step = freeBoard_step + 1 
+		WHERE freeBoard_group = #{freeBoard_group} 
+		AND freeBoard_step  <![CDATA[ > ]]> #{freeBoard_step}
   	</update>
   	
   	<!-- 답글 작성 -->
   	<insert id="insertReply">  
-		insert into freeboard values(freeboard_seq.nextval,#{freeBoard_head},0,0,0,
-		#{member_id},#{admin_id},#{freeBoard_title},#{freeBoard_content},
-		sysdate,sysdate,#{freeBoard_file_name},0,0,#{freeBoard_group}, #{freeBoard_indent}+1, #{freeBoard_step}+1)
+		INSERT INTO freeboard VALUES(freeboard_seq.nextval,#{freeBoard_head},
+		0,0,0,#{member_id},#{admin_id},#{freeBoard_title},#{freeBoard_content},
+		sysdate,sysdate,#{freeBoard_file_name},0,0,#{freeBoard_group}, 
+		#{freeBoard_indent}+1, #{freeBoard_step}+1)
 	</insert>
   	
   	<!-- 댓글 작성 -->

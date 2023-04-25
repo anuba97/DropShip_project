@@ -126,8 +126,26 @@ public class AiController {
 //      @Autowired
 //      private OpenAiApiClient client;
 
+//   private String chatWithGpt3(List<Message> messages) throws Exception {
+//	   ChatCompletionRequest chatCompletion = ChatCompletionRequest.defaultWith(messages);	// OpenAI API 요청 객체 생성
+//	   String postBodyJson = jsonMapper.writeValueAsString(chatCompletion);					// ChatCompletionRequest 객체를 JSON 문자열로 변환
+//	   String responseBody = client.postToOpenAiApi(postBodyJson, OpenAiService.GPT_3);		// OpenAI API로 요청을 보내고 응답을 받음
+//	   ChatCompletionResponse chatCompletionResponse = jsonMapper.readValue(responseBody, ChatCompletionResponse.class);	// 받은 OpenAI API 응답을 ChatCompletionResponse 객체로 변환
+//	   
+//	   Optional<Message> assistantMessageOpt = chatCompletionResponse.getAssistantMessage();	// ChatCompletionResponse에서 assistantMessage를 가져옴
+//	   if (assistantMessageOpt.isPresent()) {	// assistantMessage가 존재하는 경우
+//		   Message assistantMessage = assistantMessageOpt.get();	// assistantMessage를 가져옴
+//		   String role = assistantMessage.getRole();	// assistantMessage의 Role을 가져옴
+//		   String content = assistantMessage.getContent();	// assistantMessage의 Content를 가져옴
+////              System.out.println("Role: " + role);
+////              System.out.println("Content: " + content);
+//	   } else {
+//		   throw new Exception("Error in communication with OpenAI ChatGPT API.");
+//	   }
+//	   return chatCompletionResponse.firstAnswer()	// ChatCompletionResponse에서 첫 번째 응답을 가져와 반환함
+//			   .orElseThrow(() -> new Exception("Error in communication with OpenAI ChatGPT API."));	
+//   }
     private String chatWithGpt3(List<Message> messages) throws Exception {
-//       List<Message> messages = List.of(new Message("user", message));
           ChatCompletionRequest chatCompletion = ChatCompletionRequest.defaultWith(messages);	// OpenAI API 요청 객체 생성
           String postBodyJson = jsonMapper.writeValueAsString(chatCompletion);					// ChatCompletionRequest 객체를 JSON 문자열로 변환
           String responseBody = client.postToOpenAiApi(postBodyJson, OpenAiService.GPT_3);		// OpenAI API로 요청을 보내고 응답을 받음
@@ -145,7 +163,7 @@ public class AiController {
           }
            return chatCompletionResponse.firstAnswer()	// ChatCompletionResponse에서 첫 번째 응답을 가져와 반환함
                    .orElseThrow(() -> new Exception("Error in communication with OpenAI ChatGPT API."));	
-       }
+   }
 
    @GetMapping("/ai/chat_index")
    public String chat_index() {

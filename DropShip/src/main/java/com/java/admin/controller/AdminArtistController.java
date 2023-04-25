@@ -45,25 +45,7 @@ public class AdminArtistController {
 	// 아티스트를 db에 추가
 	@PostMapping("admin_artistAdd")
 	public String admin_artistAdd(ArtistVo artistVo, @RequestPart MultipartFile file, Model model) { 
-		
-		// 프론트에서 required로 무조건 사진 입력받아야
-		
-		if(!file.isEmpty()) {
-			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
-			long time = System.currentTimeMillis(); // 시간 밀리초 단위로 
-			// a.jpg -> 123524123232_a.jpg 로 저장
-			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/img/artist/";
-			File f = new File(fileSaveUrl + uploadFileName);  
-			try {
-				file.transferTo(f);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// 변경된 파일이름을 artistVo 객체에 저장
-			artistVo.setArtist_img_url(uploadFileName);
-			// 파일이 첨부 안됐으면 안넣어
-		} // if. 
+		artistVo = adminService.settingArtistVo(artistVo, file);	// 파일 저장
 		adminService.insertArtist(artistVo);
 		return "redirect:admin_artistList";
 	}// 아티스트 db입력
@@ -88,7 +70,6 @@ public class AdminArtistController {
 		// ARTIST_SEQ.CURRVAL 가져오기
 		String current_id = adminService.selectCurrval();
 		
-		System.out.println("current_id from COntroller !!!!!!!!!!!!!!  :  " + current_id);
 		return current_id;
 	}
 	
@@ -97,7 +78,7 @@ public class AdminArtistController {
 	
 	// 작가 삭제 (ajax사용)
 	@ResponseBody
-	@PostMapping("deleteArtist")
+	@PostMapping("deleteArtist")			// **** ON DELETE CASCADE 사용하면 됨
 	public Map<String, Integer> deleteArtist(int id) {
 		List<WorkVo> workList = adminService.selectWorksByArtist(id);
 		int workCount = workList.size();
@@ -135,26 +116,11 @@ public class AdminArtistController {
 	@PostMapping("admin_artistUpdate")
 	public String admin_artistUpdate(ArtistVo artistVo, @RequestPart MultipartFile file,
 			String original_file, Model model) {
-		
-		artistVo.setArtist_img_url(original_file);
-
-		if (!file.isEmpty()) {
-			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
-			long time = System.currentTimeMillis(); // 시간 밀리초 단위로
-			// a.jpg -> 123524123232_a.jpg 로 저장
-			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/img/artist/";
-			File f = new File(fileSaveUrl + uploadFileName);
-			try {
-				file.transferTo(f);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// workVo 객체에 파일url, admin_id, artist_id 저장
-			artistVo.setArtist_img_url(uploadFileName);
-		} // if.
+		artistVo.setArtist_img_url(original_file);	// 사진첨부 새로 안받았을 때
+		if (!file.isEmpty()) {	// 사진첨부 새로 받았을 때
+			artistVo = adminService.settingArtistVo(artistVo, file);	
+		}
 		adminService.updateArtistOne(artistVo);
-		System.out.println("작가 수정완료!!");
 		return "redirect:admin_artistView?id=" + artistVo.getId();
 	}
 	

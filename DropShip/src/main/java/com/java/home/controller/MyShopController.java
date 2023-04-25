@@ -64,66 +64,28 @@ public class MyShopController {
 	@Autowired
 	WorkReViewVo workReViewVo;
 
-	@PostMapping("cart") 
-	public String cartPost(int work_id, int opt1, int opt2, int opt3, int opt4, int opt5,
-			@RequestParam("ct_qty[1654133092][]") int option_quantity, Model model) {
-
+	@PostMapping("cart") // 장바구니 DB에 저장 (주문과 비슷)
+	public String cartPost(int work_id, OptionVo optionVo, Model model) {
 		// 변수 초기화
 		int member_id = 1;
 		int option_id = 1;
-		int work_id_int = 1;
-
-		optionVo.setOption_media(opt1);
-		optionVo.setOption_frame(opt2);
-		optionVo.setOption_matt(opt3);
-		optionVo.setOption_size(opt4);
-		optionVo.setOption_mattier(opt5);
-
-		if (session.getAttribute("sessionMember_id") != null) { 
+		
+		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
+		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
 			member_id = (int) session.getAttribute("sessionMember_id");
-
+			
+			// 고객이 설정한 옵션들을 토대로 추가되는 가격들을 set 후 그 set된 optionVo를 다시 리턴받음
 			int work_price = workVo.getWork_price();
-			optionVo.setOption_quantity(option_quantity);
 			optionVo = settingOptions(optionVo, work_price);
-
-			option_id = shopservice.insertOption(optionVo); 
+			
+			// optionVo의 안의 값들을 DB work_option 테이블에 저장 후 시퀀스로 생성된 ID를 반환받음
+			option_id = shopservice.insertOption(optionVo);
+			// 회원 장바구니 테이블(Cart_Member)에 데이터 insert
 			myShopService.insertCart_Member(member_id, work_id, option_id);
 		}
+		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
 		return "redirect:cart";
 	}
-	
-//	@PostMapping("cart") // 장바구니 DB에 저장 (주문과 비슷)
-//	public String cartPost(int work_id, int opt1, int opt2, int opt3, int opt4, int opt5,
-//			@RequestParam("ct_qty[1654133092][]") int option_quantity, Model model) {
-//		
-//		// 변수 초기화
-//		int member_id = 1;
-//		int option_id = 1;
-//		int work_id_int = 1;
-//		
-//		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
-//		optionVo.setOption_media(opt1);
-//		optionVo.setOption_frame(opt2);
-//		optionVo.setOption_matt(opt3);
-//		optionVo.setOption_size(opt4);
-//		optionVo.setOption_mattier(opt5);
-//		
-//		if (session.getAttribute("sessionMember_id") != null) { // 일단 회원일때만 장바구니 넣기 가능
-//			member_id = (int) session.getAttribute("sessionMember_id");
-//			
-//			// 고객이 설정한 옵션들을 토대로 추가되는 가격들을 set 후 그 set된 optionVo를 다시 리턴받음ㅇ
-//			int work_price = workVo.getWork_price();
-//			optionVo.setOption_quantity(option_quantity);
-//			optionVo = settingOptions(optionVo, work_price);
-//			
-//			option_id = shopservice.insertOption(optionVo); // optionVo의 안의 값들을 DB work_option 테이블에 저장 후 시퀀스로 생성된 ID를
-//			// 반환받음
-//			// 회원 장바구니 테이블(Cart_Member)에 데이터 insert
-//			myShopService.insertCart_Member(member_id, work_id, option_id);
-//		}
-//		////////// ------------- 선택한 작품과 옵션을 장바구니 DB에 저장하는 과정 ---------//////////
-//		return "redirect:cart";
-//	}
 
 	// 장바구니 페이지 보여줄 때
 	@GetMapping("cart")
@@ -236,25 +198,13 @@ public class MyShopController {
 			List<Order_MemberVo> order_MemberVoList = myShopService.selectOrderMemberAll(member_id);
 			for (Order_MemberVo order_MemberVo : order_MemberVoList) {
 				int order_status = order_MemberVo.getOrder_status();
-				if(orderStatusCountMap.containsKey(order_status + "")) {	
+				if(orderStatusCountMap.containsKey(order_status + "")) {	// 이미 있으면 (int를 +""함으로써 String으로 변환시켜서 key에 저장
 					orderStatusCountMap.put(order_status + "", orderStatusCountMap.get(order_status+"") + 1);
 				} else {
 					orderStatusCountMap.put(order_status + "", 1);
 				}
 			}
 			model.addAttribute("orderStatusCountMap", orderStatusCountMap);
-//			// 주문 order_member 객체들이 담긴 List 가져와서 각 객체의 order_status로 map 만들기. key는 order_status, value는 누적 값(ordert_status가 1,2,3..인 vo가 몇 개인지)
-//			Map<String, Integer> orderStatusCountMap = new HashMap<>();
-//			List<Order_MemberVo> order_MemberVoList = myShopService.selectOrderMemberAll(member_id);
-//			for (Order_MemberVo order_MemberVo : order_MemberVoList) {
-//				int order_status = order_MemberVo.getOrder_status();
-//				if(orderStatusCountMap.containsKey(order_status + "")) {	// 이미 있으면 (int를 +""함으로써 String으로 변환시켜서 key에 저장
-//					orderStatusCountMap.put(order_status + "", orderStatusCountMap.get(order_status+"") + 1);
-//				} else {
-//					orderStatusCountMap.put(order_status + "", 1);
-//				}
-//			}
-//			model.addAttribute("orderStatusCountMap", orderStatusCountMap);
 			
 			// 민수가 만든 찜목록
 			int wishListCount = myShopService.selectWishlistCount(member_id);  // 찜리스트에 member_id가 저장한 작품이 있는지 확인

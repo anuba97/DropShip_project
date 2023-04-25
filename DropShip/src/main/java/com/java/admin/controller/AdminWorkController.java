@@ -41,7 +41,8 @@ public class AdminWorkController {
 
 	// 작품을 db에 추가
 	@PostMapping("admin_workAdd")
-	public String admin_workAdd(WorkVo workVo, String artist_id, String admin_id, @RequestPart MultipartFile file) {
+	public String admin_workAdd(WorkVo workVo, String artist_id, String admin_id, 
+			@RequestPart MultipartFile file) {
 		workVo = adminService.settingWorkVo(workVo, admin_id, artist_id, file);
 		adminService.insertWork(workVo);
 		return "redirect:admin_workList";
@@ -82,25 +83,10 @@ public class AdminWorkController {
 	@PostMapping("admin_workUpdate")
 	public String admin_workUpdate2(WorkVo workVo, String artist_id, String admin_id, @RequestPart MultipartFile file,
 			String original_file, Model model) {
-		workVo.setWork_img_url(original_file);
-
-		if (!file.isEmpty()) {
-			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
-			long time = System.currentTimeMillis(); // 시간 밀리초 단위로
-			// a.jpg -> 123524123232_a.jpg 로 저장
-			String uploadFileName = String.format("%d_%s", time, originFileName);
-			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/img/work/";
-			File f = new File(fileSaveUrl + uploadFileName);
-			try {
-				file.transferTo(f);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// workVo 객체에 파일url, admin_id, artist_id 저장
-			workVo.setWork_img_url(uploadFileName);
-			workVo.setAdmin_id(Integer.parseInt(admin_id));
-			workVo.setArtist_id(Integer.parseInt(artist_id));
-		} // if.
+		workVo.setWork_img_url(original_file);	// 사진첨부 새로 안받았을 때
+		if (!file.isEmpty()) {	// 사진첨부 새로 받았을 때
+			workVo = adminService.settingWorkVo(workVo, artist_id, admin_id, file);	
+		}
 		adminService.updateWorkOne(workVo);
 		return "redirect:admin_workView?id=" + workVo.getId();
 	}

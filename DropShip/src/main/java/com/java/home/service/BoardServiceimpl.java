@@ -139,8 +139,8 @@ public class BoardServiceimpl implements BoardService{
 	// 자유게시판 답글달기
 	@Override
 	public void insertReply(BoardVo boardVo) {
-		boardMapper.setStepPlusOne(boardVo.getFreeBoard_group(), boardVo.getFreeBoard_step());
-		boardMapper.insertReply(boardVo);
+		boardMapper.setStepPlusOne(boardVo.getFreeBoard_group(), boardVo.getFreeBoard_step());	//답글 달기 전, 같은 group내 원글의 step보다 큰 step의 글들의 step을 1씩 올리기
+		boardMapper.insertReply(boardVo);	// indent와 step을 원글보다 1씩 증가시켜서 저장
 	}
 
 	// 자유게시판 댓글달기

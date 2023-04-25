@@ -144,6 +144,16 @@ public class BbsController {
 		return "redirect:/bbs/board_view?id="+boardVo.getId();	// board_view로 리다이렉트
 	}// 글쓴 거 저장 (파일저장도)
 	
+	
+	@GetMapping("board_delete") //자유게시판 게시글 삭제
+	public String fboardDelete(@RequestParam int id, 
+			@RequestParam(defaultValue = "1") int page, Model model) {
+		boardService.deleteBoard(id);
+		return "redirect:/bbs/board";
+	}
+	
+///////////  ↓  ///////////  ↓   ///////////////// 답글 관련 //////////////  ↓   ///////////  ↓   //////////////////////////
+	
 	@GetMapping("board_reply") //자유게시글 답글다는 페이지 이동
 	public String fboardReply(@RequestParam int id, 
 			@RequestParam(defaultValue = "1") int page, Model model) {
@@ -160,14 +170,6 @@ public class BbsController {
 		boardService.insertReply(boardVo);
 		return "redirect:/bbs/board_view?id="+boardVo.getId();	// board_view로 리다이렉트
 	}// 답글 달기 실행
-	
-	
-	@GetMapping("board_delete") //자유게시판 게시글 삭제
-	public String fboardDelete(@RequestParam int id, 
-			@RequestParam(defaultValue = "1") int page, Model model) {
-		boardService.deleteBoard(id);
-		return "redirect:/bbs/board";
-	}
 	
 ///////////  ↓  ///////////  ↓   ///////////////// 댓글 관련 //////////////  ↓   ///////////  ↓   //////////////////////////
 	

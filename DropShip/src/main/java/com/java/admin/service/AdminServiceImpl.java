@@ -151,6 +151,26 @@ public class AdminServiceImpl implements AdminService {
 		return artistVo;
 	}
 
+	// 아티스트 등록 전 artistVo 세팅
+	@Override
+	public ArtistVo settingArtistVo(ArtistVo artistVo, MultipartFile file) {
+		if (!file.isEmpty()) {
+			String originFileName = file.getOriginalFilename(); // 원본 파일명 받기
+			long time = System.currentTimeMillis(); // 시간 밀리초 단위로
+			// a.jpg -> 123524123232_a.jpg 로 저장
+			String uploadFileName = String.format("%d_%s", time, originFileName);
+			String fileSaveUrl = System.getProperty("user.dir") + "/src/main/resources/static/admin/img/artist/";
+			File f = new File(fileSaveUrl + uploadFileName);
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 변경된 파일이름을 artistVo 객체에 저장
+			artistVo.setArtist_img_url(uploadFileName);
+		} // if.
+		return artistVo;
+	}
 	
 	// 아티스트 등록
 	@Override
@@ -221,7 +241,6 @@ public class AdminServiceImpl implements AdminService {
 			File f = new File(fileSaveUrl + uploadFileName);
 			try {
 				file.transferTo(f);
-				System.out.println("파일 저장 장소 : " + f);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

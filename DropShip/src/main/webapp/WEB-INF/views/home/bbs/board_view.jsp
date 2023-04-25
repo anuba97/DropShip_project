@@ -210,7 +210,7 @@
 						<div class="board-con">${map.boardVo.freeBoard_content}</div>
 					</div>
 					
-					<!-- 댓글 --><!-- 댓글 --><!-- 댓글 --><!-- 댓글 -->
+					<!-- 댓글 달기 -->
 					<div class="comment-input-wrap tw-style">
 					    <h3>댓글 달기</h3>
 					    <div id="commentForm">
@@ -222,7 +222,6 @@
 					        <button id="submitComment">댓글 작성</button>
 					    </div>
 					</div>
-					
 					
 					<!-- 댓글 목록 -->
 					<div class="comment-list-wrap">
@@ -247,57 +246,75 @@
 					<script>
 						// 댓글 작성 버튼 클릭
 						$("#submitComment").on("click", function (e) {
-	
 				            // 폼 데이터를 JSON 형태로 변환.
 				            const formData = {
 				                freeBoard_id: $("input[name='freeBoard_id']").val(),
 				                member_id: $("input[name='member_id']").val(),
 				                comment_content: $("textarea[name='comment_content']").val(),
-				                comment_pw: $("input[name='comment_pw']").val() // 비번 입력 안받았으면 null
+				                comment_pw: $("input[name='comment_pw']").val() 
 				            };
+				            const JsonizedFormData = JSON.stringify(formData);
 	
-				            // 댓글 서버 저장
+				         	// 댓글 서버 저장
 				            $.ajax({
 				                url: "comment_create",
 				                type: "POST",
-				                data: JSON.stringify(formData),
+				                data: JsonizedFormData,
 				                dataType: "json",
 				                contentType: "application/json; charset=utf-8",
 				                success: function (commentVo) {
-// 				                	console.log(commentVo)
-// 				                    if (commentVo.id) {
-// 						        		const commentElement = $('<li class="comment-item" data-comment-id="' + commentVo.id + '">' +
-// 				                                '<div class="comment-author">' + commentVo.member_nName + '</div>' +
-// 				                                '<div class="comment-content"></div>' +
-// 				                                '<div class="comment-date">' + commentVo.formatted_comment_date + '</div>' +
-// 				                                '<button class="comment-edit-btn">수정</button>' +
-// 				                                '<button class="comment-delete-btn">삭제</button>' +
-// 									                            '</li>');
-// 						        		$("#commentList").prepend(commentElement);
-// 						        		if(commentVo.comment_pw != null){	// 비번 걸려있으면
-// 						        			commentElement.find(".comment-content").text("비밀글입니다.");
-// 						        		} else {
-// 						        			commentElement.find(".comment-content").text(commentVo.comment_content);
-// 						        		}
-	
-// 				                        // 댓글 입력 폼을 초기화
-// 				                        $("textarea[name='comment_content']").val('');
-// 				                        $("input[name='comment_pw']").val('');
-				                        location.href="board_view?id="+${id}+"&page="+${page}	// 페이징 처리 하려면 리로딩 할 수 밖에 없을듯...? 리로딩할거면 ajax로 받아와서 위처럼 할 필요가 없음
-// 				                    } else {
-// 				                        alert("댓글 작성에 실패했습니다.");
-// 				                    }
+			                        location.href="board_view?id="+${id}+"&page="+${page}	         // 페이징 처리 하려면 리로딩 할 수 밖에 없을듯...? 리로딩할거면 ajax로 받아와서 위처럼 할 필요가 없음
 				                },
 				                error: function (request, status, error) {
 				                    alert("댓글 작성에 실패했습니다.");
 				                }
-				            }); // ajax
+				            }); // 댓글 저장 ajax
+				            
+				            
+// 				            // 댓글 서버 저장
+// 				            $.ajax({
+// 				                url: "comment_create",
+// 				                type: "POST",
+// 				                data: JSON.stringify(formData),
+// 				                dataType: "json",
+// 				                contentType: "application/json; charset=utf-8",
+// 				                success: function (commentVo) {
+// // 				                	console.log(commentVo)
+// // 				                    if (commentVo.id) {
+// // 						        		const commentElement = $('<li class="comment-item" data-comment-id="' + commentVo.id + '">' +
+// // 				                                '<div class="comment-author">' + commentVo.member_nName + '</div>' +
+// // 				                                '<div class="comment-content"></div>' +
+// // 				                                '<div class="comment-date">' + commentVo.formatted_comment_date + '</div>' +
+// // 				                                '<button class="comment-edit-btn">수정</button>' +
+// // 				                                '<button class="comment-delete-btn">삭제</button>' +
+// // 									                            '</li>');
+// // 						        		$("#commentList").prepend(commentElement);
+// // 						        		if(commentVo.comment_pw != null){	// 비번 걸려있으면
+// // 						        			commentElement.find(".comment-content").text("비밀글입니다.");
+// // 						        		} else {
+// // 						        			commentElement.find(".comment-content").text(commentVo.comment_content);
+// // 						        		}
+	
+// // 				                        // 댓글 입력 폼을 초기화
+// // 				                        $("textarea[name='comment_content']").val('');
+// // 				                        $("input[name='comment_pw']").val('');
+// 				                        location.href="board_view?id="+${id}+"&page="+${page}	// 페이징 처리 하려면 리로딩 할 수 밖에 없을듯...? 리로딩할거면 ajax로 받아와서 위처럼 할 필요가 없음
+// // 				                    } else {
+// // 				                        alert("댓글 작성에 실패했습니다.");
+// // 				                    }
+// 				                },
+// 				                error: function (request, status, error) {
+// 				                    alert("댓글 작성에 실패했습니다.");
+// 				                }
+// 				            }); // ajax
+
+				            
 				        });	//  $("#submitComment").on("click")
 				        
 				        
 				        
 				     	// 댓글 수정
-				        $("#commentList").on("click", ".comment-edit-btn", function () {
+				        $("#commentList").on("click", ".comment-edit-btn", function () {	// 이벤트 처리를 상위(commentList)요소에 위임
 				            const commentItem = $(this).closest(".comment-item");
 				            const comment_id = commentItem.data("comment-id");
 				            const comment_content = commentItem.find(".comment-content").text();

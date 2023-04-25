@@ -1364,18 +1364,25 @@
 
                         if (document.pressed == "장바구니") {
                             f.sw_direct.value = 0;
+                            setOptionValues();
                             f.action = "../myshop/cart"; // 장바구니 페이지 이동
                         } else { // 바로구매
                             f.sw_direct.value = 1;
-                        	$("#option_media").val($("input[name=opt1]:checked").val());	// 서버에서 optionVo로 받을 수 있게
-                        	$("#option_frame").val($("input[name=opt2]:checked").val());
-                        	$("#option_matt").val($("input[name=opt3]:checked").val());
-                        	$("#option_size").val($("select[name=opt4]").val());
-                        	$("#option_mattier").val($("input[name=opt5]:checked").val());
-                        	$("#option_quantity").val($("#ct_qty_7").val());
+                            setOptionValues();
                             f.action = "../myshop/order_form"; // 구매페이지 이동
+                         
                         }
 
+                        function setOptionValues() { // 서버에서 optionVo로 받을 수 있게
+                            $("#option_media").val($("input[name=opt1]:checked").val());
+                            $("#option_frame").val($("input[name=opt2]:checked").val());
+                            $("#option_matt").val($("input[name=opt3]:checked").val());
+                            $("#option_size").val($("select[name=opt4]").val());
+                            $("#option_mattier").val($("input[name=opt5]:checked").val());
+                            $("#option_quantity").val($("#ct_qty_7").val());
+                        }
+                        
+                        
                         // 판매가격이 0 보다 작다면
                         if (document.getElementById("it_price").value < 0) {
                             alert("전화로 문의해 주시면 감사하겠습니다.");
@@ -1387,6 +1394,9 @@
                             return false;
                         }
 
+                        
+                        
+                        
                         var val, io_type, result = true;
                         var sum_qty = 0;
                         var min_qty = parseInt(1);
