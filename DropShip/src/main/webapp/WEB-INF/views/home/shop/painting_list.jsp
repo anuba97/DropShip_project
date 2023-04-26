@@ -218,7 +218,7 @@
 									                                <button type="button" onclick="NoheartBtn()" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
 									                            </c:if>
 									                            <c:if test="${sessionMember_login_id != null }">
-									                                <button type="button" onclick="heartBtn('${sessionMember_id}',${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
+									                                <button type="button" onclick="heartBtn(${sessionMember_id},${workVo.id})" data-it_id="1654135291" class="btnset btn-like btn_wish"><span class="hide">찜하기</span></button>
 									                            </c:if>
 									                        </div>
 									                    </div>
