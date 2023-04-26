@@ -191,7 +191,6 @@
                         <div class="grid-list">
                             <div class="sct_wrap">
 								<input type="hidden" id="page" name="page" value="${workMap.page}">
-                                <!-- <script src="../js/jquery.fancylist.js"></script> -->
                                 <form action="compare2" name="docompareFrm" id="docompare" method="post">
                                     <input type="hidden" id="chkValue" name="chkValue">
 									<ul class="sct sct_20">
